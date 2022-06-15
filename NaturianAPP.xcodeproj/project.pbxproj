@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 32078A562859780E00FF2980 /* GoogleService-Info (1).plist */; };
 		32138B252858860200916700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B242858860200916700 /* AppDelegate.swift */; };
 		32138B272858860200916700 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B262858860200916700 /* SceneDelegate.swift */; };
 		32138B292858860200916700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B282858860200916700 /* ViewController.swift */; };
@@ -14,9 +15,11 @@
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32078A562859780E00FF2980 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		32138B212858860200916700 /* NaturianAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaturianAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32138B242858860200916700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32138B262858860200916700 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
+		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32078A52285957F600FF2980 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		32078A532859580E00FF2980 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32078A562859780E00FF2980 /* GoogleService-Info (1).plist */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		32138B182858860200916700 = {
 			isa = PBXGroup;
 			children = (
 				32138B232858860200916700 /* NaturianAPP */,
 				32138B222858860200916700 /* Products */,
+				BF64B4D2C82161FD45A69DD7 /* Pods */,
+				AD191C2C55B9D742F5BC961D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +82,8 @@
 		32138B232858860200916700 /* NaturianAPP */ = {
 			isa = PBXGroup;
 			children = (
+				32078A532859580E00FF2980 /* Model */,
+				32078A52285957F600FF2980 /* Controller */,
 				32138B242858860200916700 /* AppDelegate.swift */,
 				32138B262858860200916700 /* SceneDelegate.swift */,
 				32138B282858860200916700 /* ViewController.swift */,
@@ -70,6 +96,24 @@
 			path = NaturianAPP;
 			sourceTree = "<group>";
 		};
+		AD191C2C55B9D742F5BC961D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF64B4D2C82161FD45A69DD7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */,
+				7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,10 +121,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32138B382858860400916700 /* Build configuration list for PBXNativeTarget "NaturianAPP" */;
 			buildPhases = (
+				A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */,
 				32138B1D2858860200916700 /* Sources */,
 				32138B1E2858860200916700 /* Frameworks */,
 				32138B1F2858860200916700 /* Resources */,
 				32078A512858C56300FF2980 /* ShellScript */,
+				BAF5EAE99017428B49E5BC3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +178,7 @@
 				32138B342858860400916700 /* LaunchScreen.storyboard in Resources */,
 				32138B312858860400916700 /* Assets.xcassets in Resources */,
 				32138B2C2858860200916700 /* Main.storyboard in Resources */,
+				32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +201,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NaturianAPP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAF5EAE99017428B49E5BC3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -307,6 +393,7 @@
 		};
 		32138B392858860400916700 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -335,6 +422,7 @@
 		};
 		32138B3A2858860400916700 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
