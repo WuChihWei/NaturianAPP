@@ -9,5 +9,7 @@ target 'NaturianAPP' do
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseAnalytics'
+pod 'SwiftLint'
+
 
 end
