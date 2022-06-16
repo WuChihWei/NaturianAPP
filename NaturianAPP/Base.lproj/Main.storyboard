@@ -58,7 +58,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IAx-Zb-hq1"/>
                     <connections>
-                        <segue destination="anf-1g-V37" kind="show" id="MFO-OU-BgF"/>
+                        <segue destination="anf-1g-V37" kind="show" identifier="ForumLobbySegue" id="MFO-OU-BgF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJA-Lv-8w7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,7 +188,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="nKk-2V-JYj" kind="show" id="UNq-PP-rg8"/>
+                                    <segue destination="nKk-2V-JYj" kind="show" identifier="ForumpostSegue" id="UNq-PP-rg8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -212,17 +212,17 @@
                     <connections>
                         <outlet property="forumLobbyUITableView" destination="49e-XA-9ZH" id="YXC-de-agH"/>
                         <outlet property="postArticleButton" destination="cJ6-dv-JOF" id="xcC-Dz-PGd"/>
-                        <segue destination="RhG-Za-hOm" kind="show" id="JUv-KT-4qD"/>
+                        <segue destination="RhG-Za-hOm" kind="show" identifier="ForumDetailSegue" id="JUv-KT-4qD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2S-db-AAH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3263.7681159420295" y="401.78571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Forum Detail View Controller-->
         <scene sceneID="Swz-o1-saQ">
             <objects>
-                <viewController id="RhG-Za-hOm" sceneMemberID="viewController">
+                <viewController id="RhG-Za-hOm" customClass="ForumDetailViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1ND-H2-Tdq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -341,7 +341,7 @@
                                 <rect key="frame" x="0.0" y="253.5" width="414" height="642.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="111" id="lan-uy-bd7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="111" id="lan-uy-bd7" customClass="ForumDetailTableViewCell" customModule="NaturianAPP" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lan-uy-bd7" id="pkZ-RD-LaS">
@@ -395,6 +395,12 @@
                                                 <constraint firstItem="Rdf-zl-pvW" firstAttribute="top" secondItem="9eS-Mg-fOd" secondAttribute="bottom" constant="16" id="m41-yz-X64"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarUIImage" destination="YMj-yV-T1m" id="9xG-9G-p2b"/>
+                                            <outlet property="replierNameLabel" destination="BXJ-fb-AvZ" id="K4e-yW-kFW"/>
+                                            <outlet property="replyContent" destination="Rdf-zl-pvW" id="ijz-gK-G0X"/>
+                                            <outlet property="replyTimeLabel" destination="s7d-SZ-cGn" id="bh4-Yy-3D6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -423,6 +429,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dTp-Ac-JfK"/>
+                    <connections>
+                        <outlet property="avatarUIImage" destination="8eG-Z8-bwJ" id="zvP-5e-it2"/>
+                        <outlet property="contentLabel" destination="Fy7-EC-TYI" id="5gi-lq-gkD"/>
+                        <outlet property="createdTimeLabel" destination="zpl-Vy-dbk" id="pTv-LX-9AH"/>
+                        <outlet property="postNameLabel" destination="Flm-M1-R8K" id="ouh-OG-emi"/>
+                        <outlet property="replyTableView" destination="ksO-KN-Cjy" id="VoW-qW-Dk4"/>
+                        <outlet property="titleLabel" destination="hlY-q5-kfe" id="Zoz-96-gYx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPd-6K-ecU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -28,6 +28,9 @@
 		32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86600285A12920090A49D /* MandarinString+Extension.swift */; };
 		32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86602285A12E70090A49D /* UITextField+Extension.swift */; };
 		32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86604285A48250090A49D /* PostArticleViewController.swift */; };
+		32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86606285AC8C60090A49D /* ForumDetailViewController.swift */; };
+		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
+		32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* PostArticleModel.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		32C86600285A12920090A49D /* MandarinString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MandarinString+Extension.swift"; sourceTree = "<group>"; };
 		32C86602285A12E70090A49D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		32C86604285A48250090A49D /* PostArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleViewController.swift; sourceTree = "<group>"; };
+		32C86606285AC8C60090A49D /* ForumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailViewController.swift; sourceTree = "<group>"; };
+		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
+		32C8660E285AD56D0090A49D /* PostArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleModel.swift; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				32078A6D2859C44800FF2980 /* Explore */,
+				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 				32078A5C2859816B00FF2980 /* ForumViewController.swift */,
 				32078A722859E82900FF2980 /* ForumLobbyViewController.swift */,
 				32C86604285A48250090A49D /* PostArticleViewController.swift */,
+				32C86606285AC8C60090A49D /* ForumDetailViewController.swift */,
 			);
 			path = Forum;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 			children = (
 				32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */,
 				32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */,
+				32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */,
 			);
 			path = Forum;
 			sourceTree = "<group>";
@@ -371,12 +380,15 @@
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
 				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
+				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
 				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
 				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
+				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
+				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
