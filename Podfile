@@ -10,6 +10,6 @@ pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseAnalytics'
 pod 'SwiftLint'
-
+pod 'FirebaseStorage'
 
 end
