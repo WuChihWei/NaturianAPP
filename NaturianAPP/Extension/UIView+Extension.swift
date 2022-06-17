@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 extension UIView {
     
     func anchor(top: NSLayoutYAxisAnchor? = nil,
@@ -82,5 +83,41 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         anchor(top: view.topAnchor, left: view.leftAnchor,
                bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+    
+    // Corner radius
+    @IBInspectable var lkCornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    
+    // Border Color
+    @IBInspectable var lkBorderColor: UIColor? {
+        get {
+
+            guard let borderColor = layer.borderColor else {
+
+                return nil
+            }
+
+            return UIColor(cgColor: borderColor)
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    // Border width
+    @IBInspectable var lkBorderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
     }
 }
