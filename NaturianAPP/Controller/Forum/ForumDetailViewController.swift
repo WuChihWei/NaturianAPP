@@ -38,10 +38,11 @@ extension ForumDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = replyTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ForumDetailTableViewCell else {
+        guard let cell = replyTableView.dequeueReusableCell(
+            withIdentifier: "cell",
+            for: indexPath) as? ForumDetailTableViewCell else {
             fatalError("can't find ForumDetailTableViewCell")
         }
         return cell
     }
 }
-

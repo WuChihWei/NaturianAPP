@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 32078A562859780E00FF2980 /* GoogleService-Info (1).plist */; };
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
 		32078A602859832600FF2980 /* TalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentViewController.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
@@ -24,6 +23,10 @@
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
+		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
+		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
+		327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */; };
 		32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
 		32B3ECCC285B954100B5C16B /* OthersTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECCB285B954100B5C16B /* OthersTalentViewController.swift */; };
@@ -36,14 +39,11 @@
 		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
 		32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* PostArticleModel.swift */; };
 		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
-		32C86615285B48BC0090A49D /* TalentLobbyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C86614285B48BC0090A49D /* TalentLobbyTableView.xib */; };
 		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
-		32E775AB285C52D8003E82F3 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775AA285C52D8003E82F3 /* UIFont+Extension.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32078A562859780E00FF2980 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		32078A5F2859832500FF2980 /* TalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentViewController.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +62,10 @@
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
+		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
+		327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentImageManager.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManageViewController.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
 		32B3ECCB285B954100B5C16B /* OthersTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersTalentViewController.swift; sourceTree = "<group>"; };
@@ -74,9 +78,7 @@
 		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
 		32C8660E285AD56D0090A49D /* PostArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleModel.swift; sourceTree = "<group>"; };
 		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
-		32C86614285B48BC0090A49D /* TalentLobbyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalentLobbyTableView.xib; sourceTree = "<group>"; };
 		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
-		32E775AA285C52D8003E82F3 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,9 +110,10 @@
 		32078A532859580E00FF2980 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
+				327614BC285D9573001D6FB7 /* Account */,
+				327614BB285D9563001D6FB7 /* Talent */,
+				327614BD285D957E001D6FB7 /* Explore */,
 				32C86613285B20CC0090A49D /* Forum */,
-				32C86614285B48BC0090A49D /* TalentLobbyTableView.xib */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,7 +125,6 @@
 				32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */,
 				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
 				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
-				32E775AA285C52D8003E82F3 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -166,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				32078A5F2859832500FF2980 /* TalentViewController.swift */,
-				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 			);
 			path = Talent;
 			sourceTree = "<group>";
@@ -185,6 +186,7 @@
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */,
 				32B3ECCB285B954100B5C16B /* OthersTalentViewController.swift */,
+				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
 			);
 			path = Account;
@@ -229,6 +231,7 @@
 		32138B232858860200916700 /* NaturianAPP */ = {
 			isa = PBXGroup;
 			children = (
+				327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */,
 				32138B242858860200916700 /* AppDelegate.swift */,
 				32138B262858860200916700 /* SceneDelegate.swift */,
 				32078A5828597AF800FF2980 /* Extension */,
@@ -242,9 +245,32 @@
 				32138B322858860400916700 /* LaunchScreen.storyboard */,
 				32138B352858860400916700 /* Info.plist */,
 				32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */,
-				32078A562859780E00FF2980 /* GoogleService-Info (1).plist */,
 			);
 			path = NaturianAPP;
+			sourceTree = "<group>";
+		};
+		327614BB285D9563001D6FB7 /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				327614C0285D99CF001D6FB7 /* TalentArticle.swift */,
+				327614BE285D961F001D6FB7 /* TalentManager.swift */,
+				327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		327614BC285D9573001D6FB7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		327614BD285D957E001D6FB7 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		32B3ECCD285B98D400B5C16B /* Talent */ = {
@@ -260,6 +286,7 @@
 		32C86613285B20CC0090A49D /* Forum */ = {
 			isa = PBXGroup;
 			children = (
+				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
 			);
 			path = Forum;
 			sourceTree = "<group>";
@@ -343,10 +370,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32138B342858860400916700 /* LaunchScreen.storyboard in Resources */,
-				32C86615285B48BC0090A49D /* TalentLobbyTableView.xib in Resources */,
+				327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */,
 				32138B312858860400916700 /* Assets.xcassets in Resources */,
 				32138B2C2858860200916700 /* Main.storyboard in Resources */,
-				32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,15 +451,17 @@
 				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
+				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
+				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
 				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
 				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
 				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
 				32B3ECCC285B954100B5C16B /* OthersTalentViewController.swift in Sources */,
+				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
 				32B3ECD1285B98FD00B5C16B /* OthersTalentTableViewCell.swift in Sources */,
 				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
-				32E775AB285C52D8003E82F3 /* UIFont+Extension.swift in Sources */,
 				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
@@ -593,6 +621,9 @@
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -622,6 +653,9 @@
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

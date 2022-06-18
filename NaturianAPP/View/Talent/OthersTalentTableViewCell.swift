@@ -91,8 +91,7 @@ class OthersTalentTableViewCell: UITableViewCell {
             // talentDescription
             talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 8),
             talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
-            talentDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-         
+            talentDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24)         
         ])
         
     }

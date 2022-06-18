@@ -27,7 +27,7 @@ class ForumViewController: UIViewController {
         
         // Setup BackgroundColor
         self.view.backgroundColor = UIColor.white
-                
+        
         setup()
     }
     
@@ -91,8 +91,12 @@ extension ForumViewController: UICollectionViewDataSource {
         return titles.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ForumCollectionViewCell else {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+                                                            for: indexPath) as? ForumCollectionViewCell else {
+            
             fatalError("can't find ForumCollectionViewCell")
         }
         cell.titleLabel.text = titles[indexPath.item]
@@ -105,14 +109,19 @@ extension ForumViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("you chose \(indexPath.item + 1) category")
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
+            
             fatalError("can't find ForumLobbyViewController")
         }
         self.navigationController?.pushViewController(vc, animated: true)
         vc.seletectedTitle = titles[indexPath.item]
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        
         var reusableView = UICollectionReusableView()
         
         let label = UILabel(frame: CGRect(
@@ -124,16 +133,20 @@ extension ForumViewController: UICollectionViewDataSource {
         
         // header
         if kind == UICollectionView.elementKindSectionHeader {
+            
             reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                            withReuseIdentifier: "Header",
                                                                            for: indexPath)
+            
             reusableView.backgroundColor = UIColor.gray
             label.text = "Header"
             label.textColor = UIColor.white
         } else if kind == UICollectionView.elementKindSectionFooter {
+            
             reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
                                                                            withReuseIdentifier: "Footer",
                                                                            for: indexPath)
+            
             reusableView.backgroundColor = UIColor.gray
             label.text = "Footer"
             label.textColor = UIColor.white

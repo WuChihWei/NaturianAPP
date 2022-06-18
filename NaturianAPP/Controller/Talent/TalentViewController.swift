@@ -6,24 +6,57 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
 
 class TalentViewController: UIViewController {
+    
+    var talentManager = TalentManager()
+    var db: Firestore?
     
     private let tableView = UITableView()
     let searchTextField = UITextField()
     let filterButton = UIButton()
-
+    var talentArticles: [TalentArticle] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
         style()
         layout()
+        fetchTalentArticle()
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    func fetchTalentArticle() {
+        
+        talentManager.fetchData { [weak self] result in
+
+            switch result {
+
+            case .success(let talentArticles):
+
+                self?.talentArticles = talentArticles
+                
+                self?.tableView.reloadData()
+
+            case .failure:
+
+                print("can't fetch data")
+            }
+        }
+        
+//        talentManager.readData()
+        print(LocalizedError.self)
     }
     
     func setUp() {
@@ -92,14 +125,27 @@ extension TalentViewController: UITableViewDelegate {
 extension TalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return talentArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TalentLobbyTableViewCell.identifer, for: indexPath) as? TalentLobbyTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TalentLobbyTableViewCell.identifer,
+                                                       for: indexPath) as? TalentLobbyTableViewCell else {
+            
             fatalError("can't find TalentLobbyTableViewCell")
         }
+        
+        cell.title.text = talentArticles[indexPath.row].title
+        cell.category.text = talentArticles[indexPath.row].category
+        cell.seedValue.text = talentArticles[indexPath.row].seedValue
+        cell.talentDescription.text = talentArticles[indexPath.row].content
+//        cell.providerName.text = talentArticles[indexPath.row].
+        
         return cell
     }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
 }

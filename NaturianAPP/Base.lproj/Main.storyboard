@@ -771,11 +771,11 @@
             </objects>
             <point key="canvasLocation" x="4267" y="1130"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Discovery-->
         <scene sceneID="SIf-La-kdm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Dg-84-963" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Lake" selectedImage="Lake" id="IFP-T5-guW"/>
+                    <tabBarItem key="tabBarItem" title="Discovery" image="Lake" selectedImage="Lake" id="IFP-T5-guW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pzh-Zj-3Rp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -806,11 +806,11 @@
             </objects>
             <point key="canvasLocation" x="2239" y="-374"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Account-->
         <scene sceneID="vEA-gp-dBI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xbd-eS-awM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Camping Tent" selectedImage="Camping Tent" id="rfC-gZ-cci"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="Camping Tent" selectedImage="Camping Tent" id="rfC-gZ-cci"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Wy-GN-ZHc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -860,11 +860,11 @@
             </objects>
             <point key="canvasLocation" x="3284" y="-1129"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Explore-->
         <scene sceneID="e7A-ao-rTR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xCD-QS-Se1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Baby Footprint" selectedImage="Baby Footprint" id="b2l-cQ-PbK"/>
+                    <tabBarItem key="tabBarItem" title="Explore" image="Baby Footprint" selectedImage="Baby Footprint" id="b2l-cQ-PbK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jqs-h7-X4O">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -879,11 +879,11 @@
             </objects>
             <point key="canvasLocation" x="1236" y="-373"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Talent-->
         <scene sceneID="bN5-kc-rlp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BIF-t4-3h4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Angel" selectedImage="Angel" id="aBB-qi-hNh"/>
+                    <tabBarItem key="tabBarItem" title="Talent" image="Angel" selectedImage="Angel" id="aBB-qi-hNh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ngK-yD-Egb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

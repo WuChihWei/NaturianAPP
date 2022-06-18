@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
 
 class MyTalentViewController: UIViewController {
 
     private let tableView = UITableView()
     
+    var talentManager = TalentManager()
+    var db: Firestore!
+
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
+    var talentArticles: [TalentArticle] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,12 @@ class MyTalentViewController: UIViewController {
         setUp()
         style()
         layout()
+        fetchTalentArticle()
+//        readData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -29,6 +41,32 @@ class MyTalentViewController: UIViewController {
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
 
+//    func readData() {
+//        talentManager.readData()
+//     }
+    
+    func fetchTalentArticle() {
+        
+        talentManager.fetchData { [weak self] result in
+
+            switch result {
+
+            case .success(let talentArticles):
+
+                self?.talentArticles = talentArticles
+                
+                self?.tableView.reloadData()
+
+            case .failure:
+
+                print("can't fetch data")
+            }
+        }
+        
+//        talentManager.readData()
+        print(LocalizedError.self)
+    }
+    
     func setUp() {
         
         tableView.register(MyTalentTableViewCell.self, forCellReuseIdentifier: MyTalentTableViewCell.identifer)
@@ -101,14 +139,24 @@ extension MyTalentViewController: UITableViewDelegate {
 extension MyTalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return talentArticles.count
+        //        return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTalentTableViewCell.identifer, for: indexPath) as? MyTalentTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTalentTableViewCell.identifer,
+                                                       for: indexPath) as? MyTalentTableViewCell else {
+            
             fatalError("can't find TalentLobbyTableViewCell")
+            
         }
+        
+        cell.title.text = talentArticles[indexPath.row].title
+        cell.category.text = talentArticles[indexPath.row].category
+        cell.seedValue.text = talentArticles[indexPath.row].seedValue
+        cell.talentDescription.text = talentArticles[indexPath.row].content
+//        cell.postImage.image = talentArticles[indexPath.row]
         return cell
     }
 }

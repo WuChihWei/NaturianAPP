@@ -33,8 +33,6 @@ class OthersTalentViewController: UIViewController {
     func style() {
         
         tableView.separatorStyle = .none
-        
-        
     }
 
     func layout() {
@@ -65,7 +63,9 @@ extension OthersTalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OthersTalentTableViewCell.identifer, for: indexPath) as? OthersTalentTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OthersTalentTableViewCell.identifer,
+                                                       for: indexPath) as? OthersTalentTableViewCell else {
+            
             fatalError("can't find TalentLobbyTableViewCell")
         }
         return cell

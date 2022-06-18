@@ -6,8 +6,8 @@
 //
 
 import UIKit
-//import MobileCoreServices
-//import UniformTypeIdentifiers
+import FirebaseStorage
+import FirebaseFirestore
 
 class CellClass: UITableViewCell {
     
@@ -15,12 +15,14 @@ class CellClass: UITableViewCell {
 
 class PostTalentVC: UIViewController {
     
+    var talentManager = TalentManager()
+    var db: Firestore?
     var dataSource = [String]()
     var didPickCategory: String = ""
     let tableView = UITableView()
     let transparentView = UIView()
     
-    let postPhoto = UIImageView()
+    var postPhotoImage = UIImageView()
     let titleText = UITextField()
     let seedValueText = UITextField()
     let seedIcon = UIImageView()
@@ -30,10 +32,10 @@ class PostTalentVC: UIViewController {
     let contentStack = UIStackView()
     let imagePickerController = UIImagePickerController()
     let postButton = UIButton()
+    var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // for camera
         imagePickerController.delegate = self
         tableView.delegate = self
@@ -43,13 +45,6 @@ class PostTalentVC: UIViewController {
         setUp()
         style()
         layout()
-    }
-    
-    func setUp() {
-        
-        postPhoto.isUserInteractionEnabled = true
-        postPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapPhoto)))
-        categoryButton.addTarget(self, action: #selector(clickCategory(_:)), for: .touchUpInside)
     }
     
     @objc func clickCategory(_ sender: Any) {
@@ -73,18 +68,32 @@ class PostTalentVC: UIViewController {
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 1.0,
+                       options: .curveEaseInOut, animations: {
+            
             self.transparentView.alpha = 0.5
-            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: CGFloat(self.dataSource.count * 50))
+            self.tableView.frame = CGRect(x: frames.origin.x,
+                                          y: frames.origin.y + frames.height + 5,
+                                          width: frames.width,
+                                          height: CGFloat(self.dataSource.count * 50))
         }, completion: nil)
     }
     
     // remove drop down selection button
     @objc func removeTransparentView() {
         let frames = categoryButton.frame
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 1.0,
+                       options: .curveEaseInOut, animations: {
+            
             self.transparentView.alpha = 0
-            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+            self.tableView.frame = CGRect(x: frames.origin.x,
+                                          y: frames.origin.y + frames.height,
+                                          width: frames.width,
+                                          height: 0)
         }, completion: nil)
     }
     
@@ -136,10 +145,19 @@ class PostTalentVC: UIViewController {
         self.present(imagePickerController, animated: true)
     }
     
+    func setUp() {
+        
+        postPhotoImage.isUserInteractionEnabled = true
+        postPhotoImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapPhoto)))
+        categoryButton.addTarget(self, action: #selector(clickCategory(_:)), for: .touchUpInside)
+        postButton.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
+    }
+    
     func style() {
         
-        postPhoto.backgroundColor = .systemGreen
-        postPhoto.isUserInteractionEnabled = true
+        postPhotoImage.backgroundColor = .systemGreen
+        //        postPhotoImage.contentMode = .scaleAspectFit
+        postPhotoImage.isUserInteractionEnabled = true
         
         categoryButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         categoryButton.setTitle("Category", for: .normal)
@@ -177,13 +195,13 @@ class PostTalentVC: UIViewController {
     
     func layout() {
         
-        postPhoto.translatesAutoresizingMaskIntoConstraints = false
+        postPhotoImage.translatesAutoresizingMaskIntoConstraints = false
         categoryButton.translatesAutoresizingMaskIntoConstraints = false
         seedStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.translatesAutoresizingMaskIntoConstraints = false
         postButton.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(postPhoto)
+        view.addSubview(postPhotoImage)
         view.addSubview(categoryButton)
         view.addSubview(seedStack)
         view.addSubview(contentStack)
@@ -198,18 +216,18 @@ class PostTalentVC: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            postPhoto.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            postPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            postPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            postPhoto.heightAnchor.constraint(equalToConstant: 400),
+            postPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
             
-            categoryButton.topAnchor.constraint(equalTo: postPhoto.bottomAnchor, constant: 16),
-            categoryButton.leadingAnchor.constraint(equalTo: postPhoto.leadingAnchor),
+            categoryButton.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 16),
+            categoryButton.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
             categoryButton.heightAnchor.constraint(equalToConstant: 27),
             categoryButton.widthAnchor.constraint(equalToConstant: 120),
             
             contentStack.topAnchor.constraint(equalTo: categoryButton.bottomAnchor, constant: 8),
-            contentStack.leadingAnchor.constraint(equalTo: postPhoto.leadingAnchor),
+            contentStack.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
             contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             seedIcon.widthAnchor.constraint(equalToConstant: 20),
             seedIcon.heightAnchor.constraint(equalToConstant: 20),
@@ -220,6 +238,58 @@ class PostTalentVC: UIViewController {
             
         ])
     }
+    
+    // MARK: Upload Image
+    @objc func postTalent() {
+        
+        print("Click uploadbutton")
+        
+        // Make sure that the selected image property isn't nil
+//        guard  selectedImage != nil else {
+//            return
+//        }
+        // Create storage reference
+//        print(selectedImage!)
+        // Turn our Image into data
+        let storage = Storage.storage().reference()
+        
+        let imageData = self.postPhotoImage.image?.jpegData(compressionQuality: 0.8)
+        guard imageData != nil else {
+            return
+        }
+        
+        let path = "images/\(UUID().uuidString).jpg"
+        
+        let fileRef = storage.child(path)
+        
+        fileRef.putData(imageData!, metadata: nil) { metaData, error in
+            if error == nil && metaData != nil {
+                //                let db = Firestore.firestore()
+                self.db?.collection("images").document().setData(["url": path])
+                
+                let talenPostID = self.talentManager.database.document().documentID
+                let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
+                //               let category = didPickCategory else { return }
+                let title = self.titleText.text
+                let content = self.descriptionText.text
+                let category = self.didPickCategory
+                let seedValue = self.seedValueText.text
+                
+                let talenArticle = TalentArticle(talentPostID: talenPostID,
+                                                 userID: "",
+                                                 category: category,
+                                                 location: "",
+                                                 title: title,
+                                                 content: content,
+                                                 images: ["url": path],
+                                                 seedValue: seedValue,
+                                                 createdTime: Int(createdTime),
+                                                 appliers: ""
+                )
+                self.talentManager.addData(postTalent: talenArticle)
+            }
+        }
+    }
 }
 
 extension PostTalentVC: UIImagePickerControllerDelegate {
@@ -227,10 +297,10 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
-        if let image = info[.originalImage] as? UIImage {
-            self.postPhoto.image = image
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.postPhotoImage.image = image
+//            selectedImage = self.postPhotoImage.image
         }
-        
         picker.dismiss(animated: true)
     }
 }

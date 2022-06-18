@@ -14,7 +14,6 @@ class MyTalentTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     let postImage = UIImageView()
     let title = UILabel()
     let seedValue = UILabel()
@@ -97,7 +96,7 @@ class MyTalentTableViewCell: UITableViewCell {
             postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             postImage.widthAnchor.constraint(equalToConstant: 100),
             postImage.heightAnchor.constraint(equalToConstant: 100),
-            postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16),
+            postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
             // talentStack
             talentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -117,7 +116,6 @@ class MyTalentTableViewCell: UITableViewCell {
         ])
         
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
