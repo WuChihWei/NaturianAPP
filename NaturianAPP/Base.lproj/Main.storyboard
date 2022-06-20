@@ -14,6 +14,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cFb-GA-GSz" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="yRs-2C-B3j"/>
                     <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="QnX-fs-hBn">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -22,13 +23,29 @@
                     <connections>
                         <segue destination="xbd-eS-awM" kind="relationship" relationship="viewControllers" id="jIl-eQ-hq3"/>
                         <segue destination="BIF-t4-3h4" kind="relationship" relationship="viewControllers" id="b51-54-YpH"/>
-                        <segue destination="xCD-QS-Se1" kind="relationship" relationship="viewControllers" id="th9-91-3Dg"/>
+                        <segue destination="ccm-at-EaO" kind="relationship" relationship="viewControllers" id="p4N-Lh-WlZ"/>
                         <segue destination="5Dg-84-963" kind="relationship" relationship="viewControllers" id="jgk-PE-KMd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaL-VB-AKp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32" y="-624"/>
+        </scene>
+        <!--Explore View Controller-->
+        <scene sceneID="xBt-Gw-6gF">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="5TK-dT-8hh" customClass="ExploreViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9qy-G7-WgK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QD2-St-ZwA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ijd-cE-Jbw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cy7-vb-ftK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2314" y="806"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="7W5-Og-s0l">
@@ -280,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJA-Lv-8w7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="402"/>
+            <point key="canvasLocation" x="2372" y="1941"/>
         </scene>
         <!--Forum Lobby View Controller-->
         <scene sceneID="jxt-0h-Ccq">
@@ -434,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2S-db-AAH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3263.7681159420295" y="401.78571428571428"/>
+            <point key="canvasLocation" x="3394" y="1941"/>
         </scene>
         <!--Forum Detail View Controller-->
         <scene sceneID="Swz-o1-saQ">
@@ -657,7 +674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPd-6K-ecU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4266.666666666667" y="401.78571428571428"/>
+            <point key="canvasLocation" x="4432" y="1569"/>
         </scene>
         <!--Post Article View Controller-->
         <scene sceneID="WNP-V1-zVz">
@@ -769,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQf-wN-TGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="1130"/>
+            <point key="canvasLocation" x="4432" y="2333"/>
         </scene>
         <!--Discovery-->
         <scene sceneID="SIf-La-kdm">
@@ -788,23 +805,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIa-8V-pvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235" y="402"/>
-        </scene>
-        <!--Explore View Controller-->
-        <scene sceneID="urv-Jk-oD2">
-            <objects>
-                <viewController id="fY7-hq-RUs" customClass="ExploreViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kfo-NF-Aqy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="AXP-ye-w5J"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ApY-m7-Goh"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QGc-v9-abg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2239" y="-374"/>
+            <point key="canvasLocation" x="1199" y="1941"/>
         </scene>
         <!--Account-->
         <scene sceneID="vEA-gp-dBI">
@@ -837,17 +838,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="K1d-Ed-1Wm"/>
                     <connections>
-                        <segue destination="uK5-KK-kHo" kind="show" id="BTe-zQ-u0c"/>
+                        <segue destination="uK5-KK-kHo" kind="show" identifier="TalentDetailSegue" id="BTe-zQ-u0c"/>
+                        <segue destination="0yb-ZW-cia" kind="show" identifier="filterTalentSegue" id="bNc-U8-jpH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cyN-uw-bYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-1129"/>
+            <point key="canvasLocation" x="2238" y="-560"/>
         </scene>
-        <!--View Controller-->
+        <!--Talent Detail View Controller-->
         <scene sceneID="rJ6-el-Tqq">
             <objects>
-                <viewController id="uK5-KK-kHo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TalentDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uK5-KK-kHo" customClass="TalentDetailViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="462-6f-z00">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -858,26 +860,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV5-Dg-2Q4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3284" y="-1129"/>
+            <point key="canvasLocation" x="3264" y="-864"/>
         </scene>
-        <!--Explore-->
-        <scene sceneID="e7A-ao-rTR">
+        <!--My Talent Did AcceptVC-->
+        <scene sceneID="uJX-KP-rhj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xCD-QS-Se1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Explore" image="Baby Footprint" selectedImage="Baby Footprint" id="b2l-cQ-PbK"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jqs-h7-X4O">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fY7-hq-RUs" kind="relationship" relationship="rootViewController" id="R9I-0i-SuB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mdj-4j-qpY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MyTalentDidAcceptVC" id="0yb-ZW-cia" customClass="MyTalentDidAcceptVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H3b-rY-vV7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gmy-xb-Txv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="g3k-UV-rWI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFD-ux-uZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1236" y="-373"/>
+            <point key="canvasLocation" x="3264" y="-78"/>
         </scene>
         <!--Talent-->
         <scene sceneID="bN5-kc-rlp">
@@ -896,7 +895,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7S-Gj-LaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235" y="-1129"/>
+            <point key="canvasLocation" x="1306" y="-560"/>
         </scene>
         <!--My Talent View Controller-->
         <scene sceneID="dka-Ht-vBa">
@@ -910,16 +909,17 @@
                     </view>
                     <connections>
                         <segue destination="cDs-UJ-N6H" kind="show" identifier="ToPostTalentSegue" id="jgO-z9-5Wz"/>
+                        <segue destination="njW-9C-sq3" kind="show" id="GtQ-c2-AMA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZF-eE-Nab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4212" y="-2668"/>
         </scene>
-        <!--Others Talent View Controller-->
+        <!--Other Talent View Controller-->
         <scene sceneID="XLZ-Sq-7Rs">
             <objects>
-                <viewController id="IwG-L4-riO" customClass="OthersTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="IwG-L4-riO" customClass="OtherTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElK-ac-hKK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -930,6 +930,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxQ-eI-aA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4212" y="-2015"/>
+        </scene>
+        <!--My Talent AppliersVC-->
+        <scene sceneID="Mp2-dH-fAD">
+            <objects>
+                <viewController storyboardIdentifier="MyTalentAppliersVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyTalentAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aPo-wO-n51">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UmD-8k-qXC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HaS-AN-QfG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qcI-qU-9iI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5265" y="-3332"/>
         </scene>
         <!--Post TalentVC-->
         <scene sceneID="Lt9-Nw-dgc">
@@ -946,6 +962,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9O-em-5Jt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5265" y="-2668"/>
+        </scene>
+        <!--Exlpore-->
+        <scene sceneID="4pa-KI-HyK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccm-at-EaO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Exlpore" image="Baby Footprint" selectedImage="Baby Footprint" id="UvH-Qt-Le8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uT0-Oi-hg7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5TK-dT-8hh" kind="relationship" relationship="rootViewController" id="Yb1-1p-gHw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cus-JP-zhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1307" y="806"/>
         </scene>
     </scenes>
     <resources>

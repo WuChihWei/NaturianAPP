@@ -21,16 +21,14 @@ struct TalentArticle: Codable {
     
     let content: String?
     
-    let images: [String: String]
+    let images: [URL]
     
     let seedValue: String?
     
     let createdTime: Int?
     
-    let appliers: String?
+    var didApplyID: [String]
+    
+    var didAcceptID: [String]
 }
-//
-//struct applierID: Codable {
-//
-//    let userID: String
-//}
+

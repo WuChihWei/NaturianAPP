@@ -8,6 +8,9 @@
 import UIKit
 import FirebaseStorage
 import FirebaseFirestore
+import Kingfisher
+import JGProgressHUD
+import MBProgressHUD
 
 class CellClass: UITableViewCell {
     
@@ -47,7 +50,12 @@ class PostTalentVC: UIViewController {
         layout()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func clickCategory(_ sender: Any) {
+        
         dataSource = ["Food", "Grocery", "Plant", "Adventure", "Exercise", "Treatment"]
         addTransparentView(frames: categoryButton.frame)
     }
@@ -55,6 +63,7 @@ class PostTalentVC: UIViewController {
     // MARK: Drop down selection
     // show drop down selection button
     func addTransparentView(frames: CGRect) {
+        
         let window = UIApplication.shared.keyWindow
         transparentView.frame = window?.frame ?? self.view.frame
         self.view.addSubview(transparentView)
@@ -68,32 +77,29 @@ class PostTalentVC: UIViewController {
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
-        UIView.animate(withDuration: 0.4, delay: 0.0,
-                       usingSpringWithDamping: 1.0,
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.0, usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 1.0,
                        options: .curveEaseInOut, animations: {
             
             self.transparentView.alpha = 0.5
-            self.tableView.frame = CGRect(x: frames.origin.x,
-                                          y: frames.origin.y + frames.height + 5,
-                                          width: frames.width,
-                                          height: CGFloat(self.dataSource.count * 50))
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5,
+                                          width: frames.width, height: CGFloat(self.dataSource.count * 50))
         }, completion: nil)
     }
     
     // remove drop down selection button
     @objc func removeTransparentView() {
         let frames = categoryButton.frame
-        UIView.animate(withDuration: 0.4, delay: 0.0,
-                       usingSpringWithDamping: 1.0,
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.0, usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 1.0,
-                       options: .curveEaseInOut, animations: {
+                       options: .curveEaseInOut,
+                       animations: {
             
             self.transparentView.alpha = 0
-            self.tableView.frame = CGRect(x: frames.origin.x,
-                                          y: frames.origin.y + frames.height,
-                                          width: frames.width,
-                                          height: 0)
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height,
+                                          width: frames.width, height: 0)
         }, completion: nil)
     }
     
@@ -239,55 +245,78 @@ class PostTalentVC: UIViewController {
         ])
     }
     
-    // MARK: Upload Image
+    // MARK: Upload post
+    
     @objc func postTalent() {
         
-        print("Click uploadbutton")
-        
-        // Make sure that the selected image property isn't nil
-//        guard  selectedImage != nil else {
-//            return
-//        }
-        // Create storage reference
-//        print(selectedImage!)
-        // Turn our Image into data
-        let storage = Storage.storage().reference()
-        
         let imageData = self.postPhotoImage.image?.jpegData(compressionQuality: 0.8)
+        
         guard imageData != nil else {
             return
         }
         
-        let path = "images/\(UUID().uuidString).jpg"
+        let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
         
-        let fileRef = storage.child(path)
-        
-        fileRef.putData(imageData!, metadata: nil) { metaData, error in
-            if error == nil && metaData != nil {
-                //                let db = Firestore.firestore()
-                self.db?.collection("images").document().setData(["url": path])
+        if let data = imageData {
+            
+            fileReference.putData(data, metadata: nil) { result in
                 
-                let talenPostID = self.talentManager.database.document().documentID
-                let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
-                //               let category = didPickCategory else { return }
-                let title = self.titleText.text
-                let content = self.descriptionText.text
-                let category = self.didPickCategory
-                let seedValue = self.seedValueText.text
-                
-                let talenArticle = TalentArticle(talentPostID: talenPostID,
-                                                 userID: "",
-                                                 category: category,
-                                                 location: "",
-                                                 title: title,
-                                                 content: content,
-                                                 images: ["url": path],
-                                                 seedValue: seedValue,
-                                                 createdTime: Int(createdTime),
-                                                 appliers: ""
-                )
-                self.talentManager.addData(postTalent: talenArticle)
+                switch result {
+                    
+                case .success(_):
+                    fileReference.downloadURL { result in
+                        switch result {
+                            
+                        case .success(let url):
+                            
+                            self.showHUD(progressLabel: "Success")
+                            let talenPostID = self.talentManager.database.document().documentID
+                            let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
+                            let title = self.titleText.text
+                            let userID = "123" // 以後為登入後的userID
+                            let content = self.descriptionText.text
+                            let category = self.didPickCategory
+                            let seedValue = self.seedValueText.text
+                            
+                            let talenArticle = TalentArticle(talentPostID: talenPostID,
+                                                             userID: userID,
+                                                             category: category,
+                                                             location: "",
+                                                             title: title,
+                                                             content: content,
+                                                             images: [url],
+                                                             seedValue: seedValue,
+                                                             createdTime: Int(createdTime),
+                                                             didApplyID: [],
+                                                             didAcceptID: []
+                            )
+                            
+                            self.talentManager.addData(postTalent: talenArticle)
+                            self.showHUD(progressLabel: "Success")
+                        case .failure(_):
+                            break
+                        }
+                    }
+                    
+                case .failure(_):
+                    break
+                }
             }
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func showHUD(progressLabel: String) {
+        DispatchQueue.main.async {
+            let progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+            progressHUD.mode = .customView
+            progressHUD.label.text = progressLabel
+            progressHUD.contentColor = .white
+            progressHUD.hide(animated: true, afterDelay: 2)
+            progressHUD.bezelView.style = .solidColor
+            progressHUD.bezelView.backgroundColor = .gray
+            // according to the documentation a good image size is something like 37x37px
+            progressHUD.customView = UIImageView(image: UIImage(named: "check"))
         }
     }
 }
@@ -299,7 +328,7 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.postPhotoImage.image = image
-//            selectedImage = self.postPhotoImage.image
+            //            selectedImage = self.postPhotoImage.image
         }
         picker.dismiss(animated: true)
     }

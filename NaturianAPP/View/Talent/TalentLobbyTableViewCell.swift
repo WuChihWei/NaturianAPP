@@ -87,6 +87,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
     }
     
     func layout() {
+        
         contentView.addSubview(postImage)
         contentView.addSubview(talentDescription)
         contentView.addSubview(genderIcon)
@@ -144,7 +145,6 @@ class TalentLobbyTableViewCell: UITableViewCell {
             nameStackView.heightAnchor.constraint(equalToConstant: 20),
             nameStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

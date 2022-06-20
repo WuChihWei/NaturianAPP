@@ -11,5 +11,11 @@ pod 'FirebaseFirestore'
 pod 'FirebaseStorage'
 pod 'SwiftLint'
 pod 'FirebaseFirestoreSwift'
+pod 'Kingfisher'
+pod 'JGProgressHUD'
+pod 'MJRefresh'
+pod  'MBProgressHUD'
+
+
 
 end

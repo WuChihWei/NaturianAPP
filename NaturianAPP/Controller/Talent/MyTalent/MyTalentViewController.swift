@@ -8,18 +8,26 @@
 import UIKit
 import FirebaseStorage
 import FirebaseFirestore
+import Kingfisher
+import SwiftUI
 
 class MyTalentViewController: UIViewController {
 
     private let tableView = UITableView()
     
     var talentManager = TalentManager()
+    var userManager = UserManager()
+
     var db: Firestore!
 
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
     var talentArticles: [TalentArticle] = []
+    var didSeletectApplierIDs: [String] = []
+//    var userModels: [UserModel] = []
+
+//    var
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +41,16 @@ class MyTalentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        fetchTalentArticle()
     }
     
     override func viewDidLayoutSubviews() {
         tableView.layoutIfNeeded()
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
-        addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
 
-//    func readData() {
-//        talentManager.readData()
-//     }
-    
     func fetchTalentArticle() {
-        
+                
         talentManager.fetchData { [weak self] result in
 
             switch result {
@@ -63,7 +67,6 @@ class MyTalentViewController: UIViewController {
             }
         }
         
-//        talentManager.readData()
         print(LocalizedError.self)
     }
     
@@ -115,21 +118,13 @@ class MyTalentViewController: UIViewController {
     @objc func postTalent() {
         
         showPostTalentVC()
+
     }
     
     private func showPostTalentVC() {
         
         performSegue(withIdentifier: "ToPostTalentSegue", sender: nil)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ToPostTalentSegue" {
-//            if let toPostVC = segue.destination as? ToCommentViewController {
-//                toCommentVC.userName = self.user!.name
-//            }
-//        }
-//    }
-    
 }
 
 extension MyTalentViewController: UITableViewDelegate {
@@ -145,18 +140,38 @@ extension MyTalentViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTalentTableViewCell.identifer,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier:  MyTalentTableViewCell.identifer,
                                                        for: indexPath) as? MyTalentTableViewCell else {
             
             fatalError("can't find TalentLobbyTableViewCell")
             
         }
-        
+
         cell.title.text = talentArticles[indexPath.row].title
         cell.category.text = talentArticles[indexPath.row].category
         cell.seedValue.text = talentArticles[indexPath.row].seedValue
         cell.talentDescription.text = talentArticles[indexPath.row].content
+        cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
+        cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count)", for: .normal)
 //        cell.postImage.image = talentArticles[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "MyTalentAppliersVC") as? MyTalentAppliersVC else {
+
+            fatalError("can't find MyTalentDetailVC")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+ 
+//        for item in 0..<talentArticles[indexPath.row].didApplyID.count {
+//            let test = talentArticles[indexPath.row].didApplyID[item]
+//            let test2 = test.applierID
+//            print(test2)
+//            didSeletectApplierIDs.append(test2)
+//        }
+        
+        vc.didSeletectApplierIDs = didSeletectApplierIDs
     }
 }
