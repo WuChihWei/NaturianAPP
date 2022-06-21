@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 32078A562859780E00FF2980 /* GoogleService-Info (1).plist */; };
+		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
+		32078A602859832600FF2980 /* TalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentViewController.swift */; };
+		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
+		32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A66285989E200FF2980 /* UIView+Extension.swift */; };
+		32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */; };
+		32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */; };
+		32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */; };
+		32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A702859C47E00FF2980 /* ExploreViewController.swift */; };
+		32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A722859E82900FF2980 /* ForumLobbyViewController.swift */; };
+		32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */; };
 		32138B252858860200916700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B242858860200916700 /* AppDelegate.swift */; };
 		32138B272858860200916700 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B262858860200916700 /* SceneDelegate.swift */; };
 		32138B292858860200916700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B282858860200916700 /* ViewController.swift */; };
@@ -15,11 +25,27 @@
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86600285A12920090A49D /* MandarinString+Extension.swift */; };
+		32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86602285A12E70090A49D /* UITextField+Extension.swift */; };
+		32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86604285A48250090A49D /* PostArticleViewController.swift */; };
+		32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86606285AC8C60090A49D /* ForumDetailViewController.swift */; };
+		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
+		32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* PostArticleModel.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		32078A562859780E00FF2980 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
+		32078A5F2859832500FF2980 /* TalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentViewController.swift; sourceTree = "<group>"; };
+		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		32078A66285989E200FF2980 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extentsion.swift"; sourceTree = "<group>"; };
+		32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCollectionViewCell.swift; sourceTree = "<group>"; };
+		32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
+		32078A702859C47E00FF2980 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		32078A722859E82900FF2980 /* ForumLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumLobbyViewController.swift; sourceTree = "<group>"; };
+		32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumLobbyTableViewCell.swift; sourceTree = "<group>"; };
 		32138B212858860200916700 /* NaturianAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaturianAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32138B242858860200916700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32138B262858860200916700 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +55,12 @@
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32C86600285A12920090A49D /* MandarinString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MandarinString+Extension.swift"; sourceTree = "<group>"; };
+		32C86602285A12E70090A49D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		32C86604285A48250090A49D /* PostArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleViewController.swift; sourceTree = "<group>"; };
+		32C86606285AC8C60090A49D /* ForumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailViewController.swift; sourceTree = "<group>"; };
+		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
+		32C8660E285AD56D0090A49D /* PostArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleModel.swift; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -49,6 +81,10 @@
 		32078A52285957F600FF2980 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				32078A632859835400FF2980 /* Account */,
+				32078A612859832B00FF2980 /* Talent */,
+				32078A622859834600FF2980 /* Explore */,
+				32078A5E2859817000FF2980 /* Forum */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -56,9 +92,96 @@
 		32078A532859580E00FF2980 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32078A562859780E00FF2980 /* GoogleService-Info (1).plist */,
+				32078A6D2859C44800FF2980 /* Explore */,
+				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		32078A5828597AF800FF2980 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				32078A66285989E200FF2980 /* UIView+Extension.swift */,
+				32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */,
+				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
+				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		32078A5928597B1A00FF2980 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6A2859952900FF2980 /* Forum */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32078A5A28597D6700FF2980 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		32078A5B28597DCB00FF2980 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		32078A5E2859817000FF2980 /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32078A5C2859816B00FF2980 /* ForumViewController.swift */,
+				32078A722859E82900FF2980 /* ForumLobbyViewController.swift */,
+				32C86604285A48250090A49D /* PostArticleViewController.swift */,
+				32C86606285AC8C60090A49D /* ForumDetailViewController.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		32078A612859832B00FF2980 /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				32078A5F2859832500FF2980 /* TalentViewController.swift */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		32078A622859834600FF2980 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				32078A702859C47E00FF2980 /* ExploreViewController.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		32078A632859835400FF2980 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				32078A642859837500FF2980 /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		32078A6A2859952900FF2980 /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */,
+				32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */,
+				32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		32078A6D2859C44800FF2980 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */,
+			);
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		32138B182858860200916700 = {
@@ -82,8 +205,12 @@
 		32138B232858860200916700 /* NaturianAPP */ = {
 			isa = PBXGroup;
 			children = (
+				32078A5828597AF800FF2980 /* Extension */,
+				32078A5B28597DCB00FF2980 /* Network */,
+				32078A5A28597D6700FF2980 /* Resource */,
 				32078A532859580E00FF2980 /* Model */,
 				32078A52285957F600FF2980 /* Controller */,
+				32078A5928597B1A00FF2980 /* View */,
 				32138B242858860200916700 /* AppDelegate.swift */,
 				32138B262858860200916700 /* SceneDelegate.swift */,
 				32138B282858860200916700 /* ViewController.swift */,
@@ -92,6 +219,7 @@
 				32138B322858860400916700 /* LaunchScreen.storyboard */,
 				32138B352858860400916700 /* Info.plist */,
 				32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */,
+				32078A562859780E00FF2980 /* GoogleService-Info (1).plist */,
 			);
 			path = NaturianAPP;
 			sourceTree = "<group>";
@@ -110,7 +238,6 @@
 				ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */,
 				7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -200,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -250,7 +377,23 @@
 			files = (
 				32138B292858860200916700 /* ViewController.swift in Sources */,
 				32138B252858860200916700 /* AppDelegate.swift in Sources */,
+				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
+				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
+				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
+				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
+				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
+				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
+				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
+				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
+				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
+				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
+				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
+				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
+				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
+				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
+				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
+				32078A602859832600FF2980 /* TalentViewController.swift in Sources */,
 				32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
