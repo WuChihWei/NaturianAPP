@@ -14,12 +14,13 @@ class MyTalentAppliersVC: UIViewController {
     
     private let tableView = UITableView()
     var talentManager = TalentManager()
-
+    
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
+    //    var newUserModel: [UserModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,21 +28,27 @@ class MyTalentAppliersVC: UIViewController {
         setUp()
         style()
         layout()
-//                fetchUserInfo()
+        //                fetchUserInfo()
         
-//        DispatchQueue.main.async {
-//                        self.fetchUserInfo()
-//        }
+        //        DispatchQueue.main.async {
+        //                        self.fetchUserInfo()
+        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        
         fetchUserInfo()
         tableView.reloadData()
         
     }
+    override func viewDidLayoutSubviews() {
+        
+        tableView.layoutIfNeeded() //call this func to show the subView in subView
+    }
+    
     
     func setUp() {
+        
         tableView.register(MyTalentAppliersTableViewCell.self, forCellReuseIdentifier: MyTalentAppliersTableViewCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
@@ -50,8 +57,8 @@ class MyTalentAppliersVC: UIViewController {
     
     func style() {
         
-        tableView.separatorStyle = .none
         
+        tableView.separatorStyle = .none
     }
     
     func layout() {
@@ -73,21 +80,19 @@ class MyTalentAppliersVC: UIViewController {
         
         for didSeletectApplier in didSeletectApplierIDs {
             
-            userManager.fetchApplierData(applierUserID: "\(didSeletectApplier)" ) {
+            userManager.fetchUserData(userID: didSeletectApplier ) {
                 
                 [weak self] result in
                 
                 switch result {
                     
-                case .success(let userModels):
+                case .success(let userModel):
                     
-                    self?.userModels = userModels
-                    
-                    self?.tableView.reloadData()
-                    
+                    self?.userModels.append(userModel)
+                                        
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
-                         }
+                    }
                     
                 case .failure:
                     
@@ -95,12 +100,7 @@ class MyTalentAppliersVC: UIViewController {
                 }
             }
         }
-        
-        userManager.fetchApplierData(applierUserID: "\(didSeletectApplier)") { Result<[UserModel], Error> in
-            
-        }
     }
-    
 }
 
 extension MyTalentAppliersVC: UITableViewDelegate {
@@ -121,12 +121,21 @@ extension MyTalentAppliersVC: UITableViewDataSource {
             fatalError("can't find MyTalentAppliersTableViewCell")
             
         }
-        print(didSeletectApplierIDs)
-               print(userModels)
-        //        let photoUrl = userModels[indexPath.row].userAvatar
         
-            cell.userName.text = userModels[indexPath.row].name
-        //        cell.userAvatar.kf.setImage(with: photoUrl)
+        let photoUrl = userModels[indexPath.row].userAvatar
+        
+        cell.userName.text = userModels[indexPath.row].name
+        
+        cell.userAvatar.kf.setImage(with: photoUrl)
+        
+//        cell.userAvatar.lay
+        
+//        cell.userAvatar.setNeedsLayout()
+        cell.layoutIfNeeded()
+        
+        cell.userAvatar.lkCornerRadius = cell.userAvatar.frame.width / 2
+        cell.userAvatar.clipsToBounds = true
+        cell.userAvatar.contentMode = .scaleAspectFill
         
         return cell
     }

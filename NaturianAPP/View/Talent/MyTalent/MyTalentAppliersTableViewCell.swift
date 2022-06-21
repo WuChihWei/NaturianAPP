@@ -9,13 +9,20 @@ import UIKit
 
 class MyTalentAppliersTableViewCell: UITableViewCell {
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        userAvatar.layoutIfNeeded()
+        userAvatar.layer.cornerRadius = (userAvatar.bounds.width) / 2
+    }
+    
     static let identifer = "\(MyTalentAppliersTableViewCell.self)"
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let userAvatar = UIImageView()
+    var userAvatar = UIImageView()
     let category = UILabel()
     let messageAmountButton = UIButton()
     let userName = UILabel()
@@ -25,7 +32,7 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
     
     // Accept MessageAmmount
     var messageAmmont: Int = 0
-
+    
     private let nameStackView = UIStackView()
     private let talentStackView = UIStackView()
     
@@ -36,6 +43,7 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
         styleObject()
         layout()
     }
+  
     
     func setup() {
         
@@ -57,9 +65,11 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
         messageAmountButton.backgroundColor = .lightGray
         messageAmountButton.layer.cornerRadius = 17
         messageAmountButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-
+        
         userAvatar.backgroundColor = .gray
-        userAvatar.lkCornerRadius = 50
+        //        userAvatar.layer.cornerRadius = 20
+        userAvatar.lkBorderColor = .blue
+        userAvatar.contentMode = .scaleToFill
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
@@ -82,7 +92,7 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             
             // postImage
-            userAvatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            userAvatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             userAvatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             userAvatar.widthAnchor.constraint(equalToConstant: 100),
             userAvatar.heightAnchor.constraint(equalToConstant: 100),
@@ -92,7 +102,7 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
             talentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             talentStackView.leadingAnchor.constraint(equalTo: userAvatar.trailingAnchor, constant: 18),
             talentStackView.heightAnchor.constraint(equalToConstant: 50),
-                        
+            
             // messageAmount
             messageAmountButton.topAnchor.constraint(equalTo: userAvatar.topAnchor),
             messageAmountButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),

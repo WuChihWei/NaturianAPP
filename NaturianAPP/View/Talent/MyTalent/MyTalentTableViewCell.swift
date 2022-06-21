@@ -67,6 +67,7 @@ class MyTalentTableViewCell: UITableViewCell {
         messageAmountButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
 
         postImage.backgroundColor = .gray
+        postImage.contentMode = .scaleAspectFill
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading

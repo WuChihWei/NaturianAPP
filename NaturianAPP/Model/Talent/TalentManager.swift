@@ -115,7 +115,7 @@ class TalentManager {
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
-                                                                 decoder: Firestore.Decoder()) {
+                            decoder: Firestore.Decoder()) {
                             
                             talentArticles.append(talentArticle)
                         }

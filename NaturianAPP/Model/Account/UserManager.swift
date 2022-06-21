@@ -67,18 +67,9 @@ class UserManager {
         }
     }
     
-    func readData(userID: String) {
-        db.collection("uses").whereField("userID", isEqualTo: userID).addSnapshotListener { querySnapshot, error in
-            if let querySnapshot = querySnapshot {
-                let document = querySnapshot.documents.first
-            }
-            
-        }
-    }
-    
-    func fetchApplierData(applierUserID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
+    func fetchUserData(userID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
         
-        db.collection("user").document(applierUserID).parent.whereField("userID", isEqualTo: applierUserID).getDocuments { (querySnapshot, error) in
+        db.collection("user").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -87,18 +78,14 @@ class UserManager {
                 
             } else {
                 
-                var userModels = [UserModel]()
-                
-                for document in querySnapshot!.documents {
-                    
+                if let doc = querySnapshot?.documents.first {
                     do {
-                        print(document)
-                        if let userModel = try document.data(as: UserModel?.self,
+                        print(doc)
+                        if let userModel = try doc.data(as: UserModel?.self,
                                                              decoder: Firestore.Decoder()) {
                             
-                            userModels.append(userModel)
+                            completion(.success(userModel))
                         }
-                        print(userModels)
                         
                     } catch {
                         
@@ -107,7 +94,22 @@ class UserManager {
                     }
                 }
                 
-                completion(.success(userModels))
+//                for document in querySnapshot!.documents {
+//
+//                    do {
+//                        print(document)
+//                        if let userModel = try document.data(as: UserModel?.self,
+//                                                             decoder: Firestore.Decoder()) {
+//
+//                            completion(.success(userModel))
+//                        }
+//
+//                    } catch {
+//
+//                        completion(.failure(error))
+//
+//                    }
+//                }
             }
         }
     }
@@ -125,5 +127,13 @@ class UserManager {
         }
     }
     
-    
+    func readAccountData(userID: String){
+        db.collection("users").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    print(document.data())
+                }
+            }
+        }
+    }
 }

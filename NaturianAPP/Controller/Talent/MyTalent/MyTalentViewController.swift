@@ -153,7 +153,13 @@ extension MyTalentViewController: UITableViewDataSource {
         cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
         cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count)", for: .normal)
+        
 //        cell.postImage.image = talentArticles[indexPath.row]
+        
+        cell.layoutIfNeeded()
+        cell.postImage.contentMode = .scaleAspectFit
+        cell.clipsToBounds = true
+
         return cell
     }
     
@@ -164,14 +170,16 @@ extension MyTalentViewController: UITableViewDataSource {
             fatalError("can't find MyTalentDetailVC")
         }
         self.navigationController?.pushViewController(vc, animated: true)
- 
+//
 //        for item in 0..<talentArticles[indexPath.row].didApplyID.count {
 //            let test = talentArticles[indexPath.row].didApplyID[item]
-//            let test2 = test.applierID
+//            let test2 = test
 //            print(test2)
-//            didSeletectApplierIDs.append(test2)
+//            didSeletectApplierIDs.append(test)
+//
 //        }
-        
+        didSeletectApplierIDs = talentArticles[indexPath.row].didApplyID
         vc.didSeletectApplierIDs = didSeletectApplierIDs
+        
     }
 }

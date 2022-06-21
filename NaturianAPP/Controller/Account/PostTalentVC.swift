@@ -264,6 +264,7 @@ class PostTalentVC: UIViewController {
                 switch result {
                     
                 case .success(_):
+                    
                     fileReference.downloadURL { result in
                         switch result {
                             
@@ -273,7 +274,7 @@ class PostTalentVC: UIViewController {
                             let talenPostID = self.talentManager.database.document().documentID
                             let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
                             let title = self.titleText.text
-                            let userID = "123" // 以後為登入後的userID
+                            let userID = "1" // 以後為登入後的userID
                             let content = self.descriptionText.text
                             let category = self.didPickCategory
                             let seedValue = self.seedValueText.text

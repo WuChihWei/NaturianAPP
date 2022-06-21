@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class OtherTalentViewController: UIViewController {
     
@@ -70,9 +71,7 @@ class OtherTalentViewController: UIViewController {
                 self?.appliedTalents = talentArticles
                 
                 self?.tableView.reloadData()
-                
-                print("+++++++++++++++++=\(self?.appliedTalents)")
-                
+                                
             case .failure:
                 
                 print("can't fetch data")
@@ -100,7 +99,9 @@ extension OtherTalentViewController: UITableViewDataSource {
             
         }
         
-        cell.userName.text = appliedTalents[indexPath.row].title
+        let postImageURL = appliedTalents[indexPath.row].images[0]
+        cell.talentTitle.text = appliedTalents[indexPath.row].title
+        cell.postImage.kf.setImage(with: postImageURL)
         return cell
     }
 }

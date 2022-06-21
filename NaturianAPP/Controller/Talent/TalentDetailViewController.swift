@@ -30,7 +30,7 @@ class TalentDetailViewController: UIViewController {
     
     var selectedArticle: TalentArticle!
     var userArticle: UserModel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
@@ -40,7 +40,7 @@ class TalentDetailViewController: UIViewController {
         layout()
     }
     
- override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = true
     }
@@ -48,16 +48,16 @@ class TalentDetailViewController: UIViewController {
     @objc func didApply() {
         
         selectedArticle.didApplyID.append(useID)
-//        userArticle.appliedTalent.append(selectedArticle.talentPostID ?? "")
+        //        userArticle.appliedTalent.append(selectedArticle.talentPostID ?? "")
         
         talentManager.updateData(applyTalent: selectedArticle)
-//        userManager.updateData(userModel: userArticle)
-//        presentingViewController?.dismiss(animated: false, completion: nil)
+        //        userManager.updateData(userModel: userArticle)
+        //        presentingViewController?.dismiss(animated: false, completion: nil)
         navigationController?.popViewController(animated: true)
     }
     
     func setUp() {
-
+        
         postPhotoImage.isUserInteractionEnabled = true
         applyButton.addTarget(self, action: #selector(didApply), for: .touchUpInside)
     }
@@ -117,7 +117,7 @@ class TalentDetailViewController: UIViewController {
         view.addSubview(seedStack)
         view.addSubview(contentStack)
         view.addSubview(applyButton)
-
+        
         seedStack.addArrangedSubview(seedValueText)
         seedStack.addArrangedSubview(seedIcon)
         
@@ -146,7 +146,6 @@ class TalentDetailViewController: UIViewController {
             applyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             applyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             applyButton.widthAnchor.constraint(equalToConstant: 120)
-            
         ])
     }
 }
