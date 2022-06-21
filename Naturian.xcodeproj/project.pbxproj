@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 32078A562859780E00FF2980 /* GoogleService-Info (1).plist */; };
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
 		32078A602859832600FF2980 /* TalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentViewController.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
@@ -20,22 +19,44 @@
 		32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */; };
 		32138B252858860200916700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B242858860200916700 /* AppDelegate.swift */; };
 		32138B272858860200916700 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B262858860200916700 /* SceneDelegate.swift */; };
-		32138B292858860200916700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B282858860200916700 /* ViewController.swift */; };
 		32138B2C2858860200916700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B2A2858860200916700 /* Main.storyboard */; };
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
+		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
+		32550461285F3F350019A190 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550460285F3F350019A190 /* UserAccount.swift */; };
+		32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */; };
+		3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */; };
+		3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255046B285F88250019A190 /* KingFisherWrapper.swift */; };
+		3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255046D285F89280019A190 /* MJRefreshWrapper.swift */; };
+		32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550471285FF0500019A190 /* MyTalentAppliersVC.swift */; };
+		32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */; };
+		32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */; };
+		325504792860130D0019A190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504782860130D0019A190 /* UserManager.swift */; };
+		3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047A286094570019A190 /* OtherTalentViewController.swift */; };
+		3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047D286095770019A190 /* OtherTalentTableViewCell.swift */; };
+		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
+		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
+		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
+		327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */; };
+		327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */; };
+		327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C6285E231A001D6FB7 /* TalentFilterVC.swift */; };
+		32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */; };
+		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
+		32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */; };
 		32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86600285A12920090A49D /* MandarinString+Extension.swift */; };
 		32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86602285A12E70090A49D /* UITextField+Extension.swift */; };
 		32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86604285A48250090A49D /* PostArticleViewController.swift */; };
 		32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86606285AC8C60090A49D /* ForumDetailViewController.swift */; };
 		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
 		32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* PostArticleModel.swift */; };
+		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
+		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32078A562859780E00FF2980 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		32078A5F2859832500FF2980 /* TalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentViewController.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -49,18 +70,41 @@
 		32138B212858860200916700 /* NaturianAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaturianAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32138B242858860200916700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32138B262858860200916700 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		32138B282858860200916700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		32138B2B2858860200916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32138B2E2858860200916700 /* NaturianAPP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NaturianAPP.xcdatamodel; sourceTree = "<group>"; };
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		32550460285F3F350019A190 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentDidAcceptVC.swift; sourceTree = "<group>"; };
+		32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
+		3255046B285F88250019A190 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
+		3255046D285F89280019A190 /* MJRefreshWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefreshWrapper.swift; sourceTree = "<group>"; };
+		32550471285FF0500019A190 /* MyTalentAppliersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentAppliersVC.swift; sourceTree = "<group>"; };
+		32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentAppliersTableViewCell.swift; sourceTree = "<group>"; };
+		32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentDidAcceptTableViewCell.swift; sourceTree = "<group>"; };
+		325504782860130D0019A190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		3255047A286094570019A190 /* OtherTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentViewController.swift; sourceTree = "<group>"; };
+		3255047D286095770019A190 /* OtherTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentTableViewCell.swift; sourceTree = "<group>"; };
+		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
+		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
+		327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentImageManager.swift; sourceTree = "<group>"; };
+		327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailViewController.swift; sourceTree = "<group>"; };
+		327614C6285E231A001D6FB7 /* TalentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterVC.swift; sourceTree = "<group>"; };
+		32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManageViewController.swift; sourceTree = "<group>"; };
+		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
+		32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentTableViewCell.swift; sourceTree = "<group>"; };
 		32C86600285A12920090A49D /* MandarinString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MandarinString+Extension.swift"; sourceTree = "<group>"; };
 		32C86602285A12E70090A49D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		32C86604285A48250090A49D /* PostArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleViewController.swift; sourceTree = "<group>"; };
 		32C86606285AC8C60090A49D /* ForumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailViewController.swift; sourceTree = "<group>"; };
 		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
 		32C8660E285AD56D0090A49D /* PostArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleModel.swift; sourceTree = "<group>"; };
+		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,8 +136,10 @@
 		32078A532859580E00FF2980 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32078A6D2859C44800FF2980 /* Explore */,
-				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
+				327614BC285D9573001D6FB7 /* Account */,
+				327614BB285D9563001D6FB7 /* Talent */,
+				327614BD285D957E001D6FB7 /* Explore */,
+				32C86613285B20CC0090A49D /* Forum */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,6 +158,8 @@
 		32078A5928597B1A00FF2980 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32078A6D2859C44800FF2980 /* Explore */,
+				32B3ECCD285B98D400B5C16B /* Talent */,
 				32078A6A2859952900FF2980 /* Forum */,
 			);
 			path = View;
@@ -124,11 +172,12 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		32078A5B28597DCB00FF2980 /* Network */ = {
+		32078A5B28597DCB00FF2980 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				3255045E285F0B5A0019A190 /* PhotoManager.swift */,
 			);
-			path = Network;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		32078A5E2859817000FF2980 /* Forum */ = {
@@ -146,6 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				32078A5F2859832500FF2980 /* TalentViewController.swift */,
+				327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */,
+				327614C6285E231A001D6FB7 /* TalentFilterVC.swift */,
+				3255046F285FE8780019A190 /* MyTalent */,
+				32550470285FE8960019A190 /* OtherTalent */,
 			);
 			path = Talent;
 			sourceTree = "<group>";
@@ -162,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				32078A642859837500FF2980 /* AccountViewController.swift */,
+				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
+				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -205,23 +260,114 @@
 		32138B232858860200916700 /* NaturianAPP */ = {
 			isa = PBXGroup;
 			children = (
+				327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */,
+				32138B242858860200916700 /* AppDelegate.swift */,
+				32138B262858860200916700 /* SceneDelegate.swift */,
+				32550468285F87A90019A190 /* Third Party Wrapper */,
 				32078A5828597AF800FF2980 /* Extension */,
-				32078A5B28597DCB00FF2980 /* Network */,
+				32078A5B28597DCB00FF2980 /* Manager */,
 				32078A5A28597D6700FF2980 /* Resource */,
 				32078A532859580E00FF2980 /* Model */,
 				32078A52285957F600FF2980 /* Controller */,
 				32078A5928597B1A00FF2980 /* View */,
-				32138B242858860200916700 /* AppDelegate.swift */,
-				32138B262858860200916700 /* SceneDelegate.swift */,
-				32138B282858860200916700 /* ViewController.swift */,
 				32138B2A2858860200916700 /* Main.storyboard */,
 				32138B302858860400916700 /* Assets.xcassets */,
 				32138B322858860400916700 /* LaunchScreen.storyboard */,
 				32138B352858860400916700 /* Info.plist */,
 				32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */,
-				32078A562859780E00FF2980 /* GoogleService-Info (1).plist */,
+				3255043A285F08F00019A190 /* CustomButton.swift */,
 			);
 			path = NaturianAPP;
+			sourceTree = "<group>";
+		};
+		32550468285F87A90019A190 /* Third Party Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */,
+				3255046B285F88250019A190 /* KingFisherWrapper.swift */,
+				3255046D285F89280019A190 /* MJRefreshWrapper.swift */,
+			);
+			path = "Third Party Wrapper";
+			sourceTree = "<group>";
+		};
+		3255046F285FE8780019A190 /* MyTalent */ = {
+			isa = PBXGroup;
+			children = (
+				32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */,
+				32550471285FF0500019A190 /* MyTalentAppliersVC.swift */,
+				32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */,
+			);
+			path = MyTalent;
+			sourceTree = "<group>";
+		};
+		32550470285FE8960019A190 /* OtherTalent */ = {
+			isa = PBXGroup;
+			children = (
+				3255047A286094570019A190 /* OtherTalentViewController.swift */,
+			);
+			path = OtherTalent;
+			sourceTree = "<group>";
+		};
+		32550473285FF10B0019A190 /* MyTalent */ = {
+			isa = PBXGroup;
+			children = (
+				32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */,
+				32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */,
+				32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */,
+			);
+			path = MyTalent;
+			sourceTree = "<group>";
+		};
+		3255047C286094FB0019A190 /* OtherTalent */ = {
+			isa = PBXGroup;
+			children = (
+				3255047D286095770019A190 /* OtherTalentTableViewCell.swift */,
+			);
+			path = OtherTalent;
+			sourceTree = "<group>";
+		};
+		327614BB285D9563001D6FB7 /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				327614C0285D99CF001D6FB7 /* TalentArticle.swift */,
+				327614BE285D961F001D6FB7 /* TalentManager.swift */,
+				327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		327614BC285D9573001D6FB7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				32550460285F3F350019A190 /* UserAccount.swift */,
+				325504782860130D0019A190 /* UserManager.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		327614BD285D957E001D6FB7 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		32B3ECCD285B98D400B5C16B /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */,
+				3255047C286094FB0019A190 /* OtherTalent */,
+				32550473285FF10B0019A190 /* MyTalent */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		32C86613285B20CC0090A49D /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
+			);
+			path = Forum;
 			sourceTree = "<group>";
 		};
 		AD191C2C55B9D742F5BC961D /* Frameworks */ = {
@@ -279,7 +425,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 32138B1C2858860200916700 /* Build configuration list for PBXProject "NaturianAPP" */;
+			buildConfigurationList = 32138B1C2858860200916700 /* Build configuration list for PBXProject "Naturian" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -303,9 +449,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32138B342858860400916700 /* LaunchScreen.storyboard in Resources */,
+				327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */,
 				32138B312858860400916700 /* Assets.xcassets in Resources */,
 				32138B2C2858860200916700 /* Main.storyboard in Resources */,
-				32078A572859780E00FF2980 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,25 +521,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32138B292858860200916700 /* ViewController.swift in Sources */,
+				327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */,
 				32138B252858860200916700 /* AppDelegate.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
+				3255043B285F08F00019A190 /* CustomButton.swift in Sources */,
 				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
+				32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */,
+				32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */,
+				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
+				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
+				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
+				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
+				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
+				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
+				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
+				3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */,
+				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
 				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
 				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
+				3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
 				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
+				327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */,
+				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
 				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
+				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,
+				3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */,
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
+				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
+				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,
+				325504792860130D0019A190 /* UserManager.swift in Sources */,
 				32078A602859832600FF2980 /* TalentViewController.swift in Sources */,
+				32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */,
+				32550461285F3F350019A190 /* UserAccount.swift in Sources */,
 				32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +713,9 @@
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -554,7 +725,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -574,6 +746,9 @@
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -583,7 +758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -595,7 +770,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		32138B1C2858860200916700 /* Build configuration list for PBXProject "NaturianAPP" */ = {
+		32138B1C2858860200916700 /* Build configuration list for PBXProject "Naturian" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				32138B362858860400916700 /* Debug */,

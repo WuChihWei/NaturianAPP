@@ -80,9 +80,14 @@ extension ExploreViewController: UICollectionViewDataSource {
         return titles.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ExploreCollectionViewCell else {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+                                                            for: indexPath) as? ExploreCollectionViewCell else {
+            
             fatalError("can't find ForumCollectionViewCell")
+            
         }
         cell.titleLabel.text = titles[indexPath.item]
         return cell
@@ -97,7 +102,10 @@ extension ExploreViewController: UICollectionViewDataSource {
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        
         var reusableView = UICollectionReusableView()
         
         let label = UILabel(frame: CGRect(
@@ -109,16 +117,22 @@ extension ExploreViewController: UICollectionViewDataSource {
         
         // header
         if kind == UICollectionView.elementKindSectionHeader {
-            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                           withReuseIdentifier: "Header",
-                                                                           for: indexPath)
+            
+            reusableView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: "Header",
+                for: indexPath)
+            
             reusableView.backgroundColor = UIColor.gray
             label.text = "Header"
             label.textColor = UIColor.white
         } else if kind == UICollectionView.elementKindSectionFooter {
-            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
-                                                                           withReuseIdentifier: "Footer",
-                                                                           for: indexPath)
+            
+            reusableView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionFooter,
+                withReuseIdentifier: "Footer",
+                for: indexPath)
+            
             reusableView.backgroundColor = UIColor.gray
             label.text = "Footer"
             label.textColor = UIColor.white

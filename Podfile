@@ -8,8 +8,14 @@ target 'NaturianAPP' do
   # Pods for NaturianAPP
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
-pod 'FirebaseAnalytics'
+pod 'FirebaseStorage'
 pod 'SwiftLint'
+pod 'FirebaseFirestoreSwift'
+pod 'Kingfisher'
+pod 'JGProgressHUD'
+pod 'MJRefresh'
+pod  'MBProgressHUD'
+
 
 
 end

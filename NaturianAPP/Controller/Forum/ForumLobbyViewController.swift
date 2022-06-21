@@ -53,7 +53,9 @@ extension ForumLobbyViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = forumLobbyUITableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ForumLobbyTableViewCell else {
+        guard let cell = forumLobbyUITableView.dequeueReusableCell(withIdentifier: "Cell",
+                                                                   for: indexPath) as? ForumLobbyTableViewCell else {
+            
             fatalError("can't find ForumLobbyTableViewCell")
         }
         
