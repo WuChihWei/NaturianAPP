@@ -63,6 +63,11 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
+**/ios/GoogleService-Info.plist
+/web/index.html
+/android/app/google-services.json
+/lib/keys.dart
+
 ### Xcode Patch ###
 ###*.xcodeproj/*
 !*.xcodeproj/project.pbxproj
