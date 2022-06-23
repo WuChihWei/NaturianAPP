@@ -79,7 +79,7 @@ class TalentFilterVC: UIViewController {
     }
     
     @objc func filterSearch() {
-\
+        
         telentManager.fetchFilterTalent(category: filterModel.categories,
                                         seedValue: filterModel.seedValue,
                                         gender: filterModel.genders,
