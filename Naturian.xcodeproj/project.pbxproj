@@ -42,6 +42,11 @@
 		325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AC2863727C0019A190 /* LocationPopUpVC.swift */; };
 		325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */; };
 		325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B2286373F60019A190 /* LocationPopTableViewCell.swift */; };
+		325504B5286451C70019A190 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B4286451C70019A190 /* ChatViewController.swift */; };
+		325504B72864524B0019A190 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B62864524B0019A190 /* Chat.swift */; };
+		325504B92864525A0019A190 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B8286452590019A190 /* ChatUser.swift */; };
+		325504BB286452680019A190 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504BA286452680019A190 /* Message.swift */; };
+		325504E12864D2750019A190 /* BarCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504E02864D2750019A190 /* BarCodeVC.swift */; };
 		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
 		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
 		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
@@ -100,6 +105,11 @@
 		325504AC2863727C0019A190 /* LocationPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpVC.swift; sourceTree = "<group>"; };
 		325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopTableViewCell.swift; sourceTree = "<group>"; };
 		325504B2286373F60019A190 /* LocationPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopTableViewCell.swift; sourceTree = "<group>"; };
+		325504B4286451C70019A190 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		325504B62864524B0019A190 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		325504B8286452590019A190 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		325504BA286452680019A190 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		325504E02864D2750019A190 /* BarCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeVC.swift; sourceTree = "<group>"; };
 		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
 		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 		32078A532859580E00FF2980 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				325504E22864D2860019A190 /* ChatModel */,
 				327614BC285D9573001D6FB7 /* Account */,
 				327614BB285D9563001D6FB7 /* Talent */,
 				327614BD285D957E001D6FB7 /* Explore */,
@@ -228,9 +239,11 @@
 		32078A632859835400FF2980 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				325504BC28646C040019A190 /* Chat */,
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
+				325504E02864D2750019A190 /* BarCodeVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -347,6 +360,24 @@
 				325504AC2863727C0019A190 /* LocationPopUpVC.swift */,
 			);
 			path = PopOutView;
+			sourceTree = "<group>";
+		};
+		325504BC28646C040019A190 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				325504B4286451C70019A190 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		325504E22864D2860019A190 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				325504B8286452590019A190 /* ChatUser.swift */,
+				325504B62864524B0019A190 /* Chat.swift */,
+				325504BA286452680019A190 /* Message.swift */,
+			);
+			path = ChatModel;
 			sourceTree = "<group>";
 		};
 		327614BB285D9563001D6FB7 /* Talent */ = {
@@ -550,10 +581,13 @@
 				327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */,
 				32138B252858860200916700 /* AppDelegate.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
+				325504B72864524B0019A190 /* Chat.swift in Sources */,
+				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
 				3255043B285F08F00019A190 /* CustomButton.swift in Sources */,
 				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
 				32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */,
+				325504BB286452680019A190 /* Message.swift in Sources */,
 				32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */,
 				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
 				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
@@ -566,6 +600,7 @@
 				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
 				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
+				325504B92864525A0019A190 /* ChatUser.swift in Sources */,
 				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
@@ -587,6 +622,7 @@
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
+				325504E12864D2750019A190 /* BarCodeVC.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
 				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
 				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,

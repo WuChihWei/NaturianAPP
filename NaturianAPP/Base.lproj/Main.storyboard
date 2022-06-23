@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFb-GA-GSz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nBy-Mg-h6x">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -518,6 +518,32 @@
             </objects>
             <point key="canvasLocation" x="4432" y="1569"/>
         </scene>
+        <!--Bar CodeVC-->
+        <scene sceneID="avS-Zg-n9Y">
+            <objects>
+                <viewController id="nBy-Mg-h6x" customClass="BarCodeVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xed-Ki-rZS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-28-04d">
+                                <rect key="frame" x="174" y="404" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="nBy-Mg-h6x" eventType="touchUpInside" id="jOw-ze-3Oa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bzf-ll-TSj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LA0-Sn-FKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3393" y="2754"/>
+        </scene>
         <!--Post Article View Controller-->
         <scene sceneID="WNP-V1-zVz">
             <objects>
@@ -699,6 +725,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="xsC-oq-xO8"/>
+                    <connections>
+                        <segue destination="1sV-V1-9Pn" kind="show" identifier="ChatViewController" id="yvr-Vz-mmd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV5-Dg-2Q4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -772,6 +801,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxQ-eI-aA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4212" y="-2015"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="BTG-u2-aQm">
+            <objects>
+                <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="1sV-V1-9Pn" customClass="ChatViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3tX-sw-I9p">
+                        <barButtonItem key="rightBarButtonItem" title="Apply" id="BL0-hL-XYe">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbJ-5e-MDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4357" y="-78"/>
         </scene>
         <!--My Talent AppliersVC-->
         <scene sceneID="Mp2-dH-fAD">

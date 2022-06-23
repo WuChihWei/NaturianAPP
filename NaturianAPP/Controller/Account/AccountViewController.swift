@@ -220,7 +220,6 @@ class AccountViewController: UIViewController {
     
     @objc func didTapTalent() {
         
-        print("tap")
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "TalentManageViewController") as? TalentManageViewController else {
             
