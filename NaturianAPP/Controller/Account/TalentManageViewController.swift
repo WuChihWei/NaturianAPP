@@ -12,6 +12,8 @@ class TalentManageViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var othersView: UIView!
     
+    var userModel: UserModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,11 +33,15 @@ class TalentManageViewController: UIViewController {
     @IBAction func swifthView(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
+            
             myView.alpha = 1
             othersView.alpha = 0
+        
         } else {
+            
             othersView.alpha = 1
             myView.alpha = 0
+            
         }
     }
     

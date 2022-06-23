@@ -89,7 +89,7 @@ class MyTalentAppliersVC: UIViewController {
                 case .success(let userModel):
                     
                     self?.userModels.append(userModel)
-                                        
+                    print(self?.userModels)
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -125,12 +125,9 @@ extension MyTalentAppliersVC: UITableViewDataSource {
         let photoUrl = userModels[indexPath.row].userAvatar
         
         cell.userName.text = userModels[indexPath.row].name
-        
+
         cell.userAvatar.kf.setImage(with: photoUrl)
         
-//        cell.userAvatar.lay
-        
-//        cell.userAvatar.setNeedsLayout()
         cell.layoutIfNeeded()
         
         cell.userAvatar.lkCornerRadius = cell.userAvatar.frame.width / 2

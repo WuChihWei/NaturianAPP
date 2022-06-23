@@ -67,7 +67,6 @@ extension ForumLobbyViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ForumDetailSegue", sender: self)
-        print(indexPath.row)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

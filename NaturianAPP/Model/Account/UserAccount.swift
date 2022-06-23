@@ -11,13 +11,13 @@ struct UserModel: Codable {
     
     var name: String?
     
-    let userID: String?
+    var userID: String?
     
     var seedValue: Int? = 420
     
-    var gender: String?
+    var gender: String? 
     
-    var userAvatar: URL
+    var userAvatar: URL?
     
     var appliedTalent: [String?]
 }

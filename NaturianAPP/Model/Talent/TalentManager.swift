@@ -32,20 +32,20 @@ class TalentManager {
     }
     
     func fetchData(completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
-
+        
         db.collection("talent").getDocuments { (querySnapshot, error) in
-
+            
             if let error = error {
-
+                
                 print(LocalizedError.self)
                 completion(.failure(error))
-
+                
             } else {
-
+                
                 var talentArticles = [TalentArticle]()
-
+                
                 for document in querySnapshot!.documents {
-
+                    
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
@@ -54,82 +54,126 @@ class TalentManager {
                             talentArticles.append(talentArticle)
                         }
                         print(talentArticles)
-
+                        
                     } catch {
-
+                        
                         completion(.failure(error))
-
+                        
                     }
                 }
-
+                
                 completion(.success(talentArticles))
             }
         }
     }
-
+    
     func updateData(applyTalent: TalentArticle) {
         
         do {
-
+            
             try database.document(applyTalent.talentPostID ?? "").setData(from: applyTalent, merge: true)
-
+            
         } catch {
             
             print("can't update talent data")
-
+            
         }
-
+        
     }
     
     func uploadPhoto(image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
+        
+        let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
+        if let data = image.jpegData(compressionQuality: 0.9) {
             
-            let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
-            if let data = image.jpegData(compressionQuality: 0.9) {
-                
-                fileReference.putData(data, metadata: nil) { result in
-                    switch result {
-                    case .success(_):
-                         fileReference.downloadURL(completion: completion)
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
+            fileReference.putData(data, metadata: nil) { result in
+                switch result {
+                case .success(_):
+                    fileReference.downloadURL(completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
+        }
     }
     
     func fetchAppliedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
-
+        
         db.collection("talent").whereField("didApplyID", arrayContains: userID).getDocuments { (querySnapshot, error) in
-
+            
             if let error = error {
-
+                
                 print(LocalizedError.self)
                 completion(.failure(error))
-
+                
             } else {
-
+                
                 var talentArticles = [TalentArticle]()
-
+                
                 for document in querySnapshot!.documents {
-
+                    
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
-                            decoder: Firestore.Decoder()) {
+                                                                 decoder: Firestore.Decoder()) {
                             
                             talentArticles.append(talentArticle)
                         }
                         print(talentArticles)
-
+                        
                     } catch {
-
+                        
                         completion(.failure(error))
-
+                        
                     }
                 }
-
+                
                 completion(.success(talentArticles))
             }
         }
     }
+    
+    func fetchFilterTalent (category: [String],
+                            seedValue: Int,
+                            gender: String,
+                            location: String,
+                            completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+        
+        db.collection("talent").whereField("category", in: category)
+            .whereField("seedValue", isLessThan: seedValue).whereField("userInfo.gender", isEqualTo: gender)
+            .whereField("location", isEqualTo: location)
+            .getDocuments { (querySnapshot, error) in
+                
+                if let error = error {
+                    
+                    print(LocalizedError.self)
+                    completion(.failure(error))
+                    
+                } else {
+                    
+                    var talentArticles = [TalentArticle]()
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        do {
+                            print(document)
+                            if let talentArticle = try document.data(as: TalentArticle?.self,
+                                                                     decoder: Firestore.Decoder()) {
+                                
+                                talentArticles.append(talentArticle)
+                            }
+                            print(talentArticles)
+                            
+                        } catch {
+                            
+                            completion(.failure(error))
+                            
+                        }
+                    }
+                    
+                    completion(.success(talentArticles))
+                }
+            }
+    }
+    
 }

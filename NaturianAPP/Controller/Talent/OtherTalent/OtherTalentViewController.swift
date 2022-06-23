@@ -15,6 +15,7 @@ class OtherTalentViewController: UIViewController {
     var talentManager = TalentManager()
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
+    var userID = "1"
     
     var appliedTalents: [TalentArticle] = []
     //    var didSeletectApplierIDs: [String] = []
@@ -62,7 +63,7 @@ class OtherTalentViewController: UIViewController {
     
     func fetchAppliedTalent() {
         
-        talentManager.fetchAppliedTalent(userID: "123") { [weak self] result in
+        talentManager.fetchAppliedTalent(userID: userID) { [weak self] result in
             
             switch result {
                 

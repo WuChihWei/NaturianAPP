@@ -8,11 +8,17 @@
 import UIKit
 import Kingfisher
 
+protocol AccountVCDelegate: AnyObject {
+    func sendAccountInfo(userModel: UserModel?)
+}
+
 class AccountViewController: UIViewController {
+    
+    weak var accountDelegate: AccountVCDelegate?
     
     var userManager = UserManager()
     var userModels: UserModel?
-    var userID = "2"
+    var userID = "1"
     
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
@@ -72,7 +78,7 @@ class AccountViewController: UIViewController {
             case .success(let userModel):
                 
                 self?.userModels = userModel
-//
+            
                 DispatchQueue.main.async {
                     self?.viewDidLoad()
                 }
@@ -220,6 +226,8 @@ class AccountViewController: UIViewController {
             
             fatalError("can't find TalentDetailViewController")
         }
+        
+        vc.userModel = userModels
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

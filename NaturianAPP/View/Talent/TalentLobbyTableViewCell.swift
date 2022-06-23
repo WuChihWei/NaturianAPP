@@ -21,7 +21,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
     let seedValue = UILabel()
     let talentDescription = UILabel()
     let locationImage = UIImageView()
-    let location = UILabel()
+    let locationLabel = UILabel()
     let category = UILabel()
     let genderIcon = UIImageView()
     
@@ -82,8 +82,8 @@ class TalentLobbyTableViewCell: UITableViewCell {
         locationStackView.spacing = 3
         locationImage.image = UIImage(named: "location")
         
-        location.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        location.text = "Taichung City"
+        locationLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        locationLabel.text = "Taichung City"
     }
     
     func layout() {
@@ -110,7 +110,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
         talentStackView.addArrangedSubview(category)
         
         locationStackView.addArrangedSubview(locationImage)
-        locationStackView.addArrangedSubview(location)
+        locationStackView.addArrangedSubview(locationLabel)
         
         NSLayoutConstraint.activate([
             

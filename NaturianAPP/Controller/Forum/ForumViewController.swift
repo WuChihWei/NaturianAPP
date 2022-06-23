@@ -108,7 +108,6 @@ extension ForumViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("you chose \(indexPath.item + 1) category")
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
             

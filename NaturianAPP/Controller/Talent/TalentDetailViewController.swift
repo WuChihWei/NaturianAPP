@@ -15,7 +15,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    let useID = "123"
+    let useID = "1"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()
@@ -43,6 +43,8 @@ class TalentDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = true
+        
+        view.layoutIfNeeded()
     }
     
     @objc func didApply() {
@@ -69,6 +71,8 @@ class TalentDetailViewController: UIViewController {
         postPhotoImage.isUserInteractionEnabled = true
         let photoUrl = selectedArticle.images[0]
         postPhotoImage.kf.setImage(with: photoUrl)
+        postPhotoImage.clipsToBounds = true
+        postPhotoImage.contentMode = .scaleAspectFill
         
         categoryLabel.lkBorderColor = .black
         //        categoryButton.lkCornerRadius = 5
@@ -86,7 +90,7 @@ class TalentDetailViewController: UIViewController {
         descriptionText.text = selectedArticle.content
         
         seedIcon.image = UIImage(named: "Lychee")
-        seedValueText.text = selectedArticle.seedValue
+        seedValueText.text = "\(selectedArticle.seedValue ?? 0)"
         
         seedStack.axis = .horizontal
         seedStack.alignment = .leading

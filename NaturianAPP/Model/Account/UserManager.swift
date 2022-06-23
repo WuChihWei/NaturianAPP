@@ -53,7 +53,6 @@ class UserManager {
                             
                             userModels.append(userModel)
                         }
-                        print(userModels)
                         
                     } catch {
                         
