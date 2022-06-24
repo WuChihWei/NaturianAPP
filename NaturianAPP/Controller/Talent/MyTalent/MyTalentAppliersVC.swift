@@ -46,17 +46,16 @@ class MyTalentAppliersVC: UIViewController {
         tableView.layoutIfNeeded() //call this func to show the subView in subView
     }
     
-    
     func setUp() {
         
-        tableView.register(MyTalentAppliersTableViewCell.self, forCellReuseIdentifier: MyTalentAppliersTableViewCell.identifer)
+        tableView.register(MyTalentAppliersTableViewCell.self,
+                           forCellReuseIdentifier: MyTalentAppliersTableViewCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
     }
     
     func style() {
-        
         
         tableView.separatorStyle = .none
     }

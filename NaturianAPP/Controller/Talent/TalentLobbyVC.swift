@@ -30,7 +30,7 @@ class TalentLobbyVC: UIViewController {
         style()
         layout()
         fetchTalentArticle()
-        
+        tabBarController?.tabBar.isHidden = false
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -39,6 +39,7 @@ class TalentLobbyVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
+        
         fetchTalentArticle()
         tableView.reloadData()
     }

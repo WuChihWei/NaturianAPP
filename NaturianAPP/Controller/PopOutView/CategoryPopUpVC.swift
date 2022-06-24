@@ -1,5 +1,5 @@
 //
-//  LocationPopUpVC.swift
+//  CategoryPopUpVC.swift
 //  NaturianAPP
 //
 //  Created by Jordan Wu on 2022/6/22.
@@ -7,29 +7,24 @@
 
 import UIKit
 
-protocol LocationDelegate: AnyObject {
+protocol CategoryDelegate: AnyObject {
     
-    func sendLocationResult(location: String)
+    func sendCategoryResult(category: String)
 }
 
-class LocationPopUpVC: UIViewController {
-    
-    weak var locationDelegate: LocationDelegate?
+class CategoryPopUpVC: UIViewController {
+
+    weak var categoryDelegate: CategoryDelegate?
     
     private let tableView = UITableView()
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
-    var locationResult = ""
-    var blackView = UIView(frame: UIScreen.main.bounds)
-//    let blackView = UIView()
     
-    let locationData = ["Taipei City", "Xinbei City",
-                        "Taoyuan City", "Xinzhu City",
-                        "Miaoli City", "Taizhong City",
-                        "Zhanghua City", "Nantou City",
-                        "Jiayi City", "Tainan City",
-                        "Gaoxiong City", "Pingtung City",
-                        "Yilan City", "HualianCity",
-                        "Taidong City"]
+    var categoryResult = ""
+    
+    var blackView = UIView(frame: UIScreen.main.bounds)
+    let categoryData = ["Food", "Grocery",
+                        "Plant", "Adcenture",
+                        "Exercise", "Treatment"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,19 +33,21 @@ class LocationPopUpVC: UIViewController {
         style()
         layout()
         
-//        let blackView = UIView(frame: UIScreen.main.bounds)
+        blackViewDynamic()
+    }
+    
+    func blackViewDynamic() {
+        
         blackView.backgroundColor = .black
         blackView.alpha = 0
-        
         blackView.isUserInteractionEnabled = true
         blackView.addGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         presentingViewController?.view.addSubview(blackView)
-        
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
             self.blackView.alpha = 0.5
         }
         
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
     }
     
     @objc func dismissController() {
@@ -71,7 +68,7 @@ class LocationPopUpVC: UIViewController {
         
 //        gesture = UITapGestureRecognizer(target: self, action: #selector(closeView))
         
-        tableView.register(LocationPopTableViewCell.self, forCellReuseIdentifier: LocationPopTableViewCell.identifer)
+        tableView.register(CategoryPopTableViewCell.self, forCellReuseIdentifier: CategoryPopTableViewCell.identifer)
         
         //        tableView.backgroundColor = .black
         tableView.dataSource = self
@@ -102,11 +99,11 @@ class LocationPopUpVC: UIViewController {
     }
 }
 
-extension LocationPopUpVC: UITableViewDelegate {
+extension CategoryPopUpVC: UITableViewDelegate {
     
 }
 
-extension LocationPopUpVC: UITableViewDataSource {
+extension CategoryPopUpVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -137,30 +134,28 @@ extension LocationPopUpVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return locationData.count
+        return categoryData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell( withIdentifier: LocationPopTableViewCell.identifer, for: indexPath) as? LocationPopTableViewCell else {
-            fatalError("can't find LocationPopTableViewCell")
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: CategoryPopTableViewCell.identifer, for: indexPath) as? CategoryPopTableViewCell else {
+            fatalError("can't find CategoryPopTableViewCell")
         }
         
-        cell.locationLabel.text = locationData[indexPath.row]
+        cell.categoryLabel.text = categoryData[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        locationResult = locationData[indexPath.row]
+        categoryResult = categoryData[indexPath.row]
         
-        self.locationDelegate?.sendLocationResult(location: locationResult)
+        self.categoryDelegate?.sendCategoryResult(category: categoryResult)
         
         closeMenu()
         dismiss(animated: true)
-    }    
+    }
+    
 }
-
-
-

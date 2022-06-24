@@ -37,8 +37,11 @@ class MyTalentViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
         fetchTalentArticle()
+//        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {

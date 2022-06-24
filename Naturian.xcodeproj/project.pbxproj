@@ -11,7 +11,7 @@
 		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
 		32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A66285989E200FF2980 /* UIView+Extension.swift */; };
-		32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */; };
+		32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extension.swift */; };
 		32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */; };
 		32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */; };
 		32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A702859C47E00FF2980 /* ExploreViewController.swift */; };
@@ -23,6 +23,8 @@
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
+		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
 		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
 		32550461285F3F350019A190 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550460285F3F350019A190 /* UserAccount.swift */; };
@@ -46,7 +48,7 @@
 		325504B72864524B0019A190 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B62864524B0019A190 /* Chat.swift */; };
 		325504B92864525A0019A190 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B8286452590019A190 /* ChatUser.swift */; };
 		325504BB286452680019A190 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504BA286452680019A190 /* Message.swift */; };
-		325504E12864D2750019A190 /* BarCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504E02864D2750019A190 /* BarCodeVC.swift */; };
+		325504E12864D2750019A190 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504E02864D2750019A190 /* ScannerVC.swift */; };
 		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
 		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
 		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
@@ -72,7 +74,7 @@
 		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		32078A66285989E200FF2980 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extentsion.swift"; sourceTree = "<group>"; };
+		32078A6828598E9800FF2980 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCollectionViewCell.swift; sourceTree = "<group>"; };
 		32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
 		32078A702859C47E00FF2980 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
+		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		32550460285F3F350019A190 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -109,7 +113,7 @@
 		325504B62864524B0019A190 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		325504B8286452590019A190 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		325504BA286452680019A190 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		325504E02864D2750019A190 /* BarCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeVC.swift; sourceTree = "<group>"; };
+		325504E02864D2750019A190 /* ScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
 		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
 		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				32078A632859835400FF2980 /* Account */,
+				325504A9286372370019A190 /* PopOutView */,
+				325504BC28646C040019A190 /* Chat */,
 				32078A612859832B00FF2980 /* Talent */,
 				32078A622859834600FF2980 /* Explore */,
 				32078A5E2859817000FF2980 /* Forum */,
@@ -170,10 +176,11 @@
 		32078A5828597AF800FF2980 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */,
+				32078A6828598E9800FF2980 /* UIScreen+Extension.swift */,
 				32078A66285989E200FF2980 /* UIView+Extension.swift */,
 				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
 				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
+				32276D9E28654784008695E3 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -218,7 +225,6 @@
 		32078A612859832B00FF2980 /* Talent */ = {
 			isa = PBXGroup;
 			children = (
-				325504A9286372370019A190 /* PopOutView */,
 				32078A5F2859832500FF2980 /* TalentLobbyVC.swift */,
 				327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */,
 				327614C6285E231A001D6FB7 /* TalentFilterVC.swift */,
@@ -239,11 +245,11 @@
 		32078A632859835400FF2980 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				325504BC28646C040019A190 /* Chat */,
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
-				325504E02864D2750019A190 /* BarCodeVC.swift */,
+				325504E02864D2750019A190 /* ScannerVC.swift */,
+				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -599,9 +605,10 @@
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
 				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
 				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
+				32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				325504B92864525A0019A190 /* ChatUser.swift in Sources */,
-				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
+				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
@@ -615,6 +622,7 @@
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
 				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
 				327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */,
+				3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */,
 				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
 				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
 				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,
@@ -622,7 +630,7 @@
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
-				325504E12864D2750019A190 /* BarCodeVC.swift in Sources */,
+				325504E12864D2750019A190 /* ScannerVC.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
 				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
 				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,
@@ -706,7 +714,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -760,7 +768,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

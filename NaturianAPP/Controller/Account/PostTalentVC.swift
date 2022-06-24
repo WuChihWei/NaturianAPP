@@ -335,7 +335,7 @@ class PostTalentVC: UIViewController {
                             )
                             
                             self.talentManager.addData(postTalent: talenArticle)
-                            
+
                         case .failure(_):
                             break
                         }
