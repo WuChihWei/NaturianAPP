@@ -7,15 +7,21 @@
 
 import UIKit
 
+
+
+
 class TransferSeedVC: UIViewController {
     
     var scanBarButton = UIButton()
     var scanTextField = UITextField()
     var scannerVC = ScannerVC()
+    var userID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarController?.tabBar.isHidden = true
+
         view.backgroundColor = UIColor.systemBlue
         
         style()
@@ -23,10 +29,21 @@ class TransferSeedVC: UIViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     @objc func scanBarTapped() {
 //        navigationController?.dismiss(animated: true)
 //        self.dismiss(animated: true, completion: nil)
-        dismiss(animated: true)
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ScannerVC") as? ScannerVC else {
+            
+            fatalError("can't find ScannerVC")
+        }
+        vc.sendBarcodeDelegate = self
+        present(vc, animated: true, completion: nil)
     }
     
     func setup() {
@@ -46,6 +63,15 @@ class TransferSeedVC: UIViewController {
         scanTextField.textColor = UIColor.white
         scanTextField.font = (UIFont(name: "AppleSDGothicNeo-Bold", size: 25))
     }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "sendSegue") {
+//
+//            let destViewController = segue.destination as? ScannerVC
+//            destViewController!.sendBarcodeDelegate = self
+//            self.userID = destViewController?.stringValue ?? ""
+//        }
+//    }
     
     func layout() {
         
@@ -65,5 +91,12 @@ class TransferSeedVC: UIViewController {
             scanBarButton.topAnchor.constraint(equalTo: scanTextField.bottomAnchor, constant: 20),
             scanBarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+}
+
+extension TransferSeedVC: SendBarcodeDelegate {
+    func sendBarcodeValue(userID: String) {
+        
+        self.scanTextField.text = userID
     }
 }

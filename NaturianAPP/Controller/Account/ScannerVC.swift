@@ -8,12 +8,22 @@
 import UIKit
 import AVFoundation
 
+protocol SendBarcodeDelegate: AnyObject {
+    func sendBarcodeValue(userID: String)
+}
+
 class ScannerVC: UIViewController {
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    weak var sendBarcodeDelegate: SendBarcodeDelegate?
     
     var captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    
+    var label = UILabel()
     var stringValue: String = ""
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
@@ -34,7 +44,7 @@ class ScannerVC: UIViewController {
         super.viewDidLoad()
         
         tabBarController?.tabBar.isHidden = true
-
+        
         // Get the back-facing camera for capturing videos
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             print("Failed to get the camera device")
@@ -57,10 +67,22 @@ class ScannerVC: UIViewController {
             //            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
             
+//            let baseImageView = UIImageView(frame: CGRect(x: 145, y: 195, width: 560, height: 1260))
+            let baseImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 560, height: 1260))
+            
+//            let gradientLayer = CAGradientLayer()
+            
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            videoPreviewLayer?.frame = view.layer.bounds
+//            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+            
+//            videoPreviewLayer?.frame = view.layer.bounds
+            videoPreviewLayer?.frame = baseImageView.bounds
+
+//            view.layer.masksToBounds = true
+//            view.lkCornerRadius = 20
             view.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture
@@ -77,6 +99,8 @@ class ScannerVC: UIViewController {
                 qrcodeFrameView.layer.borderWidth = 10
                 view.addSubview(qrcodeFrameView)
                 view.bringSubviewToFront(qrcodeFrameView)
+                view.addSubview(label)
+                view.bringSubviewToFront(label)
             }
             
         } catch {
@@ -84,6 +108,10 @@ class ScannerVC: UIViewController {
             print(error)
             return
         }
+        
+        style()
+        layout()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,12 +121,36 @@ class ScannerVC: UIViewController {
             captureSession.startRunning()
         }
         captureSession.startRunning()
-//        view.reloadData()
+        //        view.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-                
+        
+    }
+    
+    func setup() {
+        
+    }
+    
+    func style() {
+        
+        label.text = "hi"
+        label.font = UIFont.systemFont(ofSize: 40, weight: .medium)
+        label.backgroundColor = .green
+    }
+    
+    func layout() {
+        
+        
+        label.translatesAutoresizingMaskIntoConstraints = true
+        
+        NSLayoutConstraint.activate([
+            
+            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+        ])
     }
 }
 
@@ -119,23 +171,23 @@ extension ScannerVC: AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView?.frame = barCode!.bounds
             
             if metadataObj.stringValue != nil {
-              
+                
                 stringValue = metadataObj.stringValue ?? "can not find"
                 
-                guard let vc = storyboard?.instantiateViewController(
-                    withIdentifier: "TransferSeedVC") as? TransferSeedVC else {
-                    fatalError("can't find TransferSeedVC")
-                }
-            
-                vc.scanTextField.text = stringValue
+//                guard let vc = storyboard?.instantiateViewController(
+//                    withIdentifier: "TransferSeedVC") as? TransferSeedVC else {
+//                    fatalError("can't find TransferSeedVC")
+//                }
+//
+//                vc.scanTextField.text = stringValue
                 
-             
-//                self.navigationController?.pushViewController(vc, animated: true)
-                present(vc, animated: true)
+                self.sendBarcodeDelegate?.sendBarcodeValue(userID: stringValue)
+                //                self.navigationController?.pushViewController(vc, animated: true)
+                //                present(vc, animated: true)
                 if captureSession.isRunning == true {
                     captureSession.stopRunning()
                 }
-
+                dismiss(animated: true)
             }
         }
     }

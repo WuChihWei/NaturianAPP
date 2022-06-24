@@ -51,7 +51,7 @@
         <!--Account View Controller-->
         <scene sceneID="7W5-Og-s0l">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TR0-UM-Ug2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                     <navigationItem key="navigationItem" id="kUN-Me-PeE"/>
                     <connections>
                         <segue destination="slW-NA-3Ew" kind="show" id="dpZ-YY-2yj"/>
-                        <segue destination="sdd-h5-X9g" kind="push" id="Zcr-kj-6SR"/>
+                        <segue destination="iY3-Ic-tU2" kind="show" identifier="TransferSeedVC" id="59W-GS-X0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCx-7P-CXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,21 +71,58 @@
         <!--ScannerVC-->
         <scene sceneID="OBG-0V-1Cp">
             <objects>
-                <viewController restorationIdentifier="ScannerVC" storyboardIdentifier="ScannerVC" modalPresentationStyle="fullScreen" id="sdd-h5-X9g" customClass="ScannerVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ScannerVC" storyboardIdentifier="ScannerVC" modalPresentationStyle="formSheet" id="sdd-h5-X9g" customClass="ScannerVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cnC-al-er2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-Qs-iXl">
+                                <rect key="frame" x="50" y="94" width="314" height="33.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Please Scan The Barcode">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" cornerRadius="20"/>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Please Scan The Barcode">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="back:" destination="sdd-h5-X9g" eventType="touchUpInside" id="ekE-hX-bTk"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="U7m-49-mMo"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="xV3-Qs-iXl" firstAttribute="top" secondItem="U7m-49-mMo" secondAttribute="top" constant="50" id="Exe-3V-N0O"/>
+                            <constraint firstItem="xV3-Qs-iXl" firstAttribute="leading" secondItem="U7m-49-mMo" secondAttribute="leading" constant="50" id="Qn3-QY-vHY"/>
+                            <constraint firstItem="U7m-49-mMo" firstAttribute="trailing" secondItem="xV3-Qs-iXl" secondAttribute="trailing" constant="50" id="sgb-Rl-cBc"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qt5-s8-J8O"/>
-                    <connections>
-                        <segue destination="iY3-Ic-tU2" kind="push" id="6Kc-RR-D1c"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXf-c6-2fH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-1533"/>
+            <point key="canvasLocation" x="3265" y="-1542"/>
         </scene>
         <!--Transfer SeedVC-->
         <scene sceneID="4X4-ue-T70">
@@ -98,10 +135,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="wRw-RD-FbA"/>
+                    <connections>
+                        <segue destination="sdd-h5-X9g" kind="showDetail" id="7iI-tA-LVP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8o-A9-SEM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3209" y="-1533"/>
+            <point key="canvasLocation" x="2239" y="-1533"/>
         </scene>
         <!--Talent Manage View Controller-->
         <scene sceneID="gGa-T1-8wc">
@@ -952,6 +992,9 @@
         <image name="heart" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

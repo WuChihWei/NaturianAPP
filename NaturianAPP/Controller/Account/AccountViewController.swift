@@ -60,7 +60,11 @@ class AccountViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-//        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -130,13 +134,16 @@ class AccountViewController: UIViewController {
     @objc func didTapTransfer() {
         tabBarController?.tabBar.isHidden = true
         guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "ScannerVC") as? ScannerVC else {
+            withIdentifier: "TransferSeedVC") as? TransferSeedVC else {
             
-            fatalError("can't find ScannerVC")
+            fatalError("can't find TransferSeedVC")
         }
-                    
+//        navigationController?.pushViewController(vc, animated: true)
+//        vc?.hidesBottomBarWhenPushed = true
         present(vc, animated: true, completion: nil)
+        tabBarController?.tabBar.isHidden = true
     }
+ 
     
     func setup() {
         

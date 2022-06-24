@@ -24,6 +24,7 @@
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
 		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
+		3221453D2866153F00D46503 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453C2866153F00D46503 /* PopViewController.swift */; };
 		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
 		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
@@ -89,6 +90,7 @@
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
+		3221453C2866153F00D46503 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
@@ -248,8 +250,9 @@
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
-				325504E02864D2750019A190 /* ScannerVC.swift */,
 				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
+				325504E02864D2750019A190 /* ScannerVC.swift */,
+				3221453C2866153F00D46503 /* PopViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */,
 				325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */,
 				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
+				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
 				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
