@@ -26,8 +26,20 @@ class TalentFilterVC: UIViewController {
     
     var addTransparentManager = AddDropDownField()
     
-    var filterModel = TalentFilterModel(categories: [], seedValue: 0, genders: "", location: "")
+    var filterModel = TalentFilterModel(categories: [], seedValue: 0, genders: "", location: "")  {
+        didSet {
+        if filterModel.categories != [] && filterModel.seedValue != 0 && filterModel.genders != "" && filterModel.location != "" {
+            searchBtn.isEnabled = true
+            searchBtn.backgroundColor = .blue
+
+        } else {
+            searchBtn.backgroundColor = .green
+            searchBtn.isEnabled = false
+        }
+    }
+}
     var filerResult = TalentFilterModel(categories: [], seedValue: 0, genders: "", location: "")
+      
     let searchBtn = UIButton()
     let closeBtn = UIButton()
     
@@ -42,11 +54,13 @@ class TalentFilterVC: UIViewController {
     let categoryStackBottom = UIStackView()
 
     let seedsLabel = UILabel()
-    let valueSlider = UISlider()
+    
     let seedMinLabel = UILabel()
     let seedMaxLabel = UILabel()
     let numberLabel = UILabel()
     
+    let valueSlider = UISlider()
+
     let genderLabel = UILabel()
     let maleButton = UIButton()
     let femaleButton = UIButton()
@@ -79,6 +93,8 @@ class TalentFilterVC: UIViewController {
     }
     
     @objc func filterSearch() {
+      
+     
         
         telentManager.fetchFilterTalent(category: filterModel.categories,
                                         seedValue: filterModel.seedValue,
@@ -126,6 +142,7 @@ class TalentFilterVC: UIViewController {
         searchBtn.addTarget(self, action: #selector(filterSearch), for: .touchUpInside)
         
         locationButton.addTarget(self, action: #selector(clickLocation(_:)), for: .touchUpInside)
+        
         valueSlider.addTarget(self, action: #selector(sliderChange(_:)), for: .touchUpInside)
         
         maleButton.addTarget(self, action: #selector(didTapGenderBtn(_:)), for: .touchUpInside)
@@ -156,7 +173,7 @@ class TalentFilterVC: UIViewController {
 
             if sender.isSelected == false {
                 filterModel.genders = "Male"
-                sender.isSelected = true
+//                sender.isSelected = true
                 undefinedButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
                 femaleButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
                 sender.setImage(#imageLiteral(resourceName: "radio"), for: .normal)
@@ -169,7 +186,7 @@ class TalentFilterVC: UIViewController {
 
             if sender.isSelected == false {
                 filterModel.genders = "Female"
-                sender.isSelected = true
+//                sender.isSelected = true
                 sender.setImage(#imageLiteral(resourceName: "radio"), for: .normal)
                 maleButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
                 undefinedButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
@@ -182,7 +199,7 @@ class TalentFilterVC: UIViewController {
 
             if sender.isSelected == false {
                 filterModel.genders = "Undefined"
-                sender.isSelected = true
+//                sender.isSelected = true
                 maleButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
                 femaleButton.setImage(#imageLiteral(resourceName: "unradio"), for: .normal)
                 sender.setImage(#imageLiteral(resourceName: "radio"), for: .normal)
@@ -310,8 +327,6 @@ class TalentFilterVC: UIViewController {
         view.addSubview(genderLabel)
         view.addSubview(searchBtn)
         view.addSubview(closeBtn)
-
-        
         view.addSubview(categoryStackTop)
         view.addSubview(categoryStackBottom)
         
@@ -468,6 +483,9 @@ extension TalentFilterVC {
     
     func style() {
         
+        searchBtn.isEnabled = false
+        searchBtn.backgroundColor = .green
+        
         closeBtn.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
 //        closeBtn.lkBorderColor = .black
 //        closeBtn.lkBorderWidth = 1
@@ -515,6 +533,7 @@ extension TalentFilterVC {
         seedsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         numberLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
         numberLabel.textColor = .gray
+        
         valueSlider.minimumValue = 0
         valueSlider.maximumValue = 1000
         valueSlider.isContinuous = true

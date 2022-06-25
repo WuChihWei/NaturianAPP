@@ -25,6 +25,7 @@
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
 		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
 		3221453D2866153F00D46503 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453C2866153F00D46503 /* PopViewController.swift */; };
+		3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453E2866A2D600D46503 /* CustomSlider.swift */; };
 		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
 		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
@@ -91,6 +92,7 @@
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
 		3221453C2866153F00D46503 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
+		3221453E2866A2D600D46503 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
 				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
 				32276D9E28654784008695E3 /* UIImage+Extension.swift */,
+				3221453E2866A2D600D46503 /* CustomSlider.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
 				327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */,
 				3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */,
+				3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */,
 				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
 				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
 				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,

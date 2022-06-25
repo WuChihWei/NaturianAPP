@@ -15,8 +15,6 @@ protocol AccountVCDelegate: AnyObject {
 class AccountViewController: UIViewController {
     
     weak var accountDelegate: AccountVCDelegate?
-//    let viewController = UIViewController()
-
     var userManager = UserManager()
     var userModels: UserModel?
     var userID = "1"
@@ -60,11 +58,9 @@ class AccountViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -99,8 +95,7 @@ class AccountViewController: UIViewController {
     func fetchUserData() {
         
         userManager.fetchUserData(userID: userID) {
-            
-            [ weak self ] result in
+            [weak self] result in
             
             switch result {
                 
@@ -144,7 +139,6 @@ class AccountViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
  
-    
     func setup() {
         
         transferBtn.addTarget(self, action: #selector(didTapTransfer), for: .touchUpInside)
