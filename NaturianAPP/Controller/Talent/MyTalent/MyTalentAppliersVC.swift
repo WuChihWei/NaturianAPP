@@ -30,11 +30,11 @@ class MyTalentAppliersVC: UIViewController {
         setUp()
         style()
         layout()
-        //                fetchUserInfo()
-        
-        //        DispatchQueue.main.async {
-        //                        self.fetchUserInfo()
-        //        }
+//                        fetchUserInfo()
+//        
+//                DispatchQueue.main.async {
+//                                self.fetchUserInfo()
+//                }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -319,7 +319,7 @@ class PostTalentVC: UIViewController {
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
                                                       appliedTalent: [],
-                                                      isAccepetedTalent: <#T##[String?]#>
+                                                      isAccepetedTalent: []
                             )
                             
                             let talenArticle = TalentArticle(talentPostID: talenPostID,
