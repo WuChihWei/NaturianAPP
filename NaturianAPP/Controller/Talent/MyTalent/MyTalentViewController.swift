@@ -19,7 +19,7 @@ class MyTalentViewController: UIViewController {
     var userManager = UserManager()
 
     var db: Firestore!
-    let userID:String = "1"
+    let userID: String = "1"
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
