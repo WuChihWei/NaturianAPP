@@ -10,8 +10,8 @@ import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
 
-class TalentViewController: UIViewController {
-    
+class TalentLobbyVC: UIViewController {
+   
     var talentManager = TalentManager()
     var db: Firestore?
     
@@ -30,7 +30,7 @@ class TalentViewController: UIViewController {
         style()
         layout()
         fetchTalentArticle()
-        
+        tabBarController?.tabBar.isHidden = false
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -39,9 +39,9 @@ class TalentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
+        
         fetchTalentArticle()
         tableView.reloadData()
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -49,6 +49,8 @@ class TalentViewController: UIViewController {
     }
     
     func fetchTalentArticle() {
+        
+        print(talentArticles)
         
         talentManager.fetchData { [weak self] result in
             
@@ -78,7 +80,15 @@ class TalentViewController: UIViewController {
     }
     
     @objc func filterTalent() {
-        performSegue(withIdentifier: "filterTalentSegue", sender: nil)
+//        performSegue(withIdentifier: "filterTalentSegue", sender: nil)
+        guard let talentFilterVC = storyboard?.instantiateViewController(withIdentifier: "TalentFilterVC") as? TalentFilterVC else {
+            print("Can't find TalentFilterVC")
+            return
+        }
+        talentFilterVC.modalPresentationStyle = .overFullScreen
+        present(talentFilterVC, animated: true, completion: nil)
+        
+        talentFilterVC.filterDelegate = self
     }
     
     func style() {
@@ -132,11 +142,11 @@ class TalentViewController: UIViewController {
     }
 }
 
-extension TalentViewController: UITableViewDelegate {
+extension TalentLobbyVC: UITableViewDelegate {
     
 }
 
-extension TalentViewController: UITableViewDataSource {
+extension TalentLobbyVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return talentArticles.count
@@ -153,17 +163,33 @@ extension TalentViewController: UITableViewDataSource {
         
         cell.title.text = talentArticles[indexPath.row].title
         cell.category.text = talentArticles[indexPath.row].category
-        cell.seedValue.text = talentArticles[indexPath.row].seedValue
+        cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue!)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
+        cell.locationLabel.text = talentArticles[indexPath.row].location
         cell.postImage.kf.setImage(with: photoUrl)
+        cell.providerName.text = talentArticles[indexPath.row].userInfo?.name
+        cell.layoutIfNeeded()
+        cell.postImage.clipsToBounds = true
+        cell.postImage.contentMode = .scaleAspectFill
         
-        //        cell.postImage.image = talentArticles[indexPath.row].images[0].self
-        //        cell.providerName.text = talentArticles[indexPath.row].
+        if talentArticles[indexPath.row].userInfo?.gender == "Male" {
+            
+            cell.genderIcon.image = UIImage(named: "heart")
+            
+        } else if talentArticles[indexPath.row].userInfo?.gender == "Female" {
+            
+            cell.genderIcon.image = UIImage(named: "female")
+            
+        } else {
+            
+            cell.genderIcon.image = UIImage(named: "undefined")
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "TalentDetailViewController") as? TalentDetailViewController else {
             
@@ -172,11 +198,13 @@ extension TalentViewController: UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
         vc.selectedArticle = talentArticles[indexPath.row]
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            if let destination = segue.destination as? TalentDetailViewController,
-//               let indexPath = tableView.sel{
-//                destination.selectedArticle = talentArticles[indexPath.item]
-//        }
-//    }
 }
+
+extension TalentLobbyVC: TalentFilterDelegate {
+    
+    func sendFilterResult(filterResult: [TalentArticle]) {
+        talentArticles = filterResult
+        tableView.reloadData()
+    }
+}
+

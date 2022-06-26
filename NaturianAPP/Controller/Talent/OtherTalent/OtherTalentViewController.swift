@@ -13,8 +13,12 @@ class OtherTalentViewController: UIViewController {
     private let tableView = UITableView()
     
     var talentManager = TalentManager()
-    var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
+    var didSeletectDetails: TalentArticle!
+    var userInfo: [UserModel] = []
+    
+    
+    var userID = "1"
     
     var appliedTalents: [TalentArticle] = []
     //    var didSeletectApplierIDs: [String] = []
@@ -25,7 +29,7 @@ class OtherTalentViewController: UIViewController {
         style()
         layout()
         fetchAppliedTalent()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,9 +64,29 @@ class OtherTalentViewController: UIViewController {
         ])
     }
     
+//    func fetchMyAppliedTalent() {
+//
+//        userManager.searchAcceptState(talentPostID: <#T##String#>, userID: <#T##String#>) { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let userInfo):
+//
+//                self?.userInfo = userInfo
+//
+////                self?.tableView.reloadData()
+//
+//            case .failure:
+//
+//                print("can't fetch data")
+//            }
+//        }
+//    }
+    
+    
     func fetchAppliedTalent() {
         
-        talentManager.fetchAppliedTalent(userID: "123") { [weak self] result in
+        talentManager.fetchAppliedTalent(userID: userID) { [weak self] result in
             
             switch result {
                 
@@ -71,7 +95,7 @@ class OtherTalentViewController: UIViewController {
                 self?.appliedTalents = talentArticles
                 
                 self?.tableView.reloadData()
-                                
+                
             case .failure:
                 
                 print("can't fetch data")
@@ -102,6 +126,8 @@ extension OtherTalentViewController: UITableViewDataSource {
         let postImageURL = appliedTalents[indexPath.row].images[0]
         cell.talentTitle.text = appliedTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
+        
+        
         return cell
     }
 }

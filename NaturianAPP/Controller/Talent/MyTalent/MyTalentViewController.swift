@@ -19,15 +19,12 @@ class MyTalentViewController: UIViewController {
     var userManager = UserManager()
 
     var db: Firestore!
-
+    let userID: String = "1"
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
     var talentArticles: [TalentArticle] = []
     var didSeletectApplierIDs: [String] = []
-//    var userModels: [UserModel] = []
-
-//    var
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +32,16 @@ class MyTalentViewController: UIViewController {
         setUp()
         style()
         layout()
-        fetchTalentArticle()
+        fetchMyTalentArticle()
 //        readData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        fetchTalentArticle()
+        fetchMyTalentArticle()
+//        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,26 +49,47 @@ class MyTalentViewController: UIViewController {
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
 
-    func fetchTalentArticle() {
-                
-        talentManager.fetchData { [weak self] result in
-
-            switch result {
-
-            case .success(let talentArticles):
-
-                self?.talentArticles = talentArticles
-                
-                self?.tableView.reloadData()
-
-            case .failure:
-
-                print("can't fetch data")
+//    func fetchTalentArticle() {
+//
+//        talentManager.fetchData { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let talentArticles):
+//
+//                self?.talentArticles = talentArticles
+//
+//                self?.tableView.reloadData()
+//
+//            case .failure:
+//
+//                print("can't fetch data")
+//            }
+//        }
+//
+//        print(LocalizedError.self)
+//    }
+    
+        func fetchMyTalentArticle() {
+    
+            talentManager.fetchMyIDData(userID: userID) { [weak self] result in
+    
+                switch result {
+    
+                case .success(let talentArticles):
+    
+                    self?.talentArticles = talentArticles
+    
+                    self?.tableView.reloadData()
+    
+                case .failure:
+    
+                    print("can't fetch data")
+                }
             }
+    
+            print(LocalizedError.self)
         }
-        
-        print(LocalizedError.self)
-    }
     
     func setUp() {
         
@@ -140,8 +161,8 @@ extension MyTalentViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier:  MyTalentTableViewCell.identifer,
-                                                       for: indexPath) as? MyTalentTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell( withIdentifier:     MyTalentTableViewCell.identifer,
+            for: indexPath) as? MyTalentTableViewCell else {
             
             fatalError("can't find TalentLobbyTableViewCell")
             
@@ -149,7 +170,7 @@ extension MyTalentViewController: UITableViewDataSource {
 
         cell.title.text = talentArticles[indexPath.row].title
         cell.category.text = talentArticles[indexPath.row].category
-        cell.seedValue.text = talentArticles[indexPath.row].seedValue
+        cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue ?? 0)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
         cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count)", for: .normal)
@@ -157,8 +178,8 @@ extension MyTalentViewController: UITableViewDataSource {
 //        cell.postImage.image = talentArticles[indexPath.row]
         
         cell.layoutIfNeeded()
-        cell.postImage.contentMode = .scaleAspectFit
-        cell.clipsToBounds = true
+        cell.postImage.clipsToBounds = true
+        cell.postImage.contentMode = .scaleAspectFill
 
         return cell
     }
@@ -169,6 +190,9 @@ extension MyTalentViewController: UITableViewDataSource {
 
             fatalError("can't find MyTalentDetailVC")
         }
+        
+        vc.talentArticleID = talentArticles[indexPath.row].talentPostID
+        
         self.navigationController?.pushViewController(vc, animated: true)
 //
 //        for item in 0..<talentArticles[indexPath.row].didApplyID.count {
@@ -178,6 +202,7 @@ extension MyTalentViewController: UITableViewDataSource {
 //            didSeletectApplierIDs.append(test)
 //
 //        }
+        
         didSeletectApplierIDs = talentArticles[indexPath.row].didApplyID
         vc.didSeletectApplierIDs = didSeletectApplierIDs
         

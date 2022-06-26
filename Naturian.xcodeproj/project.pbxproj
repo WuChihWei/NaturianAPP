@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
-		32078A602859832600FF2980 /* TalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentViewController.swift */; };
+		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
 		32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A66285989E200FF2980 /* UIView+Extension.swift */; };
-		32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */; };
+		32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extension.swift */; };
 		32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */; };
 		32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */; };
 		32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A702859C47E00FF2980 /* ExploreViewController.swift */; };
@@ -23,6 +23,26 @@
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
+		3221453D2866153F00D46503 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453C2866153F00D46503 /* PopViewController.swift */; };
+		3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453E2866A2D600D46503 /* CustomSlider.swift */; };
+		322145442867348E00D46503 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322145432867348E00D46503 /* UIColor+Extension.swift */; };
+		3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221454528673D2900D46503 /* UIFont+Extension.swift */; };
+		322145552867678C00D46503 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145482867678B00D46503 /* Roboto-Medium.ttf */; };
+		322145562867678C00D46503 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145492867678B00D46503 /* Roboto-Light.ttf */; };
+		322145572867678C00D46503 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454A2867678B00D46503 /* Roboto-Regular.ttf */; };
+		322145582867678C00D46503 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */; };
+		322145592867678C00D46503 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */; };
+		3221455A2867678C00D46503 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */; };
+		3221455B2867678C00D46503 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */; };
+		3221455C2867678C00D46503 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454F2867678B00D46503 /* Roboto-Italic.ttf */; };
+		3221455D2867678C00D46503 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 322145502867678B00D46503 /* LICENSE.txt */; };
+		3221455E2867678C00D46503 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145512867678B00D46503 /* Roboto-BlackItalic.ttf */; };
+		3221455F2867678C00D46503 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145522867678B00D46503 /* Roboto-Bold.ttf */; };
+		322145602867678C00D46503 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145532867678B00D46503 /* Roboto-Thin.ttf */; };
+		322145612867678C00D46503 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145542867678B00D46503 /* Roboto-Black.ttf */; };
+		322145642868017B00D46503 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322145632868017B00D46503 /* ChatManager.swift */; };
+		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
 		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
 		32550461285F3F350019A190 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550460285F3F350019A190 /* UserAccount.swift */; };
@@ -36,6 +56,17 @@
 		325504792860130D0019A190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504782860130D0019A190 /* UserManager.swift */; };
 		3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047A286094570019A190 /* OtherTalentViewController.swift */; };
 		3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047D286095770019A190 /* OtherTalentTableViewCell.swift */; };
+		325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047F2862B22E0019A190 /* TransparentViewManager.swift */; };
+		325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504812862BB3F0019A190 /* TalentFilterModel.swift */; };
+		325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AA286372600019A190 /* CategoryPopUpVC.swift */; };
+		325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AC2863727C0019A190 /* LocationPopUpVC.swift */; };
+		325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */; };
+		325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B2286373F60019A190 /* LocationPopTableViewCell.swift */; };
+		325504B5286451C70019A190 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B4286451C70019A190 /* ChatViewController.swift */; };
+		325504B72864524B0019A190 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B62864524B0019A190 /* Chat.swift */; };
+		325504B92864525A0019A190 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B8286452590019A190 /* ChatUser.swift */; };
+		325504BB286452680019A190 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504BA286452680019A190 /* Message.swift */; };
+		325504E12864D2750019A190 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504E02864D2750019A190 /* ScannerVC.swift */; };
 		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
 		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
 		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
@@ -58,10 +89,10 @@
 
 /* Begin PBXFileReference section */
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
-		32078A5F2859832500FF2980 /* TalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentViewController.swift; sourceTree = "<group>"; };
+		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		32078A66285989E200FF2980 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extentsion.swift"; sourceTree = "<group>"; };
+		32078A6828598E9800FF2980 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCollectionViewCell.swift; sourceTree = "<group>"; };
 		32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
 		32078A702859C47E00FF2980 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +106,26 @@
 		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
+		3221453C2866153F00D46503 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
+		3221453E2866A2D600D46503 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		322145432867348E00D46503 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		3221454528673D2900D46503 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		322145482867678B00D46503 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		322145492867678B00D46503 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3221454A2867678B00D46503 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		3221454F2867678B00D46503 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		322145502867678B00D46503 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		322145512867678B00D46503 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		322145522867678B00D46503 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		322145532867678B00D46503 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		322145542867678B00D46503 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		322145632868017B00D46503 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		32550460285F3F350019A190 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -88,6 +139,17 @@
 		325504782860130D0019A190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3255047A286094570019A190 /* OtherTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentViewController.swift; sourceTree = "<group>"; };
 		3255047D286095770019A190 /* OtherTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentTableViewCell.swift; sourceTree = "<group>"; };
+		3255047F2862B22E0019A190 /* TransparentViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentViewManager.swift; sourceTree = "<group>"; };
+		325504812862BB3F0019A190 /* TalentFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterModel.swift; sourceTree = "<group>"; };
+		325504AA286372600019A190 /* CategoryPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpVC.swift; sourceTree = "<group>"; };
+		325504AC2863727C0019A190 /* LocationPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpVC.swift; sourceTree = "<group>"; };
+		325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopTableViewCell.swift; sourceTree = "<group>"; };
+		325504B2286373F60019A190 /* LocationPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopTableViewCell.swift; sourceTree = "<group>"; };
+		325504B4286451C70019A190 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		325504B62864524B0019A190 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		325504B8286452590019A190 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		325504BA286452680019A190 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		325504E02864D2750019A190 /* ScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
 		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
 		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
@@ -126,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				32078A632859835400FF2980 /* Account */,
+				325504A9286372370019A190 /* PopOutView */,
+				325504BC28646C040019A190 /* Chat */,
 				32078A612859832B00FF2980 /* Talent */,
 				32078A622859834600FF2980 /* Explore */,
 				32078A5E2859817000FF2980 /* Forum */,
@@ -136,6 +200,7 @@
 		32078A532859580E00FF2980 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				325504E22864D2860019A190 /* ChatModel */,
 				327614BC285D9573001D6FB7 /* Account */,
 				327614BB285D9563001D6FB7 /* Talent */,
 				327614BD285D957E001D6FB7 /* Explore */,
@@ -147,10 +212,14 @@
 		32078A5828597AF800FF2980 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				32078A6828598E9800FF2980 /* UIScreen+Extension.swift */,
 				32078A66285989E200FF2980 /* UIView+Extension.swift */,
-				32078A6828598E9800FF2980 /* UIScreen+Extentsion.swift */,
 				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
 				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
+				32276D9E28654784008695E3 /* UIImage+Extension.swift */,
+				3221453E2866A2D600D46503 /* CustomSlider.swift */,
+				322145432867348E00D46503 /* UIColor+Extension.swift */,
+				3221454528673D2900D46503 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -176,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				3255045E285F0B5A0019A190 /* PhotoManager.swift */,
+				3255047F2862B22E0019A190 /* TransparentViewManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -194,7 +264,7 @@
 		32078A612859832B00FF2980 /* Talent */ = {
 			isa = PBXGroup;
 			children = (
-				32078A5F2859832500FF2980 /* TalentViewController.swift */,
+				32078A5F2859832500FF2980 /* TalentLobbyVC.swift */,
 				327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */,
 				327614C6285E231A001D6FB7 /* TalentFilterVC.swift */,
 				3255046F285FE8780019A190 /* MyTalent */,
@@ -217,6 +287,9 @@
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
+				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
+				325504E02864D2750019A190 /* ScannerVC.swift */,
+				3221453C2866153F00D46503 /* PopViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -243,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				32138B232858860200916700 /* NaturianAPP */,
+				322145472867678B00D46503 /* Roboto */,
 				32138B222858860200916700 /* Products */,
 				BF64B4D2C82161FD45A69DD7 /* Pods */,
 				AD191C2C55B9D742F5BC961D /* Frameworks */,
@@ -278,6 +352,26 @@
 				3255043A285F08F00019A190 /* CustomButton.swift */,
 			);
 			path = NaturianAPP;
+			sourceTree = "<group>";
+		};
+		322145472867678B00D46503 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				322145482867678B00D46503 /* Roboto-Medium.ttf */,
+				322145492867678B00D46503 /* Roboto-Light.ttf */,
+				3221454A2867678B00D46503 /* Roboto-Regular.ttf */,
+				3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */,
+				3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */,
+				3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */,
+				3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */,
+				3221454F2867678B00D46503 /* Roboto-Italic.ttf */,
+				322145502867678B00D46503 /* LICENSE.txt */,
+				322145512867678B00D46503 /* Roboto-BlackItalic.ttf */,
+				322145522867678B00D46503 /* Roboto-Bold.ttf */,
+				322145532867678B00D46503 /* Roboto-Thin.ttf */,
+				322145542867678B00D46503 /* Roboto-Black.ttf */,
+			);
+			path = Roboto;
 			sourceTree = "<group>";
 		};
 		32550468285F87A90019A190 /* Third Party Wrapper */ = {
@@ -326,12 +420,41 @@
 			path = OtherTalent;
 			sourceTree = "<group>";
 		};
+		325504A9286372370019A190 /* PopOutView */ = {
+			isa = PBXGroup;
+			children = (
+				325504AA286372600019A190 /* CategoryPopUpVC.swift */,
+				325504AC2863727C0019A190 /* LocationPopUpVC.swift */,
+			);
+			path = PopOutView;
+			sourceTree = "<group>";
+		};
+		325504BC28646C040019A190 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				325504B4286451C70019A190 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		325504E22864D2860019A190 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				322145632868017B00D46503 /* ChatManager.swift */,
+				325504B8286452590019A190 /* ChatUser.swift */,
+				325504B62864524B0019A190 /* Chat.swift */,
+				325504BA286452680019A190 /* Message.swift */,
+			);
+			path = ChatModel;
+			sourceTree = "<group>";
+		};
 		327614BB285D9563001D6FB7 /* Talent */ = {
 			isa = PBXGroup;
 			children = (
-				327614C0285D99CF001D6FB7 /* TalentArticle.swift */,
 				327614BE285D961F001D6FB7 /* TalentManager.swift */,
 				327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */,
+				327614C0285D99CF001D6FB7 /* TalentArticle.swift */,
+				325504812862BB3F0019A190 /* TalentFilterModel.swift */,
 			);
 			path = Talent;
 			sourceTree = "<group>";
@@ -356,6 +479,8 @@
 			isa = PBXGroup;
 			children = (
 				32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */,
+				325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */,
+				325504B2286373F60019A190 /* LocationPopTableViewCell.swift */,
 				3255047C286094FB0019A190 /* OtherTalent */,
 				32550473285FF10B0019A190 /* MyTalent */,
 			);
@@ -448,9 +573,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322145602867678C00D46503 /* Roboto-Thin.ttf in Resources */,
+				322145552867678C00D46503 /* Roboto-Medium.ttf in Resources */,
+				3221455C2867678C00D46503 /* Roboto-Italic.ttf in Resources */,
+				3221455F2867678C00D46503 /* Roboto-Bold.ttf in Resources */,
+				3221455B2867678C00D46503 /* Roboto-LightItalic.ttf in Resources */,
+				322145612867678C00D46503 /* Roboto-Black.ttf in Resources */,
+				3221455E2867678C00D46503 /* Roboto-BlackItalic.ttf in Resources */,
+				322145572867678C00D46503 /* Roboto-Regular.ttf in Resources */,
 				32138B342858860400916700 /* LaunchScreen.storyboard in Resources */,
+				3221455D2867678C00D46503 /* LICENSE.txt in Resources */,
+				322145562867678C00D46503 /* Roboto-Light.ttf in Resources */,
+				322145582867678C00D46503 /* Roboto-MediumItalic.ttf in Resources */,
 				327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */,
+				322145592867678C00D46503 /* Roboto-ThinItalic.ttf in Resources */,
 				32138B312858860400916700 /* Assets.xcassets in Resources */,
+				3221455A2867678C00D46503 /* Roboto-BoldItalic.ttf in Resources */,
 				32138B2C2858860200916700 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,42 +662,60 @@
 				327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */,
 				32138B252858860200916700 /* AppDelegate.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
+				325504B72864524B0019A190 /* Chat.swift in Sources */,
+				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
 				3255043B285F08F00019A190 /* CustomButton.swift in Sources */,
 				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
 				32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */,
+				325504BB286452680019A190 /* Message.swift in Sources */,
 				32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */,
+				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
 				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
+				325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */,
+				325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */,
+				322145642868017B00D46503 /* ChatManager.swift in Sources */,
 				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
+				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
+				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
+				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
 				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
 				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
+				32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
-				32078A6928598E9800FF2980 /* UIScreen+Extentsion.swift in Sources */,
+				325504B92864525A0019A190 /* ChatUser.swift in Sources */,
+				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
+				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
 				3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */,
 				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
 				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
 				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
+				325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */,
 				3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
 				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
 				327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */,
+				3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */,
+				3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */,
 				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
 				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
 				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,
 				3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */,
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
+				322145442867348E00D46503 /* UIColor+Extension.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
+				325504E12864D2750019A190 /* ScannerVC.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
 				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
 				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,
 				325504792860130D0019A190 /* UserManager.swift in Sources */,
-				32078A602859832600FF2980 /* TalentViewController.swift in Sources */,
+				32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */,
 				32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */,
 				32550461285F3F350019A190 /* UserAccount.swift in Sources */,
 				32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */,
@@ -638,7 +794,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -692,7 +848,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

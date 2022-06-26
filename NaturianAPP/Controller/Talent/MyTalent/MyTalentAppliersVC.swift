@@ -18,6 +18,8 @@ class MyTalentAppliersVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
+    var talentArticleID: String?
+    
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     //    var newUserModel: [UserModel] = []
@@ -28,11 +30,11 @@ class MyTalentAppliersVC: UIViewController {
         setUp()
         style()
         layout()
-        //                fetchUserInfo()
-        
-        //        DispatchQueue.main.async {
-        //                        self.fetchUserInfo()
-        //        }
+//                        fetchUserInfo()
+//        
+//                DispatchQueue.main.async {
+//                                self.fetchUserInfo()
+//                }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,20 +45,19 @@ class MyTalentAppliersVC: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         
-        tableView.layoutIfNeeded() //call this func to show the subView in subView
+        tableView.layoutIfNeeded()
     }
-    
     
     func setUp() {
         
-        tableView.register(MyTalentAppliersTableViewCell.self, forCellReuseIdentifier: MyTalentAppliersTableViewCell.identifer)
+        tableView.register(MyTalentAppliersTableViewCell.self,
+                           forCellReuseIdentifier: MyTalentAppliersTableViewCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
     }
     
     func style() {
-        
         
         tableView.separatorStyle = .none
     }
@@ -89,7 +90,9 @@ class MyTalentAppliersVC: UIViewController {
                 case .success(let userModel):
                     
                     self?.userModels.append(userModel)
-                                        
+                    
+                    print(self?.userModels as Any)
+                    
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -125,12 +128,9 @@ extension MyTalentAppliersVC: UITableViewDataSource {
         let photoUrl = userModels[indexPath.row].userAvatar
         
         cell.userName.text = userModels[indexPath.row].name
-        
+
         cell.userAvatar.kf.setImage(with: photoUrl)
         
-//        cell.userAvatar.lay
-        
-//        cell.userAvatar.setNeedsLayout()
         cell.layoutIfNeeded()
         
         cell.userAvatar.lkCornerRadius = cell.userAvatar.frame.width / 2
@@ -138,5 +138,20 @@ extension MyTalentAppliersVC: UITableViewDataSource {
         cell.userAvatar.contentMode = .scaleAspectFill
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+
+            fatalError("can't find ChatViewController")
+        }
+        
+        vc.chatTalentID = self.talentArticleID ?? ""
+        vc.currentUser = self.userModels[indexPath.row].userID
+ 
+        self.navigationController?.pushViewController(vc, animated: true)
+                
     }
 }

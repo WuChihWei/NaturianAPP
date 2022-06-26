@@ -13,6 +13,8 @@ struct TalentArticle: Codable {
     
     let userID: String?
     
+    let userInfo: UserModel?
+    
     let category: String?
     
     let location: String?
@@ -23,7 +25,7 @@ struct TalentArticle: Codable {
     
     let images: [URL]
     
-    let seedValue: String?
+    let seedValue: Int32?
     
     let createdTime: Int?
     

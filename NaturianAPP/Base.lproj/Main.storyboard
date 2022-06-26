@@ -2,8 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFb-GA-GSz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,7 +52,7 @@
         <!--Account View Controller-->
         <scene sceneID="7W5-Og-s0l">
             <objects>
-                <viewController id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TR0-UM-Ug2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,11 +62,77 @@
                     <navigationItem key="navigationItem" id="kUN-Me-PeE"/>
                     <connections>
                         <segue destination="slW-NA-3Ew" kind="show" id="dpZ-YY-2yj"/>
+                        <segue destination="iY3-Ic-tU2" kind="show" identifier="TransferSeedVC" id="59W-GS-X0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCx-7P-CXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2238" y="-2249"/>
+        </scene>
+        <!--ScannerVC-->
+        <scene sceneID="OBG-0V-1Cp">
+            <objects>
+                <viewController restorationIdentifier="ScannerVC" storyboardIdentifier="ScannerVC" modalPresentationStyle="formSheet" id="sdd-h5-X9g" customClass="ScannerVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cnC-al-er2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-Qs-iXl">
+                                <rect key="frame" x="50" y="94" width="314" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Please Scan The Barcode">
+                                            <attributes>
+                                                <font key="NSFont" size="24" name="Roboto-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="back:" destination="sdd-h5-X9g" eventType="touchUpInside" id="ekE-hX-bTk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U7m-49-mMo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xV3-Qs-iXl" firstAttribute="top" secondItem="U7m-49-mMo" secondAttribute="top" constant="50" id="Exe-3V-N0O"/>
+                            <constraint firstItem="xV3-Qs-iXl" firstAttribute="leading" secondItem="U7m-49-mMo" secondAttribute="leading" constant="50" id="Qn3-QY-vHY"/>
+                            <constraint firstItem="U7m-49-mMo" firstAttribute="trailing" secondItem="xV3-Qs-iXl" secondAttribute="trailing" constant="50" id="sgb-Rl-cBc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXf-c6-2fH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3265" y="-1542"/>
+        </scene>
+        <!--Transfer SeedVC-->
+        <scene sceneID="4X4-ue-T70">
+            <objects>
+                <viewController storyboardIdentifier="TransferSeedVC" modalPresentationStyle="currentContext" id="iY3-Ic-tU2" customClass="TransferSeedVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fFA-ea-U39">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="EZW-1t-Aww"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wRw-RD-FbA"/>
+                    <connections>
+                        <segue destination="sdd-h5-X9g" kind="showDetail" id="7iI-tA-LVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z8o-A9-SEM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2239" y="-1533"/>
         </scene>
         <!--Talent Manage View Controller-->
         <scene sceneID="gGa-T1-8wc">
@@ -403,8 +471,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button" image="arrowshape.turn.up.backward.fill" catalog="system"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system" imagePlacement="trailing"/>
+                                <state key="normal" image="arrowshape.turn.up.backward.fill" catalog="system"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKs-Kt-3vw">
                                 <rect key="frame" x="24" y="252.5" width="366" height="1"/>
@@ -557,19 +624,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIo-om-wtQ">
-                                <rect key="frame" x="280" y="104" width="110" height="33.5"/>
+                                <rect key="frame" x="306" y="104" width="84" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="tintColor" red="0.25083091950000003" green="0.25331439389999999" blue="0.25331439389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
                                 <state key="normal" title="Category">
-                                    <imageReference key="image" image="arrowtriangle.down.fill" catalog="system" symbolScale="small"/>
-                                </state>
-                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Category" imagePadding="4">
+                                    <color key="titleColor" name="incomingMessageLabel"/>
                                     <imageReference key="image" image="chevron.down" catalog="system" symbolScale="small"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
-                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                </buttonConfiguration>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" placeholder="Content" textAlignment="justified" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xNR-uI-0OP">
                                 <rect key="frame" x="24" y="212" width="366" height="593"/>
@@ -668,10 +732,10 @@
             </objects>
             <point key="canvasLocation" x="1199" y="-2249"/>
         </scene>
-        <!--Talent View Controller-->
+        <!--Talent LobbyVC-->
         <scene sceneID="fxh-Z3-Smn">
             <objects>
-                <viewController id="hsu-NK-obK" customClass="TalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hsu-NK-obK" customClass="TalentLobbyVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MPc-Jl-LqD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -699,15 +763,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="xsC-oq-xO8"/>
+                    <connections>
+                        <segue destination="1sV-V1-9Pn" kind="show" identifier="ChatViewController" id="yvr-Vz-mmd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV5-Dg-2Q4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3264" y="-864"/>
+            <point key="canvasLocation" x="3313" y="-716"/>
         </scene>
-        <!--My Talent Did AcceptVC-->
+        <!--Talent FilterVC-->
         <scene sceneID="uJX-KP-rhj">
             <objects>
-                <viewController storyboardIdentifier="MyTalentDidAcceptVC" id="0yb-ZW-cia" customClass="MyTalentDidAcceptVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TalentFilterVC" id="0yb-ZW-cia" customClass="TalentFilterVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H3b-rY-vV7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -718,7 +785,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFD-ux-uZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3264" y="-78"/>
+            <point key="canvasLocation" x="3312" y="160"/>
         </scene>
         <!--Talent-->
         <scene sceneID="bN5-kc-rlp">
@@ -751,7 +818,7 @@
                     </view>
                     <connections>
                         <segue destination="cDs-UJ-N6H" kind="show" identifier="ToPostTalentSegue" id="jgO-z9-5Wz"/>
-                        <segue destination="njW-9C-sq3" kind="show" id="GtQ-c2-AMA"/>
+                        <segue destination="njW-9C-sq3" kind="show" identifier="MyTalentAppliersSegue" id="GtQ-c2-AMA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZF-eE-Nab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -771,7 +838,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxQ-eI-aA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4212" y="-2015"/>
+            <point key="canvasLocation" x="5264" y="-2015"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="BTG-u2-aQm">
+            <objects>
+                <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="1sV-V1-9Pn" customClass="ChatViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3tX-sw-I9p">
+                        <barButtonItem key="rightBarButtonItem" title="Apply" id="BL0-hL-XYe">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbJ-5e-MDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4432" y="-717"/>
         </scene>
         <!--My Talent AppliersVC-->
         <scene sceneID="Mp2-dH-fAD">
@@ -784,10 +865,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="HaS-AN-QfG"/>
+                    <connections>
+                        <segue destination="1sV-V1-9Pn" kind="show" id="fW2-K7-lEU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcI-qU-9iI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5265" y="-3332"/>
+            <point key="canvasLocation" x="5265" y="-3307"/>
         </scene>
         <!--Post TalentVC-->
         <scene sceneID="Lt9-Nw-dgc">
@@ -797,13 +881,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CJ9-jE-Bgf"/>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="2bw-sV-Ckn"/>
+                    <connections>
+                        <segue destination="w3s-sq-TlQ" kind="presentation" identifier="locationPopSegue" id="vMb-Nz-rzQ"/>
+                        <segue destination="3wM-nO-DyD" kind="presentation" identifier="categoryPopSegue" id="gAZ-0u-Sch"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9O-em-5Jt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5265" y="-2668"/>
+            <point key="canvasLocation" x="5263.768115942029" y="-2668.5267857142858"/>
         </scene>
         <!--Exlpore-->
         <scene sceneID="4pa-KI-HyK">
@@ -824,7 +912,41 @@
             </objects>
             <point key="canvasLocation" x="1307" y="806"/>
         </scene>
+        <!--Location Pop UpVC-->
+        <scene sceneID="OvU-0N-WBw">
+            <objects>
+                <viewController storyboardIdentifier="LocationPopUpVC" modalPresentationStyle="overCurrentContext" id="w3s-sq-TlQ" customClass="LocationPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e2k-rQ-yeT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="iAq-O1-yOO"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3AU-G6-jxJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6154" y="-2423"/>
+        </scene>
+        <!--Category Pop UpVC-->
+        <scene sceneID="ZHk-z6-xTj">
+            <objects>
+                <viewController storyboardIdentifier="CategoryPopUpVC" modalPresentationStyle="overCurrentContext" id="3wM-nO-DyD" customClass="CategoryPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X6T-HV-AUL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wbu-TP-vGJ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HLO-M5-RCF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpk-Vy-S74" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6155" y="-3068"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fW2-K7-lEU"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Angel" width="42" height="32"/>
         <image name="Baby Footprint" width="32" height="32"/>
@@ -832,14 +954,13 @@
         <image name="Lake" width="32" height="32"/>
         <image name="Lychee" width="32" height="32"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="106"/>
-        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="heart" width="16" height="16"/>
+        <namedColor name="incomingMessageLabel">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

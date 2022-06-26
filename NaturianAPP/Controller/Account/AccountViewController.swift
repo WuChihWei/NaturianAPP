@@ -8,11 +8,16 @@
 import UIKit
 import Kingfisher
 
+protocol AccountVCDelegate: AnyObject {
+    func sendAccountInfo(userModel: UserModel?)
+}
+
 class AccountViewController: UIViewController {
     
+    weak var accountDelegate: AccountVCDelegate?
     var userManager = UserManager()
     var userModels: UserModel?
-    var userID = "2"
+    let userID = "1"
     
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
@@ -40,31 +45,54 @@ class AccountViewController: UIViewController {
         setup()
         setStyle()
         layout()
-//        fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
+        
         fetchUserData()
-
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
     }
     
     override func viewDidLayoutSubviews() {
         
         view.layoutIfNeeded()
+        barcodeUIImage.clipsToBounds = true
+        userAvatar.clipsToBounds = true
+//        view.backgroundColor = .lightGray
+        
         transferBtn.lkCornerRadius = transferBtn.bounds.width / 2
         talentBtn.lkCornerRadius = transferBtn.bounds.width / 2
         boardBtn.lkCornerRadius = transferBtn.bounds.width / 2
-        
+        barcodeUIImage.contentMode = .scaleAspectFill
         userAvatar.lkCornerRadius = userAvatar.bounds.width / 2
-        userAvatar.clipsToBounds = true
+  }
+    
+    func generateBarcode(userID: String) -> UIImage? {
+        
+        let data = userID.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        
+        if let filter = CIFilter.init(name: "CICode128BarcodeGenerator") {
+            
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 24, y: 16)
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
     }
     
     func fetchUserData() {
         
         userManager.fetchUserData(userID: userID) {
-            
             [weak self] result in
             
             switch result {
@@ -72,7 +100,7 @@ class AccountViewController: UIViewController {
             case .success(let userModel):
                 
                 self?.userModels = userModel
-//
+                
                 DispatchQueue.main.async {
                     self?.viewDidLoad()
                 }
@@ -83,8 +111,35 @@ class AccountViewController: UIViewController {
         }
     }
     
+    @objc func didTapTalent() {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "TalentManageViewController") as? TalentManageViewController else {
+            
+            fatalError("can't find TalentDetailViewController")
+        }
+        
+        vc.userModel = userModels
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func didTapTransfer() {
+        tabBarController?.tabBar.isHidden = true
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "TransferSeedVC") as? TransferSeedVC else {
+            
+            fatalError("can't find TransferSeedVC")
+        }
+//        navigationController?.pushViewController(vc, animated: true)
+//        vc?.hidesBottomBarWhenPushed = true
+        present(vc, animated: true, completion: nil)
+//        tabBarController?.tabBar.isHidden = true
+    }
+ 
     func setup() {
         
+        transferBtn.addTarget(self, action: #selector(didTapTransfer), for: .touchUpInside)
         talentBtn.addTarget(self, action: #selector(didTapTalent), for: .touchUpInside)
     }
     
@@ -111,8 +166,26 @@ class AccountViewController: UIViewController {
         
         seedIcon.image = UIImage(named: "Lychee")
         
-        barcodeUIImage.contentMode = .scaleAspectFill
         barcodeUIImage.backgroundColor = .gray
+//        barcodeUIImage.image = generateBarcode(userID: userID)
+        let image = generateBarcode(userID: userID)
+        let targetSize = CGSize(width: view.frame.width, height: 400 )
+        let scaledImage = image!.scalePreservingAspectRatio(
+            targetSize: targetSize
+        )
+        barcodeUIImage.image = scaledImage
+        barcodeUIImage.lkBorderWidth = 1
+        barcodeUIImage.lkBorderColor = .gray
+        
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.strokeColor = UIColor.lightGray.cgColor
+//        shapeLayer.lineWidth = 1
+//        let starPoint = CGPoint(x: 0, y: barcodeUIImage.bounds.maxY)
+//        let endPoint = CGPoint(x: barcodeUIImage.bounds.maxX, y: barcodeUIImage.bounds.maxY)
+//        let path = CGMutablePath()
+//        path.addLines(between: [starPoint, endPoint])
+//        shapeLayer.path = path
+//        barcodeUIImage.layer.addSublayer(shapeLayer)
         
         userIDLabel.text = userModels?.userID
         userIDLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -138,7 +211,6 @@ class AccountViewController: UIViewController {
         
         buttonStack.axis = .horizontal
         buttonStack.distribution = .equalSpacing
-        //        buttonStack
     }
     
     func layout() {
@@ -177,6 +249,7 @@ class AccountViewController: UIViewController {
             userAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userAvatar.widthAnchor.constraint(equalToConstant: 140),
             userAvatar.heightAnchor.constraint(equalTo: userAvatar.widthAnchor),
+            
             nameStack.leadingAnchor.constraint(equalTo: barcodeUIImage.leadingAnchor),
             nameStack.topAnchor.constraint(equalTo: userAvatar.bottomAnchor, constant: 60),
             
@@ -195,7 +268,7 @@ class AccountViewController: UIViewController {
             barcodeUIImage.topAnchor.constraint(equalTo: seedValueLabel.bottomAnchor, constant: 60),
             barcodeUIImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             barcodeUIImage.widthAnchor.constraint(equalToConstant: view.frame.width - 100 ),
-            barcodeUIImage.heightAnchor.constraint(equalToConstant: 100),
+            barcodeUIImage.heightAnchor.constraint(equalToConstant: 70),
             
             userIDLabel.topAnchor.constraint(equalTo: barcodeUIImage.bottomAnchor, constant: 4),
             userIDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -211,17 +284,4 @@ class AccountViewController: UIViewController {
             boardBtn.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
-    
-    @objc func didTapTalent() {
-        
-        print("tap")
-        guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "TalentManageViewController") as? TalentManageViewController else {
-            
-            fatalError("can't find TalentDetailViewController")
-        }
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
 }

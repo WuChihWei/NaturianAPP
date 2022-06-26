@@ -6,9 +6,7 @@ target 'NaturianAPP' do
   use_frameworks!
 
   # Pods for NaturianAPP
-pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
-pod 'FirebaseStorage'
 pod 'SwiftLint'
 pod 'FirebaseFirestoreSwift'
 pod 'Kingfisher'
@@ -16,6 +14,11 @@ pod 'JGProgressHUD'
 pod 'MJRefresh'
 pod  'MBProgressHUD'
 
-
+pod 'GoogleSignIn'
+pod 'Firebase/Core'
+pod 'FirebaseAuth'
+pod 'MessageKit'
+pod 'FirebaseStorage'
+pod 'SDWebImage'
 
 end

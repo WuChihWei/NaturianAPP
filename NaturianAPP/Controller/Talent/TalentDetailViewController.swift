@@ -15,7 +15,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    let useID = "123"
+    let userID = "1"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()
@@ -25,11 +25,13 @@ class TalentDetailViewController: UIViewController {
     let descriptionText = UILabel()
     let categoryLabel = UILabel()
     let applyButton = UIButton()
+    let contactButton = UIButton()
     let seedStack = UIStackView()
     let contentStack = UIStackView()
+    let buttonStack = UIStackView()
     
     var selectedArticle: TalentArticle!
-    var userArticle: UserModel!
+    var userModels: UserModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,23 +45,65 @@ class TalentDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = true
+        
+        view.layoutIfNeeded()
+        
+        fetchUserData() 
+    }
+    
+    
+    func fetchUserData() {
+        
+        userManager.fetchUserData(userID: userID) {
+            [weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userModels = userModel
+                
+                DispatchQueue.main.async {
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
     }
     
     @objc func didApply() {
         
-        selectedArticle.didApplyID.append(useID)
-        //        userArticle.appliedTalent.append(selectedArticle.talentPostID ?? "")
+        selectedArticle.didApplyID.append(userID)
+        
+        userModels.appliedTalent.append(selectedArticle.talentPostID)
+        
+        userManager.updateAppliedTalent(userModel: userModels)
         
         talentManager.updateData(applyTalent: selectedArticle)
-        //        userManager.updateData(userModel: userArticle)
-        //        presentingViewController?.dismiss(animated: false, completion: nil)
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didConatact() {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+
+            fatalError("can't find ChatViewController")
+        }
+        
+        vc.chatTalentID = selectedArticle.talentPostID ?? "can't find chatTalentPostID"
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+                
     }
     
     func setUp() {
         
         postPhotoImage.isUserInteractionEnabled = true
         applyButton.addTarget(self, action: #selector(didApply), for: .touchUpInside)
+        contactButton.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
     }
     
     func style() {
@@ -69,6 +113,8 @@ class TalentDetailViewController: UIViewController {
         postPhotoImage.isUserInteractionEnabled = true
         let photoUrl = selectedArticle.images[0]
         postPhotoImage.kf.setImage(with: photoUrl)
+        postPhotoImage.clipsToBounds = true
+        postPhotoImage.contentMode = .scaleAspectFill
         
         categoryLabel.lkBorderColor = .black
         //        categoryButton.lkCornerRadius = 5
@@ -86,7 +132,7 @@ class TalentDetailViewController: UIViewController {
         descriptionText.text = selectedArticle.content
         
         seedIcon.image = UIImage(named: "Lychee")
-        seedValueText.text = selectedArticle.seedValue
+        seedValueText.text = "\(selectedArticle.seedValue ?? 0)"
         
         seedStack.axis = .horizontal
         seedStack.alignment = .leading
@@ -102,6 +148,15 @@ class TalentDetailViewController: UIViewController {
         applyButton.lkBorderWidth = 1
         applyButton.setTitleColor(.black, for: .normal)
         
+        contactButton.setTitle("Contact", for: .normal)
+        contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        contactButton.lkBorderColor = .black
+        contactButton.lkBorderWidth = 1
+        contactButton.setTitleColor(.black, for: .normal)
+        
+        buttonStack.axis = .horizontal
+        buttonStack.alignment = .center
+        buttonStack.spacing = 30
     }
     
     func layout() {
@@ -110,13 +165,13 @@ class TalentDetailViewController: UIViewController {
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         seedStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.translatesAutoresizingMaskIntoConstraints = false
-        applyButton.translatesAutoresizingMaskIntoConstraints = false
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(postPhotoImage)
         view.addSubview(categoryLabel)
         view.addSubview(seedStack)
         view.addSubview(contentStack)
-        view.addSubview(applyButton)
+        view.addSubview(buttonStack)
         
         seedStack.addArrangedSubview(seedValueText)
         seedStack.addArrangedSubview(seedIcon)
@@ -124,6 +179,10 @@ class TalentDetailViewController: UIViewController {
         contentStack.addArrangedSubview(titleText)
         contentStack.addArrangedSubview(seedStack)
         contentStack.addArrangedSubview(descriptionText)
+        
+        buttonStack.addArrangedSubview(applyButton)
+        buttonStack.addArrangedSubview(contactButton)
+
         
         NSLayoutConstraint.activate([
             
@@ -143,9 +202,10 @@ class TalentDetailViewController: UIViewController {
             seedIcon.widthAnchor.constraint(equalToConstant: 20),
             seedIcon.heightAnchor.constraint(equalToConstant: 20),
             
-            applyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            applyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            applyButton.widthAnchor.constraint(equalToConstant: 120)
+            buttonStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            applyButton.widthAnchor.constraint(equalToConstant: 80),
+            contactButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
 }

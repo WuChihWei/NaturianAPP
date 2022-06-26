@@ -11,43 +11,51 @@ import FirebaseFirestore
 import Kingfisher
 import JGProgressHUD
 import MBProgressHUD
-
-class CellClass: UITableViewCell {
-    
-}
+import SwiftUI
 
 class PostTalentVC: UIViewController {
     
+    var userManager = UserManager()
     var talentManager = TalentManager()
+        
+    var userID = "1"
+    var userModels: UserModel?
+    var categoryResult = ""
+    var locationResult = ""
+    
     var db: Firestore?
-    var dataSource = [String]()
+    var catagoryDataSource = [String]()
     var didPickCategory: String = ""
-    let tableView = UITableView()
+    let categoryTableView = UITableView()
     let transparentView = UIView()
+    var accountInfo: UserModel?
     
     var postPhotoImage = UIImageView()
     let titleText = UITextField()
     let seedValueText = UITextField()
     let seedIcon = UIImageView()
-    let descriptionText = UITextField()
+    let descriptionText = UITextView()
     let categoryButton = UIButton()
+    
     let seedStack = UIStackView()
     let contentStack = UIStackView()
     let imagePickerController = UIImagePickerController()
     let postButton = UIButton()
+    let locationBtn = UIButton()
     var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
         imagePickerController.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
-        
         setUp()
         style()
         layout()
+//        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchUserData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,51 +64,59 @@ class PostTalentVC: UIViewController {
     
     @objc func clickCategory(_ sender: Any) {
         
-        dataSource = ["Food", "Grocery", "Plant", "Adventure", "Exercise", "Treatment"]
-        addTransparentView(frames: categoryButton.frame)
+//        performSegue(withIdentifier: "categoryPopSegue", sender: nil)
+        guard let categoryCV = storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpVC") as? CategoryPopUpVC else {
+            print("Can't find CategoryPopUpVC")
+            return
+        }
+        present(categoryCV, animated: true, completion: nil)
+
+        categoryCV.categoryDelegate = self
     }
     
-    // MARK: Drop down selection
-    // show drop down selection button
-    func addTransparentView(frames: CGRect) {
-        
-        let window = UIApplication.shared.keyWindow
-        transparentView.frame = window?.frame ?? self.view.frame
-        self.view.addSubview(transparentView)
-        
-        tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
-        self.view.addSubview(tableView)
-        tableView.layer.cornerRadius = 5
-        
-        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        tableView.reloadData()
-        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
-        transparentView.addGestureRecognizer(tapgesture)
-        transparentView.alpha = 0
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.0, usingSpringWithDamping: 1.0,
-                       initialSpringVelocity: 1.0,
-                       options: .curveEaseInOut, animations: {
-            
-            self.transparentView.alpha = 0.5
-            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5,
-                                          width: frames.width, height: CGFloat(self.dataSource.count * 50))
-        }, completion: nil)
+    @objc func clickLocation(_ sender: Any) {
+//        performSegue(withIdentifier: "locationPopSegue", sender: nil)
+        guard let locationCV = storyboard?.instantiateViewController(withIdentifier: "LocationPopUpVC") as? LocationPopUpVC else {
+            print("Can't find LocationPopUpVC")
+            return
+        }
+        present(locationCV, animated: true, completion: nil)
+
+        locationCV.locationDelegate = self
     }
     
-    // remove drop down selection button
-    @objc func removeTransparentView() {
-        let frames = categoryButton.frame
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.0, usingSpringWithDamping: 1.0,
-                       initialSpringVelocity: 1.0,
-                       options: .curveEaseInOut,
-                       animations: {
+    func blackViewShow() {
+        
+        let blackView = UIView(frame: UIScreen.main.bounds)
+              blackView.backgroundColor = .black
+              blackView.alpha = 0
+              presentingViewController?.view.addSubview(blackView)
+              
+      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+                  blackView.alpha = 0.5
+              }
+    }
+    
+    func fetchUserData() {
+        
+        userManager.fetchUserData(userID: userID) {
             
-            self.transparentView.alpha = 0
-            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height,
-                                          width: frames.width, height: 0)
-        }, completion: nil)
+            [weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userModels = userModel
+                
+                DispatchQueue.main.async {
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
     }
     
     // MARK: setup camera enviroment
@@ -155,6 +171,7 @@ class PostTalentVC: UIViewController {
         
         postPhotoImage.isUserInteractionEnabled = true
         postPhotoImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapPhoto)))
+        locationBtn.addTarget(self, action: #selector(clickLocation(_:)), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(clickCategory(_:)), for: .touchUpInside)
         postButton.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
     }
@@ -166,20 +183,28 @@ class PostTalentVC: UIViewController {
         postPhotoImage.isUserInteractionEnabled = true
         
         categoryButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        
         categoryButton.setTitle("Category", for: .normal)
         categoryButton.lkBorderColor = .black
-        //        categoryButton.lkCornerRadius = 5
         categoryButton.lkBorderWidth = 1
         categoryButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         categoryButton.setTitleColor(.black, for: .normal)
         categoryButton.tintColor = .black
+        
+        locationBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        locationBtn.setTitle("Location", for: .normal)
+        locationBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        locationBtn.setTitleColor(.black, for: .normal)
+        locationBtn.tintColor = .black
         
         titleText.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleText.placeholder = "Title"
         
         descriptionText.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         descriptionText.textAlignment = .justified
-        descriptionText.placeholder = "Conetent"
+        //        descriptionText.placeholder = "Conetent"
+        descriptionText.backgroundColor = .gray
+        descriptionText.lkBorderColor = .gray
         
         seedIcon.image = UIImage(named: "Lychee")
         seedValueText.placeholder = "60"
@@ -197,6 +222,7 @@ class PostTalentVC: UIViewController {
         postButton.lkBorderColor = .black
         postButton.lkBorderWidth = 1
         postButton.setTitleColor(.black, for: .normal)
+        
     }
     
     func layout() {
@@ -206,42 +232,51 @@ class PostTalentVC: UIViewController {
         seedStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.translatesAutoresizingMaskIntoConstraints = false
         postButton.translatesAutoresizingMaskIntoConstraints = false
+        descriptionText.translatesAutoresizingMaskIntoConstraints = false
+        locationBtn.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(postPhotoImage)
         view.addSubview(categoryButton)
         view.addSubview(seedStack)
         view.addSubview(contentStack)
         view.addSubview(postButton)
+        view.addSubview(descriptionText)
         
         seedStack.addArrangedSubview(seedValueText)
         seedStack.addArrangedSubview(seedIcon)
         
         contentStack.addArrangedSubview(titleText)
         contentStack.addArrangedSubview(seedStack)
-        contentStack.addArrangedSubview(descriptionText)
+        contentStack.addArrangedSubview(locationBtn)
         
         NSLayoutConstraint.activate([
             
-            postPhotoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            postPhotoImage.topAnchor.constraint(equalTo: categoryButton.bottomAnchor, constant: 16),
             postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
             
-            categoryButton.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 16),
-            categoryButton.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
+//            categoryButton.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 16),
+            categoryButton.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
             categoryButton.heightAnchor.constraint(equalToConstant: 27),
             categoryButton.widthAnchor.constraint(equalToConstant: 120),
+            categoryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             
-            contentStack.topAnchor.constraint(equalTo: categoryButton.bottomAnchor, constant: 8),
+            contentStack.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 8),
             contentStack.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
             contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            
+            descriptionText.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: 8),
+            descriptionText.bottomAnchor.constraint(equalTo: postButton.topAnchor, constant: 8),
+            descriptionText.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
+            descriptionText.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
+            
             seedIcon.widthAnchor.constraint(equalToConstant: 20),
             seedIcon.heightAnchor.constraint(equalToConstant: 20),
             
             postButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             postButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             postButton.widthAnchor.constraint(equalToConstant: 120)
-            
         ])
     }
     
@@ -270,19 +305,28 @@ class PostTalentVC: UIViewController {
                             
                         case .success(let url):
                             
-                            self.showHUD(progressLabel: "Success")
                             let talenPostID = self.talentManager.database.document().documentID
                             let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
                             let title = self.titleText.text
                             let userID = "1" // 以後為登入後的userID
                             let content = self.descriptionText.text
-                            let category = self.didPickCategory
-                            let seedValue = self.seedValueText.text
+                            let category = self.categoryResult
+                            let location = self.locationResult
+                            let seedValue = (self.seedValueText.text! as NSString).intValue
+                            let userModel = UserModel(name: self.userModels?.name,
+                                                      userID: self.userModels?.userID,
+                                                      seedValue: self.userModels?.seedValue,
+                                                      gender: self.userModels?.gender,
+                                                      userAvatar: self.userModels?.userAvatar,
+                                                      appliedTalent: [],
+                                                      isAccepetedTalent: []
+                            )
                             
                             let talenArticle = TalentArticle(talentPostID: talenPostID,
                                                              userID: userID,
+                                                             userInfo: userModel,
                                                              category: category,
-                                                             location: "",
+                                                             location: location,
                                                              title: title,
                                                              content: content,
                                                              images: [url],
@@ -293,7 +337,7 @@ class PostTalentVC: UIViewController {
                             )
                             
                             self.talentManager.addData(postTalent: talenArticle)
-                            self.showHUD(progressLabel: "Success")
+
                         case .failure(_):
                             break
                         }
@@ -306,20 +350,10 @@ class PostTalentVC: UIViewController {
         }
         navigationController?.popViewController(animated: true)
     }
+}
+
+extension PostTalentVC: UINavigationControllerDelegate {
     
-    func showHUD(progressLabel: String) {
-        DispatchQueue.main.async {
-            let progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
-            progressHUD.mode = .customView
-            progressHUD.label.text = progressLabel
-            progressHUD.contentColor = .white
-            progressHUD.hide(animated: true, afterDelay: 2)
-            progressHUD.bezelView.style = .solidColor
-            progressHUD.bezelView.backgroundColor = .gray
-            // according to the documentation a good image size is something like 37x37px
-            progressHUD.customView = UIImageView(image: UIImage(named: "check"))
-        }
-    }
 }
 
 extension PostTalentVC: UIImagePickerControllerDelegate {
@@ -335,32 +369,20 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
     }
 }
 
-extension PostTalentVC: UINavigationControllerDelegate {
+extension PostTalentVC: CategoryDelegate {
+    
+    func sendCategoryResult(category: String) {
+        
+        categoryButton.setTitle(category, for: .normal)
+        categoryResult = category
+    }
     
 }
 
-// MARK: Drop down tableView
-extension PostTalentVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+extension PostTalentVC: LocationDelegate {
+    func sendLocationResult(location: String) {
+        locationBtn.setTitle(location, for: .normal)
+        locationResult = location
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        cell.textLabel?.textAlignment = .center
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        categoryButton.setTitle(dataSource[indexPath.row], for: .normal)
-        didPickCategory = dataSource[indexPath.row]
-        removeTransparentView()
-        print(didPickCategory)
-    }
 }

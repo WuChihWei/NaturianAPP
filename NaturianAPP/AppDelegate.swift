@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  NaturianAPP
-//
+//
 //  Created by Jordan Wu on 2022/6/14.
 //
 
@@ -10,6 +10,8 @@ import FirebaseCore
 import CoreData
 import FirebaseFirestore
 import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+
+        // Google sign in
+        
 //        let db = Firestore.firestore()
         
         // Override point for customization after application launch.
@@ -37,6 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any])
+      -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
+    }
+    
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
