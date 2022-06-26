@@ -11,9 +11,17 @@ struct Chat {
     
     var users: [String]
     
+    var chatTalentID: String
+    
     var dictionary: [String: Any] {
         
-        return ["users": users]
+        return [
+            
+            "users": users,
+            
+            "chatTalentID": chatTalentID
+            
+        ]
     }
 }
 
@@ -25,6 +33,10 @@ extension Chat {
             return nil
         }
         
-        self.init(users: chatUsers)
+        guard let chatTalentID = dictionary["chatTalentID"] as? String else {
+            return nil
+        }
+
+        self.init(users: chatUsers, chatTalentID: chatTalentID)
     }
 }

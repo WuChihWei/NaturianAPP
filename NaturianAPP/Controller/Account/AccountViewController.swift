@@ -17,7 +17,7 @@ class AccountViewController: UIViewController {
     weak var accountDelegate: AccountVCDelegate?
     var userManager = UserManager()
     var userModels: UserModel?
-    var userID = "1"
+    let userID = "1"
     
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
@@ -42,17 +42,15 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        viewController.hidesBottomBarWhenPushed = true
-
         setup()
         setStyle()
         layout()
-        //        fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
+        
         fetchUserData()
     }
     
@@ -136,7 +134,7 @@ class AccountViewController: UIViewController {
 //        navigationController?.pushViewController(vc, animated: true)
 //        vc?.hidesBottomBarWhenPushed = true
         present(vc, animated: true, completion: nil)
-        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isHidden = true
     }
  
     func setup() {

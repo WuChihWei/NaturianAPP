@@ -20,4 +20,7 @@ struct UserModel: Codable {
     var userAvatar: URL?
     
     var appliedTalent: [String?]
+    
+    var isAccepetedTalent: [String?]
+    
 }

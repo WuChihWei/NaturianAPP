@@ -15,7 +15,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    let useID = "1"
+    let userID = "1"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()
@@ -31,7 +31,7 @@ class TalentDetailViewController: UIViewController {
     let buttonStack = UIStackView()
     
     var selectedArticle: TalentArticle!
-    var userArticle: UserModel!
+    var userModels: UserModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +47,40 @@ class TalentDetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         view.layoutIfNeeded()
+        
+        fetchUserData() 
+    }
+    
+    
+    func fetchUserData() {
+        
+        userManager.fetchUserData(userID: userID) {
+            [weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userModels = userModel
+                
+                DispatchQueue.main.async {
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
     }
     
     @objc func didApply() {
         
-        selectedArticle.didApplyID.append(useID)
+        selectedArticle.didApplyID.append(userID)
+        
+        userModels.appliedTalent.append(selectedArticle.talentPostID)
+        
+        userManager.updateAppliedTalent(userModel: userModels)
+        
         talentManager.updateData(applyTalent: selectedArticle)
         navigationController?.popViewController(animated: true)
     }
@@ -63,6 +92,9 @@ class TalentDetailViewController: UIViewController {
 
             fatalError("can't find ChatViewController")
         }
+        
+        vc.chatTalentID = selectedArticle.talentPostID ?? "can't find chatTalentPostID"
+        
         self.navigationController?.pushViewController(vc, animated: true)
                 
     }

@@ -126,6 +126,20 @@ class UserManager {
         }
     }
     
+    func updateAppliedTalent(userModel: UserModel) {
+        
+        do {
+            
+            try database.document("1").setData(from: userModel, merge: true)
+            
+        } catch {
+            
+            print("can't update talent data")
+            
+        }
+        
+    }
+    
     func readAccountData(userID: String){
         db.collection("users").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {

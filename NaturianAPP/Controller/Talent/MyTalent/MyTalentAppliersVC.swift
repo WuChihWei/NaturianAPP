@@ -18,6 +18,8 @@ class MyTalentAppliersVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
+    var talentArticleID: String?
+    
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     //    var newUserModel: [UserModel] = []
@@ -43,7 +45,7 @@ class MyTalentAppliersVC: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         
-        tableView.layoutIfNeeded() //call this func to show the subView in subView
+        tableView.layoutIfNeeded()
     }
     
     func setUp() {
@@ -88,7 +90,9 @@ class MyTalentAppliersVC: UIViewController {
                 case .success(let userModel):
                     
                     self?.userModels.append(userModel)
-                    print(self?.userModels)
+                    
+                    print(self?.userModels as Any)
+                    
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -134,5 +138,20 @@ extension MyTalentAppliersVC: UITableViewDataSource {
         cell.userAvatar.contentMode = .scaleAspectFill
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+
+            fatalError("can't find ChatViewController")
+        }
+        
+        vc.chatTalentID = self.talentArticleID ?? ""
+        vc.currentUser = self.userModels[indexPath.row].userID
+ 
+        self.navigationController?.pushViewController(vc, animated: true)
+                
     }
 }

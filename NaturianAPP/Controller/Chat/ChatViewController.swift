@@ -14,6 +14,8 @@ import SDWebImage
 
 class ChatViewController: MessagesViewController {
     
+    var chatTalentID: String = ""
+    
     var db = Firestore.firestore()
     //    var currentUser: User = Auth.auth().currentUser!
     private var docReference: DocumentReference?
@@ -23,14 +25,14 @@ class ChatViewController: MessagesViewController {
     //    var currentUser: String? = "321"
     //    var currentUser: String? = "123333"
 //    var user2UID: String? = "123333"
-    var user2UID: String? = "3213333"
+    var user2UID: String? = "2"
 
     var user2Name: String? = "Hello World"
     var user2ImageUrl: String? = "https://reurl.cc/ZA5xQV"
     
     //    var currentUser: User = Auth.auth().currentUser!
     //        var user2UID: String? = "3213333"
-    var currentUser: String? = "123333"
+    var currentUser: String? = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,46 +74,46 @@ class ChatViewController: MessagesViewController {
     }
     
     func loadChat() {
-        
-        //        let db = Firestore.firestore().collection("chats").whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
-        let db = Firestore.firestore().collection("chats").whereField("users", arrayContains: currentUser ?? "Not Found User 1")
+
+        let db = Firestore.firestore().collection("chats").whereField("users", arrayContainsAny: [currentUser ?? "No user1"]).whereField("chatTalentID", isEqualTo: chatTalentID)
+
         db.getDocuments { (chatQuerySnap, error) in
-            
+
             if let error = error {
-                
+
                 print("Error: \(error)")
                 return
-                
+
             } else {
                 // Count the no. of documents returned
                 guard let queryCount = chatQuerySnap?.documents.count else {
-                    
+
                     return
                 }
-                
+
                 if queryCount == 0 {
                     // If documents count is zero that means there is no chat available and we need to create a new instance
                     self.createNewChat()
                 }
                 else if queryCount >= 1 {
-                    
+
                     // Chat(s) found for currentUser
                     for doc in chatQuerySnap!.documents {
-                        
+
                         let chat = Chat(dictionary: doc.data())
-                        
+
                         // //Get the chat which has user2 id
                         if (chat?.users.contains(self.user2UID ?? "ID Not Found")) == true {
-                            
+
                             self.docReference = doc.reference
-                            
+
                             // fetch it's thread collection
                             doc.reference.collection("thread").order(by: "created", descending: false).addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
-                                
+
                                 if let error = error {
                                     print("Error: \(error)")
                                     return
-                                    
+
                                 } else {
                                     self.messages.removeAll()
                                     for message in threadQuery!.documents {
@@ -127,9 +129,9 @@ class ChatViewController: MessagesViewController {
                             return
                         } // end of if
                     } // end of for
-                    
+
                     self.createNewChat()
-                    
+
                 } else {
                     print("Let's hope this error never prints!")
                 }
@@ -138,17 +140,19 @@ class ChatViewController: MessagesViewController {
     }
     
     func createNewChat() {
-        
+
         //        let users = [self.currentUser.uid, self.user2UID]
+
+        let users = [self.currentUser, self.user2UID, self.chatTalentID]
         
-        let users = [self.currentUser, self.user2UID]
-        
-        let data: [String: Any] = [ "users": users ]
+        let chatTalentID = self.chatTalentID
+
+        let data: [String: Any] = [ "users": users, "chatTalentID": chatTalentID]
         let db = Firestore.firestore().collection("chats")
-        let chatRoomID = db.document().documentID
+//        let chatroomID = db.
         
         db.addDocument(data: data) { (error) in
-            
+
             if let error = error {
                 print("Unable to create chat! \(error)")
                 return

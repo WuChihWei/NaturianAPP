@@ -44,7 +44,7 @@ class ScannerVC: UIViewController {
         super.viewDidLoad()
         
         tabBarController?.tabBar.isHidden = true
-        
+        view.backgroundColor = UIColor.NaturianColor.treatmentGreen
         // Get the back-facing camera for capturing videos
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             print("Failed to get the camera device")

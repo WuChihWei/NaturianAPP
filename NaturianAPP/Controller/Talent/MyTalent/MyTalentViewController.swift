@@ -169,6 +169,9 @@ extension MyTalentViewController: UITableViewDataSource {
 
             fatalError("can't find MyTalentDetailVC")
         }
+        
+        vc.talentArticleID = talentArticles[indexPath.row].talentPostID
+        
         self.navigationController?.pushViewController(vc, animated: true)
 //
 //        for item in 0..<talentArticles[indexPath.row].didApplyID.count {

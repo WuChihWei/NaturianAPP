@@ -318,7 +318,9 @@ class PostTalentVC: UIViewController {
                                                       seedValue: self.userModels?.seedValue,
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
-                                                      appliedTalent: [])
+                                                      appliedTalent: [],
+                                                      isAccepetedTalent: <#T##[String?]#>
+                            )
                             
                             let talenArticle = TalentArticle(talentPostID: talenPostID,
                                                              userID: userID,
