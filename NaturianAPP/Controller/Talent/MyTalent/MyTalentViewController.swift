@@ -19,7 +19,7 @@ class MyTalentViewController: UIViewController {
     var userManager = UserManager()
 
     var db: Firestore!
-
+    let userID:String = "1"
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
@@ -32,12 +32,12 @@ class MyTalentViewController: UIViewController {
         setUp()
         style()
         layout()
-        fetchTalentArticle()
+        fetchMyTalentArticle()
 //        readData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchTalentArticle()
+        fetchMyTalentArticle()
 //        tableView.reloadData()
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -49,26 +49,47 @@ class MyTalentViewController: UIViewController {
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
 
-    func fetchTalentArticle() {
-                
-        talentManager.fetchData { [weak self] result in
-
-            switch result {
-
-            case .success(let talentArticles):
-
-                self?.talentArticles = talentArticles
-                
-                self?.tableView.reloadData()
-
-            case .failure:
-
-                print("can't fetch data")
+//    func fetchTalentArticle() {
+//
+//        talentManager.fetchData { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let talentArticles):
+//
+//                self?.talentArticles = talentArticles
+//
+//                self?.tableView.reloadData()
+//
+//            case .failure:
+//
+//                print("can't fetch data")
+//            }
+//        }
+//
+//        print(LocalizedError.self)
+//    }
+    
+        func fetchMyTalentArticle() {
+    
+            talentManager.fetchMyIDData(userID: userID) { [weak self] result in
+    
+                switch result {
+    
+                case .success(let talentArticles):
+    
+                    self?.talentArticles = talentArticles
+    
+                    self?.tableView.reloadData()
+    
+                case .failure:
+    
+                    print("can't fetch data")
+                }
             }
+    
+            print(LocalizedError.self)
         }
-        
-        print(LocalizedError.self)
-    }
     
     func setUp() {
         
