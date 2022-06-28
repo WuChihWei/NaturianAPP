@@ -15,7 +15,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    let userID = "1"
+    let userID = "2"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()

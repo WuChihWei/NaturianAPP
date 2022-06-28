@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F59A286A0BC80053777B /* SignInViewController.swift */; };
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
 		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
@@ -88,6 +89,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3202F59A286A0BC80053777B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3202F59D286A0D420053777B /* NaturianAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NaturianAPP.entitlements; sourceTree = "<group>"; };
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -184,9 +187,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3202F59C286A0BD40053777B /* Sign in */ = {
+			isa = PBXGroup;
+			children = (
+				3202F59A286A0BC80053777B /* SignInViewController.swift */,
+			);
+			path = "Sign in";
+			sourceTree = "<group>";
+		};
 		32078A52285957F600FF2980 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3202F59C286A0BD40053777B /* Sign in */,
 				32078A632859835400FF2980 /* Account */,
 				325504A9286372370019A190 /* PopOutView */,
 				325504BC28646C040019A190 /* Chat */,
@@ -334,6 +346,7 @@
 		32138B232858860200916700 /* NaturianAPP */ = {
 			isa = PBXGroup;
 			children = (
+				3202F59D286A0D420053777B /* NaturianAPP.entitlements */,
 				327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */,
 				32138B242858860200916700 /* AppDelegate.swift */,
 				32138B262858860200916700 /* SceneDelegate.swift */,
@@ -689,6 +702,7 @@
 				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
+				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
 				3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */,
 				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
@@ -864,8 +878,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NaturianAPP/NaturianAPP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
@@ -881,7 +896,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -897,8 +912,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NaturianAPP/NaturianAPP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;
@@ -914,7 +930,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

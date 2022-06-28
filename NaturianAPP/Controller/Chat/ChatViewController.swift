@@ -25,14 +25,15 @@ class ChatViewController: MessagesViewController {
     //    var currentUser: String? = "321"
     //    var currentUser: String? = "123333"
 //    var user2UID: String? = "123333"
-    var user2UID: String? = "2"
+    var user2UID: String? = "1"
 
     var user2Name: String? = "Hello World"
-    var user2ImageUrl: String? = "https://reurl.cc/ZA5xQV"
+    var user2ImageUrl: String? = "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
     
     //    var currentUser: User = Auth.auth().currentUser!
     //        var user2UID: String? = "3213333"
-    var currentUser: String? = "1"
+    var currentUser: String? = "2"
+    var currentUserImageUrl: String? = "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=778&q=80"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,7 @@ class ChatViewController: MessagesViewController {
     
     func loadChat() {
 
-        let db = Firestore.firestore().collection("chats").whereField("users", arrayContainsAny: [currentUser ?? "No user1"]).whereField("chatTalentID", isEqualTo: chatTalentID)
+        let db = Firestore.firestore().collection("chats").whereField("users", arrayContainsAny: [user2UID ?? "No user1"]).whereField("users", isEqualTo: chatTalentID)
 
         db.getDocuments { (chatQuerySnap, error) in
 
@@ -85,14 +86,12 @@ class ChatViewController: MessagesViewController {
                 return
 
             } else {
-                // Count the no. of documents returned
                 guard let queryCount = chatQuerySnap?.documents.count else {
 
                     return
                 }
 
                 if queryCount == 0 {
-                    // If documents count is zero that means there is no chat available and we need to create a new instance
                     self.createNewChat()
                 }
                 else if queryCount >= 1 {
@@ -287,7 +286,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
                 //                with: currentUser.photoURL,
-                with: URL(string: "https://reurl.cc/ZA5xQV"),
+                with: URL(string: currentUserImageUrl! ),
                 options: .highPriority,
                 progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
                     

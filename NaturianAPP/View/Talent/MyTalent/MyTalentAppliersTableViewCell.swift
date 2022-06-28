@@ -44,7 +44,6 @@ class MyTalentAppliersTableViewCell: UITableViewCell {
         layout()
     }
   
-    
     func setup() {
         
     }

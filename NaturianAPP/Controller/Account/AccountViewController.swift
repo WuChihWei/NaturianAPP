@@ -16,15 +16,20 @@ class AccountViewController: UIViewController {
     
     weak var accountDelegate: AccountVCDelegate?
     var userManager = UserManager()
-    var userModels: UserModel?
-    let userID = "1"
+    var userModels: UserModel!
+    let userID = "2"
+    let backgroundView = UIView()
     
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
+    let blackLine = UIView()
     
-    let nameLabel = UILabel()
+    let naturianLB = UILabel()
+    let utopiaLB = UILabel()
+    let passeportLB = UILabel()
+
     var userName = UILabel()
-    let nameStack = UIStackView()
+    let naturianStack = UIStackView()
     
     let seedLabel = UILabel()
     var seedValueLabel = UILabel()
@@ -35,13 +40,15 @@ class AccountViewController: UIViewController {
     
     let transferBtn = UIButton()
     let talentBtn = UIButton()
-    let boardBtn = UIButton()
+//    let boardBtn = UIButton()
     
     let buttonStack = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.tintColor = .NaturianColor.treatmentGreen
+
         setup()
         setStyle()
         layout()
@@ -59,20 +66,20 @@ class AccountViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
     }
     
     override func viewDidLayoutSubviews() {
         
         view.layoutIfNeeded()
+        backgroundView.layoutIfNeeded()
         barcodeUIImage.clipsToBounds = true
         userAvatar.clipsToBounds = true
-//        view.backgroundColor = .lightGray
-        
-        transferBtn.lkCornerRadius = transferBtn.bounds.width / 2
-        talentBtn.lkCornerRadius = transferBtn.bounds.width / 2
-        boardBtn.lkCornerRadius = transferBtn.bounds.width / 2
         barcodeUIImage.contentMode = .scaleAspectFill
         userAvatar.lkCornerRadius = userAvatar.bounds.width / 2
+        userAvatar.lkBorderColor = .NaturianColor.treatmentGreen
+        userAvatar.lkBorderWidth = 5
+        
   }
     
     func generateBarcode(userID: String) -> UIImage? {
@@ -82,7 +89,7 @@ class AccountViewController: UIViewController {
         if let filter = CIFilter.init(name: "CICode128BarcodeGenerator") {
             
             filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 24, y: 16)
+            let transform = CGAffineTransform(scaleX: 12, y: 12)
             if let output = filter.outputImage?.transformed(by: transform) {
                 return UIImage(ciImage: output)
             }
@@ -145,15 +152,23 @@ class AccountViewController: UIViewController {
     
     func setStyle() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.NaturianColor.navigationGray
+        
+        backgroundView.lkCornerRadius = 20
+        backgroundView.backgroundColor = .white
+        blackLine.backgroundColor = .NaturianColor.navigationGray
         
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .gray
         let URL = userModels?.userAvatar
         userAvatar.kf.setImage(with: URL)
         
-        nameLabel.text = "Name:"
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        naturianLB.text = "UTOPIA"
+        naturianLB.font = UIFont(name: Roboto.bold.rawValue, size: 14)
+        utopiaLB.text = "NATURIAN"
+        utopiaLB.font = UIFont(name: Roboto.bold.rawValue, size: 14)
+        passeportLB.text = "PASSPORT"
+        passeportLB.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         
         userName.text = userModels?.name
         userName.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -164,50 +179,28 @@ class AccountViewController: UIViewController {
         seedValueLabel.font = UIFont.systemFont(ofSize: 56, weight: .bold)
         seedValueLabel.text = String(describing: userModels?.seedValue ?? 0)
         
-        seedIcon.image = UIImage(named: "Lychee")
+        seedIcon.image = UIImage(named: "seed")
         
-        barcodeUIImage.backgroundColor = .gray
+        barcodeUIImage.backgroundColor = .white
 //        barcodeUIImage.image = generateBarcode(userID: userID)
         let image = generateBarcode(userID: userID)
-        let targetSize = CGSize(width: view.frame.width, height: 400 )
+        let targetSize = CGSize(width: view.frame.width, height: 200 )
         let scaledImage = image!.scalePreservingAspectRatio(
             targetSize: targetSize
         )
         barcodeUIImage.image = scaledImage
-        barcodeUIImage.lkBorderWidth = 1
-        barcodeUIImage.lkBorderColor = .gray
-        
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-//        shapeLayer.lineWidth = 1
-//        let starPoint = CGPoint(x: 0, y: barcodeUIImage.bounds.maxY)
-//        let endPoint = CGPoint(x: barcodeUIImage.bounds.maxX, y: barcodeUIImage.bounds.maxY)
-//        let path = CGMutablePath()
-//        path.addLines(between: [starPoint, endPoint])
-//        shapeLayer.path = path
-//        barcodeUIImage.layer.addSublayer(shapeLayer)
-        
+
         userIDLabel.text = userModels?.userID
-        userIDLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        userIDLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         
-        transferBtn.lkCornerRadius = transferBtn.frame.width / 2
-        talentBtn.lkCornerRadius = transferBtn.frame.width / 2
-        boardBtn.lkCornerRadius = transferBtn.frame.width / 2
-        
-        transferBtn.setTitle("Transfer", for: .normal)
-        transferBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        transferBtn.backgroundColor = .gray
-        
-        talentBtn.setTitle("Talent", for: .normal)
-        talentBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        talentBtn.backgroundColor = .gray
-        
-        boardBtn.setTitle("Board", for: .normal)
-        boardBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        boardBtn.backgroundColor = .gray
-        
-        nameStack.axis = .horizontal
-        nameStack.spacing = 6
+        transferBtn.setImage(UIImage(named: "transferButton"), for: .normal)
+        transferBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+    
+        talentBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        talentBtn.setImage(UIImage(named: "talentButton"), for: .normal)
+
+        naturianStack.axis = .vertical
+        naturianStack.distribution = .equalSpacing
         
         buttonStack.axis = .horizontal
         buttonStack.distribution = .equalSpacing
@@ -215,73 +208,99 @@ class AccountViewController: UIViewController {
     
     func layout() {
         
-        view.addSubview(userAvatar)
-        view.addSubview(nameStack)
-        view.addSubview(seedLabel)
+        view.addSubview(backgroundView)
         
-        view.addSubview(seedValueLabel)
-        view.addSubview(seedIcon)
+        backgroundView.addSubview(naturianStack)
+        backgroundView.addSubview(blackLine)
+        backgroundView.addSubview(userAvatar)
+        backgroundView.addSubview(userName)
         
-        view.addSubview(barcodeUIImage)
-        view.addSubview(userIDLabel)
-        view.addSubview(buttonStack)
+        backgroundView.addSubview(seedValueLabel)
+        backgroundView.addSubview(seedIcon)
         
-        nameStack.addArrangedSubview(nameLabel)
-        nameStack.addArrangedSubview(userName)
+        backgroundView.addSubview(barcodeUIImage)
+        backgroundView.addSubview(userIDLabel)
+        backgroundView.addSubview(buttonStack)
         
-        buttonStack.addArrangedSubview(transferBtn)
-        buttonStack.addArrangedSubview(talentBtn)
-        buttonStack.addArrangedSubview(boardBtn)
+        backgroundView.addSubview(transferBtn)
+        backgroundView.addSubview(talentBtn)
         
+        naturianStack.addArrangedSubview(utopiaLB)
+        naturianStack.addArrangedSubview(naturianLB)
+        naturianStack.addArrangedSubview(passeportLB)
+        
+        blackLine.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         userAvatar.translatesAutoresizingMaskIntoConstraints = false
-        nameStack.translatesAutoresizingMaskIntoConstraints = false
-        seedLabel.translatesAutoresizingMaskIntoConstraints = false
+        userName.translatesAutoresizingMaskIntoConstraints = false
+        naturianStack.translatesAutoresizingMaskIntoConstraints = false
         
         seedValueLabel.translatesAutoresizingMaskIntoConstraints = false
         seedIcon.translatesAutoresizingMaskIntoConstraints = false
         barcodeUIImage.translatesAutoresizingMaskIntoConstraints = false
+        
         userIDLabel.translatesAutoresizingMaskIntoConstraints = false
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+//        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+        talentBtn.translatesAutoresizingMaskIntoConstraints = false
+        transferBtn.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
-            userAvatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            naturianStack.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 18),
+            naturianStack.bottomAnchor.constraint(equalTo: talentBtn.bottomAnchor),
+            naturianStack.heightAnchor.constraint(equalToConstant: 46),
+            naturianLB.heightAnchor.constraint(equalToConstant: 12),
+            utopiaLB.heightAnchor.constraint(equalToConstant: 12),
+            passeportLB.heightAnchor.constraint(equalToConstant: 12),
+            
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            backgroundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            
+            blackLine.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
+            blackLine.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            blackLine.heightAnchor.constraint(equalToConstant: 2),
+            blackLine.widthAnchor.constraint(equalToConstant: backgroundView.bounds.width - 10),
+            
+            talentBtn.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 0),
+            talentBtn.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -36),
+            talentBtn.widthAnchor.constraint(equalToConstant: 58),
+            talentBtn.heightAnchor.constraint(equalToConstant: 58),
+            
+            userAvatar.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 80 ),
             userAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userAvatar.widthAnchor.constraint(equalToConstant: 140),
+            userAvatar.widthAnchor.constraint(equalToConstant: 155),
             userAvatar.heightAnchor.constraint(equalTo: userAvatar.widthAnchor),
             
-            nameStack.leadingAnchor.constraint(equalTo: barcodeUIImage.leadingAnchor),
-            nameStack.topAnchor.constraint(equalTo: userAvatar.bottomAnchor, constant: 60),
-            
-            seedLabel.leadingAnchor.constraint(equalTo: nameStack.leadingAnchor),
-            seedLabel.topAnchor.constraint(equalTo: nameStack.bottomAnchor, constant: 8),
-            
+//            userName.leadingAnchor.constraint(equalTo: blackLine.leadingAnchor),
+            userName.heightAnchor.constraint(equalToConstant: 20),
+            userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userName.bottomAnchor.constraint(equalTo: blackLine.topAnchor, constant: -30),
+//
             seedValueLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            seedValueLabel.heightAnchor.constraint(equalToConstant: 50),
-            seedValueLabel.topAnchor.constraint(equalTo: seedLabel.bottomAnchor, constant: 8),
-            
-            seedIcon.trailingAnchor.constraint(equalTo: barcodeUIImage.trailingAnchor),
-            seedIcon.widthAnchor.constraint(equalToConstant: 30),
+            seedValueLabel.heightAnchor.constraint(equalToConstant: 64),
+            seedValueLabel.bottomAnchor.constraint(equalTo: barcodeUIImage.topAnchor, constant: -24),
+        
+            seedIcon.leadingAnchor.constraint(equalTo: seedValueLabel.trailingAnchor, constant: 3),
+            seedIcon.widthAnchor.constraint(equalToConstant: 14),
             seedIcon.heightAnchor.constraint(equalTo: seedIcon.widthAnchor),
             seedIcon.bottomAnchor.constraint(equalTo: seedValueLabel.bottomAnchor),
             
-            barcodeUIImage.topAnchor.constraint(equalTo: seedValueLabel.bottomAnchor, constant: 60),
             barcodeUIImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            barcodeUIImage.widthAnchor.constraint(equalToConstant: view.frame.width - 100 ),
+            barcodeUIImage.widthAnchor.constraint(equalToConstant: backgroundView.bounds.width - 120 ),
             barcodeUIImage.heightAnchor.constraint(equalToConstant: 70),
+            barcodeUIImage.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -((backgroundView.bounds.height/4) - (barcodeUIImage.frame.height))/2),
             
             userIDLabel.topAnchor.constraint(equalTo: barcodeUIImage.bottomAnchor, constant: 4),
             userIDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userIDLabel.heightAnchor.constraint(equalToConstant: 16),
+            userIDLabel.heightAnchor.constraint(equalToConstant: 14),
             
-            buttonStack.widthAnchor.constraint(equalTo: barcodeUIImage.widthAnchor),
-            buttonStack.topAnchor.constraint(equalTo: userIDLabel.bottomAnchor, constant: 40),
-            buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonStack.heightAnchor.constraint(equalToConstant: 60),
+            transferBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transferBtn.widthAnchor.constraint(equalToConstant: 48),
+            transferBtn.heightAnchor.constraint(equalToConstant: 48),
+            transferBtn.topAnchor.constraint(equalTo: blackLine.bottomAnchor, constant: 30)
             
-            transferBtn.widthAnchor.constraint(equalToConstant: 60),
-            talentBtn.widthAnchor.constraint(equalToConstant: 60),
-            boardBtn.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
 }

@@ -138,7 +138,7 @@ class TransferSeedVC: UIViewController {
         seedIcon.image = UIImage(named: "seed")
         
         remainSeedValue.text = "420"
-        remainSeedValue.font = UIFont.init(name: Roboto.bold.rawValue, size: 48)
+        remainSeedValue.font = UIFont.init(name: Roboto.bold.rawValue, size: 40)
         remainSeedValue.textColor = UIColor.NaturianColor.darkGray
         
         tranferButton.setTitle("Transfer", for: .normal)
@@ -248,9 +248,9 @@ class TransferSeedVC: UIViewController {
             
             seedstack.leadingAnchor.constraint(equalTo: backButton.leadingAnchor),
             seedstack.topAnchor.constraint(equalTo: remainSeedLabel.bottomAnchor, constant: 12),
-            seedIcon.heightAnchor.constraint(equalToConstant: 48),
-            seedIcon.widthAnchor.constraint(equalToConstant: 48),
-            remainSeedValue.heightAnchor.constraint(equalToConstant: 48),
+            seedIcon.heightAnchor.constraint(equalToConstant: 40),
+            seedIcon.widthAnchor.constraint(equalToConstant: 40),
+            remainSeedValue.heightAnchor.constraint(equalToConstant: 40),
             
             actStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             actStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),

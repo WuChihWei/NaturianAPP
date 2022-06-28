@@ -18,7 +18,7 @@ class PostTalentVC: UIViewController {
     var userManager = UserManager()
     var talentManager = TalentManager()
         
-    var userID = "1"
+    var userID = "2"
     var userModels: UserModel?
     var categoryResult = ""
     var locationResult = ""
@@ -332,8 +332,8 @@ class PostTalentVC: UIViewController {
                                                              images: [url],
                                                              seedValue: seedValue,
                                                              createdTime: Int(createdTime),
-                                                             didApplyID: [],
-                                                             didAcceptID: []
+                                                             didApplyID: [""],
+                                                             didAcceptID: [""]
                             )
                             
                             self.talentManager.addData(postTalent: talenArticle)
