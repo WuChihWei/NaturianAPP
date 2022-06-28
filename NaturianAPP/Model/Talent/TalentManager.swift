@@ -135,36 +135,72 @@ class TalentManager {
     }
     
     func fetchAppliedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
-        
+
         db.collection("talent").whereField("didApplyID", arrayContains: userID).getDocuments { (querySnapshot, error) in
-            
+
             if let error = error {
-                
+
                 print(LocalizedError.self)
                 completion(.failure(error))
-                
+
             } else {
-                
+
                 var talentArticles = [TalentArticle]()
-                
+
                 for document in querySnapshot!.documents {
-                    
+
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
                                                                  decoder: Firestore.Decoder()) {
-                            
+
                             talentArticles.append(talentArticle)
                         }
                         print(talentArticles)
-                        
+
                     } catch {
-                        
+
                         completion(.failure(error))
-                        
+
                     }
                 }
-                
+
+                completion(.success(talentArticles))
+            }
+        }
+    }
+    
+    func fetchAcceptedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+
+        db.collection("talent").whereField("didAcceptID", arrayContains: userID).getDocuments { (querySnapshot, error) in
+
+            if let error = error {
+
+                print(LocalizedError.self)
+                completion(.failure(error))
+
+            } else {
+
+                var talentArticles = [TalentArticle]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+                        print(document)
+                        if let talentArticle = try document.data(as: TalentArticle?.self,
+                                                                 decoder: Firestore.Decoder()) {
+
+                            talentArticles.append(talentArticle)
+                        }
+                        print(talentArticles)
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+
                 completion(.success(talentArticles))
             }
         }

@@ -57,7 +57,7 @@ class OtherTalentTableViewCell: UITableViewCell {
         appliedStateBtn.setTitle("", for: .normal)
         appliedStateBtn.backgroundColor = .lightGray
         appliedStateBtn.layer.cornerRadius = 17
-        appliedStateBtn.setImage(UIImage(systemName: "checkmark"), for: .normal)
+//        appliedStateBtn.setImage(UIImage(systemName: "checkmark"), for: .normal)
         
         contactButton.setTitle("Contact", for: .normal)
         contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -118,8 +118,8 @@ class OtherTalentTableViewCell: UITableViewCell {
             // messageAmount
             appliedStateBtn.topAnchor.constraint(equalTo: postImage.topAnchor),
             appliedStateBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            appliedStateBtn.widthAnchor.constraint(equalToConstant: 34),
-            appliedStateBtn.heightAnchor.constraint(equalToConstant: 34),
+            appliedStateBtn.widthAnchor.constraint(equalToConstant: 30),
+            appliedStateBtn.heightAnchor.constraint(equalToConstant: 30),
             
             contactButton.widthAnchor.constraint(equalToConstant: 80),
             cancelButton.widthAnchor.constraint(equalToConstant: 80),

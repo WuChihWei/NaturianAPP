@@ -17,10 +17,11 @@ class OtherTalentViewController: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
     
-    
-    var userID = "1"
+    var userID = "2"
     
     var appliedTalents: [TalentArticle] = []
+    var acceptTalents: [TalentArticle] = []
+
     //    var didSeletectApplierIDs: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class OtherTalentViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+      fetchAcceptTalent()
         fetchAppliedTalent()
         tableView.reloadData()
     }
@@ -64,24 +66,25 @@ class OtherTalentViewController: UIViewController {
         ])
     }
     
-//    func fetchMyAppliedTalent() {
-//
-//        userManager.searchAcceptState(talentPostID: <#T##String#>, userID: <#T##String#>) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let userInfo):
-//
-//                self?.userInfo = userInfo
-//
-////                self?.tableView.reloadData()
-//
-//            case .failure:
-//
-//                print("can't fetch data")
-//            }
-//        }
-//    }
+    func fetchAcceptTalent() {
+        talentManager.fetchAcceptedTalent(userID: userID) { [weak self] result in
+            
+            switch result {
+                
+            case .success(let talentArticles):
+                
+                self?.acceptTalents = talentArticles
+                
+                print(self!.acceptTalents)
+                
+                self?.tableView.reloadData()
+                
+            case .failure:
+                
+                print("can't fetch data")
+            }
+        }
+    }
     
     
     func fetchAppliedTalent() {
@@ -94,6 +97,8 @@ class OtherTalentViewController: UIViewController {
                 
                 self?.appliedTalents = talentArticles
                 
+                print(self!.appliedTalents)
+                
                 self?.tableView.reloadData()
                 
             case .failure:
@@ -102,6 +107,7 @@ class OtherTalentViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension OtherTalentViewController: UITableViewDelegate {
@@ -111,11 +117,20 @@ extension OtherTalentViewController: UITableViewDelegate {
 extension OtherTalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        for acceptTalent in acceptTalents {
+            appliedTalents.append(acceptTalent)
+        }
+        
         return appliedTalents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+//        acceptTalents.merge(appliedTalents, uniquingKeysWith: +)
+    
+        print(appliedTalents)
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherTalentTableViewCell.identifer,
                                                        for: indexPath) as? OtherTalentTableViewCell else {
             
@@ -127,6 +142,14 @@ extension OtherTalentViewController: UITableViewDataSource {
         cell.talentTitle.text = appliedTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
         
+        
+        if appliedTalents[indexPath.row].didAcceptID[0] == userID {
+            
+            cell.appliedStateBtn.setImage(UIImage(named: "check"), for: .normal)
+        } else {
+            
+            cell.appliedStateBtn.setImage(UIImage(named: "pending"), for: .normal)
+        }
         
         return cell
     }

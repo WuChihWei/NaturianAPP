@@ -19,6 +19,7 @@ class MyTalentAppliersVC: UIViewController {
     var userManager = UserManager()
     
     var talentArticleID: String?
+    var userID = "2"
     
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
@@ -78,32 +79,59 @@ class MyTalentAppliersVC: UIViewController {
     }
     
     func fetchUserInfo() {
-        
+
         for didSeletectApplier in didSeletectApplierIDs {
-            
-            userManager.fetchUserData(userID: didSeletectApplier ) {
-                
+
+            userManager.fetchUserData(userID: didSeletectApplier) {
+
                 [weak self] result in
-                
+
                 switch result {
-                    
+
                 case .success(let userModel):
-                    
+
                     self?.userModels.append(userModel)
-                    
+
                     print(self?.userModels as Any)
-                    
+
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
-                    
+
                 case .failure:
-                    
+
                     print("can't fetch data")
                 }
             }
         }
     }
+//    func fetchUserInfo() {
+//
+//        for didSeletectApplier in didSeletectApplierIDs {
+//
+//            userManager.fetchAllAppliedUsers(userID: userID, applierdUsers: didSeletectApplier) {
+//
+//                [weak self] result in
+//
+//                switch result {
+//
+//                case .success(let userModel):
+//
+//                    self?.userModels.append(userModel)
+//
+//                    print(self?.userModels as Any)
+//
+//                    DispatchQueue.main.async {
+//                        self?.tableView.reloadData()
+//                    }
+//
+//                case .failure:
+//
+//                    print("can't fetch data")
+//                }
+//            }
+//        }
+//    }
 }
 
 extension MyTalentAppliersVC: UITableViewDelegate {
@@ -149,7 +177,7 @@ extension MyTalentAppliersVC: UITableViewDataSource {
         }
         
         vc.chatTalentID = self.talentArticleID ?? ""
-        vc.currentUser = self.userModels[indexPath.row].userID
+        vc.user2UID = self.userModels[indexPath.row].userID
  
         self.navigationController?.pushViewController(vc, animated: true)
                 

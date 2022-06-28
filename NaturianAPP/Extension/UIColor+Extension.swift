@@ -29,5 +29,7 @@ extension UIColor {
         static var groceryYellow: UIColor { return UIColor(red: 89/255, green: 89/255, blue: 25/255, alpha: 1) }
         
         static var unableGray: UIColor { return UIColor(red: 79/255, green: 79/255, blue: 79/255, alpha: 1) }
+        
+        static var navigationGray: UIColor { return UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1) }
     }
 }

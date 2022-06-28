@@ -602,6 +602,7 @@ PODS:
   - AppAuth/Core (1.5.0)
   - AppAuth/ExternalUserAgent (1.5.0):
     - AppAuth/Core
+  - BetterSegmentedControl (2.0.1)
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -811,6 +812,7 @@ PODS:
   - SwiftLint (0.47.1)
 
 DEPENDENCIES:
+  - BetterSegmentedControl (~> 2.0)
   - Firebase/Core
   - FirebaseAuth
   - FirebaseFirestore
@@ -829,6 +831,7 @@ SPEC REPOS:
   trunk:
     - abseil
     - AppAuth
+    - BetterSegmentedControl
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -868,6 +871,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  BetterSegmentedControl: 09607b27861d49cbce48b7673b74f9150a3d371a
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Firebase: 91c243d75573ac6e7c9735ec859b72bffb61347d
   FirebaseAnalytics: bf11064790ac96804df1df9ddc0ae45af950d9fc
@@ -904,6 +908,6 @@ SPEC CHECKSUMS:
   SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
-PODFILE CHECKSUM: 24d0270a1dc4dc8410490adef351a808da924291
+PODFILE CHECKSUM: 41bb02ca9de4dc21226e4943785965937bbf6a1b
 
 COCOAPODS: 1.11.3
