@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W9w-lt-GWv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFb-GA-GSz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -14,17 +14,18 @@
         <!--Sign In View Controller-->
         <scene sceneID="SQY-uq-r1L">
             <objects>
-                <viewController id="W9w-lt-GWv" customClass="SignInViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SignInViewController" storyboardIdentifier="SignInViewController" id="W9w-lt-GWv" customClass="SignInViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0yd-1e-Wte">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="fe6-FK-DPf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="baN-Z0-Bby"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7z-Uf-gX2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-878" y="-624"/>
+            <point key="canvasLocation" x="32" y="-1533"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PJ5-Mi-ghF">
@@ -68,7 +69,7 @@
         <!--Account View Controller-->
         <scene sceneID="7W5-Og-s0l">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AccountViewController" storyboardIdentifier="AccountViewController" modalPresentationStyle="fullScreen" id="v8J-4r-kSL" customClass="AccountViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TR0-UM-Ug2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -749,12 +750,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="Xy1-b8-UyV"/>
+                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="cFM-WN-z8b"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fiQ-4G-Np1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1199" y="-2249"/>
+            <point key="canvasLocation" x="1075" y="-2249"/>
         </scene>
         <!--Talent LobbyVC-->
         <scene sceneID="fxh-Z3-Smn">
@@ -971,7 +972,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fW2-K7-lEU"/>
+        <segue reference="yvr-Vz-mmd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Angel" width="42" height="32"/>
