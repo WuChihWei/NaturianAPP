@@ -21,7 +21,6 @@ class AccountViewController: UIViewController {
     var signinVC = SignInViewController()
     var userManager = UserManager()
     
-    
     let userID = Auth.auth().currentUser?.uid
     var userModels: UserModel!
     //    let userID = "2"
@@ -66,7 +65,6 @@ class AccountViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         fetchUserData()
         
-     
                 if Auth.auth().currentUser == nil {
         
                     guard let vc = self.storyboard?.instantiateViewController(
@@ -140,8 +138,7 @@ class AccountViewController: UIViewController {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID ?? "") {
-            [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
             
             switch result {
                 
@@ -201,8 +198,8 @@ class AccountViewController: UIViewController {
         
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .gray
-        let URL = userModels?.userAvatar
-        userAvatar.kf.setImage(with: URL)
+        let url = URL(string: "\(userModels?.userAvatar ?? "")")
+        userAvatar.kf.setImage(with: url)
         
         naturianLB.text = "UTOPIA"
         naturianLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
@@ -221,7 +218,6 @@ class AccountViewController: UIViewController {
         seedValueLabel.text = String(describing: userModels?.seedValue ?? 0)
         
         seedIcon.image = UIImage(named: "seed")
-        
         
         qrUIImage.backgroundColor = .blue
         qrUIImage.image = generateQRCode(from: userID ?? "No User ID")

@@ -6,8 +6,6 @@
 //
 
 import UIKit
-//import MASegmentedControl
-
 
 class TalentManageViewController: UIViewController {
 

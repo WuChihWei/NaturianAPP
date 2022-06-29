@@ -13,16 +13,48 @@ import CryptoKit // 用來產生隨機字串 (Nonce) 的
 class SignInViewController: UIViewController {
     
     static let shared = SignInViewController()
+    var userFirebaseManager = UserFirebaseManager()
+    var userInfo: UserModel!
     
-    var uuid: String = ""
+    var uuid = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setSignInWithAppleBtn()
-//        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        userState()
+        
+        if userInfo?.userID == Auth.auth().currentUser?.uid {
+            
+            return
+            
+        } else if userInfo?.userID != Auth.auth().currentUser?.uid {
+            
+            guard let vc = self.storyboard?.instantiateViewController(
+                withIdentifier: "ProfileVC") as? ProfileVC else {
+                
+                fatalError("can't find ProfileVC")
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if userInfo?.userID != Auth.auth().currentUser?.uid {
+            
+            guard let vc = self.storyboard?.instantiateViewController(
+                withIdentifier: "ProfileVC") as? ProfileVC else {
+                
+                fatalError("can't find ProfileVC")
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } else {
+            return
+        }
         
     }
     
@@ -48,6 +80,7 @@ class SignInViewController: UIViewController {
     fileprivate var currentNonce: String?
     
     @objc func signInWithApple() {
+        
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -124,7 +157,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             // 與 Firebase Auth 進行串接
             firebaseSignInWithApple(credential: credential)
-            print(uuid)
         }
     }
     
@@ -165,22 +197,12 @@ extension SignInViewController {
             }
             CustomFunc.customAlert(title: "登入成功！", message: "", vc: self, actionHandler: self.getFirebaseUserInfo)
             
-            //            let currentUser = Auth.auth().currentUser
-            //            guard let user = currentUser else {
-            //                CustomFunc.customAlert(title: "無法取得使用者資料！", message: "", vc: self, actionHandler: nil)
-            //                return
-            //            }
-            //            self.uuid = user.uid
-            
-            
-            //            guard let vc = self.storyboard?.instantiateViewController(
-            //                withIdentifier: "AccountViewController") as? AccountViewController else {
-            //
-            //                fatalError("can't find AccountViewController")
-            //            }
-            //            //        AccountViewController
-            //            self.navigationController?.pushViewController(vc, animated: true)
-            
+            let currentUser = Auth.auth().currentUser
+            guard let user = currentUser else {
+                CustomFunc.customAlert(title: "無法取得使用者資料！", message: "", vc: self, actionHandler: nil)
+                return
+            }
+            self.uuid = user.uid
         }
     }
     
@@ -201,6 +223,7 @@ extension SignInViewController {
                                vc: self,
                                actionHandler: nil)
         
+        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
         
         guard let vc = self.storyboard?.instantiateViewController(
             withIdentifier: "AccountViewController") as? AccountViewController else {
@@ -240,3 +263,29 @@ extension SignInViewController {
     }
 }
 
+extension SignInViewController {
+    
+    func userState() {
+        
+        userFirebaseManager.fetchUserData(userID: uuid ?? "") { [weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userInfo = userModel
+                
+                print(self?.userInfo ?? "")
+                DispatchQueue.main.async {
+                    
+                    
+                    
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+    }
+}

@@ -13,14 +13,17 @@ struct UserModel: Codable {
     
     var userID: String?
     
-    var seedValue: Int? = 420
+    var seedValue: Int?
     
     var gender: String? 
     
-    var userAvatar: URL?
+    var userAvatar: String?
     
     var appliedTalent: [String?]
     
     var isAccepetedTalent: [String?]
     
+    var createdTime: Date?
+    
+    var email: String?
 }

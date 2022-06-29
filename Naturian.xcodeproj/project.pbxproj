@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F59A286A0BC80053777B /* SignInViewController.swift */; };
 		3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A0286AFF540053777B /* CustomFunc.swift */; };
+		3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A4286B5FAA0053777B /* ProfileVC.swift */; };
+		3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A7286BE7740053777B /* ProfileManager.swift */; };
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
 		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
@@ -93,6 +95,8 @@
 		3202F59A286A0BC80053777B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		3202F59D286A0D420053777B /* NaturianAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NaturianAPP.entitlements; sourceTree = "<group>"; };
 		3202F5A0286AFF540053777B /* CustomFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunc.swift; sourceTree = "<group>"; };
+		3202F5A4286B5FAA0053777B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		3202F5A7286BE7740053777B /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 			children = (
 				3202F59A286A0BC80053777B /* SignInViewController.swift */,
 				32078A642859837500FF2980 /* AccountViewController.swift */,
+				3202F5A4286B5FAA0053777B /* ProfileVC.swift */,
 				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
 				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
@@ -472,6 +477,7 @@
 			children = (
 				32550460285F3F350019A190 /* UserAccount.swift */,
 				325504782860130D0019A190 /* UserManager.swift */,
+				3202F5A7286BE7740053777B /* ProfileManager.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -687,6 +693,7 @@
 				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
 				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
 				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
+				3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */,
 				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
@@ -725,6 +732,7 @@
 				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
 				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,
 				325504792860130D0019A190 /* UserManager.swift in Sources */,
+				3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */,
 				32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */,
 				32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */,
 				32550461285F3F350019A190 /* UserAccount.swift in Sources */,

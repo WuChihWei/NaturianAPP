@@ -153,7 +153,7 @@ extension MyTalentAppliersVC: UITableViewDataSource {
             
         }
         
-        let photoUrl = userModels[indexPath.row].userAvatar
+        let photoUrl = URL(string: "\(userModels[indexPath.row].userAvatar ?? "")")
         
         cell.userName.text = userModels[indexPath.row].name
 

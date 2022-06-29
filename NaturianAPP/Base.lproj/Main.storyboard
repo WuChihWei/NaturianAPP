@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFb-GA-GSz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rAe-XA-8uM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -156,11 +156,11 @@
             <objects>
                 <viewController storyboardIdentifier="TalentManageViewController" id="slW-NA-3Ew" customClass="TalentManageViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VWE-bI-C3V">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-1G-4Rh">
-                                <rect key="frame" x="24" y="88" width="366" height="41"/>
+                                <rect key="frame" x="24" y="44" width="366" height="41"/>
                                 <color key="backgroundColor" red="0.32108381785351825" green="0.69412878787878785" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Qr3-Ia-Hle"/>
@@ -180,13 +180,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgF-AY-zsJ">
-                                <rect key="frame" x="0.0" y="152" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
                                 <connections>
                                     <segue destination="sfp-LK-gez" kind="embed" id="5hV-r8-d1A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxi-US-f5g">
-                                <rect key="frame" x="0.0" y="152" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
                                 <connections>
                                     <segue destination="IwG-L4-riO" kind="embed" id="qhn-Eb-Qnh"/>
                                 </connections>
@@ -738,6 +738,21 @@
             </objects>
             <point key="canvasLocation" x="1199" y="1941"/>
         </scene>
+        <!--ProfileVC-->
+        <scene sceneID="qDf-8k-yXm">
+            <objects>
+                <viewController restorationIdentifier="ProfileVC" storyboardIdentifier="ProfileVC" id="rAe-XA-8uM" customClass="ProfileVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U4g-Sk-9Sq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Tgr-xX-d81"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfS-4s-la1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="-2254"/>
+        </scene>
         <!--Account-->
         <scene sceneID="vEA-gp-dBI">
             <objects>
@@ -750,7 +765,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="cFM-WN-z8b"/>
+                        <segue destination="W9w-lt-GWv" kind="relationship" relationship="rootViewController" id="NqL-W4-kk0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fiQ-4G-Np1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -838,7 +853,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="sfp-LK-gez" customClass="MyTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aVZ-FW-QPJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CZY-b3-JbL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -857,7 +872,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="IwG-L4-riO" customClass="OtherTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElK-ac-hKK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="9V6-ay-Jlv"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -886,7 +901,7 @@
             <objects>
                 <viewController storyboardIdentifier="MyTalentAppliersVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyTalentAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPo-wO-n51">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UmD-8k-qXC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -905,7 +920,7 @@
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="cDs-UJ-N6H" customClass="PostTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKt-Vo-LK8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CJ9-jE-Bgf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -944,7 +959,7 @@
             <objects>
                 <viewController storyboardIdentifier="LocationPopUpVC" modalPresentationStyle="overCurrentContext" id="w3s-sq-TlQ" customClass="LocationPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2k-rQ-yeT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="690"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iAq-O1-yOO"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -959,7 +974,7 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpVC" modalPresentationStyle="overCurrentContext" id="3wM-nO-DyD" customClass="CategoryPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6T-HV-AUL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="690"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wbu-TP-vGJ"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

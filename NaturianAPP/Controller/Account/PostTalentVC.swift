@@ -12,14 +12,16 @@ import Kingfisher
 import JGProgressHUD
 import MBProgressHUD
 import SwiftUI
+import FirebaseAuth
 
 class PostTalentVC: UIViewController {
     
     var userManager = UserManager()
     var talentManager = TalentManager()
         
-    var userID = "2"
+    var userID = Auth.auth().currentUser?.uid
     var userModels: UserModel?
+    
     var categoryResult = ""
     var locationResult = ""
     
@@ -99,7 +101,7 @@ class PostTalentVC: UIViewController {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID) {
+        userManager.fetchUserData(userID: userID ?? "" ) {
             
             [weak self] result in
             
@@ -308,18 +310,21 @@ class PostTalentVC: UIViewController {
                             let talenPostID = self.talentManager.database.document().documentID
                             let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
                             let title = self.titleText.text
-                            let userID = "1" // 以後為登入後的userID
+                            let userID = self.userID
                             let content = self.descriptionText.text
                             let category = self.categoryResult
                             let location = self.locationResult
                             let seedValue = (self.seedValueText.text! as NSString).intValue
+                            
                             let userModel = UserModel(name: self.userModels?.name,
                                                       userID: self.userModels?.userID,
                                                       seedValue: self.userModels?.seedValue,
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
-                                                      appliedTalent: [],
-                                                      isAccepetedTalent: []
+                                                      appliedTalent: [""],
+                                                      isAccepetedTalent: [""],
+                                                      createdTime: self.userModels?.createdTime,
+                                                      email: self.userModels?.email
                             )
                             
                             let talenArticle = TalentArticle(talentPostID: talenPostID,
