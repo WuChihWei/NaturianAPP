@@ -20,41 +20,27 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setSignInWithAppleBtn()
+        // Do any additional setup after loading the view.
+        // After leaving app determine current user signed in before
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                guard let vc = self.storyboard?.instantiateViewController(
+                    withIdentifier: "AccountViewController") as? AccountViewController else {
+                    
+                    fatalError("can't find AccountViewController")
+                }
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                return
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        userState()
-        
-        if userInfo?.userID == Auth.auth().currentUser?.uid {
-            
-            return
-            
-        } else if userInfo?.userID != Auth.auth().currentUser?.uid {
-            
-            guard let vc = self.storyboard?.instantiateViewController(
-                withIdentifier: "ProfileVC") as? ProfileVC else {
-                
-                fatalError("can't find ProfileVC")
-            }
-            
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
-        if userInfo?.userID != Auth.auth().currentUser?.uid {
-            
-            guard let vc = self.storyboard?.instantiateViewController(
-                withIdentifier: "ProfileVC") as? ProfileVC else {
-                
-                fatalError("can't find ProfileVC")
-            }
-            
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        } else {
-            return
-        }
         
     }
     
@@ -277,7 +263,6 @@ extension SignInViewController {
                 
                 print(self?.userInfo ?? "")
                 DispatchQueue.main.async {
-                    
                     
                     
                     self?.viewDidLoad()

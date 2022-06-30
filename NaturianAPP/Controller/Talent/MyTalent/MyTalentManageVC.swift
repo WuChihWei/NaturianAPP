@@ -7,13 +7,14 @@
 
 import UIKit
 
-class TalentManageViewController: UIViewController {
+class MyTalentManageVC: UIViewController {
 
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var othersView: UIView!
     
     var userModel: UserModel!
     
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +28,7 @@ class TalentManageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = true
     }
     

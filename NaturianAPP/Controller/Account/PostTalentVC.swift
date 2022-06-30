@@ -18,7 +18,8 @@ class PostTalentVC: UIViewController {
     
     var userManager = UserManager()
     var talentManager = TalentManager()
-        
+    var photoManager = PhotoManager()
+
     var userID = Auth.auth().currentUser?.uid
     var userModels: UserModel?
     
@@ -124,49 +125,7 @@ class PostTalentVC: UIViewController {
     // MARK: setup camera enviroment
     @objc func tapPhoto(tapGestureRecognizer: UITapGestureRecognizer) {
         
-        let controller = UIAlertController(title: "Camera? Gallery? Album?", message: "", preferredStyle: .alert)
-        controller.view.tintColor = UIColor.gray
-        
-        // Camera
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
-            self.takePicture()
-        }
-        controller.addAction(cameraAction)
-        
-        // Photo
-        let photoLibraryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-            self.openPhotoLibrary()
-        }
-        controller.addAction(photoLibraryAction)
-        
-        // Gallery
-        let savedPhotoAlbumAction = UIAlertAction(title: "Album", style: .default) { _ in
-            self.openPhotosAlbum()
-        }
-        controller.addAction(savedPhotoAlbumAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        controller.addAction(cancelAction)
-        
-        self.present(controller, animated: true, completion: nil)
-    }
-    
-    // turn on camera
-    func takePicture() {
-        imagePickerController.sourceType = .camera
-        self.present(imagePickerController, animated: true)
-    }
-    
-    // turn on libary
-    func openPhotoLibrary() {
-        imagePickerController.sourceType = .photoLibrary
-        self.present(imagePickerController, animated: true)
-    }
-    
-    // turn on album
-    func openPhotosAlbum() {
-        imagePickerController.sourceType = .savedPhotosAlbum
-        self.present(imagePickerController, animated: true)
+        photoManager.tapPhoto(controller: self, alertText: "Choose Your Avatar", imagePickerController: imagePickerController)
     }
     
     func setUp() {

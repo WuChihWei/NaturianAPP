@@ -31,6 +31,7 @@ class MyTalentAppliersVC: UIViewController {
         setUp()
         style()
         layout()
+
 //                        fetchUserInfo()
 //        
 //                DispatchQueue.main.async {
@@ -42,8 +43,19 @@ class MyTalentAppliersVC: UIViewController {
         
         fetchUserInfo()
         tableView.reloadData()
+//        userModels.removeAll()
+
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        // fix the chat room's members, after back the room will += 1 issuee
+        userModels.removeAll()
+    }
+    
+    
+    
     override func viewDidLayoutSubviews() {
         
         tableView.layoutIfNeeded()

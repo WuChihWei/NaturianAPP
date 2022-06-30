@@ -10,6 +10,7 @@ import UIKit
 class TransferSeedVC: UIViewController {
     
     var scannerVC = ScannerVC()
+    var profileManager = UserFirebaseManager()
     
     var backButton = UIButton()
     var scanBarButton = UIButton()

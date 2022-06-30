@@ -11,7 +11,6 @@ class PopViewController: UIViewController {
     
     var userID: String = ""
     
-    
     @IBOutlet weak var backButton: UIButton!
     @IBAction func backbutton(_ sender: Any) {
         dismiss(animated: true)

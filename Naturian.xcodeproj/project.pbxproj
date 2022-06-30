@@ -77,7 +77,7 @@
 		327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */; };
 		327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */; };
 		327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C6285E231A001D6FB7 /* TalentFilterVC.swift */; };
-		32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */; };
+		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
 		32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */; };
 		32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86600285A12920090A49D /* MandarinString+Extension.swift */; };
@@ -165,7 +165,7 @@
 		327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentImageManager.swift; sourceTree = "<group>"; };
 		327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailViewController.swift; sourceTree = "<group>"; };
 		327614C6285E231A001D6FB7 /* TalentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterVC.swift; sourceTree = "<group>"; };
-		32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManageViewController.swift; sourceTree = "<group>"; };
+		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
 		32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentTableViewCell.swift; sourceTree = "<group>"; };
 		32C86600285A12920090A49D /* MandarinString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MandarinString+Extension.swift"; sourceTree = "<group>"; };
@@ -297,7 +297,6 @@
 				3202F59A286A0BC80053777B /* SignInViewController.swift */,
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				3202F5A4286B5FAA0053777B /* ProfileVC.swift */,
-				32B3ECC6285B94F600B5C16B /* TalentManageViewController.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
 				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
 				325504E02864D2750019A190 /* ScannerVC.swift */,
@@ -400,6 +399,7 @@
 		3255046F285FE8780019A190 /* MyTalent */ = {
 			isa = PBXGroup;
 			children = (
+				32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */,
 				32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */,
 				32550471285FF0500019A190 /* MyTalentAppliersVC.swift */,
 				32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */,
@@ -698,7 +698,7 @@
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
 				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
-				32B3ECC7285B94F600B5C16B /* TalentManageViewController.swift in Sources */,
+				32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */,
 				32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */,
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				325504B92864525A0019A190 /* ChatUser.swift in Sources */,

@@ -17,12 +17,9 @@ pod  'MBProgressHUD'
 pod 'GoogleSignIn'
 pod 'Firebase/Core'
 pod 'FirebaseAuth'
-pod 'AuthenticationServices'
-pod 'CryptoKit'
 pod 'MessageKit'
 pod 'FirebaseStorage'
 pod 'SDWebImage'
-pod 'BetterSegmentedControl', '~> 2.0'
-
+pod 'IQKeyboardManagerSwift'
 
 end

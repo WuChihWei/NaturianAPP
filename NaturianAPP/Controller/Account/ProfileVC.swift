@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 class GenderCell: UITableViewCell {
     
@@ -18,6 +20,7 @@ class ProfileVC: UIViewController {
     let userID = Auth.auth().currentUser?.uid
     
     var photoManager = PhotoManager()
+    var profileManager = UserFirebaseManager()
     let closeBtn = UIButton()
     var userImage = UIImageView()
     let logoImage = UIImageView()
@@ -34,6 +37,8 @@ class ProfileVC: UIViewController {
     var profileModels: UserModel!
     let imagePickerController = UIImagePickerController()
 
+    var genderResult = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +67,7 @@ class ProfileVC: UIViewController {
         userImage.lkCornerRadius = userImage.bounds.height / 2
         userImage.lkBorderColor = .NaturianColor.treatmentGreen
         userImage.lkBorderWidth = 4
+        userImage.contentMode = .scaleAspectFill
         
         nameTextField.lkCornerRadius = 15
         genderButton.lkCornerRadius = 15
@@ -75,14 +81,78 @@ class ProfileVC: UIViewController {
         dataSource = ["Male", "Female",
         "Undefined"]
         
-        addTransparentManager.addWithoutTransparent(radius: 15, tableView: tableView, view: self.view, frames: genderButton.frame)
+        addTransparentManager.addWithoutTransparent(radius: 15, tableView: tableView,
+                                                    view: self.view,
+                                                    frames: genderButton.frame)
     }
     
     @objc func selecetPhoto() {
-        photoManager.tapPhoto(controller: self, alertText: "Choose Your Avatar", imagePickerController: imagePickerController)
+        
+        photoManager.tapPhoto(controller: self,
+                              alertText: "Choose Your Avatar",
+                              imagePickerController: imagePickerController)
     }
     
     @objc func upDate() {
+        
+        let imageData = self.userImage.image?.jpegData(compressionQuality: 0.8)
+        
+        guard imageData != nil else {
+            return
+        }
+        
+        let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
+        
+        if let data = imageData {
+            
+            fileReference.putData(data, metadata: nil) { result in
+                
+                switch result {
+                    
+                case .success(_):
+                    
+                    fileReference.downloadURL { result in
+                        switch result {
+                            
+                        case .success(let url):
+                            
+//                            let url = URL(string: "myphotoapp:Vacation?index=1")
+                            guard let name = self.nameTextField.text else {return}
+                            guard let userID = self.userID else {return}
+                            let gender = self.genderResult
+                            let userAvatar = "\(url)"
+//                            let createdTime = Date()
+                            guard let email = Auth.auth().currentUser?.email else {return}
+
+//                            let userInfo = UserModel(name: name,
+//                                                         userID: userID,
+//                                                         seedValue: 420,
+//                                                         gender: gender,
+//                                                         userAvatar: userAvatar,
+//                                                         appliedTalent: [],
+//                                                         isAccepetedTalent: [],
+//                                                         createdTime: createdTime,
+//                                                         email: email
+//                            )
+//
+                            self.profileManager.replaceData(name: name, uid: userID, email: email, gender: gender, userAvatar: userAvatar)
+
+                        case .failure(_):
+                            break
+                        }
+                    }
+                    
+                case .failure(_):
+                    break
+                }
+            }
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func closePage() {
+        
+        dismiss(animated: true)
     }
     
     func setup() {
@@ -90,6 +160,7 @@ class ProfileVC: UIViewController {
         photoButton.addTarget(self, action: #selector(selecetPhoto), for: .touchUpInside)
         genderButton.addTarget(self, action: #selector(clickGender(_:)), for: .touchUpInside)
         comfirmButton.addTarget(self, action: #selector(upDate), for: .touchUpInside)
+        closeBtn.addTarget(self, action: #selector(closePage), for: .touchUpInside)
     }
     
     func style() {
@@ -233,6 +304,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         cell.textLabel?.textAlignment = .left
         cell.selectionStyle = .none
+        self.genderResult = dataSource[indexPath.row]
         return cell
     }
     
