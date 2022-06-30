@@ -48,27 +48,6 @@ class MyTalentViewController: UIViewController {
         tableView.layoutIfNeeded()
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
-
-//    func fetchTalentArticle() {
-//
-//        talentManager.fetchData { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let talentArticles):
-//
-//                self?.talentArticles = talentArticles
-//
-//                self?.tableView.reloadData()
-//
-//            case .failure:
-//
-//                print("can't fetch data")
-//            }
-//        }
-//
-//        print(LocalizedError.self)
-//    }
     
         func fetchMyTalentArticle() {
     
@@ -161,7 +140,7 @@ extension MyTalentViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell( withIdentifier:     MyTalentTableViewCell.identifer,
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: MyTalentTableViewCell.identifer,
             for: indexPath) as? MyTalentTableViewCell else {
             
             fatalError("can't find TalentLobbyTableViewCell")
