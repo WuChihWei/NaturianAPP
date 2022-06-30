@@ -1,0 +1,19 @@
+excluded:  # 執行 linting 時忽略的路徑。 優先級比 `included` 更高。
+- Pods # 忽略通過CocoaPods倒入的第三方庫
+#- Source/ExcludedFolder       # 指定精確路徑下的目錄
+#- Source/ExcludedFile.swift   # 指定精確路徑下的文件
+disabled_rules: # 執行時排除掉的規則
+- identifier_name    # 命名規則必須按照駝峰原則，與後臺傳的Json字段命名衝突，建議排除掉
+- trailing_whitespace   # 每一個空行不能有空格，會與Xcode換行後自動對齊生成的空格衝突，建議排除掉
+force_cast: warning # 類型判斷
+force_try: warning # try語句判斷
+cyclomatic_complexity: 20 #代碼複雜度,默認為10
+line_length:  # 單行代碼長度,默認error 120
+warning: 120
+error: 200
+file_length:  # 文件長度
+warning: 500
+error: 1200
+function_body_length: # 函數體長度
+warning: 100
+error: 300

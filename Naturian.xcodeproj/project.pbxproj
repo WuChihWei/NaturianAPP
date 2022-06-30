@@ -1,0 +1,983 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F59A286A0BC80053777B /* SignInViewController.swift */; };
+		3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A0286AFF540053777B /* CustomFunc.swift */; };
+		3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A4286B5FAA0053777B /* ProfileVC.swift */; };
+		3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A7286BE7740053777B /* ProfileManager.swift */; };
+		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
+		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
+		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
+		32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A66285989E200FF2980 /* UIView+Extension.swift */; };
+		32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6828598E9800FF2980 /* UIScreen+Extension.swift */; };
+		32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */; };
+		32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */; };
+		32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A702859C47E00FF2980 /* ExploreViewController.swift */; };
+		32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A722859E82900FF2980 /* ForumLobbyViewController.swift */; };
+		32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */; };
+		32138B252858860200916700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B242858860200916700 /* AppDelegate.swift */; };
+		32138B272858860200916700 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32138B262858860200916700 /* SceneDelegate.swift */; };
+		32138B2C2858860200916700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B2A2858860200916700 /* Main.storyboard */; };
+		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
+		32138B312858860400916700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32138B302858860400916700 /* Assets.xcassets */; };
+		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
+		3221453D2866153F00D46503 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453C2866153F00D46503 /* PopViewController.swift */; };
+		3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453E2866A2D600D46503 /* CustomSlider.swift */; };
+		322145442867348E00D46503 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322145432867348E00D46503 /* UIColor+Extension.swift */; };
+		3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221454528673D2900D46503 /* UIFont+Extension.swift */; };
+		322145552867678C00D46503 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145482867678B00D46503 /* Roboto-Medium.ttf */; };
+		322145562867678C00D46503 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145492867678B00D46503 /* Roboto-Light.ttf */; };
+		322145572867678C00D46503 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454A2867678B00D46503 /* Roboto-Regular.ttf */; };
+		322145582867678C00D46503 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */; };
+		322145592867678C00D46503 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */; };
+		3221455A2867678C00D46503 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */; };
+		3221455B2867678C00D46503 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */; };
+		3221455C2867678C00D46503 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3221454F2867678B00D46503 /* Roboto-Italic.ttf */; };
+		3221455D2867678C00D46503 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 322145502867678B00D46503 /* LICENSE.txt */; };
+		3221455E2867678C00D46503 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145512867678B00D46503 /* Roboto-BlackItalic.ttf */; };
+		3221455F2867678C00D46503 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145522867678B00D46503 /* Roboto-Bold.ttf */; };
+		322145602867678C00D46503 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145532867678B00D46503 /* Roboto-Thin.ttf */; };
+		322145612867678C00D46503 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145542867678B00D46503 /* Roboto-Black.ttf */; };
+		322145642868017B00D46503 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322145632868017B00D46503 /* ChatManager.swift */; };
+		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
+		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
+		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
+		32550461285F3F350019A190 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550460285F3F350019A190 /* UserAccount.swift */; };
+		32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */; };
+		3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */; };
+		3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255046B285F88250019A190 /* KingFisherWrapper.swift */; };
+		3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255046D285F89280019A190 /* MJRefreshWrapper.swift */; };
+		32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550471285FF0500019A190 /* MyTalentAppliersVC.swift */; };
+		32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */; };
+		32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */; };
+		325504792860130D0019A190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504782860130D0019A190 /* UserManager.swift */; };
+		3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047A286094570019A190 /* OtherTalentViewController.swift */; };
+		3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047D286095770019A190 /* OtherTalentTableViewCell.swift */; };
+		325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047F2862B22E0019A190 /* TransparentViewManager.swift */; };
+		325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504812862BB3F0019A190 /* TalentFilterModel.swift */; };
+		325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AA286372600019A190 /* CategoryPopUpVC.swift */; };
+		325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AC2863727C0019A190 /* LocationPopUpVC.swift */; };
+		325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */; };
+		325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B2286373F60019A190 /* LocationPopTableViewCell.swift */; };
+		325504B5286451C70019A190 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B4286451C70019A190 /* ChatViewController.swift */; };
+		325504B72864524B0019A190 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B62864524B0019A190 /* Chat.swift */; };
+		325504B92864525A0019A190 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504B8286452590019A190 /* ChatUser.swift */; };
+		325504BB286452680019A190 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504BA286452680019A190 /* Message.swift */; };
+		325504E12864D2750019A190 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504E02864D2750019A190 /* ScannerVC.swift */; };
+		327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */; };
+		327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614BE285D961F001D6FB7 /* TalentManager.swift */; };
+		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
+		327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */; };
+		327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */; };
+		327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C6285E231A001D6FB7 /* TalentFilterVC.swift */; };
+		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
+		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
+		32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */; };
+		32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86600285A12920090A49D /* MandarinString+Extension.swift */; };
+		32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86602285A12E70090A49D /* UITextField+Extension.swift */; };
+		32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86604285A48250090A49D /* PostArticleViewController.swift */; };
+		32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86606285AC8C60090A49D /* ForumDetailViewController.swift */; };
+		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
+		32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* PostArticleModel.swift */; };
+		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
+		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
+		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3202F59A286A0BC80053777B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3202F59D286A0D420053777B /* NaturianAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NaturianAPP.entitlements; sourceTree = "<group>"; };
+		3202F5A0286AFF540053777B /* CustomFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunc.swift; sourceTree = "<group>"; };
+		3202F5A4286B5FAA0053777B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		3202F5A7286BE7740053777B /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
+		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
+		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		32078A66285989E200FF2980 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		32078A6828598E9800FF2980 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCollectionViewCell.swift; sourceTree = "<group>"; };
+		32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewCell.swift; sourceTree = "<group>"; };
+		32078A702859C47E00FF2980 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		32078A722859E82900FF2980 /* ForumLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumLobbyViewController.swift; sourceTree = "<group>"; };
+		32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		32138B212858860200916700 /* NaturianAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaturianAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32138B242858860200916700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		32138B262858860200916700 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		32138B2B2858860200916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		32138B2E2858860200916700 /* NaturianAPP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NaturianAPP.xcdatamodel; sourceTree = "<group>"; };
+		32138B302858860400916700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
+		3221453C2866153F00D46503 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
+		3221453E2866A2D600D46503 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		322145432867348E00D46503 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		3221454528673D2900D46503 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		322145482867678B00D46503 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		322145492867678B00D46503 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3221454A2867678B00D46503 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		3221454F2867678B00D46503 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		322145502867678B00D46503 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		322145512867678B00D46503 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		322145522867678B00D46503 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		322145532867678B00D46503 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		322145542867678B00D46503 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		322145632868017B00D46503 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		32550460285F3F350019A190 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentDidAcceptVC.swift; sourceTree = "<group>"; };
+		32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
+		3255046B285F88250019A190 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
+		3255046D285F89280019A190 /* MJRefreshWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefreshWrapper.swift; sourceTree = "<group>"; };
+		32550471285FF0500019A190 /* MyTalentAppliersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentAppliersVC.swift; sourceTree = "<group>"; };
+		32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentAppliersTableViewCell.swift; sourceTree = "<group>"; };
+		32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentDidAcceptTableViewCell.swift; sourceTree = "<group>"; };
+		325504782860130D0019A190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		3255047A286094570019A190 /* OtherTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentViewController.swift; sourceTree = "<group>"; };
+		3255047D286095770019A190 /* OtherTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentTableViewCell.swift; sourceTree = "<group>"; };
+		3255047F2862B22E0019A190 /* TransparentViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentViewManager.swift; sourceTree = "<group>"; };
+		325504812862BB3F0019A190 /* TalentFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterModel.swift; sourceTree = "<group>"; };
+		325504AA286372600019A190 /* CategoryPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpVC.swift; sourceTree = "<group>"; };
+		325504AC2863727C0019A190 /* LocationPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpVC.swift; sourceTree = "<group>"; };
+		325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopTableViewCell.swift; sourceTree = "<group>"; };
+		325504B2286373F60019A190 /* LocationPopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopTableViewCell.swift; sourceTree = "<group>"; };
+		325504B4286451C70019A190 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		325504B62864524B0019A190 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		325504B8286452590019A190 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		325504BA286452680019A190 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		325504E02864D2750019A190 /* ScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
+		327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		327614BE285D961F001D6FB7 /* TalentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentManager.swift; sourceTree = "<group>"; };
+		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
+		327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentImageManager.swift; sourceTree = "<group>"; };
+		327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailViewController.swift; sourceTree = "<group>"; };
+		327614C6285E231A001D6FB7 /* TalentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterVC.swift; sourceTree = "<group>"; };
+		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
+		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
+		32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentTableViewCell.swift; sourceTree = "<group>"; };
+		32C86600285A12920090A49D /* MandarinString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MandarinString+Extension.swift"; sourceTree = "<group>"; };
+		32C86602285A12E70090A49D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		32C86604285A48250090A49D /* PostArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleViewController.swift; sourceTree = "<group>"; };
+		32C86606285AC8C60090A49D /* ForumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailViewController.swift; sourceTree = "<group>"; };
+		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
+		32C8660E285AD56D0090A49D /* PostArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArticleModel.swift; sourceTree = "<group>"; };
+		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
+		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
+		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32138B1E2858860200916700 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32078A52285957F600FF2980 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32078A632859835400FF2980 /* Account */,
+				325504A9286372370019A190 /* PopOutView */,
+				325504BC28646C040019A190 /* Chat */,
+				32078A612859832B00FF2980 /* Talent */,
+				32078A622859834600FF2980 /* Explore */,
+				32078A5E2859817000FF2980 /* Forum */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		32078A532859580E00FF2980 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				325504E22864D2860019A190 /* ChatModel */,
+				327614BC285D9573001D6FB7 /* Account */,
+				327614BB285D9563001D6FB7 /* Talent */,
+				327614BD285D957E001D6FB7 /* Explore */,
+				32C86613285B20CC0090A49D /* Forum */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32078A5828597AF800FF2980 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6828598E9800FF2980 /* UIScreen+Extension.swift */,
+				32078A66285989E200FF2980 /* UIView+Extension.swift */,
+				32C86600285A12920090A49D /* MandarinString+Extension.swift */,
+				32C86602285A12E70090A49D /* UITextField+Extension.swift */,
+				32276D9E28654784008695E3 /* UIImage+Extension.swift */,
+				3221453E2866A2D600D46503 /* CustomSlider.swift */,
+				322145432867348E00D46503 /* UIColor+Extension.swift */,
+				3221454528673D2900D46503 /* UIFont+Extension.swift */,
+				3202F5A0286AFF540053777B /* CustomFunc.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		32078A5928597B1A00FF2980 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6D2859C44800FF2980 /* Explore */,
+				32B3ECCD285B98D400B5C16B /* Talent */,
+				32078A6A2859952900FF2980 /* Forum */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32078A5A28597D6700FF2980 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		32078A5B28597DCB00FF2980 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3255045E285F0B5A0019A190 /* PhotoManager.swift */,
+				3255047F2862B22E0019A190 /* TransparentViewManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		32078A5E2859817000FF2980 /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32078A5C2859816B00FF2980 /* ForumViewController.swift */,
+				32078A722859E82900FF2980 /* ForumLobbyViewController.swift */,
+				32C86604285A48250090A49D /* PostArticleViewController.swift */,
+				32C86606285AC8C60090A49D /* ForumDetailViewController.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		32078A612859832B00FF2980 /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				32078A5F2859832500FF2980 /* TalentLobbyVC.swift */,
+				327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */,
+				327614C6285E231A001D6FB7 /* TalentFilterVC.swift */,
+				3255046F285FE8780019A190 /* MyTalent */,
+				32550470285FE8960019A190 /* OtherTalent */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		32078A622859834600FF2980 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				32078A702859C47E00FF2980 /* ExploreViewController.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		32078A632859835400FF2980 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				3202F59A286A0BC80053777B /* SignInViewController.swift */,
+				32078A642859837500FF2980 /* AccountViewController.swift */,
+				3202F5A4286B5FAA0053777B /* ProfileVC.swift */,
+				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
+				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
+				325504E02864D2750019A190 /* ScannerVC.swift */,
+				3221453C2866153F00D46503 /* PopViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		32078A6A2859952900FF2980 /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */,
+				32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */,
+				32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		32078A6D2859C44800FF2980 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				32078A6E2859C46100FF2980 /* ExploreCollectionViewCell.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		32138B182858860200916700 = {
+			isa = PBXGroup;
+			children = (
+				32138B232858860200916700 /* NaturianAPP */,
+				322145472867678B00D46503 /* Roboto */,
+				32138B222858860200916700 /* Products */,
+				BF64B4D2C82161FD45A69DD7 /* Pods */,
+				AD191C2C55B9D742F5BC961D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		32138B222858860200916700 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32138B212858860200916700 /* NaturianAPP.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32138B232858860200916700 /* NaturianAPP */ = {
+			isa = PBXGroup;
+			children = (
+				3202F59D286A0D420053777B /* NaturianAPP.entitlements */,
+				327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */,
+				32138B242858860200916700 /* AppDelegate.swift */,
+				32138B262858860200916700 /* SceneDelegate.swift */,
+				32550468285F87A90019A190 /* Third Party Wrapper */,
+				32078A5828597AF800FF2980 /* Extension */,
+				32078A5B28597DCB00FF2980 /* Manager */,
+				32078A5A28597D6700FF2980 /* Resource */,
+				32078A532859580E00FF2980 /* Model */,
+				32078A52285957F600FF2980 /* Controller */,
+				32078A5928597B1A00FF2980 /* View */,
+				32138B2A2858860200916700 /* Main.storyboard */,
+				32138B302858860400916700 /* Assets.xcassets */,
+				32138B322858860400916700 /* LaunchScreen.storyboard */,
+				32138B352858860400916700 /* Info.plist */,
+				32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */,
+				3255043A285F08F00019A190 /* CustomButton.swift */,
+			);
+			path = NaturianAPP;
+			sourceTree = "<group>";
+		};
+		322145472867678B00D46503 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				322145482867678B00D46503 /* Roboto-Medium.ttf */,
+				322145492867678B00D46503 /* Roboto-Light.ttf */,
+				3221454A2867678B00D46503 /* Roboto-Regular.ttf */,
+				3221454B2867678B00D46503 /* Roboto-MediumItalic.ttf */,
+				3221454C2867678B00D46503 /* Roboto-ThinItalic.ttf */,
+				3221454D2867678B00D46503 /* Roboto-BoldItalic.ttf */,
+				3221454E2867678B00D46503 /* Roboto-LightItalic.ttf */,
+				3221454F2867678B00D46503 /* Roboto-Italic.ttf */,
+				322145502867678B00D46503 /* LICENSE.txt */,
+				322145512867678B00D46503 /* Roboto-BlackItalic.ttf */,
+				322145522867678B00D46503 /* Roboto-Bold.ttf */,
+				322145532867678B00D46503 /* Roboto-Thin.ttf */,
+				322145542867678B00D46503 /* Roboto-Black.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		32550468285F87A90019A190 /* Third Party Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				32550469285F87CB0019A190 /* JGProgressHUDWrapper.swift */,
+				3255046B285F88250019A190 /* KingFisherWrapper.swift */,
+				3255046D285F89280019A190 /* MJRefreshWrapper.swift */,
+			);
+			path = "Third Party Wrapper";
+			sourceTree = "<group>";
+		};
+		3255046F285FE8780019A190 /* MyTalent */ = {
+			isa = PBXGroup;
+			children = (
+				32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */,
+				32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */,
+				32550471285FF0500019A190 /* MyTalentAppliersVC.swift */,
+				32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */,
+			);
+			path = MyTalent;
+			sourceTree = "<group>";
+		};
+		32550470285FE8960019A190 /* OtherTalent */ = {
+			isa = PBXGroup;
+			children = (
+				3255047A286094570019A190 /* OtherTalentViewController.swift */,
+			);
+			path = OtherTalent;
+			sourceTree = "<group>";
+		};
+		32550473285FF10B0019A190 /* MyTalent */ = {
+			isa = PBXGroup;
+			children = (
+				32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */,
+				32550474285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift */,
+				32550476285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift */,
+			);
+			path = MyTalent;
+			sourceTree = "<group>";
+		};
+		3255047C286094FB0019A190 /* OtherTalent */ = {
+			isa = PBXGroup;
+			children = (
+				3255047D286095770019A190 /* OtherTalentTableViewCell.swift */,
+			);
+			path = OtherTalent;
+			sourceTree = "<group>";
+		};
+		325504A9286372370019A190 /* PopOutView */ = {
+			isa = PBXGroup;
+			children = (
+				325504AA286372600019A190 /* CategoryPopUpVC.swift */,
+				325504AC2863727C0019A190 /* LocationPopUpVC.swift */,
+			);
+			path = PopOutView;
+			sourceTree = "<group>";
+		};
+		325504BC28646C040019A190 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				325504B4286451C70019A190 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		325504E22864D2860019A190 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				322145632868017B00D46503 /* ChatManager.swift */,
+				325504B8286452590019A190 /* ChatUser.swift */,
+				325504B62864524B0019A190 /* Chat.swift */,
+				325504BA286452680019A190 /* Message.swift */,
+			);
+			path = ChatModel;
+			sourceTree = "<group>";
+		};
+		327614BB285D9563001D6FB7 /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				327614BE285D961F001D6FB7 /* TalentManager.swift */,
+				327614C2285DF191001D6FB7 /* PostTalentImageManager.swift */,
+				327614C0285D99CF001D6FB7 /* TalentArticle.swift */,
+				325504812862BB3F0019A190 /* TalentFilterModel.swift */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		327614BC285D9573001D6FB7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				32550460285F3F350019A190 /* UserAccount.swift */,
+				325504782860130D0019A190 /* UserManager.swift */,
+				3202F5A7286BE7740053777B /* ProfileManager.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		327614BD285D957E001D6FB7 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		32B3ECCD285B98D400B5C16B /* Talent */ = {
+			isa = PBXGroup;
+			children = (
+				32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */,
+				325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */,
+				325504B2286373F60019A190 /* LocationPopTableViewCell.swift */,
+				3255047C286094FB0019A190 /* OtherTalent */,
+				32550473285FF10B0019A190 /* MyTalent */,
+			);
+			path = Talent;
+			sourceTree = "<group>";
+		};
+		32C86613285B20CC0090A49D /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				32C8660E285AD56D0090A49D /* PostArticleModel.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		AD191C2C55B9D742F5BC961D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF64B4D2C82161FD45A69DD7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */,
+				7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32138B202858860200916700 /* NaturianAPP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32138B382858860400916700 /* Build configuration list for PBXNativeTarget "NaturianAPP" */;
+			buildPhases = (
+				A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */,
+				32138B1D2858860200916700 /* Sources */,
+				32138B1E2858860200916700 /* Frameworks */,
+				32138B1F2858860200916700 /* Resources */,
+				32078A512858C56300FF2980 /* ShellScript */,
+				BAF5EAE99017428B49E5BC3D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NaturianAPP;
+			productName = NaturianAPP;
+			productReference = 32138B212858860200916700 /* NaturianAPP.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32138B192858860200916700 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					32138B202858860200916700 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 32138B1C2858860200916700 /* Build configuration list for PBXProject "Naturian" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 32138B182858860200916700;
+			productRefGroup = 32138B222858860200916700 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32138B202858860200916700 /* NaturianAPP */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32138B1F2858860200916700 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				322145602867678C00D46503 /* Roboto-Thin.ttf in Resources */,
+				322145552867678C00D46503 /* Roboto-Medium.ttf in Resources */,
+				3221455C2867678C00D46503 /* Roboto-Italic.ttf in Resources */,
+				3221455F2867678C00D46503 /* Roboto-Bold.ttf in Resources */,
+				3221455B2867678C00D46503 /* Roboto-LightItalic.ttf in Resources */,
+				322145612867678C00D46503 /* Roboto-Black.ttf in Resources */,
+				3221455E2867678C00D46503 /* Roboto-BlackItalic.ttf in Resources */,
+				322145572867678C00D46503 /* Roboto-Regular.ttf in Resources */,
+				32138B342858860400916700 /* LaunchScreen.storyboard in Resources */,
+				3221455D2867678C00D46503 /* LICENSE.txt in Resources */,
+				322145562867678C00D46503 /* Roboto-Light.ttf in Resources */,
+				322145582867678C00D46503 /* Roboto-MediumItalic.ttf in Resources */,
+				327614BA285D7EF5001D6FB7 /* GoogleService-Info.plist in Resources */,
+				322145592867678C00D46503 /* Roboto-ThinItalic.ttf in Resources */,
+				32138B312858860400916700 /* Assets.xcassets in Resources */,
+				3221455A2867678C00D46503 /* Roboto-BoldItalic.ttf in Resources */,
+				32138B2C2858860200916700 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32078A512858C56300FF2980 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NaturianAPP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAF5EAE99017428B49E5BC3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32138B1D2858860200916700 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */,
+				32138B252858860200916700 /* AppDelegate.swift in Sources */,
+				3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */,
+				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
+				325504B72864524B0019A190 /* Chat.swift in Sources */,
+				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
+				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
+				3255043B285F08F00019A190 /* CustomButton.swift in Sources */,
+				32078A6C2859955A00FF2980 /* ForumCollectionViewCell.swift in Sources */,
+				32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */,
+				325504BB286452680019A190 /* Message.swift in Sources */,
+				32550475285FF15C0019A190 /* MyTalentAppliersTableViewCell.swift in Sources */,
+				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
+				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
+				325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */,
+				325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */,
+				322145642868017B00D46503 /* ChatManager.swift in Sources */,
+				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
+				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
+				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
+				3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */,
+				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
+				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
+				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
+				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
+				32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */,
+				32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */,
+				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
+				325504B92864525A0019A190 /* ChatUser.swift in Sources */,
+				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
+				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
+				32550477285FF1730019A190 /* MyTalentDidAcceptTableViewCell.swift in Sources */,
+				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
+				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
+				3255046A285F87CB0019A190 /* JGProgressHUDWrapper.swift in Sources */,
+				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
+				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
+				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
+				325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */,
+				3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */,
+				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
+				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
+				32C8660F285AD56D0090A49D /* PostArticleModel.swift in Sources */,
+				327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */,
+				3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */,
+				3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */,
+				327614C3285DF191001D6FB7 /* PostTalentImageManager.swift in Sources */,
+				32C86607285AC8C60090A49D /* ForumDetailViewController.swift in Sources */,
+				32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */,
+				3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */,
+				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
+				322145442867348E00D46503 /* UIColor+Extension.swift in Sources */,
+				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
+				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
+				325504E12864D2750019A190 /* ScannerVC.swift in Sources */,
+				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,
+				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
+				32550472285FF0500019A190 /* MyTalentAppliersVC.swift in Sources */,
+				325504792860130D0019A190 /* UserManager.swift in Sources */,
+				3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */,
+				32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */,
+				32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */,
+				32550461285F3F350019A190 /* UserAccount.swift in Sources */,
+				32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		32138B2A2858860200916700 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32138B2B2858860200916700 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		32138B322858860400916700 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32138B332858860400916700 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32138B362858860400916700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		32138B372858860400916700 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32138B392858860400916700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NaturianAPP/NaturianAPP.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = LLW367JD7R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		32138B3A2858860400916700 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NaturianAPP/NaturianAPP.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = LLW367JD7R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NaturianAPP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Naturian;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JordanWu.NaturianAPP;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32138B1C2858860200916700 /* Build configuration list for PBXProject "Naturian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32138B362858860400916700 /* Debug */,
+				32138B372858860400916700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32138B382858860400916700 /* Build configuration list for PBXNativeTarget "NaturianAPP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32138B392858860400916700 /* Debug */,
+				32138B3A2858860400916700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				32138B2E2858860200916700 /* NaturianAPP.xcdatamodel */,
+			);
+			currentVersion = 32138B2E2858860200916700 /* NaturianAPP.xcdatamodel */;
+			path = NaturianAPP.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 32138B192858860200916700 /* Project object */;
+}
