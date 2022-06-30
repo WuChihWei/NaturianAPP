@@ -142,12 +142,7 @@ class UserFirebaseManager {
         }
     }
     
-    func updateSeedValue(uid: String, seedValue: Int) {
-        
-//        let data: [String: Any] = [
-//
-//            "seedValue": seedValue
-//        ]
+    func updateSeedValue(uid: String, seedValue: Int, completion: @escaping (Result<Void, Error>) -> Void){
         
         db.document(uid).updateData(["seedValue": seedValue]){ error in
             
@@ -155,6 +150,7 @@ class UserFirebaseManager {
                 print(error)
             } else {
                 print("Document Update!")
+                completion(.success(()))
             }
         }
     }

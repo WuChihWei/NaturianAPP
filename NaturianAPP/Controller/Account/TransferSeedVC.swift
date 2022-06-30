@@ -40,7 +40,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var otherSeedValue: Int = 0
     var transferValue: Int = 0
-
+    
     var remainValue: Int = 0 {
         
         didSet {
@@ -83,10 +83,27 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     @objc func updateSeedValue() {
         
-        profileManager.updateSeedValue(uid: otherUserModels?.userID ?? "", seedValue: otherSeedValue)
+        profileManager.updateSeedValue(uid: otherUserModels?.userID ?? "",
+                                       seedValue: otherSeedValue) { [weak self] result in
+            switch result {
+            case .success:
+                
+                self?.profileManager.updateSeedValue(uid: self?.currentUserModels?.userID ?? "",
+                                                     seedValue: self?.remainValue ?? 0) { [weak self] result in
+                    switch result {
+                    case .success:
+                        self?.dismiss(animated: true)
+                        
+                    case .failure:
+                        print("can't fetch data")
+                    }
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
         
-        profileManager.updateSeedValue(uid: currentUserModels?.userID ?? "", seedValue: remainValue)
-
     }
     
     @objc func scanBarTapped() {
@@ -113,7 +130,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         
         print("+++++\(otherSeedValue)")
         print("+++++\(remainValue)")
-
+        
         if remainValue < 0 {
             
             let alertController = UIAlertController(
@@ -203,7 +220,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         tranferButton.setTitleColor(.white, for: .normal)
         tranferButton.backgroundColor = UIColor.NaturianColor.treatmentGreen
         tranferButton.alpha = 0.8
-//        tranferButton.isEnabled = false
+        //        tranferButton.isEnabled = false
         tranferButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         
         cancelButton.setTitle("Cancel", for: .normal)
