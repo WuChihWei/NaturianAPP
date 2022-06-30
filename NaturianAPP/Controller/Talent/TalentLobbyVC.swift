@@ -207,4 +207,3 @@ extension TalentLobbyVC: TalentFilterDelegate {
         tableView.reloadData()
     }
 }
-

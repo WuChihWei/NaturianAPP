@@ -7,20 +7,22 @@
 
 import UIKit
 
-class TransferSeedVC: UIViewController {
+class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var scannerVC = ScannerVC()
     var profileManager = UserFirebaseManager()
+    var otherUserModels: UserModel!
+    var currentUserModels: UserModel!
     
     var backButton = UIButton()
     var scanBarButton = UIButton()
     let transferToLabel = UILabel()
     
     let nameLabel = UILabel()
-    let iDLabel = UILabel()
+    let userNameLB = UILabel()
     
     var userNameLabel = UILabel()
-    var userIDLabel = UILabel()
+    var findOtherNameLB = UILabel()
     
     var remainSeedLabel = UILabel()
     var seedTextField = UITextField()
@@ -36,11 +38,23 @@ class TransferSeedVC: UIViewController {
     let seedstack = UIStackView()
     let actStack = UIStackView()
     
-    var userID: String = ""
+    var otherSeedValue: Int = 0
+    var transferValue: Int = 0
+
+    var remainValue: Int = 0 {
+        
+        didSet {
+            
+            remainSeedValue.text = "\(String(describing: remainValue))"
+            print(remainValue)
+        }
+    }
     
+    var userID: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        seedTextField.delegate = self
         tabBarController?.tabBar.isHidden = true
         
         view.backgroundColor = UIColor.NaturianColor.lightGray
@@ -67,9 +81,16 @@ class TransferSeedVC: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    @objc func updateSeedValue() {
+        
+        profileManager.updateSeedValue(uid: otherUserModels?.userID ?? "", seedValue: otherSeedValue)
+        
+        profileManager.updateSeedValue(uid: currentUserModels?.userID ?? "", seedValue: remainValue)
+
+    }
+    
     @objc func scanBarTapped() {
-        //        navigationController?.dismiss(animated: true)
-        //        self.dismiss(animated: true, completion: nil)
+        
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ScannerVC") as? ScannerVC else {
             
@@ -79,15 +100,55 @@ class TransferSeedVC: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    @objc func didDismiss() {
+        dismiss(animated: true)
+    }
+    
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        transferValue = Int("\(seedTextField.text!)") ?? 0
+        
+        remainValue = (currentUserModels?.seedValue ?? 0) - transferValue
+        otherSeedValue = (otherUserModels?.seedValue ?? 0) + transferValue
+        
+        print("+++++\(otherSeedValue)")
+        print("+++++\(remainValue)")
+
+        if remainValue < 0 {
+            
+            let alertController = UIAlertController(
+                title: "Insufficient Balance",
+                message: "Please Reset The Seed Value",
+                preferredStyle: .alert)
+            
+            // 建立[確認]按鈕
+            let okAction = UIAlertAction(
+                title: "Comfirm",
+                style: .destructive,
+                handler: { (_: UIAlertAction!) -> Void in self.seedTextField.text = "0"
+                })
+            
+            alertController.addAction(okAction)
+            
+            self.present(
+                alertController,
+                animated: true,
+                completion: nil)
+            
+        } else {
+            
+            remainSeedValue.text = "\(String(describing: remainValue))"
+        }
+    }
+    
     func setup() {
+        
+        tranferButton.addTarget(self, action: #selector(updateSeedValue), for: .touchUpInside)
         scanBarButton.addTarget(self, action: #selector(scanBarTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(didDismiss), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(didDismiss), for: .touchUpInside)
         navigationController?.navigationBar.isHidden = true
-    }
-    
-    @objc func didDismiss() {
-        dismiss(animated: true)
+        seedTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
     }
     
     func style() {
@@ -104,31 +165,26 @@ class TransferSeedVC: UIViewController {
         transferToLabel.textAlignment = .center
         transferToLabel.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         
-        nameLabel.text = "User Name :"
+        nameLabel.text = "NATURIAN"
         nameLabel.font = UIFont(name: Roboto.bold.rawValue, size: 24)
         nameLabel.textAlignment = .left
-        nameLabel.textColor = UIColor.NaturianColor.darkGray
+        nameLabel.textColor = UIColor.NaturianColor.navigationGray
         
-        userNameLabel.text = "David"
-        userNameLabel.font = UIFont(name: Roboto.bold.rawValue, size: 24)
-        userNameLabel.textAlignment = .right
-        userNameLabel.textColor = UIColor.NaturianColor.darkGray
+        userNameLB.text = "User Name :"
+        userNameLB.font = UIFont(name: Roboto.bold.rawValue, size: 24)
+        userNameLB.textAlignment = .left
+        userNameLB.textColor = UIColor.NaturianColor.darkGray
         
-        iDLabel.text = "User ID :"
-        iDLabel.font = UIFont(name: Roboto.bold.rawValue, size: 24)
-        iDLabel.textAlignment = .left
-        iDLabel.textColor = UIColor.NaturianColor.darkGray
-        
-        userIDLabel.text = "0"
-        userIDLabel.font = UIFont.init(name: Roboto.bold.rawValue, size: 24)
-        userIDLabel.textAlignment = .right
-        userIDLabel.textColor = UIColor.NaturianColor.darkGray
+        findOtherNameLB.text = "\(otherUserModels?.name ?? "")"
+        findOtherNameLB.font = UIFont.init(name: Roboto.bold.rawValue, size: 24)
+        findOtherNameLB.textAlignment = .right
+        findOtherNameLB.textColor = UIColor.NaturianColor.darkGray
         
         seedTextField.placeholder = "0"
         seedTextField.addPadding(.right(12))
         seedTextField.textAlignment = .right
         seedTextField.textColor = UIColor.NaturianColor.treatmentGreen
-        seedTextField.font = UIFont.init(name: Roboto.bold.rawValue, size: 48)
+        seedTextField.font = UIFont.init(name: Roboto.bold.rawValue, size: 40)
         seedTextField.backgroundColor = .white
         
         remainSeedLabel.text = "Remaining Seeds :"
@@ -138,7 +194,8 @@ class TransferSeedVC: UIViewController {
         
         seedIcon.image = UIImage(named: "seed")
         
-        remainSeedValue.text = "420"
+        remainValue = currentUserModels?.seedValue ?? 0
+        remainSeedValue.text = "\(remainValue)"
         remainSeedValue.font = UIFont.init(name: Roboto.bold.rawValue, size: 40)
         remainSeedValue.textColor = UIColor.NaturianColor.darkGray
         
@@ -146,7 +203,7 @@ class TransferSeedVC: UIViewController {
         tranferButton.setTitleColor(.white, for: .normal)
         tranferButton.backgroundColor = UIColor.NaturianColor.treatmentGreen
         tranferButton.alpha = 0.8
-        tranferButton.isEnabled = false
+//        tranferButton.isEnabled = false
         tranferButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         
         cancelButton.setTitle("Cancel", for: .normal)
@@ -171,22 +228,17 @@ class TransferSeedVC: UIViewController {
         actStack.alignment = .center
         actStack.spacing = 14
     }
-    //
+    
     func layout() {
-        //
+        
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        //
         scanBarButton.translatesAutoresizingMaskIntoConstraints = false
-        
         transferToLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         labelStack.translatesAutoresizingMaskIntoConstraints = false
         userStack.translatesAutoresizingMaskIntoConstraints = false
-        
         seedTextField.translatesAutoresizingMaskIntoConstraints = false
         remainSeedLabel.translatesAutoresizingMaskIntoConstraints = false
         seedstack.translatesAutoresizingMaskIntoConstraints = false
-        
         actStack.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(backButton)
@@ -195,11 +247,11 @@ class TransferSeedVC: UIViewController {
         
         view.addSubview(labelStack)
         labelStack.addArrangedSubview(nameLabel)
-        labelStack.addArrangedSubview(iDLabel)
+        labelStack.addArrangedSubview(userNameLB)
         
         view.addSubview(userStack)
         userStack.addArrangedSubview(userNameLabel)
-        userStack.addArrangedSubview(userIDLabel)
+        userStack.addArrangedSubview(findOtherNameLB)
         
         view.addSubview(seedTextField)
         
@@ -232,11 +284,11 @@ class TransferSeedVC: UIViewController {
             labelStack.topAnchor.constraint(equalTo: transferToLabel.bottomAnchor, constant: 40),
             labelStack.leadingAnchor.constraint(equalTo: backButton.leadingAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 24),
-            iDLabel.heightAnchor.constraint(equalToConstant: 24),
+            userNameLB.heightAnchor.constraint(equalToConstant: 24),
             
             userStack.topAnchor.constraint(equalTo: labelStack.topAnchor),
             userStack.trailingAnchor.constraint(equalTo: scanBarButton.trailingAnchor),
-            userIDLabel.heightAnchor.constraint(equalToConstant: 24),
+            findOtherNameLB.heightAnchor.constraint(equalToConstant: 24),
             userNameLabel.heightAnchor.constraint(equalToConstant: 24),
             
             seedTextField.leadingAnchor.constraint(equalTo: labelStack.leadingAnchor),
@@ -267,6 +319,24 @@ class TransferSeedVC: UIViewController {
 extension TransferSeedVC: SendBarcodeDelegate {
     func sendBarcodeValue(userID: String) {
         
-        self.userIDLabel.text = userID
+        self.findOtherNameLB.text = userID
+        profileManager.fetchUserData(userID: userID) {[weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.otherUserModels = userModel
+                
+                print(self?.otherUserModels ?? "")
+                DispatchQueue.main.async {
+                    
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
     }
 }

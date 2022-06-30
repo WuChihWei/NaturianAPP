@@ -160,7 +160,6 @@ class AccountViewController: UIViewController {
             }
         }
     
-    
     // delete accout
     @objc func deleteuser() {
             let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
@@ -230,8 +229,8 @@ class AccountViewController: UIViewController {
             
             fatalError("can't find TransferSeedVC")
         }
-        //        navigationController?.pushViewController(vc, animated: true)
-        //        vc?.hidesBottomBarWhenPushed = true
+        vc.currentUserModels = self.userModels
+        
         present(vc, animated: true, completion: nil)
         //        tabBarController?.tabBar.isHidden = true
     }
@@ -350,7 +349,7 @@ class AccountViewController: UIViewController {
         backgroundView.addSubview(qrUIImage)
         backgroundView.addSubview(buttonStack)
         
-        blackLine.addSubview(transferBtn)
+        backgroundView.addSubview(transferBtn)
         
         backgroundView.addSubview(talentBtn)
         naturianStack.addArrangedSubview(naturianLB)
@@ -456,7 +455,7 @@ class AccountViewController: UIViewController {
             
             userName.heightAnchor.constraint(equalToConstant: 14),
             userGender.heightAnchor.constraint(equalToConstant: 14),
-            userNation.heightAnchor.constraint(equalToConstant: 14),
+            userNation.heightAnchor.constraint(equalToConstant: 14)
         ])
     }
 }

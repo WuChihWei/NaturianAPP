@@ -100,7 +100,7 @@ class UserFirebaseManager {
             }
         }
     }
-  
+    
     func replaceData(userID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
         
         db.whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
@@ -132,13 +132,30 @@ class UserFirebaseManager {
     }
     
     func deleteAccount() {
-            let user = Auth.auth().currentUser
-            user?.delete { error in
-                if error != nil {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if error != nil {
                 // An error happened.
-              } else {
+            } else {
                 // Account deleted.
-              }
             }
         }
+    }
+    
+    func updateSeedValue(uid: String, seedValue: Int) {
+        
+//        let data: [String: Any] = [
+//
+//            "seedValue": seedValue
+//        ]
+        
+        db.document(uid).updateData(["seedValue": seedValue]){ error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+            }
+        }
+    }
 }
