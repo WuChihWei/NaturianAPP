@@ -47,6 +47,8 @@
 		322145612867678C00D46503 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322145542867678B00D46503 /* Roboto-Black.ttf */; };
 		322145642868017B00D46503 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322145632868017B00D46503 /* ChatManager.swift */; };
 		32276D9F28654784008695E3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32276D9E28654784008695E3 /* UIImage+Extension.swift */; };
+		3241C438286E9CE300A2E75A /* ForumDetailPostTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */; };
+		3241C43A286E9CF500A2E75A /* ForumDetailReplyTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
 		3255045F285F0B5A0019A190 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255045E285F0B5A0019A190 /* PhotoManager.swift */; };
 		32550461285F3F350019A190 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550460285F3F350019A190 /* UserAccount.swift */; };
@@ -135,6 +137,8 @@
 		322145542867678B00D46503 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		322145632868017B00D46503 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		32276D9E28654784008695E3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailPostTBCell.swift; sourceTree = "<group>"; };
+		3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailReplyTBCell.swift; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		3255045E285F0B5A0019A190 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		32550460285F3F350019A190 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -265,8 +269,8 @@
 			children = (
 				32078A5C2859816B00FF2980 /* ForumViewController.swift */,
 				32078A722859E82900FF2980 /* ForumLobbyViewController.swift */,
-				32C86604285A48250090A49D /* PostArticleViewController.swift */,
 				32C86606285AC8C60090A49D /* ForumDetailViewController.swift */,
+				32C86604285A48250090A49D /* PostArticleViewController.swift */,
 			);
 			path = Forum;
 			sourceTree = "<group>";
@@ -310,6 +314,8 @@
 			children = (
 				32078A6B2859955A00FF2980 /* ForumCollectionViewCell.swift */,
 				32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */,
+				3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */,
+				3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */,
 				32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */,
 			);
 			path = Forum;
@@ -676,6 +682,7 @@
 				327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */,
 				32138B252858860200916700 /* AppDelegate.swift in Sources */,
 				3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */,
+				3241C43A286E9CF500A2E75A /* ForumDetailReplyTBCell.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
 				325504B72864524B0019A190 /* Chat.swift in Sources */,
 				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
@@ -726,6 +733,7 @@
 				32078A6F2859C46100FF2980 /* ExploreCollectionViewCell.swift in Sources */,
 				322145442867348E00D46503 /* UIColor+Extension.swift in Sources */,
 				32078A712859C47E00FF2980 /* ExploreViewController.swift in Sources */,
+				3241C438286E9CE300A2E75A /* ForumDetailPostTBCell.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
 				325504E12864D2750019A190 /* ScannerVC.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,

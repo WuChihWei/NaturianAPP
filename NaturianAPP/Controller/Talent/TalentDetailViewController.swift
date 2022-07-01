@@ -51,7 +51,6 @@ class TalentDetailViewController: UIViewController {
         fetchUserData() 
     }
     
-    
     func fetchUserData() {
         
         userManager.fetchUserData(userID: userID) {

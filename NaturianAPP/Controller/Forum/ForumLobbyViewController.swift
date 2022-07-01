@@ -17,6 +17,10 @@ class ForumLobbyViewController: UIViewController {
     var db: Firestore?
     
     private let tableView = UITableView()
+    
+    let addArticleBTN = UIButton()
+    let titleLB = UILabel()
+    let closeButton = UIButton()
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let subview = UIView()
@@ -25,7 +29,9 @@ class ForumLobbyViewController: UIViewController {
     var userManager = UserManager()
     var userModels: [UserModel] = []
     var talentArticle: String = ""
+    var searchController: UISearchController!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +45,14 @@ class ForumLobbyViewController: UIViewController {
             self.tableView.reloadData()
         }
         
+        searchController = UISearchController(searchResultsController: nil)
         tableView.showsVerticalScrollIndicator = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.layoutIfNeeded()
+        addArticleBTN.layer.cornerRadius = (addArticleBTN.bounds.width) / 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +65,10 @@ class ForumLobbyViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @objc func closePage() {
+        dismiss(animated: true)
     }
     
     func fetchTalentArticle() {
@@ -81,19 +98,36 @@ class ForumLobbyViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
-
+        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
     }
     
     func style() {
         
+        // addButton
+        addArticleBTN.setTitle("", for: .normal)
+        addArticleBTN.setImage(UIImage(systemName: "plus"), for: .normal)
+        addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
+        addArticleBTN.tintColor = .white
+    
         view.lkBorderColor = .white
         subview.backgroundColor = .NaturianColor.lightGray
-        subview.lkCornerRadius = 30
-        // backTabBar
-        let barButton = UIBarButtonItem()
-        barButton.title = ""
+        // close button
+        closeButton.setImage(UIImage(named: "backNoCircle"), for: .normal)
         
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
+        titleLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
+        titleLB.textColor = .white
+        titleLB.text = "/ ADVENTURE /"
+        // subview
+        subview.lkCornerRadius = 30
+        subview.lkBorderColor = .white
+        subview.lkBorderWidth = 2
+        
+        // backTabBar
+//        let barButton = UIBarButtonItem()
+//        barButton.title = ""
+//
+//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
+        
         view.backgroundColor = .NaturianColor.navigationGray
         
         tableView.separatorStyle = .none
@@ -104,46 +138,67 @@ class ForumLobbyViewController: UIViewController {
         searchTextField.backgroundColor = .white
         searchTextField.addPadding(.left(24))
         searchTextField.lkCornerRadius = 20
-        searchTextField.lkBorderWidth = 1
         // filterButton
-        filterButton.setImage(UIImage(named: "sliders"), for: .normal)
-        filterButton.setTitle("", for: .normal)
+        filterButton.setImage(UIImage(named: "searchByTime"), for: .normal)
     }
     
     func layout() {
+        addArticleBTN.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLB.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         filterButton.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(titleLB)
+        view.addSubview(closeButton)
+        
         view.addSubview(subview)
         subview.addSubview(tableView)
+        tableView.addSubview(addArticleBTN)
         view.addSubview(searchTextField)
         view.addSubview(filterButton)
         
         NSLayoutConstraint.activate([
             
+            closeButton.centerYAnchor.constraint(equalTo: titleLB.centerYAnchor),
+            closeButton.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
+            closeButton.heightAnchor.constraint(equalToConstant: 17),
+            closeButton.widthAnchor.constraint(equalToConstant: 17),
+            
+            titleLB.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            titleLB.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            titleLB.heightAnchor.constraint(equalToConstant: 32),
+            
+            // searchTextField
+            searchTextField.topAnchor.constraint(equalTo: titleLB.bottomAnchor, constant: 18),
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            searchTextField.trailingAnchor.constraint(equalTo: titleLB.trailingAnchor),
+            searchTextField.heightAnchor.constraint(equalToConstant: 40),
+            // filterButton
+            filterButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
+            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            filterButton.widthAnchor.constraint(equalToConstant: 28),
+            filterButton.heightAnchor.constraint(equalToConstant: 28),
             // tableView
-            subview.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 16),
-            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            subview.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 20),
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
             
             tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
-            // searchTextField
-            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            searchTextField.heightAnchor.constraint(equalToConstant: 40),
-            // filterButton
-            filterButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 16),
-            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            filterButton.widthAnchor.constraint(equalToConstant: 28),
-            filterButton.heightAnchor.constraint(equalToConstant: 28)
+            
+            // addTalentButton
+            addArticleBTN.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36),
+            addArticleBTN.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            addArticleBTN.widthAnchor.constraint(equalToConstant: 58),
+            addArticleBTN.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
 }
@@ -183,16 +238,17 @@ extension ForumLobbyViewController: UITableViewDataSource {
             
             fatalError("can't find ForumLobbyTableViewCell")
         }
+        
         let photoUrl = talentArticles[indexPath.section].images[0]
         cell.selectionStyle = .none
         
         cell.title.text = talentArticles[indexPath.section].title
-        cell.category.text = talentArticles[indexPath.section].category
-        cell.seedValue.text = "\(talentArticles[indexPath.section].seedValue!)"
-        cell.talentDescription.text = talentArticles[indexPath.section].content
-        cell.locationLabel.text = talentArticles[indexPath.section].location
+        cell.categoryBTN.setTitle(talentArticles[indexPath.section].category, for: .normal)
+//        cell.seedValue.text = "\(talentArticles[indexPath.section].seedValue!)"
+        cell.articleContent.text = talentArticles[indexPath.section].content
+//        cell.locationLabel.text = talentArticles[indexPath.section].location
         cell.postImage.kf.setImage(with: photoUrl)
-        cell.providerName.text = talentArticles[indexPath.section].userInfo?.name
+//        cell.providerName.text = talentArticles[indexPath.section].userInfo?.name
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
@@ -202,19 +258,6 @@ extension ForumLobbyViewController: UITableViewDataSource {
         cell.lkCornerRadius = 15
 //        cell.lkBorderColor = .NaturianColor.navigationGray
 //        cell.lkBorderWidth = 1
-        
-        if talentArticles[indexPath.row].userInfo?.gender == "Male" {
-            
-            cell.genderIcon.image = UIImage(named: "heart")
-            
-        } else if talentArticles[indexPath.row].userInfo?.gender == "Female" {
-            
-            cell.genderIcon.image = UIImage(named: "female")
-            
-        } else {
-            
-            cell.genderIcon.image = UIImage(named: "undefined")
-        }
         
         return cell
     }

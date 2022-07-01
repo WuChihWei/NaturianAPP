@@ -114,7 +114,9 @@ extension ForumViewController: UICollectionViewDataSource {
             fatalError("can't find ForumLobbyViewController")
         }
         self.navigationController?.pushViewController(vc, animated: true)
-        vc.talentArticle = titles[indexPath.item]
+        present(vc, animated: true)
+//        show(vc, sender: Any.self)
+        vc.titleLB.text = "/\(titles[indexPath.item])/"
     }
     
     func collectionView(_ collectionView: UICollectionView,
