@@ -17,6 +17,7 @@ class ForumDetailPostTBCell: UITableViewCell {
     
     let postImage = UIImageView()
     let avatarImage = UIImageView()
+    let subview = UIView()
     
     let title = UILabel()
     let categoryBTN = UIButton()
@@ -59,10 +60,12 @@ class ForumDetailPostTBCell: UITableViewCell {
 
         avatarImage.image = UIImage(named: "")
         avatarImage.lkBorderColor = .white
-        avatarImage.lkCornerRadius = 37
-        avatarImage.lkBorderWidth = 2
+        avatarImage.lkCornerRadius = 42
+        avatarImage.lkBorderWidth = 4
         avatarImage.backgroundColor = .NaturianColor.lightGray
         
+        subview.backgroundColor = .white
+        subview.lkCornerRadius = 30
         title.font = UIFont(name: Roboto.bold.rawValue, size: 28)
         title.textAlignment = .left
         title.text = "This is title"
@@ -71,6 +74,7 @@ class ForumDetailPostTBCell: UITableViewCell {
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
+        categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal) 
         categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
         categoryBTN.lkCornerRadius = 5
         
@@ -89,22 +93,6 @@ class ForumDetailPostTBCell: UITableViewCell {
         
         likeBtn.setImage(UIImage(named: "liked"), for: .normal)
         
-//        let imgView: UIImageView = UIImageView(frame: CGRect(x: 0, y: -10, width: contentView.bounds.width, height: 10))
-//        dottedLine.addSubview(imgView)
-//        UIGraphicsBeginImageContext(imgView.frame.size) // 位图上下文绘制区域
-//        imgView.image?.draw(in: contentView.bounds)
-//        let context: CGContext = UIGraphicsGetCurrentContext()!
-//        context.setLineCap(CGLineCap.square)
-//        let lengths: [CGFloat] = [5, 10] // 绘制 跳过 无限循环
-//        context.setStrokeColor(UIColor.NaturianColor.darkGray.cgColor)
-//        context.setLineWidth(3)
-//        context.setLineDash(phase: 0, lengths: lengths)
-//        context.move(to: CGPoint(x: 0, y: 10))
-//        context.addLine(to: CGPoint(x: self.contentView.bounds.width, y: 10))
-//
-//        context.strokePath()
-//        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
-        
         dottedLine.image = UIImage(named: "dottedLine")
         solidLine.backgroundColor = .black
         
@@ -117,20 +105,30 @@ class ForumDetailPostTBCell: UITableViewCell {
     
     func layout() {
         
+        
         contentView.addSubview(postImage)
         postImage.addSubview(avatarImage)
-        //        contentView.addSubview(userAvatar)
-        contentView.addSubview(title)
-        contentView.addSubview(categoryBTN)
-        contentView.addSubview(articleContent)
-        contentView.addSubview(authorLB)
-        contentView.addSubview(dottedLine)
-        contentView.addSubview(buttonStack)
-        contentView.addSubview(solidLine)
+        contentView.addSubview(subview)
+
+//        contentView.addSubview(title)
+//        contentView.addSubview(categoryBTN)
+//        contentView.addSubview(articleContent)
+//        contentView.addSubview(authorLB)
+//        contentView.addSubview(dottedLine)
+//        contentView.addSubview(buttonStack)
+//        contentView.addSubview(solidLine)
+        subview.addSubview(title)
+        subview.addSubview(categoryBTN)
+        subview.addSubview(articleContent)
+        subview.addSubview(authorLB)
+        subview.addSubview(dottedLine)
+        subview.addSubview(buttonStack)
+        subview.addSubview(solidLine)
         
         buttonStack.addArrangedSubview(likeBtn)
         buttonStack.addArrangedSubview(seedBtn)
         
+        subview.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         
@@ -148,16 +146,21 @@ class ForumDetailPostTBCell: UITableViewCell {
             postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            postImage.heightAnchor.constraint(equalToConstant: 450),
-            
+            postImage.heightAnchor.constraint(equalToConstant: 400),
+                        
             avatarImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             avatarImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 0),
-            avatarImage.heightAnchor.constraint(equalToConstant: 74),
-            avatarImage.widthAnchor.constraint(equalToConstant: 74),
+            avatarImage.heightAnchor.constraint(equalToConstant: 84),
+            avatarImage.widthAnchor.constraint(equalToConstant: 84),
             
-            title.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 24),
-            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            subview.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: -40),
+            subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+
+            title.topAnchor.constraint(equalTo: subview.topAnchor, constant: 24),
+            title.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
+            title.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             
             categoryBTN.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             categoryBTN.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
@@ -165,7 +168,7 @@ class ForumDetailPostTBCell: UITableViewCell {
             categoryBTN.heightAnchor.constraint(equalToConstant: 24),
             
             articleContent.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-            articleContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            articleContent.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             articleContent.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 10),
             
             authorLB.topAnchor.constraint(equalTo: articleContent.bottomAnchor, constant: 60),
@@ -187,7 +190,7 @@ class ForumDetailPostTBCell: UITableViewCell {
             solidLine.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             solidLine.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),
             solidLine.heightAnchor.constraint(equalToConstant: 1),
-            solidLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            solidLine.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
         ])
     }
     

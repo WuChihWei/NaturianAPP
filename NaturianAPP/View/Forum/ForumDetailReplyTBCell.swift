@@ -15,10 +15,10 @@ class ForumDetailReplyTBCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let replierName = UILabel()
-    let replierAvatar = UIImageView()
-    let replyContent = UILabel()
-    let createdTimeLB = UILabel()
+    var replierName = UILabel()
+    var replierAvatar = UIImageView()
+    var replyContent = UILabel()
+    var createdTimeLB = UILabel()
     let solidLine = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

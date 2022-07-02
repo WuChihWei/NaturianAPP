@@ -165,11 +165,11 @@ extension MyTalentAppliersVC: UITableViewDataSource {
             
         }
         
-        let photoUrl = URL(string: "\(userModels[indexPath.row].userAvatar ?? "")")
+//        let photoUrl = URL(string: "\(userModels[indexPath.row].userAvatar ?? "")")
         
         cell.userName.text = userModels[indexPath.row].name
 
-        cell.userAvatar.kf.setImage(with: photoUrl)
+        cell.userAvatar.kf.setImage(with: userModels[indexPath.row].userAvatar)
         
         cell.layoutIfNeeded()
         

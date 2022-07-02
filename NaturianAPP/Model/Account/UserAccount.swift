@@ -17,7 +17,7 @@ struct UserModel: Codable {
     
     var gender: String? 
     
-    var userAvatar: String?
+    var userAvatar: URL?
     
     var appliedTalent: [String?]
     

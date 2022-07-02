@@ -266,8 +266,8 @@ class AccountViewController: UIViewController {
 
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .NaturianColor.lightGray
-        let url = URL(string: "\(userModels?.userAvatar ?? "")")
-        userAvatar.kf.setImage(with: url)
+//        let url = URL(string: "\(userModels?.userAvatar ?? "")")
+        userAvatar.kf.setImage(with: userModels?.userAvatar)
         
         naturianLB.text = "NATURIAN"
         naturianLB.font = UIFont(name: Roboto.black.rawValue, size: 18)
@@ -404,7 +404,7 @@ class AccountViewController: UIViewController {
             
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             backgroundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
             
             blackLine.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),

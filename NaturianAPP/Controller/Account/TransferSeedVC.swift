@@ -171,7 +171,6 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     func style() {
         //
         backButton.setImage(UIImage(named: "dismiss"), for: .normal)
-        backButton.setTitle("", for: .normal)
         
         scanBarButton.setImage(UIImage(named: "scan"), for: .normal)
         scanBarButton.addTarget(self, action: #selector(scanBarTapped), for: .touchUpInside)

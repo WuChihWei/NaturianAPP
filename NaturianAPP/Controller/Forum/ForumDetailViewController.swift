@@ -14,6 +14,7 @@ import SwiftUI
 class ForumDetailViewController: UIViewController {
     
     var talentManager = TalentManager()
+    var forumManager = ForumManager()
     var db: Firestore?
     
     private let tableView = UITableView()
@@ -21,11 +22,17 @@ class ForumDetailViewController: UIViewController {
     let addReplyBTN = UIButton()
     let closeButton = UIButton()
     
-    var talentArticles: [TalentArticle] = []
+    //    var talentArticles: [TalentArticle] = []
     var userManager = UserManager()
     var userModels: [UserModel] = []
     var talentArticle: String = ""
     var searchController: UISearchController!
+    var forumArticles: ForumModel!
+    var authorInfo: UserModel!
+    var repliedArticles: [ReplyModel] = []
+    var replyAuthor: UserModel!
+    var replyAuthors: [UserModel] = []
+    
     
     //    var replyArray: [Any] = []
     
@@ -35,7 +42,6 @@ class ForumDetailViewController: UIViewController {
         setUp()
         style()
         layout()
-        fetchTalentArticle()
         
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
@@ -50,48 +56,140 @@ class ForumDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.layoutIfNeeded()
         addReplyBTN.layer.cornerRadius = (addReplyBTN.bounds.width) / 2
+        
+        //        closeButton.lkCornerRadius = closeButton.bounds.width / 2
+        //        closeButton.lkBorderWidth = 1
+        //        closeButton.lkBorderColor = .darkGray
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-        fetchTalentArticle()
+
+        findAuthorData()
+        findReplies()
         tableView.reloadData()
     }
-     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    @objc func closePage() {
-        dismiss(animated: true)
-    }
-    
-    func fetchTalentArticle() {
+    func findAuthorData() {
         
-        print(talentArticles)
-        
-        talentManager.fetchData { [weak self] result in
+        userManager.fetchUserData(userID: forumArticles.userID ?? "") { [weak self] result in
             
             switch result {
                 
-            case .success(let talentArticles):
+            case .success(let userModel):
                 
-                self?.talentArticles = talentArticles
+                self?.authorInfo = userModel
                 
+                print(self?.authorInfo ?? "")
                 DispatchQueue.main.async {
                     
-                    self?.tableView.reloadData()
-                    
+                    self?.viewDidLoad()
                 }
-              
-            case .failure:
                 
+            case .failure:
                 print("can't fetch data")
             }
         }
     }
+    
+    // fetch userinfo based on replyID.userID -> repliedArticles will equal to replyAuthors+1 when repliers > 1
+//    func findReplies() {
+//
+//        for replyID in forumArticles.replyIDs {
+//
+//            forumManager.findRepliesData(replyID: replyID) {
+//
+//                [weak self] result in
+//
+//                switch result {
+//
+//                case .success(let replyModel):
+//
+//                    self?.repliedArticles.append(replyModel)
+//
+//                    for repliedArticle in self?.repliedArticles ?? [] {
+//
+//                        self?.userManager.fetchUserData(userID: repliedArticle.userID  ?? "") { [weak self] result in
+//
+//                            switch result {
+//
+//                            case .success(let replyModel):
+//
+//                                self?.replyAuthors.append(replyModel)
+//
+//                                print(self?.replyAuthors ?? "")
+//                                DispatchQueue.main.async {
+//                                    self?.viewDidLoad()
+//                                }
+//
+//                            case .failure:
+//                                print("can't fetch data")
+//                            }
+//                        }
+//                    }
+//                    print(self?.repliedArticles as Any)
+//
+//                    DispatchQueue.main.async {
+//                        self?.tableView.reloadData()
+//                    }
+//
+//                case .failure:
+//                    
+//                    print("can't fetch data")
+//                }
+//            }
+//        }
+//    }
+    
+    @objc func closePage() {
+        navigationController?.popViewController(animated: false)
+    }
+    
+    @objc func showReplyPage() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ForumReplyVC") as? ForumReplyVC else {
+            
+            fatalError("can't find ForumReplyVC")
+        }
+        
+        vc.forumArticles = forumArticles
+        //        self.navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true)
+    }
+    
+    func findReplies() {
+        
+            for replyID in forumArticles.replyIDs {
+    
+                forumManager.findRepliesData(replyID: replyID) {
+    
+                    [weak self] result in
+    
+                    switch result {
+    
+                    case .success(let replyModel):
+    
+                        self?.repliedArticles.append(replyModel)
+    
+                        print(self?.repliedArticles as Any)
+    
+                        DispatchQueue.main.async {
+                            self?.tableView.reloadData()
+                        }
+    
+                    case .failure:
+    
+                        print("can't fetch data")
+                    }
+                }
+            }
+        }
     
     func setUp() {
         
@@ -102,6 +200,7 @@ class ForumDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
+        addReplyBTN.addTarget(self, action: #selector(showReplyPage), for: .touchUpInside)
         
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
     }
@@ -109,10 +208,8 @@ class ForumDetailViewController: UIViewController {
     func style() {
         
         // addButton
-        addReplyBTN.setTitle("", for: .normal)
-        addReplyBTN.setImage(UIImage(systemName: "plus"), for: .normal)
+        addReplyBTN.setImage(UIImage(named: "reply"), for: .normal)
         addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
-        addReplyBTN.tintColor = .white
         // close button
         closeButton.setImage(UIImage(named: "back_white"), for: .normal)
         // tableView
@@ -131,7 +228,7 @@ class ForumDetailViewController: UIViewController {
         tableView.addSubview(closeButton)
         
         view.addSubview(tableView)
-//        subview.addSubview(tableView)
+        //        subview.addSubview(tableView)
         tableView.addSubview(addReplyBTN)
         
         NSLayoutConstraint.activate([
@@ -162,7 +259,6 @@ extension ForumDetailViewController: UITableViewDelegate {
 extension ForumDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
         
         return UITableView.automaticDimension
     }
@@ -178,7 +274,7 @@ extension ForumDetailViewController: UITableViewDataSource {
             
             return 1 } else {
                 
-                return 3
+                return repliedArticles.count
             }
     }
     
@@ -188,26 +284,88 @@ extension ForumDetailViewController: UITableViewDataSource {
             
         case 0 :
             
-                guard let cell1 = tableView.dequeueReusableCell(withIdentifier: ForumDetailPostTBCell.identifer,
-                                                                for: indexPath) as? ForumDetailPostTBCell else { fatalError("can't find ForumDetailPostTBCell") }
-            cell1.selectionStyle = .none
+            guard let cell1 = tableView.dequeueReusableCell(withIdentifier: ForumDetailPostTBCell.identifer,
+                                                            for: indexPath) as? ForumDetailPostTBCell else { fatalError("can't find Cell") }
             cell1.layoutIfNeeded()
+            cell1.selectionStyle = .none
             cell1.contentView.layoutIfNeeded()
+            cell1.articleContent.text = forumArticles.content
+            cell1.title.text = forumArticles.title
+            cell1.categoryBTN.setTitle(forumArticles.category, for: .normal)
             
-//            .dottedLine. =
-                return cell1
+            let photoUrl = forumArticles.images[0]
+            cell1.postImage.kf.setImage(with: photoUrl)
+            cell1.postImage.contentMode = .scaleAspectFill
+            cell1.postImage.clipsToBounds = true
+            
+            let avatatUrl = authorInfo?.userAvatar
+            cell1.avatarImage.kf.setImage(with: avatatUrl)
+            cell1.avatarImage.contentMode = .scaleAspectFill
+            cell1.avatarImage.clipsToBounds = true
+            
+            switch forumArticles.category {
+                
+            case "Food":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.foodOrange
+                addReplyBTN.backgroundColor = .NaturianColor.foodOrange
+                cell1.avatarImage.lkBorderColor = .NaturianColor.foodOrange
+            case "Plant":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+                addReplyBTN.backgroundColor = .NaturianColor.plantGreen
+                cell1.avatarImage.lkBorderColor = .NaturianColor.plantGreen
+                
+            case "Adventure":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.adventureBlue
+                addReplyBTN.backgroundColor = .NaturianColor.adventureBlue
+                cell1.avatarImage.lkBorderColor = .NaturianColor.adventureBlue
+                
+            case "Grocery":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.groceryYellow
+                addReplyBTN.backgroundColor = .NaturianColor.groceryYellow
+                cell1.avatarImage.lkBorderColor = .NaturianColor.groceryYellow
+                
+            case "Exercise":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.exerciseGreen
+                addReplyBTN.backgroundColor = .NaturianColor.exerciseGreen
+                cell1.avatarImage.lkBorderColor = .NaturianColor.exerciseGreen
+                
+            case "Treatment":
+                cell1.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+                addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
+                cell1.avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
+                
+            default:
+                break
+                
+            }
+            
+            return cell1
+            
         case 1 :
-
+            
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
-                                                            for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find ForumDetailReplyTBCell") }
+                                                            for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
+            cell2.contentView.layoutIfNeeded()
+            cell2.clipsToBounds = true
+
             cell2.selectionStyle = .none
+            cell2.replierName.text = repliedArticles[indexPath.row].userInfo.name
+            cell2.replyContent.text = repliedArticles[indexPath.row].replyContent
+
+            let replierUrl = repliedArticles[indexPath.row].userInfo.userAvatar
+            cell2.replierAvatar.kf.setImage(with: replierUrl)
+            cell2.replierAvatar.contentMode = .scaleAspectFill
+            cell2.replierAvatar.clipsToBounds = true
+            
             return cell2
             
         default:
             
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
-                                                            for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find ForumDetailReplyTBCell") }
+                                                            for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
             cell2.selectionStyle = .none
+            
+//            cell2.
             return cell2
             
         }

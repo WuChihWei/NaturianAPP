@@ -38,9 +38,11 @@ class ForumCollectionViewCell: UICollectionViewCell {
     }
     
     func setUI() {
+        
         imageView.backgroundColor = UIColor.gray
         
         titleLabel.textColor = UIColor.black
     }
+    
     
 }

@@ -20,6 +20,9 @@ class ForumLobbyTableViewCell: UITableViewCell {
     let categoryBTN = UIButton()
     let articleContent = UILabel()
     
+    let subview = UIView()
+//    let secondView = UIView()
+
     let likeBtn = UIButton()
     let likeLB = UILabel()
     let seedBtn = UIButton()
@@ -50,7 +53,10 @@ class ForumLobbyTableViewCell: UITableViewCell {
     }
     
     func styleObject() {
-        
+    
+//        contentView.backgroundColor = .clear
+        subview.backgroundColor = .white
+        subview.lkCornerRadius = 15
         title.font = UIFont(name: Roboto.bold.rawValue, size: 18)
         title.textAlignment = .left
         title.text = "Title"
@@ -120,21 +126,26 @@ class ForumLobbyTableViewCell: UITableViewCell {
     
     func layout() {
         
-        contentView.addSubview(postImage)
-        contentView.addSubview(articleContent)
+        
+        contentView.addSubview(subview)
+        
+        subview.addSubview(postImage)
+        subview.addSubview(articleContent)
 //        contentView.addSubview(genderIcon)
         
-        contentView.addSubview(articleStack)
-        contentView.addSubview(nameStackView)
-        contentView.addSubview(locationStackView)
+        subview.addSubview(articleStack)
+        subview.addSubview(nameStackView)
+        subview.addSubview(locationStackView)
         
-        contentView.addSubview(likestack)
+        subview.addSubview(likestack)
+        
         likestack.addArrangedSubview(likeBtn)
         likestack.addArrangedSubview(likeLB)
-        contentView.addSubview(seedstack)
+        subview.addSubview(seedstack)
         seedstack.addArrangedSubview(seedBtn)
         seedstack.addArrangedSubview(seedLB)
         
+        subview.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
         articleContent.translatesAutoresizingMaskIntoConstraints = false
         nameStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,10 +165,16 @@ class ForumLobbyTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
+            // subview
+            subview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            subview.heightAnchor.constraint(equalToConstant: 175),
             // postImage
-            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            postImage.topAnchor.constraint(equalTo: subview.topAnchor, constant: 20),
+            postImage.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 20),
+            postImage.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20),
             postImage.widthAnchor.constraint(equalToConstant: 135),
             postImage.heightAnchor.constraint(equalToConstant: 135),
             
@@ -168,7 +185,7 @@ class ForumLobbyTableViewCell: UITableViewCell {
 //            genderIcon.heightAnchor.constraint(equalToConstant: 18),
             
             // talentStack
-            articleStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            articleStack.topAnchor.constraint(equalTo: subview.topAnchor, constant: 16),
             articleStack.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 16),
 //            articleStack.heightAnchor.constraint(equalToConstant: 50),
     
@@ -176,7 +193,7 @@ class ForumLobbyTableViewCell: UITableViewCell {
             title.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),
             articleContent.topAnchor.constraint(equalTo: articleStack.bottomAnchor, constant: 4),
             articleContent.leadingAnchor.constraint(equalTo: articleStack.leadingAnchor),
-            articleContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            articleContent.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             
 //            locationStackView.topAnchor.constraint(equalTo: articleContent.bottomAnchor, constant: 12),
 //            locationStackView.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),
@@ -188,7 +205,7 @@ class ForumLobbyTableViewCell: UITableViewCell {
             nameStackView.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 8),
             nameStackView.centerXAnchor.constraint(equalTo: postImage.centerXAnchor),
             nameStackView.heightAnchor.constraint(equalToConstant: 20),
-            nameStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            nameStackView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -16),
             
             likestack.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             likestack.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
