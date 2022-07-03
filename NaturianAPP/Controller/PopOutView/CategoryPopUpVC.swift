@@ -23,7 +23,7 @@ class CategoryPopUpVC: UIViewController {
     
     var blackView = UIView(frame: UIScreen.main.bounds)
     let categoryData = ["Food", "Grocery",
-                        "Plant", "Adcenture",
+                        "Plant", "Adventure",
                         "Exercise", "Treatment"]
     
     override func viewDidLoad() {
@@ -105,29 +105,29 @@ extension CategoryPopUpVC: UITableViewDelegate {
 
 extension CategoryPopUpVC: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
-        
-        let label = UILabel()
-        
-        label.frame = CGRect.init(x: 24, y: 0, width: headerView.frame.width-10, height: headerView.frame.height)
-        
-        label.text = "Location"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .black
-        label.backgroundColor = .white
-        label.textAlignment = .left
-        
-        headerView.addSubview(label)
-        
-        return headerView
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
+//
+//        let label = UILabel()
+//
+//        label.frame = CGRect.init(x: 24, y: 0, width: headerView.frame.width-10, height: headerView.frame.height)
+//
+//        label.text = "CATEGORY"
+//        label.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+//        label.textColor = .black
+//        label.backgroundColor = .white
+//        label.textAlignment = .left
+//
+//        headerView.addSubview(label)
+//
+//        return headerView
+//    }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 80
+//    }
+//
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -142,8 +142,9 @@ extension CategoryPopUpVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell( withIdentifier: CategoryPopTableViewCell.identifer, for: indexPath) as? CategoryPopTableViewCell else {
             fatalError("can't find CategoryPopTableViewCell")
         }
-        
+
         cell.categoryLabel.text = categoryData[indexPath.row]
+        cell.categoryLabel.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         
         return cell
     }

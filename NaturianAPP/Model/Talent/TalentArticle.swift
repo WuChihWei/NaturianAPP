@@ -33,4 +33,3 @@ struct TalentArticle: Codable {
     
     var didAcceptID: [String]
 }
-

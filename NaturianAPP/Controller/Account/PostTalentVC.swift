@@ -102,9 +102,7 @@ class PostTalentVC: UIViewController {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID ?? "" ) {
-            
-            [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "" ) { [weak self] result in
             
             switch result {
                 
@@ -125,7 +123,9 @@ class PostTalentVC: UIViewController {
     // MARK: setup camera enviroment
     @objc func tapPhoto(tapGestureRecognizer: UITapGestureRecognizer) {
         
-        photoManager.tapPhoto(controller: self, alertText: "Choose Your Avatar", imagePickerController: imagePickerController)
+        photoManager.tapPhoto(controller: self,
+                              alertText: "Choose Your Photo",
+                              imagePickerController: imagePickerController)
     }
     
     func setUp() {
@@ -302,12 +302,12 @@ class PostTalentVC: UIViewController {
                             
                             self.talentManager.addData(postTalent: talenArticle)
 
-                        case .failure(_):
+                        case .failure:
                             break
                         }
                     }
                     
-                case .failure(_):
+                case .failure:
                     break
                 }
             }

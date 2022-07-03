@@ -24,8 +24,7 @@ class SignInViewController: UIViewController {
         setSignInWithAppleBtn()
         // Do any additional setup after loading the view.
         // After leaving app determine current user signed in before
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
+        Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil {
                 guard let vc = self.storyboard?.instantiateViewController(
                     withIdentifier: "AccountViewController") as? AccountViewController else {
                     
@@ -40,7 +39,6 @@ class SignInViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         
     }
     
@@ -263,7 +261,6 @@ extension SignInViewController {
                 
                 print(self?.userInfo ?? "")
                 DispatchQueue.main.async {
-                    
                     
                     self?.viewDidLoad()
                 }
