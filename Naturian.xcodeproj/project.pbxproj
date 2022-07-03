@@ -317,11 +317,11 @@
 		32078A6A2859952900FF2980 /* Forum */ = {
 			isa = PBXGroup;
 			children = (
+				3241C462286FEECE00A2E75A /* ForumLobbyCVCell.swift */,
 				32078A74285A085D00FF2980 /* ForumLobbyTableViewCell.swift */,
 				3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */,
 				3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */,
 				32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */,
-				3241C462286FEECE00A2E75A /* ForumLobbyCVCell.swift */,
 			);
 			path = Forum;
 			sourceTree = "<group>";

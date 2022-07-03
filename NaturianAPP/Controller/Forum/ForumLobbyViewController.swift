@@ -127,7 +127,7 @@ class ForumLobbyViewController: UIViewController {
         switch forumTitle {
 
         case "Food":
-            addArticleBTN.backgroundColor = .NaturianColor.foodOrange
+            addArticleBTN.backgroundColor = .NaturianColor.foodYellow
 //            view.backgroundColor = .NaturianColor.foodOrange
 
         case "Plant":
@@ -135,15 +135,15 @@ class ForumLobbyViewController: UIViewController {
 //            view.backgroundColor = .NaturianColor.plantGreen
 
         case "Adventure":
-            addArticleBTN.backgroundColor = .NaturianColor.adventureBlue
+            addArticleBTN.backgroundColor = .NaturianColor.adventurePink
 //            view.backgroundColor = .NaturianColor.adventureBlue
 
         case "Grocery":
-            addArticleBTN.backgroundColor = .NaturianColor.groceryYellow
+            addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
 //            view.backgroundColor = .NaturianColor.groceryYellow
 
         case "Exercise":
-            addArticleBTN.backgroundColor = .NaturianColor.exerciseGreen
+            addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
 //            view.backgroundColor = .NaturianColor.exerciseGreen
 
         case "Treatment":
@@ -317,24 +317,24 @@ extension ForumLobbyViewController: UITableViewDataSource {
         switch forumArticles[indexPath.row].category {
             
         case "Food":
-            cell.categoryBTN.backgroundColor = .NaturianColor.foodOrange
-            addArticleBTN.backgroundColor = .NaturianColor.foodOrange
+            cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+            addArticleBTN.backgroundColor = .NaturianColor.foodYellow
             
         case "Plant":
             cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
             addArticleBTN.backgroundColor = .NaturianColor.plantGreen
 
         case "Adventure":
-            cell.categoryBTN.backgroundColor = .NaturianColor.adventureBlue
-            addArticleBTN.backgroundColor = .NaturianColor.adventureBlue
+            cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+            addArticleBTN.backgroundColor = .NaturianColor.adventurePink
 
         case "Grocery":
-            cell.categoryBTN.backgroundColor = .NaturianColor.groceryYellow
-            addArticleBTN.backgroundColor = .NaturianColor.groceryYellow
+            cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+            addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
 
         case "Exercise":
-            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseGreen
-            addArticleBTN.backgroundColor = .NaturianColor.exerciseGreen
+            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+            addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
 
         case "Treatment":
             cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
