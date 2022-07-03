@@ -19,8 +19,8 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var photoManager = PhotoManager()
     var backButton = UIButton()
 
-//    var userID = Auth.auth().currentUser?.uid
-    var userID = "2"
+    var userID = Auth.auth().currentUser?.uid
+//    var userID = "2"
     var userModels: UserModel?
     
     var categoryResult = ""

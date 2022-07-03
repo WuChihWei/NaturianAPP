@@ -71,6 +71,7 @@ class AccountViewController: UIViewController {
         setup()
         setStyle()
         layout()
+        print(userID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +127,9 @@ class AccountViewController: UIViewController {
     
     func userState() {
             
-            userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        
+            userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
                 
                 switch result {
                     

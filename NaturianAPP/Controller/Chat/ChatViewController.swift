@@ -11,36 +11,42 @@ import InputBarAccessoryView
 import FirebaseFirestore
 import SDWebImage
 import FirebaseAuth
+import IQKeyboardManagerSwift
 
 class ChatViewController: MessagesViewController {
     
     var userFirebaseManager = UserFirebaseManager()
     
-    var chatTalentID: String = ""
+//    var chatTalentID: String = ""
     
     var db = Firestore.firestore()
             
     private var docReference: DocumentReference?
     
-    var currentUser = Auth.auth().currentUser?.uid
+    private let currentUser = Auth.auth().currentUser?.uid
+//    let currentUser = "2"
 
-    var chatToID: String = ""
+    var chatToID: String?
     
     var messages: [Message] = []
     
+    var chatToTalentModel: TalentArticle!
+
     var currentUserModel: UserModel!
+    
+//    guard let user2Name = chatToTalentModel.userInfo?.name else {return}
+
     
     //    var currentUser: String? = "321"
     //    var currentUser: String? = "123333"
 //    var user2UID: String? = "123333"
-    var user2UID: String? = "1"
-
-    var user2Name: String? = "Hello World"
+//    var user2Name: String? = "Hello World"
+    
     
     var currentUserImageUrl: URL?
 
-    var user2ImageUrl: String? = "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-    
+//    var user2ImageUrl: String? = "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        
     //    var currentUser: User = Auth.auth().currentUser!
     //        var user2UID: String? = "3213333"
 //    var currentUser: String? = "2"
@@ -51,7 +57,11 @@ class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         
         userState()
-        self.title = user2Name ?? "Chat"
+        
+        guard let user2Name = chatToTalentModel.userInfo?.name else {return}
+//
+        self.title = user2Name
+        
         navigationItem.largeTitleDisplayMode = .never
         
         maintainPositionOnKeyboardFrameChanged = true
@@ -70,8 +80,21 @@ class ChatViewController: MessagesViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        changeIsReadState() 
+//        changeIsReadState()
     }
+    
+    override func viewDidAppear( _ animated: Bool) {
+            super.viewDidAppear(animated)
+            // disable iq keyboard
+            IQKeyboardManager.shared.enable = false
+        }
+    
+    override func viewDidDisappear( _ animated: Bool) {
+            super.viewDidDisappear(animated)
+            // enable iq keyboard
+            IQKeyboardManager.shared.enable = true
+        }
+    
     
     func userState() {
             
@@ -97,23 +120,27 @@ class ChatViewController: MessagesViewController {
             }
         }
     
-    func changeIsReadState() {
-        
-        let docID = db.collection("thread").document().documentID
-        
-        docReference?.collection("thread").document(docID).updateData(["isRead": true]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-                print(docID)
-            }
-        }
-    }
+//    func changeIsReadState() {
+//
+//        let docID = db.collection("thread").document().documentID
+//
+//        docReference?.collection("thread").document(docID).updateData(["isRead": true]) { err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document successfully updated")
+//                print(docID)
+//            }
+//        }
+//    }
     
     func loadChat() {
 
-        let db = Firestore.firestore().collection("chats").whereField("users", arrayContainsAny: [user2UID ?? "No user1"]).whereField("users", isEqualTo: chatTalentID)
+        guard let user2UID = chatToTalentModel.userID else {return}
+        
+        guard let chatTalentID = chatToTalentModel.talentPostID else{return}
+        
+        let db = Firestore.firestore().collection("chats").whereField("users", arrayContainsAny: [user2UID]).whereField("chatTalentID", isEqualTo: chatTalentID)
 
         db.getDocuments { (chatQuerySnap, error) in
 
@@ -139,7 +166,7 @@ class ChatViewController: MessagesViewController {
                         let chat = Chat(dictionary: doc.data())
 
                         // //Get the chat which has user2 id
-                        if (chat?.users.contains(self.user2UID ?? "ID Not Found")) == true {
+                        if (chat?.users.contains(user2UID ?? "ID Not Found")) == true {
 
                             self.docReference = doc.reference
 
@@ -178,11 +205,12 @@ class ChatViewController: MessagesViewController {
     func createNewChat() {
 
         //        let users = [self.currentUser.uid, self.user2UID]
+        guard let user2ID = chatToTalentModel.userID else {return}
 
-        let users = [self.currentUser, self.user2UID, self.chatTalentID]
+        guard let chatTalentID = self.chatToTalentModel.talentPostID else {return}
+
+        let users = [self.currentUser, user2ID]
         
-        let chatTalentID = self.chatTalentID
-
         let data: [String: Any] = [ "users": users, "chatTalentID": chatTalentID]
         let db = Firestore.firestore().collection("chats")
 //        let chatroomID = db.
@@ -235,18 +263,18 @@ class ChatViewController: MessagesViewController {
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
-    
+
     // When use press send button this method is called.
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         
         let message = Message(
             //            id: UUID().uuidString,
             //                              id: UUID().uuidString,
-            id: currentUser!,
+            id: currentUser ?? "",
             content: text,
             created: Timestamp(),
             //                              senderID: currentUser.uid,
-            senderID: currentUser!,
+            senderID: currentUser ?? "",
             //                              senderName: currentUser.displayName!
             senderName: "currentUser.displayName!",
             isRead: false
@@ -318,7 +346,8 @@ extension ChatViewController: MessagesDisplayDelegate {
                              at indexPath: IndexPath,
                              in messagesCollectionView: MessagesCollectionView) {
         //If it's current user show current user photo.
-        
+        guard let currentUserImageUrl = currentUserModel.userAvatar else {return}
+
         //        if message.sender.senderId == currentUser.uid
         if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
@@ -331,7 +360,9 @@ extension ChatViewController: MessagesDisplayDelegate {
                 }
         } else {
             
-            SDWebImageManager.shared.loadImage(with: URL(string: user2ImageUrl!),
+            guard let user2ImageUrl = chatToTalentModel.userInfo?.userAvatar else{return}
+            
+            SDWebImageManager.shared.loadImage(with: user2ImageUrl,
                                                options: .highPriority,
                                                progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
                 avatarView.image = image

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import FirebaseAuth
 
 class OtherTalentViewController: UIViewController {
     
@@ -17,8 +18,9 @@ class OtherTalentViewController: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
     
-    var userID = "2"
-    
+    var userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
+
     var appliedTalents: [TalentArticle] = []
     var acceptTalents: [TalentArticle] = []
 
@@ -67,7 +69,8 @@ class OtherTalentViewController: UIViewController {
     }
     
     func fetchAcceptTalent() {
-        talentManager.fetchAcceptedTalent(userID: userID) { [weak self] result in
+        
+        talentManager.fetchAcceptedTalent(userID: userID ?? "") { [weak self] result in
             
             switch result {
                 
@@ -86,10 +89,9 @@ class OtherTalentViewController: UIViewController {
         }
     }
     
-    
     func fetchAppliedTalent() {
         
-        talentManager.fetchAppliedTalent(userID: userID) { [weak self] result in
+        talentManager.fetchAppliedTalent(userID: userID ?? "") { [weak self] result in
             
             switch result {
                 
@@ -143,7 +145,9 @@ extension OtherTalentViewController: UITableViewDataSource {
         cell.postImage.kf.setImage(with: postImageURL)
         
         
-        if appliedTalents[indexPath.row].didAcceptID[0] == userID {
+        if appliedTalents[indexPath.row].didAcceptID[0] ==
+            
+            userID {
             
             cell.appliedStateBtn.setImage(UIImage(named: "check"), for: .normal)
         } else {

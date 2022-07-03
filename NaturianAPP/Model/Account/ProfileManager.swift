@@ -28,7 +28,7 @@ class UserFirebaseManager {
             "userID": uid,
             "seedValue": 420,
             "gender": "",
-            "userAvatar": "",
+            "userAvatar": URL.self,
             "appliedTalent": [""],
             "isAccepetedTalent": [""],
             "email": email,

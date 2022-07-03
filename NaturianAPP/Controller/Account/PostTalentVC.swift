@@ -21,6 +21,8 @@ class PostTalentVC: UIViewController {
     var photoManager = PhotoManager()
 
     var userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
+
     var userModels: UserModel?
     
     var categoryResult = ""
@@ -280,8 +282,8 @@ class PostTalentVC: UIViewController {
                                                       seedValue: self.userModels?.seedValue,
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
-                                                      appliedTalent: [""],
-                                                      isAccepetedTalent: [""],
+                                                      appliedTalent: self.userModels?.appliedTalent ?? [],
+                                                      isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                                       createdTime: self.userModels?.createdTime,
                                                       email: self.userModels?.email
                             )

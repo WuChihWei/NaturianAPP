@@ -209,7 +209,7 @@ extension SignInViewController {
                                vc: self,
                                actionHandler: nil)
         
-        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
+//        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
         
         guard let vc = self.storyboard?.instantiateViewController(
             withIdentifier: "AccountViewController") as? AccountViewController else {

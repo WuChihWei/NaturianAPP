@@ -18,7 +18,8 @@ class ProfileVC: UIViewController {
     
     var addTransparentManager = AddDropDownField()
     let userID = Auth.auth().currentUser?.uid
-    
+//    let userID = "2"
+
     var photoManager = PhotoManager()
     var profileManager = UserFirebaseManager()
     let closeBtn = UIButton()
@@ -118,7 +119,7 @@ class ProfileVC: UIViewController {
                             
 //                            let url = URL(string: "myphotoapp:Vacation?index=1")
                             guard let name = self.nameTextField.text else {return}
-                            guard let userID = self.userID else {return}
+//                            guard let userID = self.userID else {return}
                             let gender = self.genderResult
                             let userAvatar = "\(url)"
 //                            let createdTime = Date()
@@ -135,7 +136,7 @@ class ProfileVC: UIViewController {
 //                                                         email: email
 //                            )
 //
-                            self.profileManager.replaceData(name: name, uid: userID, email: email, gender: gender, userAvatar: userAvatar)
+                            self.profileManager.replaceData(name: name, uid: self.userID ?? "", email: email, gender: gender, userAvatar: userAvatar)
 
                         case .failure(_):
                             break

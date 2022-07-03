@@ -9,13 +9,15 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import FirebaseAuth
 
 class TalentDetailViewController: UIViewController {
     
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    let userID = "2"
+    let userID = Auth.auth().currentUser?.uid
+//        let userID = "2"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()
@@ -75,7 +77,7 @@ class TalentDetailViewController: UIViewController {
 
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID) {
+        userManager.fetchUserData(userID: userID ?? "") {
             [weak self] result in
             
             switch result {
@@ -96,11 +98,11 @@ class TalentDetailViewController: UIViewController {
     
     @objc func didApply() {
         
-        selectedArticle.didApplyID.append(userID)
+        selectedArticle.didApplyID.append(userID ?? "")
         
         userModels.appliedTalent.append(selectedArticle.talentPostID)
         
-        userManager.updateAppliedTalent(userModel: userModels)
+        userManager.updateAppliedTalent(userModel: userModels, userID: userID ?? "")
         
         talentManager.updateData(applyTalent: selectedArticle)
         navigationController?.popViewController(animated: true)
@@ -114,7 +116,10 @@ class TalentDetailViewController: UIViewController {
             fatalError("can't find ChatViewController")
         }
         
-        vc.chatTalentID = selectedArticle.talentPostID ?? "can't find chatTalentPostID"
+//        vc.chatTalentID = selectedArticle.talentPostID ?? "can't find chatTalentPostID"
+//        vc.chatToID = selectedArticle.userID ?? "can't find userID"
+        
+        vc.chatToTalentModel = selectedArticle
         
         self.navigationController?.pushViewController(vc, animated: true)
                 
