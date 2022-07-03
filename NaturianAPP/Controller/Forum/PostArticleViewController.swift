@@ -166,7 +166,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         postPhotoImage.lkCornerRadius = 15
         postPhotoImage.isUserInteractionEnabled = true
         postPhotoImage.image = UIImage(named: "takephoto")
-        postPhotoImage.contentMode = .scaleAspectFill
+        postPhotoImage.contentMode = .scaleAspectFit
         
         categoryButton.setImage(UIImage(named: "down"), for: .normal)
         categoryButton.imageView?.contentMode = .scaleAspectFit

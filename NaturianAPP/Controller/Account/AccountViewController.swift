@@ -23,6 +23,7 @@ class AccountViewController: UIViewController {
     var userFirebaseManager = UserFirebaseManager()
     
     let userID = Auth.auth().currentUser?.uid
+//        let userID = "2"
     var userModels: UserModel!
     let backgroundView = UIView()
     
@@ -64,8 +65,9 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.tintColor = .NaturianColor.treatmentGreen
+        self.tabBarController?.tabBar.tintColor = .darkGray
         
+        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
         setup()
         setStyle()
         layout()
@@ -76,22 +78,6 @@ class AccountViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         userState()
-        
-//                if Auth.auth().currentUser == nil {
-//
-//                    guard let vc = self.storyboard?.instantiateViewController(
-//                        withIdentifier: "SignInViewController") as? SignInViewController else {
-//
-//                        fatalError("can't find SignInViewController")
-//                    }
-//
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//
-//                } else {
-//                    return        }
-        
-//        signinVC.getFirebaseUserInfo()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

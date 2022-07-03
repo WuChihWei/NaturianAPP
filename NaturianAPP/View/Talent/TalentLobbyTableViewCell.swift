@@ -14,20 +14,26 @@ class TalentLobbyTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    let subview = UIView()
     
     let postImage = UIImageView()
     let providerName = UILabel()
+    let genderIcon = UIImageView()
     let title = UILabel()
     let seedValue = UILabel()
     let talentDescription = UILabel()
     let locationImage = UIImageView()
+    let categoryBTN = UIButton()
+    let seedIcon = UIImageView()
     let locationLabel = UILabel()
-    let category = UILabel()
-    let genderIcon = UIImageView()
+    let locationIcon = UIImageView()
+
+    private let titleStack = UIStackView()
+    private let seedStack = UIStackView()
     
-    private let nameStackView = UIStackView()
-    private let talentStackView = UIStackView()
-    private let locationStackView = UIStackView()
+    private let nameStack = UIStackView()
+    private let talentStack = UIStackView()
+    private let locationStack = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,114 +49,154 @@ class TalentLobbyTableViewCell: UITableViewCell {
     
     func styleObject() {
         
-        title.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        backgroundColor = .clear
+        subview.backgroundColor = .white
+        subview.lkCornerRadius = 15
+        
+        title.font = UIFont(name: Roboto.bold.rawValue, size: 18)
         title.textAlignment = .left
         title.text = "Title"
+        title.textColor = .NaturianColor.darkGray
+        title.numberOfLines = 1
         
-        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        seedValue.font =  UIFont(name: Roboto.regular.rawValue, size: 12)
         seedValue.textAlignment = .left
         seedValue.text = "70 Seeds"
+        seedValue.textColor = .NaturianColor.darkGray
+
+        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        categoryBTN.titleLabel?.textAlignment = .center
+        categoryBTN.setTitleColor(.white, for: .normal)
+        categoryBTN.setTitle("Food", for: .normal)
+        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+        categoryBTN.lkCornerRadius = 4
         
-        category.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        category.textAlignment = .center
-        category.backgroundColor = .green
-        category.text = "Category"
-        
-        talentDescription.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         talentDescription.numberOfLines = 2
         talentDescription.text = "I will teach you how reproduce plants in better ways."
         talentDescription.textAlignment = .justified
+        talentDescription.textColor = .NaturianColor.darkGray
         
-        providerName.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        providerName.textAlignment = .center
+        providerName.font = UIFont(name: Roboto.regular.rawValue, size: 12)
+        providerName.textAlignment = .left
         providerName.text = "David"
-        
+        providerName.textColor = .NaturianColor.darkGray
+
         genderIcon.image = UIImage(named: "female")
+        seedIcon.image = UIImage(named: "seed_gray")
+        locationIcon.image = UIImage(named: "location_gray")
         
-        postImage.backgroundColor = .gray
+        //        postImage.backgroundColor = .gray
+        postImage.lkCornerRadius = 10
+        postImage.lkBorderWidth = 1
+//        postImage.lkBorderColor = .lightGray
         
-        nameStackView.axis = .horizontal
-        nameStackView.alignment = .center
-        nameStackView.spacing = 3
+        titleStack.axis = .vertical
+        titleStack.alignment = .leading
+        titleStack.spacing = 2
         
-        talentStackView.axis = .vertical
-        talentStackView.alignment = .leading
-        talentStackView.spacing = 3
+        nameStack.axis = .horizontal
+        nameStack.alignment = .center
+        nameStack.spacing = 6
         
-        locationStackView.axis = .horizontal
-        locationStackView.alignment = .center
-        locationStackView.spacing = 3
-        locationImage.image = UIImage(named: "location")
+        seedStack.axis = .horizontal
+        seedStack.alignment = .center
+        seedStack.spacing = 6
         
-        locationLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        talentStack.axis = .vertical
+        talentStack.alignment = .leading
+        talentStack.spacing = 0
+        
+        locationLabel.font = UIFont(name: Roboto.regular.rawValue, size: 12)
+        locationLabel.textColor = .NaturianColor.darkGray
         locationLabel.text = "Taichung City"
+        
+        locationStack.axis = .horizontal
+        locationStack.alignment = .center
+        locationStack.spacing = 6
     }
     
     func layout() {
         
-        contentView.addSubview(postImage)
-        contentView.addSubview(talentDescription)
-        contentView.addSubview(genderIcon)
+        contentView.addSubview(subview)
         
-        contentView.addSubview(talentStackView)
-        contentView.addSubview(nameStackView)
-        contentView.addSubview(locationStackView)
+        subview.addSubview(postImage)
+        subview.addSubview(titleStack)
+        subview.addSubview(talentStack)
+        subview.addSubview(talentDescription)
+
+        subview.addSubview(nameStack)
+        subview.addSubview(locationStack)
         
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        
+//        title.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
+        titleStack.translatesAutoresizingMaskIntoConstraints = false
+        talentStack.translatesAutoresizingMaskIntoConstraints = false
         talentDescription.translatesAutoresizingMaskIntoConstraints = false
-        nameStackView.translatesAutoresizingMaskIntoConstraints = false
-        talentStackView.translatesAutoresizingMaskIntoConstraints = false
-        locationStackView.translatesAutoresizingMaskIntoConstraints = false
+        locationStack.translatesAutoresizingMaskIntoConstraints = false
         
-        nameStackView.addArrangedSubview(genderIcon)
-        nameStackView.addArrangedSubview(providerName)
+        titleStack.addArrangedSubview(title)
+        titleStack.addArrangedSubview(categoryBTN)
         
-        talentStackView.addArrangedSubview(title)
-        talentStackView.addArrangedSubview(seedValue)
-        talentStackView.addArrangedSubview(category)
+        nameStack.addArrangedSubview(genderIcon)
+        nameStack.addArrangedSubview(providerName)
         
-        locationStackView.addArrangedSubview(locationImage)
-        locationStackView.addArrangedSubview(locationLabel)
+        seedStack.addArrangedSubview(seedIcon)
+        seedStack.addArrangedSubview(seedValue)
+        
+        talentStack.addArrangedSubview(seedStack)
+        talentStack.addArrangedSubview(nameStack)
+        
+        locationStack.addArrangedSubview(locationIcon)
+        locationStack.addArrangedSubview(locationLabel)
         
         NSLayoutConstraint.activate([
             
+            subview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            subview.heightAnchor.constraint(equalToConstant: 175),
+            
             // postImage
-            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            postImage.widthAnchor.constraint(equalToConstant: 100),
-            postImage.heightAnchor.constraint(equalToConstant: 100),
-            
-            genderIcon.widthAnchor.constraint(equalToConstant: 18),
-            genderIcon.heightAnchor.constraint(equalToConstant: 18),
-            
+            postImage.topAnchor.constraint(equalTo: subview.topAnchor, constant: 20),
+            postImage.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 20),
+            postImage.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20),
+            postImage.widthAnchor.constraint(equalToConstant: 135),
+            postImage.heightAnchor.constraint(equalToConstant: 135),
+            // titleStack
+            titleStack.topAnchor.constraint(equalTo: postImage.topAnchor),
+            titleStack.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 18),
+            titleStack.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            categoryBTN.widthAnchor.constraint(equalToConstant: 70),
+            categoryBTN.heightAnchor.constraint(equalToConstant: 18),
             // talentStack
-            talentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 18),
-            talentStackView.heightAnchor.constraint(equalToConstant: 50),
+            talentStack.topAnchor.constraint(equalTo: titleStack.bottomAnchor, constant: 2),
+            talentStack.leadingAnchor.constraint(equalTo: titleStack.leadingAnchor),
+            talentStack.heightAnchor.constraint(equalToConstant: 28),
+            talentStack.trailingAnchor.constraint(equalTo: titleStack.trailingAnchor),
+            // providerName
+            nameStack.heightAnchor.constraint(equalToConstant: 14),
+            seedStack.heightAnchor.constraint(equalToConstant: 14),
+            seedIcon.widthAnchor.constraint(equalToConstant: 12),
+            seedIcon.heightAnchor.constraint(equalToConstant: 12),
+            genderIcon.widthAnchor.constraint(equalToConstant: 12),
+            genderIcon.heightAnchor.constraint(equalToConstant: 12),
             
             // talentDescription
-            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 8),
-            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
-            talentDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            talentDescription.topAnchor.constraint(equalTo: nameStack.bottomAnchor),
+            talentDescription.leadingAnchor.constraint(equalTo: titleStack.leadingAnchor),
+            talentDescription.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            talentDescription.heightAnchor.constraint(equalToConstant: 36),
+//            locationStack.topAnchor.constraint(equalTo: talentDescription.bottomAnchor, constant: 12),
+            locationStack.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            locationStack.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
+            locationStack.heightAnchor.constraint(equalToConstant: 12),
+            locationIcon.widthAnchor.constraint(equalToConstant: 10),
+            locationIcon.heightAnchor.constraint(equalToConstant: 10)
             
-            locationStackView.topAnchor.constraint(equalTo: talentDescription.bottomAnchor, constant: 12),
-            locationStackView.trailingAnchor.constraint(equalTo: talentDescription.trailingAnchor),
-            locationStackView.bottomAnchor.constraint(equalTo: nameStackView.bottomAnchor),
-            locationImage.widthAnchor.constraint(equalToConstant: 18),
-            locationImage.heightAnchor.constraint(equalToConstant: 18),
-            
-            // providerName
-            nameStackView.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 8),
-            nameStackView.centerXAnchor.constraint(equalTo: postImage.centerXAnchor),
-            nameStackView.heightAnchor.constraint(equalToConstant: 20),
-            nameStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }

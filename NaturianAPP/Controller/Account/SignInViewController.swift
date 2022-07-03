@@ -21,6 +21,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
+        
         setSignInWithAppleBtn()
         // Do any additional setup after loading the view.
         // After leaving app determine current user signed in before

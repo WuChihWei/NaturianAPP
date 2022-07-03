@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,6 +36,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="tintColor"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="kYB-B8-8na" kind="relationship" relationship="viewControllers" id="nWe-dq-1d3"/>
@@ -94,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-Qs-iXl">
-                                <rect key="frame" x="50" y="94" width="314" height="40"/>
+                                <rect key="frame" x="50" y="94" width="314" height="28.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -102,7 +107,9 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Please Scan The Barcode">
                                             <attributes>
-                                                <font key="NSFont" size="24" name="Roboto-Bold"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="14" name="Roboto-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -159,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-1G-4Rh">
-                                <rect key="frame" x="24" y="88" width="366" height="37"/>
+                                <rect key="frame" x="24" y="44" width="366" height="37"/>
                                 <color key="backgroundColor" red="0.32108381785351825" green="0.69412878787878785" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Qr3-Ia-Hle"/>
@@ -179,13 +186,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgF-AY-zsJ">
-                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                                 <connections>
                                     <segue destination="sfp-LK-gez" kind="embed" id="5hV-r8-d1A"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxi-US-f5g">
-                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                                 <connections>
                                     <segue destination="IwG-L4-riO" kind="embed" id="qhn-Eb-Qnh"/>
                                 </connections>
@@ -403,7 +410,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BIF-t4-3h4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Angel" selectedImage="Angel" id="aBB-qi-hNh">
-                        <color key="badgeColor" name="outgoingMessageBackground"/>
+                        <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ngK-yD-Egb">
@@ -424,7 +431,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="sfp-LK-gez" customClass="MyTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aVZ-FW-QPJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CZY-b3-JbL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -443,7 +450,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="IwG-L4-riO" customClass="OtherTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElK-ac-hKK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="9V6-ay-Jlv"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -472,7 +479,7 @@
             <objects>
                 <viewController storyboardIdentifier="MyTalentAppliersVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyTalentAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPo-wO-n51">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UmD-8k-qXC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -489,9 +496,9 @@
         <!--Post TalentVC-->
         <scene sceneID="Lt9-Nw-dgc">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="cDs-UJ-N6H" customClass="PostTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="PostTalentVC" storyboardIdentifier="PostTalentVC" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="cDs-UJ-N6H" customClass="PostTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKt-Vo-LK8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CJ9-jE-Bgf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -511,6 +518,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccm-at-EaO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Baby Footprint" selectedImage="Baby Footprint" id="UvH-Qt-Le8">
+                        <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -532,7 +540,7 @@
             <objects>
                 <viewController storyboardIdentifier="LocationPopUpVC" modalPresentationStyle="overCurrentContext" id="w3s-sq-TlQ" customClass="LocationPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2k-rQ-yeT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iAq-O1-yOO"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -547,7 +555,7 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpVC" modalPresentationStyle="overCurrentContext" id="3wM-nO-DyD" customClass="CategoryPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6T-HV-AUL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wbu-TP-vGJ"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -570,7 +578,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="CO2-8g-0Ho"/>
+                        <segue destination="W9w-lt-GWv" kind="relationship" relationship="rootViewController" id="UxV-4T-MT0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -586,9 +594,6 @@
         <image name="Baby Footprint" width="32" height="32"/>
         <image name="Camping Tent" width="32" height="32"/>
         <image name="Lake" width="32" height="32"/>
-        <namedColor name="outgoingMessageBackground">
-            <color red="0.20399998128414154" green="0.77999997138977051" blue="0.34899997711181641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

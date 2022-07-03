@@ -9,18 +9,26 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 import FirebaseFirestore
-import FirebaseAuth
 import SDWebImage
+import FirebaseAuth
 
 class ChatViewController: MessagesViewController {
+    
+    var userFirebaseManager = UserFirebaseManager()
     
     var chatTalentID: String = ""
     
     var db = Firestore.firestore()
-    //    var currentUser: User = Auth.auth().currentUser!
+            
     private var docReference: DocumentReference?
     
+    var currentUser = Auth.auth().currentUser?.uid
+
+    var chatToID: String = ""
+    
     var messages: [Message] = []
+    
+    var currentUserModel: UserModel!
     
     //    var currentUser: String? = "321"
     //    var currentUser: String? = "123333"
@@ -28,16 +36,21 @@ class ChatViewController: MessagesViewController {
     var user2UID: String? = "1"
 
     var user2Name: String? = "Hello World"
+    
+    var currentUserImageUrl: URL?
+
     var user2ImageUrl: String? = "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
     
     //    var currentUser: User = Auth.auth().currentUser!
     //        var user2UID: String? = "3213333"
-    var currentUser: String? = "2"
-    var currentUserImageUrl: String? = "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=778&q=80"
+//    var currentUser: String? = "2"
+//    var currentUserImageUrl: String? = "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=778&q=80"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userState()
         self.title = user2Name ?? "Chat"
         navigationItem.largeTitleDisplayMode = .never
         
@@ -59,6 +72,30 @@ class ChatViewController: MessagesViewController {
         super.viewWillDisappear(animated)
         changeIsReadState() 
     }
+    
+    func userState() {
+            
+            userFirebaseManager.fetchUserData(userID: currentUser ?? "") { [weak self] result in
+                
+                switch result {
+                    
+                case .success(let userModel):
+                    
+                    self?.currentUserModel = userModel
+                    
+                    self?.currentUserImageUrl  = self?.currentUserModel?.userAvatar ?? URL(string: "")!
+                    
+                    print(self?.currentUserModel ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
     
     func changeIsReadState() {
         
@@ -232,7 +269,7 @@ extension ChatViewController: MessagesDataSource {
         
         return ChatUser(
             //            senderId: Auth.auth().currentUser!.uid,
-            senderId: currentUser!,
+            senderId: currentUser ?? "",
             //            displayName: (Auth.auth().currentUser?.displayName)!
             displayName: "currentUser.displayName!"
         )
@@ -285,8 +322,8 @@ extension ChatViewController: MessagesDisplayDelegate {
         //        if message.sender.senderId == currentUser.uid
         if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
-                //                with: currentUser.photoURL,
-                with: URL(string: currentUserImageUrl! ),
+                //  with: currentUser.photoURL,
+                with: currentUserImageUrl,
                 options: .highPriority,
                 progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
                     

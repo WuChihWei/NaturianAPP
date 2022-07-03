@@ -84,7 +84,6 @@ class ForumDetailPostTBCell: UITableViewCell {
         articleContent.textColor = .NaturianColor.darkGray
         articleContent.numberOfLines = 0
         articleContent.text = "Describe your talent herePlease describe your talent herePlease describe your talent herePlease describe."
-        
         articleContent.textAlignment = .justified
         
         authorLB.font = UIFont(name: Roboto.regular.rawValue, size: 14)
@@ -110,13 +109,6 @@ class ForumDetailPostTBCell: UITableViewCell {
         postImage.addSubview(avatarImage)
         contentView.addSubview(subview)
 
-//        contentView.addSubview(title)
-//        contentView.addSubview(categoryBTN)
-//        contentView.addSubview(articleContent)
-//        contentView.addSubview(authorLB)
-//        contentView.addSubview(dottedLine)
-//        contentView.addSubview(buttonStack)
-//        contentView.addSubview(solidLine)
         subview.addSubview(title)
         subview.addSubview(categoryBTN)
         subview.addSubview(articleContent)

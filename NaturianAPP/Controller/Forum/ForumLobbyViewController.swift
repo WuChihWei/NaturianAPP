@@ -161,8 +161,8 @@ class ForumLobbyViewController: UIViewController {
 //        addArticleBTN.backgroundColor = .NaturianColor.groceryYellow
         addArticleBTN.tintColor = .white
         
+        view.backgroundColor = .NaturianColor.navigationGray
         view.lkBorderColor = .white
-        subview.backgroundColor = .NaturianColor.lightGray
         // close button
         closeButton.setImage(UIImage(named: "backNoCircle"), for: .normal)
         
@@ -171,17 +171,8 @@ class ForumLobbyViewController: UIViewController {
         titleLB.text = "/ \(forumTitle) /"
         // subview
         subview.lkCornerRadius = 30
-        //        subview.lkBorderColor = .white
-        //        subview.lkBorderWidth = 2
-        
-        // backTabBar
-        //        let barButton = UIBarButtonItem()
-        //        barButton.title = ""
-        //
-        //        self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
-        
-        view.backgroundColor = .NaturianColor.navigationGray
-        
+        subview.backgroundColor = .NaturianColor.lightGray
+
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         // searchTextField

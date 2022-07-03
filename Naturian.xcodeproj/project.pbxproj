@@ -48,7 +48,6 @@
 		3241C438286E9CE300A2E75A /* ForumDetailPostTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */; };
 		3241C43A286E9CF500A2E75A /* ForumDetailReplyTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */; };
 		3241C45C286F5F3800A2E75A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3241C45B286F5F3800A2E75A /* Assets.xcassets */; };
-		3241C45E286F6E7800A2E75A /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C45D286F6E7800A2E75A /* TabBarVC.swift */; };
 		3241C461286FD6B100A2E75A /* ForumReplyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C460286FD6B100A2E75A /* ForumReplyVC.swift */; };
 		3241C463286FEECE00A2E75A /* ForumLobbyCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241C462286FEECE00A2E75A /* ForumLobbyCVCell.swift */; };
 		3255043B285F08F00019A190 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255043A285F08F00019A190 /* CustomButton.swift */; };
@@ -92,6 +91,7 @@
 		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
 		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
 		32EFA30228703CBE00DFA8A2 /* ForumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EFA30128703CBE00DFA8A2 /* ForumManager.swift */; };
+		32EFA30428717D4900DFA8A2 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EFA30328717D4900DFA8A2 /* UILabel+Extension.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,7 +140,6 @@
 		3241C437286E9CE300A2E75A /* ForumDetailPostTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailPostTBCell.swift; sourceTree = "<group>"; };
 		3241C439286E9CF500A2E75A /* ForumDetailReplyTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailReplyTBCell.swift; sourceTree = "<group>"; };
 		3241C45B286F5F3800A2E75A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3241C45D286F6E7800A2E75A /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		3241C460286FD6B100A2E75A /* ForumReplyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumReplyVC.swift; sourceTree = "<group>"; };
 		3241C462286FEECE00A2E75A /* ForumLobbyCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumLobbyCVCell.swift; sourceTree = "<group>"; };
 		3255043A285F08F00019A190 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -184,6 +183,7 @@
 		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
 		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
 		32EFA30128703CBE00DFA8A2 /* ForumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumManager.swift; sourceTree = "<group>"; };
+		32EFA30328717D4900DFA8A2 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD31DB3DF6C8850DAC0C08E /* Pods-NaturianAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.release.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8C8900E83AB5BFA52CE15 /* Pods-NaturianAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaturianAPP.debug.xcconfig"; path = "Target Support Files/Pods-NaturianAPP/Pods-NaturianAPP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +238,7 @@
 				322145432867348E00D46503 /* UIColor+Extension.swift */,
 				3221454528673D2900D46503 /* UIFont+Extension.swift */,
 				3202F5A0286AFF540053777B /* CustomFunc.swift */,
+				32EFA30328717D4900DFA8A2 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,7 +367,6 @@
 				32078A5A28597D6700FF2980 /* Resource */,
 				32078A532859580E00FF2980 /* Model */,
 				32078A52285957F600FF2980 /* Controller */,
-				3241C45D286F6E7800A2E75A /* TabBarVC.swift */,
 				32078A5928597B1A00FF2980 /* View */,
 				32138B2A2858860200916700 /* Main.storyboard */,
 				32138B322858860400916700 /* LaunchScreen.storyboard */,
@@ -705,12 +705,12 @@
 				322145642868017B00D46503 /* ChatManager.swift in Sources */,
 				3255046E285F89280019A190 /* MJRefreshWrapper.swift in Sources */,
 				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
-				3241C45E286F6E7800A2E75A /* TabBarVC.swift in Sources */,
 				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
 				3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */,
 				3241C461286FD6B100A2E75A /* ForumReplyVC.swift in Sources */,
 				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
+				32EFA30428717D4900DFA8A2 /* UILabel+Extension.swift in Sources */,
 				32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */,
 				3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */,
 				32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */,
