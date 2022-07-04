@@ -161,65 +161,7 @@
         <scene sceneID="gGa-T1-8wc">
             <objects>
                 <viewController storyboardIdentifier="TalentManageViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="slW-NA-3Ew" customClass="MyTalentManageVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VWE-bI-C3V">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-1G-4Rh">
-                                <rect key="frame" x="24" y="88" width="366" height="37"/>
-                                <color key="backgroundColor" red="0.32108381785351825" green="0.69412878787878785" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="Qr3-Ia-Hle"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="My Talents "/>
-                                    <segment title="My Wizards"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="swifthView:" destination="slW-NA-3Ew" eventType="valueChanged" id="Nks-vD-DIm"/>
-                                </connections>
-                            </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgF-AY-zsJ">
-                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
-                                <connections>
-                                    <segue destination="sfp-LK-gez" kind="embed" id="5hV-r8-d1A"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxi-US-f5g">
-                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
-                                <connections>
-                                    <segue destination="IwG-L4-riO" kind="embed" id="qhn-Eb-Qnh"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="gAb-r5-7Uq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Nxi-US-f5g" firstAttribute="leading" secondItem="gAb-r5-7Uq" secondAttribute="leading" id="742-o7-JJv"/>
-                            <constraint firstItem="VgF-AY-zsJ" firstAttribute="leading" secondItem="gAb-r5-7Uq" secondAttribute="leading" id="AjG-SJ-uTa"/>
-                            <constraint firstItem="gAb-r5-7Uq" firstAttribute="trailing" secondItem="lc0-1G-4Rh" secondAttribute="trailing" constant="24" id="Ch4-0T-Kjt"/>
-                            <constraint firstItem="Nxi-US-f5g" firstAttribute="top" secondItem="lc0-1G-4Rh" secondAttribute="bottom" constant="24" id="Vh5-q5-0pO"/>
-                            <constraint firstAttribute="bottom" secondItem="VgF-AY-zsJ" secondAttribute="bottom" id="awE-pU-noE"/>
-                            <constraint firstItem="lc0-1G-4Rh" firstAttribute="leading" secondItem="gAb-r5-7Uq" secondAttribute="leading" constant="24" id="lSl-oK-ehk"/>
-                            <constraint firstItem="VgF-AY-zsJ" firstAttribute="top" secondItem="lc0-1G-4Rh" secondAttribute="bottom" constant="24" id="m8i-Dq-lnx"/>
-                            <constraint firstAttribute="bottom" secondItem="Nxi-US-f5g" secondAttribute="bottom" id="pGa-dE-WpX"/>
-                            <constraint firstItem="lc0-1G-4Rh" firstAttribute="top" secondItem="gAb-r5-7Uq" secondAttribute="top" id="tc8-8c-Fhj"/>
-                            <constraint firstItem="gAb-r5-7Uq" firstAttribute="trailing" secondItem="Nxi-US-f5g" secondAttribute="trailing" id="vyC-lm-c2N"/>
-                            <constraint firstItem="gAb-r5-7Uq" firstAttribute="trailing" secondItem="VgF-AY-zsJ" secondAttribute="trailing" id="zFD-im-tRt"/>
-                        </constraints>
-                    </view>
                     <navigationItem key="navigationItem" id="T3Z-M2-iW4"/>
-                    <connections>
-                        <outlet property="myView" destination="VgF-AY-zsJ" id="a8s-Q3-nS8"/>
-                        <outlet property="othersView" destination="Nxi-US-f5g" id="YAr-rR-Hxg"/>
-                        <outlet property="segmentControl" destination="lc0-1G-4Rh" id="SFx-TU-SDa"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhU-IG-hzH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -429,9 +371,9 @@
         <!--My Talent View Controller-->
         <scene sceneID="dka-Ht-vBa">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="sfp-LK-gez" customClass="MyTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTalentViewController" modalPresentationStyle="fullScreen" id="sfp-LK-gez" customClass="MyTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aVZ-FW-QPJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CZY-b3-JbL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -448,9 +390,9 @@
         <!--Other Talent View Controller-->
         <scene sceneID="XLZ-Sq-7Rs">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="IwG-L4-riO" customClass="OtherTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherTalentViewController" modalPresentationStyle="fullScreen" id="IwG-L4-riO" customClass="OtherTalentViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElK-ac-hKK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="9V6-ay-Jlv"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -458,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxQ-eI-aA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5121.739130434783" y="-2089.2857142857142"/>
+            <point key="canvasLocation" x="5122" y="-1902"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="BTG-u2-aQm">
@@ -479,7 +421,7 @@
             <objects>
                 <viewController storyboardIdentifier="MyTalentAppliersVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyTalentAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPo-wO-n51">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UmD-8k-qXC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -491,14 +433,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcI-qU-9iI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5265" y="-3307"/>
+            <point key="canvasLocation" x="6083" y="-3462"/>
         </scene>
         <!--Post TalentVC-->
         <scene sceneID="Lt9-Nw-dgc">
             <objects>
                 <viewController restorationIdentifier="PostTalentVC" storyboardIdentifier="PostTalentVC" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="cDs-UJ-N6H" customClass="PostTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKt-Vo-LK8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="CJ9-jE-Bgf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -540,7 +482,7 @@
             <objects>
                 <viewController storyboardIdentifier="LocationPopUpVC" modalPresentationStyle="overCurrentContext" id="w3s-sq-TlQ" customClass="LocationPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2k-rQ-yeT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iAq-O1-yOO"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -555,7 +497,7 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpVC" modalPresentationStyle="overCurrentContext" id="3wM-nO-DyD" customClass="CategoryPopUpVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6T-HV-AUL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wbu-TP-vGJ"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

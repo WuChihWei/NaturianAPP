@@ -57,11 +57,6 @@ class ForumLobbyTableViewCell: UITableViewCell {
         //        contentView.backgroundColor = .clear
         subview.backgroundColor = .white
         subview.lkCornerRadius = 15
-        title.font = UIFont(name: Roboto.bold.rawValue, size: 18)
-        title.textAlignment = .left
-        title.text = "Title"
-        title.textColor = .NaturianColor.darkGray
-        title.numberOfLines = 2
         
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
@@ -101,7 +96,6 @@ class ForumLobbyTableViewCell: UITableViewCell {
     }
     
     func layout() {
-        
         
         contentView.addSubview(subview)
         

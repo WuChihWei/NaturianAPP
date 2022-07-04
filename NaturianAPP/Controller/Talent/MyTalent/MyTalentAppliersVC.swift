@@ -23,7 +23,6 @@ class MyTalentAppliersVC: UIViewController {
 //    var userID = Auth.auth().currentUser?.uid
     let userID = "2"
 
-    
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     //    var newUserModel: [UserModel] = []
@@ -42,7 +41,6 @@ class MyTalentAppliersVC: UIViewController {
         fetchUserInfo()
         tableView.reloadData()
 //        userModels.removeAll()
-
         
     }
     
@@ -51,8 +49,6 @@ class MyTalentAppliersVC: UIViewController {
         // fix the chat room's members, after back the room will += 1 issuee
         userModels.removeAll()
     }
-    
-    
     
     override func viewDidLayoutSubviews() {
         

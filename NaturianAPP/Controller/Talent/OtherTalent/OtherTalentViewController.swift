@@ -144,7 +144,6 @@ extension OtherTalentViewController: UITableViewDataSource {
         cell.talentTitle.text = appliedTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
         
-        
         if appliedTalents[indexPath.row].didAcceptID[0] ==
             
             userID {

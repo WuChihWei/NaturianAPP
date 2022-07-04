@@ -25,6 +25,8 @@ class MyTalentViewController: UIViewController {
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
+    let subview = UIView()
+
     var talentArticles: [TalentArticle] = []
     var didSeletectApplierIDs: [String] = []
 
@@ -39,6 +41,7 @@ class MyTalentViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         fetchMyTalentArticle()
 //        tableView.reloadData()
         DispatchQueue.main.async {
@@ -85,8 +88,10 @@ class MyTalentViewController: UIViewController {
 
     func style() {
         
+        subview.backgroundColor = .NaturianColor.lightGray
+       
         tableView.separatorStyle = .none
-        
+        tableView.backgroundColor = .clear
         // addButton
         addTalentButton.setTitle("", for: .normal)
         addTalentButton.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -95,23 +100,31 @@ class MyTalentViewController: UIViewController {
     }
 
     func layout() {
-
+        
+        subview.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         addTalentButton.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(tableView)
+        
+        view.addSubview(subview)
+        subview.addSubview(tableView)
         tableView.addSubview(addTalentButton)
 
         NSLayoutConstraint.activate([
+            
+            subview.topAnchor.constraint(equalTo: view.topAnchor),
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
+            
             // tableView
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -16),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
+            tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
             
             // addTalentButton
-            addTalentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            addTalentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            addTalentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -26),
+            addTalentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
             addTalentButton.widthAnchor.constraint(equalToConstant: 58),
             addTalentButton.heightAnchor.constraint(equalToConstant: 58)
         ])
@@ -150,7 +163,7 @@ extension MyTalentViewController: UITableViewDataSource {
         }
 
         cell.title.text = talentArticles[indexPath.row].title
-        cell.category.text = talentArticles[indexPath.row].category
+        cell.categoryBTN.setTitle("\(talentArticles[indexPath.row].category ?? "")", for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue ?? 0)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
