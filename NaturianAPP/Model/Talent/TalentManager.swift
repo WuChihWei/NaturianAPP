@@ -67,7 +67,6 @@ class TalentManager {
         }
     }
     
-    
     func fetchMyIDData(userID:String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
         db.collection("talent").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in

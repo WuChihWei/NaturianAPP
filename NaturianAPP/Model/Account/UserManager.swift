@@ -211,11 +211,12 @@ class UserManager {
         }
     }
     
-    func updateAppliedTalent(userModel: UserModel) {
+    func updateAppliedTalent(userModel: UserModel, userID: String) {
         
         do {
             
-            try database.document("1").setData(from: userModel, merge: true)
+            try database.document(userID).setData(from: userModel, merge: true)
+//            try database.document(userID).setData(from: userModel)
             
         } catch {
             

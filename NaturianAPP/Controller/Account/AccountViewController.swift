@@ -22,7 +22,8 @@ class AccountViewController: UIViewController {
     var userManager = UserManager()
     var userFirebaseManager = UserFirebaseManager()
     
-    let userID = Auth.auth().currentUser?.uid
+//    let userID = Auth.auth().currentUser?.uid
+        let userID = "2"
     var userModels: UserModel!
     let backgroundView = UIView()
     
@@ -64,11 +65,13 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.tintColor = .NaturianColor.treatmentGreen
+        self.tabBarController?.tabBar.tintColor = .darkGray
         
+        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
         setup()
         setStyle()
         layout()
+        print(userID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,22 +79,6 @@ class AccountViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         userState()
-        
-//                if Auth.auth().currentUser == nil {
-//
-//                    guard let vc = self.storyboard?.instantiateViewController(
-//                        withIdentifier: "SignInViewController") as? SignInViewController else {
-//
-//                        fatalError("can't find SignInViewController")
-//                    }
-//
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//
-//                } else {
-//                    return        }
-        
-//        signinVC.getFirebaseUserInfo()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,7 +127,9 @@ class AccountViewController: UIViewController {
     
     func userState() {
             
-            userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+//        guard let userID = Auth.auth().currentUser?.uid else {return}
+        
+            userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
                 
                 switch result {
                     
@@ -266,8 +255,8 @@ class AccountViewController: UIViewController {
 
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .NaturianColor.lightGray
-        let url = URL(string: "\(userModels?.userAvatar ?? "")")
-        userAvatar.kf.setImage(with: url)
+//        let url = URL(string: "\(userModels?.userAvatar ?? "")")
+        userAvatar.kf.setImage(with: userModels?.userAvatar)
         
         naturianLB.text = "NATURIAN"
         naturianLB.font = UIFont(name: Roboto.black.rawValue, size: 18)
@@ -305,7 +294,7 @@ class AccountViewController: UIViewController {
         seedIcon.image = UIImage(named: "seed")
         
         qrUIImage.backgroundColor = .blue
-        qrUIImage.image = generateQRCode(from: userID ?? "No User ID")
+        qrUIImage.image = generateQRCode(from: userID )
         
         transferBtn.setImage(UIImage(named: "transferButton"), for: .normal)
         
@@ -404,7 +393,7 @@ class AccountViewController: UIViewController {
             
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             backgroundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
             
             blackLine.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),

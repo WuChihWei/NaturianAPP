@@ -26,6 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        
+        UITabBar.appearance().unselectedItemTintColor = .NaturianColor.lightGray
+        
+        let barApprance = UINavigationBarAppearance()
+                barApprance.configureWithTransparentBackground()
+                UINavigationBar.appearance().standardAppearance = barApprance
+                UINavigationBar.appearance().scrollEdgeAppearance = barApprance
+
+                let tabApprance = UITabBarAppearance()
+                tabApprance.configureWithTransparentBackground()
+                UITabBar.appearance().standardAppearance = tabApprance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = tabApprance
+        } else {
+            // Fallback on earlier versions
+        }
 
         // Google sign in
         
@@ -42,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
+        
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     

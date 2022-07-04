@@ -9,7 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import SwiftUI
+import FirebaseAuth
 
 class MyTalentViewController: UIViewController {
 
@@ -19,7 +19,9 @@ class MyTalentViewController: UIViewController {
     var userManager = UserManager()
 
     var db: Firestore!
-    let userID: String = "2"
+//    let userID = Auth.auth().currentUser?.uid
+    let userID = "2"
+
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let addTalentButton = UIButton()
@@ -48,31 +50,10 @@ class MyTalentViewController: UIViewController {
         tableView.layoutIfNeeded()
         addTalentButton.layer.cornerRadius = (addTalentButton.bounds.width) / 2
     }
-
-//    func fetchTalentArticle() {
-//
-//        talentManager.fetchData { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let talentArticles):
-//
-//                self?.talentArticles = talentArticles
-//
-//                self?.tableView.reloadData()
-//
-//            case .failure:
-//
-//                print("can't fetch data")
-//            }
-//        }
-//
-//        print(LocalizedError.self)
-//    }
     
         func fetchMyTalentArticle() {
     
-            talentManager.fetchMyIDData(userID: userID) { [weak self] result in
+            talentManager.fetchMyIDData(userID: userID ?? "") { [weak self] result in
     
                 switch result {
     
@@ -161,7 +142,7 @@ extension MyTalentViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell( withIdentifier:     MyTalentTableViewCell.identifer,
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: MyTalentTableViewCell.identifer,
             for: indexPath) as? MyTalentTableViewCell else {
             
             fatalError("can't find TalentLobbyTableViewCell")
@@ -173,7 +154,7 @@ extension MyTalentViewController: UITableViewDataSource {
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue ?? 0)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
-        cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count)", for: .normal)
+        cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count - 1)", for: .normal)
         
 //        cell.postImage.image = talentArticles[indexPath.row]
         

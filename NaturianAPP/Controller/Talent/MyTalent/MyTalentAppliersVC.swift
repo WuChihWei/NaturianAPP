@@ -9,6 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import FirebaseAuth
 
 class MyTalentAppliersVC: UIViewController {
     
@@ -19,7 +20,9 @@ class MyTalentAppliersVC: UIViewController {
     var userManager = UserManager()
     
     var talentArticleID: String?
-    var userID = "2"
+//    var userID = Auth.auth().currentUser?.uid
+    let userID = "2"
+
     
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
@@ -32,11 +35,6 @@ class MyTalentAppliersVC: UIViewController {
         style()
         layout()
 
-//                        fetchUserInfo()
-//        
-//                DispatchQueue.main.async {
-//                                self.fetchUserInfo()
-//                }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,11 +163,11 @@ extension MyTalentAppliersVC: UITableViewDataSource {
             
         }
         
-        let photoUrl = URL(string: "\(userModels[indexPath.row].userAvatar ?? "")")
+//        let photoUrl = URL(string: "\(userModels[indexPath.row].userAvatar ?? "")")
         
         cell.userName.text = userModels[indexPath.row].name
 
-        cell.userAvatar.kf.setImage(with: photoUrl)
+        cell.userAvatar.kf.setImage(with: userModels[indexPath.row].userAvatar)
         
         cell.layoutIfNeeded()
         
@@ -188,8 +186,9 @@ extension MyTalentAppliersVC: UITableViewDataSource {
             fatalError("can't find ChatViewController")
         }
         
-        vc.chatTalentID = self.talentArticleID ?? ""
-        vc.user2UID = self.userModels[indexPath.row].userID
+//        vc.chatTalentID = self.talentArticleID ?? ""
+//        vc.user2UID = self.userModels[indexPath.row].userID
+        vc.chatToTalentModel = didSeletectDetails
  
         self.navigationController?.pushViewController(vc, animated: true)
                 

@@ -10,148 +10,174 @@ import FirebaseCore
 import FirebaseFirestore
 
 class ForumViewController: UIViewController {
+ 
+    private var categories = [ (name: "Food", imageName: "food_icon"),
+                               (name: "Grocery", imageName: "grocery_icon"),
+                               (name: "Plant", imageName:"plant_icon"),
+                               (name: "Adventure", imageName: "adventure_icon"),
+                               (name: "Exercise", imageName: "exercise_icon"),
+                               (name: "Treatment", imageName: "treatment_icon") ]
     
-    var fullScreenSize: CGSize!
-    
-    @IBOutlet weak var myCollectionView: UICollectionView!
-    
-    private var titles = ["Food",
-                          "Grocery",
-                          "Plant",
-                          "Adventure",
-                          "Exercise",
-                          "Treatment"]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //    private enum LayoutConstant {
+    //        static let spacing: CGFloat = 16.0
+    //        static let itemHeight: CGFloat = 200.0
+    //    }
         
-        // Setup BackgroundColor
-        self.view.backgroundColor = UIColor.white
-        
-        setup()
-    }
+    let firstLB = UILabel()
+    let secondLB = UILabel()
+    let thirdtLB = UILabel()
+    let titleStack = UIStackView()
+    
+    let collectionView: UICollectionView = {
+        let viewLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: setup Layout
-    func setup() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let layout = UICollectionViewFlowLayout()
+        navigationController?.navigationBar.isHidden = true
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
         
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        layout.minimumLineSpacing = 10
-        
-        layout.itemSize = CGSize(
-            width: UIScreen.width / 2 - 10,
-            height: UIScreen.width / 2 - 10)
-        
-        // header & footer
-        layout.headerReferenceSize = CGSize(width: UIScreen.width, height: 40)
-        layout.footerReferenceSize = CGSize(width: UIScreen.width, height: 40)
-        
-        let myCollectionView = UICollectionView(frame: CGRect(
-            x: 0, y: 20,
-            width: UIScreen.width,
-            height: UIScreen.height
-        ), collectionViewLayout: layout)
-        
-        myCollectionView.register(
-            ForumCollectionViewCell.self,
-            forCellWithReuseIdentifier: "Cell")
-        
-        myCollectionView.register(
-            UICollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "Header")
-        
-        myCollectionView.register(
-            UICollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: "Footer")
-        
-        // 設置委任對象
-        myCollectionView.delegate = self
-        myCollectionView.dataSource = self
-        
-        self.view.addSubview(myCollectionView)
+        setupViews()
+        setupLayouts()
+        style()
     }
     
-}
-
-extension ForumViewController: UICollectionViewDelegate {
+    private func setupViews() {
+        
+        view.addSubview(titleStack)
+        view.addSubview(collectionView)
+        collectionView.register(ForumLobbyCVCell.self, forCellWithReuseIdentifier: ForumLobbyCVCell.identifer)
+    }
     
+    private func style() {
+        
+        collectionView.backgroundColor = .clear
+        view.backgroundColor = .NaturianColor.navigationGray
+
+        firstLB.text = "Discover"
+        firstLB.textColor = .white
+        firstLB.font = UIFont(name: Roboto.black.rawValue, size: 37)
+        firstLB.numberOfLines = 0
+        
+        secondLB.text = "Your Own"
+        secondLB.textColor = .white
+        secondLB.font = UIFont(name: Roboto.black.rawValue, size: 37)
+        secondLB.numberOfLines = 0
+        
+        thirdtLB.text = "Universe"
+        thirdtLB.textColor = .white
+        thirdtLB.font = UIFont(name: Roboto.black.rawValue, size: 37)
+        thirdtLB.numberOfLines = 0
+
+        titleStack.axis = .vertical
+        titleStack.alignment = .leading
+        titleStack.spacing = 0.8
+    }
+    
+    private func setupLayouts() {
+        
+        titleStack.addArrangedSubview(firstLB)
+        titleStack.addArrangedSubview(secondLB)
+        titleStack.addArrangedSubview(thirdtLB)
+
+        titleStack.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Layout constraints for `collectionView`
+        NSLayoutConstraint.activate([
+            
+            titleStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleStack.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
+            titleStack.heightAnchor.constraint(equalToConstant: 120),
+            firstLB.heightAnchor.constraint(equalToConstant: 37),
+            secondLB.heightAnchor.constraint(equalToConstant: 37),
+            thirdtLB.heightAnchor.constraint(equalToConstant: 37),
+
+            collectionView.topAnchor.constraint(equalTo: titleStack.bottomAnchor, constant: 10),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ])
+    }
 }
 
 extension ForumViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return titles.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
-                                                            for: indexPath) as? ForumCollectionViewCell else {
-            
-            fatalError("can't find ForumCollectionViewCell")
-        }
-        cell.titleLabel.text = titles[indexPath.item]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForumLobbyCVCell.identifer, for: indexPath) as?
+                ForumLobbyCVCell else { fatalError("can't find Cell") }
+        
+        cell.lkCornerRadius = 10
+        cell.tilteLB.text = categories[indexPath.row].name
+        cell.cardview.image = UIImage(named: "\(categories[indexPath.row].imageName)")
+        cell.backgroundColor = .white
         return cell
     }
+}
+
+extension ForumViewController: UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth = (collectionView.bounds.width - 48 - 15) / 2
+        let cellHeight = cellWidth
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
             
             fatalError("can't find ForumLobbyViewController")
         }
+        vc.forumTitle = categories[indexPath.row].name
+        
+        
         self.navigationController?.pushViewController(vc, animated: true)
-        vc.seletectedTitle = titles[indexPath.item]
     }
+}
+
+extension ForumViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        var reusableView = UICollectionReusableView()
-        
-        let label = UILabel(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: UIScreen.width,
-            height: 40))
-        label.textAlignment = .center
-        
-        // header
-        if kind == UICollectionView.elementKindSectionHeader {
-            
-            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                           withReuseIdentifier: "Header",
-                                                                           for: indexPath)
-            
-            reusableView.backgroundColor = UIColor.gray
-            label.text = "Header"
-            label.textColor = UIColor.white
-        } else if kind == UICollectionView.elementKindSectionFooter {
-            
-            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
-                                                                           withReuseIdentifier: "Footer",
-                                                                           for: indexPath)
-            
-            reusableView.backgroundColor = UIColor.gray
-            label.text = "Footer"
-            label.textColor = UIColor.white
-        }
-        
-        reusableView.addSubview(label)
-        return reusableView
-    }
 }

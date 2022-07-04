@@ -20,7 +20,9 @@ class PostTalentVC: UIViewController {
     var talentManager = TalentManager()
     var photoManager = PhotoManager()
 
-    var userID = Auth.auth().currentUser?.uid
+//    var userID = Auth.auth().currentUser?.uid
+    let userID = "2"
+
     var userModels: UserModel?
     
     var categoryResult = ""
@@ -102,9 +104,7 @@ class PostTalentVC: UIViewController {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID ?? "" ) {
-            
-            [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "" ) { [weak self] result in
             
             switch result {
                 
@@ -125,7 +125,9 @@ class PostTalentVC: UIViewController {
     // MARK: setup camera enviroment
     @objc func tapPhoto(tapGestureRecognizer: UITapGestureRecognizer) {
         
-        photoManager.tapPhoto(controller: self, alertText: "Choose Your Avatar", imagePickerController: imagePickerController)
+        photoManager.tapPhoto(controller: self,
+                              alertText: "Choose Your Photo",
+                              imagePickerController: imagePickerController)
     }
     
     func setUp() {
@@ -280,8 +282,8 @@ class PostTalentVC: UIViewController {
                                                       seedValue: self.userModels?.seedValue,
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
-                                                      appliedTalent: [""],
-                                                      isAccepetedTalent: [""],
+                                                      appliedTalent: self.userModels?.appliedTalent ?? [],
+                                                      isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                                       createdTime: self.userModels?.createdTime,
                                                       email: self.userModels?.email
                             )
@@ -302,12 +304,12 @@ class PostTalentVC: UIViewController {
                             
                             self.talentManager.addData(postTalent: talenArticle)
 
-                        case .failure(_):
+                        case .failure:
                             break
                         }
                     }
                     
-                case .failure(_):
+                case .failure:
                     break
                 }
             }
