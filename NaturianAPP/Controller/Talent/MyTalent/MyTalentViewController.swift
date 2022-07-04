@@ -19,8 +19,8 @@ class MyTalentViewController: UIViewController {
     var userManager = UserManager()
 
     var db: Firestore!
-    let userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
+//    let userID = Auth.auth().currentUser?.uid
+    let userID = "2"
 
     let searchTextField = UITextField()
     let filterButton = UIButton()

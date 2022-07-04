@@ -18,8 +18,8 @@ class OtherTalentViewController: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
     
-    var userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
+//    var userID = Auth.auth().currentUser?.uid
+    let userID = "2"
 
     var appliedTalents: [TalentArticle] = []
     var acceptTalents: [TalentArticle] = []

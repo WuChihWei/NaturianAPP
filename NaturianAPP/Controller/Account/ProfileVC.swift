@@ -17,8 +17,8 @@ class GenderCell: UITableViewCell {
 class ProfileVC: UIViewController {
     
     var addTransparentManager = AddDropDownField()
-    let userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
+//    let userID = Auth.auth().currentUser?.uid
+    let userID = "2"
 
     var photoManager = PhotoManager()
     var profileManager = UserFirebaseManager()

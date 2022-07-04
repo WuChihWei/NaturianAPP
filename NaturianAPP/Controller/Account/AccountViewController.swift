@@ -22,8 +22,8 @@ class AccountViewController: UIViewController {
     var userManager = UserManager()
     var userFirebaseManager = UserFirebaseManager()
     
-    let userID = Auth.auth().currentUser?.uid
-//        let userID = "2"
+//    let userID = Auth.auth().currentUser?.uid
+        let userID = "2"
     var userModels: UserModel!
     let backgroundView = UIView()
     
@@ -127,7 +127,7 @@ class AccountViewController: UIViewController {
     
     func userState() {
             
-        guard let userID = Auth.auth().currentUser?.uid else {return}
+//        guard let userID = Auth.auth().currentUser?.uid else {return}
         
             userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
                 
@@ -294,7 +294,7 @@ class AccountViewController: UIViewController {
         seedIcon.image = UIImage(named: "seed")
         
         qrUIImage.backgroundColor = .blue
-        qrUIImage.image = generateQRCode(from: userID ?? "No User ID")
+        qrUIImage.image = generateQRCode(from: userID )
         
         transferBtn.setImage(UIImage(named: "transferButton"), for: .normal)
         

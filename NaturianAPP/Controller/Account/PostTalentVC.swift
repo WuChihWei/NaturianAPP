@@ -20,8 +20,8 @@ class PostTalentVC: UIViewController {
     var talentManager = TalentManager()
     var photoManager = PhotoManager()
 
-    var userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
+//    var userID = Auth.auth().currentUser?.uid
+    let userID = "2"
 
     var userModels: UserModel?
     
