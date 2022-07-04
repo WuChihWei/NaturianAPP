@@ -12,8 +12,9 @@ import FirebaseAuth
 
 class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
+//    let currentUserID = Auth.auth().currentUser?.uid
     let currentUserID = "2"
-    
+
     var userManager = UserManager()
     var userModels: UserModel?
 

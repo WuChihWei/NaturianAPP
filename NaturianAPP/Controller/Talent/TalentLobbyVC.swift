@@ -18,18 +18,26 @@ class TalentLobbyVC: UIViewController {
     private let tableView = UITableView()
     let searchTextField = UITextField()
     let filterButton = UIButton()
-    
+    let searchBtn = UIButton()
+    let cleanBtn = UIButton()
+
+    let addPosteBTN = UIButton()
+
     var talentArticles: [TalentArticle] = []
     var userManager = UserManager()
     var userModels: [UserModel] = []
+    let subview = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
         setUp()
         style()
         layout()
         fetchTalentArticle()
+        tableView.showsVerticalScrollIndicator = false
+
         tabBarController?.tabBar.isHidden = false
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -39,7 +47,7 @@ class TalentLobbyVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.tabBar.isHidden = false
-        
+        tableView.layoutIfNeeded()
         fetchTalentArticle()
         tableView.reloadData()
     }
@@ -71,12 +79,29 @@ class TalentLobbyVC: UIViewController {
     
     func setUp() {
         
+        addPosteBTN.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
+        
         tableView.register(TalentLobbyTableViewCell.self, forCellReuseIdentifier: TalentLobbyTableViewCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         
         filterButton.addTarget(self, action: #selector(filterTalent), for: .touchUpInside)
+    }
+    
+    @objc func postTalent() {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "PostTalentVC") as? PostTalentVC else {
+            
+            fatalError("can't find PostTalentVC")
+        }
+                self.navigationController?.pushViewController(vc, animated: true)
+//        present(vc, animated: true)
+    }
+    
+    private func showPostTalentVC() {
+        
     }
     
     @objc func filterTalent() {
@@ -93,51 +118,85 @@ class TalentLobbyVC: UIViewController {
     
     func style() {
         
-        // backTabBar
-        let barButton = UIBarButtonItem()
-        barButton.title = ""
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
+        searchBtn.setImage(UIImage(named: "search"), for: .normal)
+        // addButton
+        addPosteBTN.setTitle("Post", for: .normal)
+        addPosteBTN.backgroundColor = .NaturianColor.darkGray
+        addPosteBTN.tintColor = .white
+        addPosteBTN.setTitleColor(.white, for: .normal)
+        addPosteBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        addPosteBTN.lkCornerRadius = 16
         
+        view.backgroundColor = .NaturianColor.navigationGray
+        view.lkBorderColor = .white
+       
+        // subview
+        subview.lkCornerRadius = 30
+        subview.backgroundColor = .NaturianColor.lightGray
+
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
         // searchTextField
         searchTextField.placeholder = "Search Result"
         searchTextField.font = UIFont.systemFont(ofSize: 14)
         searchTextField.backgroundColor = .white
-        searchTextField.addPadding(.left(24))
+        searchTextField.addPadding(.left(30))
         searchTextField.lkCornerRadius = 20
-        searchTextField.lkBorderWidth = 1
-        searchTextField.lkBorderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         // filterButton
         filterButton.setImage(UIImage(named: "sliders"), for: .normal)
-        filterButton.setTitle("", for: .normal)
     }
     
     func layout() {
-        
+        searchBtn.translatesAutoresizingMaskIntoConstraints = false
+        addPosteBTN.translatesAutoresizingMaskIntoConstraints = false
+        subview.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         filterButton.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(tableView)
+        searchTextField.addSubview(searchBtn)
+        view.addSubview(subview)
+        subview.addSubview(tableView)
+        view.addSubview(addPosteBTN)
         view.addSubview(searchTextField)
         view.addSubview(filterButton)
         
         NSLayoutConstraint.activate([
-            // tableView
-            tableView.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 16),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            
+            searchBtn.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor, constant: 10),
+            searchBtn.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
+            searchBtn.heightAnchor.constraint(equalToConstant: 18),
+            searchBtn.widthAnchor.constraint(equalToConstant: 18),
+
             // searchTextField
-            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             searchTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            addPosteBTN.centerYAnchor.constraint(equalTo: filterButton.centerYAnchor),
+            addPosteBTN.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
+            addPosteBTN.widthAnchor.constraint(equalToConstant: 128),
+            addPosteBTN.heightAnchor.constraint(equalToConstant: 32),
+            
             // filterButton
             filterButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 16),
             filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             filterButton.widthAnchor.constraint(equalToConstant: 28),
-            filterButton.heightAnchor.constraint(equalToConstant: 28)
+            filterButton.heightAnchor.constraint(equalToConstant: 28),
+            // tableView
+            subview.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 16),
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
+            
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
+            tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
+            
+            // addTalentButton
+          
         ])
     }
 }
@@ -162,7 +221,7 @@ extension TalentLobbyVC: UITableViewDataSource {
         let photoUrl = talentArticles[indexPath.row].images[0]
         
         cell.title.text = talentArticles[indexPath.row].title
-        cell.category.text = talentArticles[indexPath.row].category
+        cell.categoryBTN.setTitle(String(describing: talentArticles[indexPath.row].category ?? ""), for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue!)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.locationLabel.text = talentArticles[indexPath.row].location
@@ -172,17 +231,34 @@ extension TalentLobbyVC: UITableViewDataSource {
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
         
-        if talentArticles[indexPath.row].userInfo?.gender == "Male" {
+        switch talentArticles[indexPath.row].userInfo?.gender {
             
-            cell.genderIcon.image = UIImage(named: "heart")
-            
-        } else if talentArticles[indexPath.row].userInfo?.gender == "Female" {
-            
+        case "Male":
+            cell.genderIcon.image = UIImage(named: "male")
+        case "Female":
             cell.genderIcon.image = UIImage(named: "female")
-            
-        } else {
-            
+        case "Undefined":
             cell.genderIcon.image = UIImage(named: "undefined")
+        default:
+            break
+        }
+        
+        switch talentArticles[indexPath.row].category {
+            
+        case "Food":
+            cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+        case "Plant":
+            cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+        case "Adventure":
+            cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+        case "Grocery":
+            cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+        case "Exercise":
+            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+        case "Treatment":
+            cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+        default:
+            break
         }
         
         return cell

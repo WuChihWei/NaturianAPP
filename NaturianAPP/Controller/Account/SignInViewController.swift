@@ -21,6 +21,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
+        
         setSignInWithAppleBtn()
         // Do any additional setup after loading the view.
         // After leaving app determine current user signed in before
@@ -207,7 +209,7 @@ extension SignInViewController {
                                vc: self,
                                actionHandler: nil)
         
-        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
+//        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
         
         guard let vc = self.storyboard?.instantiateViewController(
             withIdentifier: "AccountViewController") as? AccountViewController else {
