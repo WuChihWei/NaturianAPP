@@ -129,7 +129,6 @@ class TalentDetailViewController: UIViewController {
         navigationController?.popViewController(animated: false)
     }
     
-    
     func setUp() {
         
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)

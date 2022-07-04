@@ -17,7 +17,8 @@ class OtherTalentViewController: UIViewController {
     var userManager = UserManager()
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
-    
+    let subview = UIView()
+
 //    var userID = Auth.auth().currentUser?.uid
     let userID = "2"
 
@@ -32,7 +33,8 @@ class OtherTalentViewController: UIViewController {
         style()
         layout()
         fetchAppliedTalent()
-        
+        tableView.showsVerticalScrollIndicator = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +42,17 @@ class OtherTalentViewController: UIViewController {
         fetchAppliedTalent()
         tableView.reloadData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        tableView.layoutIfNeeded()
+
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        appliedTalents.removeAll()
+        acceptTalents.removeAll()
+    }
+    
     
     func setUp() {
         
@@ -50,21 +63,36 @@ class OtherTalentViewController: UIViewController {
     }
     
     func style() {
+        
+        subview.backgroundColor = .NaturianColor.lightGray
+       
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        
     }
     
     func layout() {
         
+        subview.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(subview)
+        subview.addSubview(tableView)
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             // tableView
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -16),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            subview.topAnchor.constraint(equalTo: view.topAnchor),
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
+            
+            // tableView
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
+            tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
+            
         ])
     }
     
@@ -141,17 +169,24 @@ extension OtherTalentViewController: UITableViewDataSource {
         }
         
         let postImageURL = appliedTalents[indexPath.row].images[0]
-        cell.talentTitle.text = appliedTalents[indexPath.row].title
+        cell.title.text = appliedTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
+        cell.providerName.text = appliedTalents[indexPath.row].userInfo?.name
+        cell.seedValue.text = "\(appliedTalents[indexPath.row].seedValue ?? 0)"
+        cell.talentDescription.text = appliedTalents[indexPath.row].content
+        
+        cell.layoutIfNeeded()
+        cell.postImage.clipsToBounds = true
+        cell.postImage.contentMode = .scaleAspectFill
         
         if appliedTalents[indexPath.row].didAcceptID[0] ==
             
             userID {
             
-            cell.appliedStateBtn.setImage(UIImage(named: "check"), for: .normal)
+            cell.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
         } else {
             
-            cell.appliedStateBtn.setImage(UIImage(named: "pending"), for: .normal)
+            cell.appliedStateBtn.setImage(UIImage(named: "waiting"), for: .normal)
         }
         
         return cell

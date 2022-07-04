@@ -17,12 +17,12 @@ class MyTalentTableViewCell: UITableViewCell {
     
     let postImage = UIImageView()
     let title = UILabel()
-    let seedValue = UILabel()
     let talentDescription = UILabel()
     let categoryBTN = UIButton()
     let messageAmountButton = UIButton()
     let addTalentButton = UIButton()
     let subview = UIView()
+    let seedValue = UILabel()
     let seedIcon = UIImageView()
     private let seedStack = UIStackView()
 

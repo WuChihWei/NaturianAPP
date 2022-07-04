@@ -72,6 +72,7 @@ class AccountViewController: UIViewController {
         setStyle()
         layout()
         print(userID)
+   
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -45,14 +45,25 @@ class MyTalentManageVC: UIViewController {
         guard let vc2 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "OtherTalentViewController") as? OtherTalentViewController else {return}
         
-        subControllers = [vc1, vc2]
+        guard let vc3 = UIStoryboard(name: "Main",
+                                     bundle: nil).instantiateViewController(withIdentifier: "MyChatRoomVC") as? MyChatRoomVC else {return}
+        
+        
+        subControllers = [vc1, vc2, vc3]
+        
         vc1.title = "My Talents"
         vc2.title = "My Wizards"
+        vc3.title = "Chat Room"
+
         viewPagers.reload()
     }
     
+    @objc func closePage() {
+        navigationController?.popViewController(animated: false)
+    }
+    
     func setUp() {
-        
+        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
     }
     
     func style() {
@@ -116,6 +127,8 @@ extension MyTalentManageVC: LZViewPagerDataSource {
         button.setTitleColor(.NaturianColor.darkGray, for: .selected)
         button.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         button.backgroundColor = .white
+        
+      
 //        button.addSubview(grayView)
         return button
     }
@@ -135,4 +148,8 @@ extension MyTalentManageVC: LZViewPagerDataSource {
         return .NaturianColor.navigationGray
     }
     
+    func didSelectButton(at index: Int) {
+        
+    }
 }
+

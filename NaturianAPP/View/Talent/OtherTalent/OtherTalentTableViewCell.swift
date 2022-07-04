@@ -16,12 +16,18 @@ class OtherTalentTableViewCell: UITableViewCell {
     }
     
     let postImage = UIImageView()
-    let categoryLabel = UILabel()
+//    let categoryBTN = UIButton()
+    let title = UILabel()
     let appliedStateBtn = UIButton()
-    let talentTitle = UILabel()
+    let talentDescription = UILabel()
     var contactButton = UIButton()
-    var cancelButton = UIButton()
-    let buttonStack = UIStackView()
+    let seedValue = UILabel()
+    let seedIcon = UIImageView()
+    let providerName = UILabel()
+    
+    let subview = UIView()
+    private let seedStack = UIStackView()
+
 //    let contactButtons = [UIButton]()
     
     // Accept MessageAmmount
@@ -44,88 +50,126 @@ class OtherTalentTableViewCell: UITableViewCell {
     
     func styleObject() {
         
+        backgroundColor = .clear
+        subview.backgroundColor = .white
+        subview.lkCornerRadius = 15
+        
         //        contentView.backgroundColor = .darkGray
-        talentTitle.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        talentTitle.textAlignment = .left
-        talentTitle.text = "Title"
+        title.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        title.textAlignment = .left
+        title.text = "Title"
+        title.textColor = .NaturianColor.darkGray
+        title.numberOfLines = 2
         
-        categoryLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        categoryLabel.textAlignment = .center
-        categoryLabel.backgroundColor = .green
-        categoryLabel.text = "Category"
+        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        seedValue.textAlignment = .left
+        seedValue.text = "70"
+        seedValue.textColor = .NaturianColor.navigationGray
+        seedIcon.image = UIImage(named: "seed_gray")
         
+        providerName.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        providerName.textAlignment = .left
+        providerName.text = "David"
+        providerName.textColor = .NaturianColor.darkGray
+        
+        seedStack.axis = .horizontal
+        seedStack.alignment = .center
+        seedStack.spacing = 3
+        
+        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        talentDescription.numberOfLines = 2
+        talentDescription.text = "I will teach you how reproduce plants in better ways."
+        talentDescription.textAlignment = .justified
+        talentDescription.textColor = .NaturianColor.darkGray
+
         appliedStateBtn.setTitle("", for: .normal)
-        appliedStateBtn.backgroundColor = .lightGray
         appliedStateBtn.layer.cornerRadius = 17
-//        appliedStateBtn.setImage(UIImage(systemName: "checkmark"), for: .normal)
         
         contactButton.setTitle("Contact", for: .normal)
-        contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        contactButton.lkBorderColor = .black
-        contactButton.lkBorderWidth = 1
-        contactButton.setTitleColor(.black, for: .normal)
-        contactButton.backgroundColor = .green
+        contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
+   
+        contactButton.setTitleColor(.white, for: .normal)
+        contactButton.backgroundColor = .NaturianColor.treatmentGreen
+        contactButton.lkCornerRadius = 13
         
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        cancelButton.lkBorderColor = .black
-        cancelButton.lkBorderWidth = 1
-        cancelButton.setTitleColor(.black, for: .normal)
-
         postImage.backgroundColor = .gray
+        postImage.contentMode = .scaleAspectFill
+        postImage.lkCornerRadius = 10
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
-        talentStackView.spacing = 3
-        
-        buttonStack.axis = .horizontal
-        buttonStack.alignment = .trailing
-        buttonStack.spacing = 10
+        talentStackView.spacing = 0
+     
     }
     
     func layout() {
         
-        contentView.addSubview(postImage)
-        contentView.addSubview(appliedStateBtn)
-        contentView.addSubview(talentStackView)
-        contentView.addSubview(buttonStack)
+        contentView.addSubview(subview)
+
+        subview.addSubview(postImage)
+        subview.addSubview(appliedStateBtn)
+        subview.addSubview(talentStackView)
+        subview.addSubview(talentDescription)
+        subview.addSubview(title)
+        subview.addSubview(contactButton)
+        subview.addSubview(seedStack)
+        subview.addSubview(appliedStateBtn)
+
+
+        talentStackView.addArrangedSubview(providerName)
+        talentStackView.addArrangedSubview(seedStack)
         
-        talentStackView.addArrangedSubview(talentTitle)
-        talentStackView.addArrangedSubview(categoryLabel)
+        seedStack.addArrangedSubview(seedIcon)
+        seedStack.addArrangedSubview(seedValue)
         
-        buttonStack.addArrangedSubview(contactButton)
-        buttonStack.addArrangedSubview(cancelButton)
-        
-        postImage.translatesAutoresizingMaskIntoConstraints = false
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        title.translatesAutoresizingMaskIntoConstraints = false
         talentStackView.translatesAutoresizingMaskIntoConstraints = false
+        postImage.translatesAutoresizingMaskIntoConstraints = false
+        talentDescription.translatesAutoresizingMaskIntoConstraints = false
         appliedStateBtn.translatesAutoresizingMaskIntoConstraints = false
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+        contactButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
+            subview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            subview.heightAnchor.constraint(equalToConstant: 175),
+            
+            title.topAnchor.constraint(equalTo: postImage.topAnchor),
+            title.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
+            title.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -18),
+            
             // postImage
-            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            postImage.widthAnchor.constraint(equalToConstant: 100),
-            postImage.heightAnchor.constraint(equalToConstant: 100),
-            postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            postImage.topAnchor.constraint(equalTo: subview.topAnchor, constant: 20),
+            postImage.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 18),
+            postImage.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20),
+            postImage.widthAnchor.constraint(equalToConstant: 135),
+            postImage.heightAnchor.constraint(equalToConstant: 135),
             
             // talentStack
-            talentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 18),
-            talentStackView.heightAnchor.constraint(equalToConstant: 50),
-                        
-            // messageAmount
-            appliedStateBtn.topAnchor.constraint(equalTo: postImage.topAnchor),
-            appliedStateBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            appliedStateBtn.widthAnchor.constraint(equalToConstant: 30),
-            appliedStateBtn.heightAnchor.constraint(equalToConstant: 30),
+            talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
+            talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 14),
+            seedIcon.widthAnchor.constraint(equalToConstant: 12),
+            seedIcon.heightAnchor.constraint(equalToConstant: 12),
+
+            // talentDescription
+            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 3),
+            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
+            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             
-            contactButton.widthAnchor.constraint(equalToConstant: 80),
-            cancelButton.widthAnchor.constraint(equalToConstant: 80),
-            buttonStack.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
-            buttonStack.trailingAnchor.constraint(equalTo: appliedStateBtn.trailingAnchor),
-            buttonStack.heightAnchor.constraint(equalToConstant: 22)
+            contactButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
+            contactButton.heightAnchor.constraint(equalToConstant: 26),
+            contactButton.trailingAnchor.constraint(equalTo: appliedStateBtn.leadingAnchor,constant: -20),
+            contactButton.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            
+            appliedStateBtn.centerYAnchor.constraint(equalTo: contactButton.centerYAnchor),
+            appliedStateBtn.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+            appliedStateBtn.widthAnchor.constraint(equalToConstant: 26),
+            appliedStateBtn.heightAnchor.constraint(equalToConstant: 26),
+
         ])
         
     }
