@@ -23,7 +23,7 @@ class AccountViewController: UIViewController {
     var userFirebaseManager = UserFirebaseManager()
     
 //    let userID = Auth.auth().currentUser?.uid
-        let userID = "2"
+    let userID = "2"
     var userModels: UserModel!
     let backgroundView = UIView()
     
@@ -76,16 +76,13 @@ class AccountViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         userState()
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         
     }
-    
     override func viewDidDisappear(_ animated: Bool) {
         
     }
@@ -108,7 +105,8 @@ class AccountViewController: UIViewController {
         circleL.lkCornerRadius = circleL.bounds.width / 2
         circleR.lkCornerRadius = circleR.bounds.width / 2
         
-        userAvatar.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: backgroundView.bounds.height / 4 - 73 ).isActive = true
+        userAvatar.topAnchor.constraint(equalTo: backgroundView.topAnchor,
+                                        constant: backgroundView.bounds.height / 4 - 73 ).isActive = true
     }
     
     func generateQRCode(from string: String) -> UIImage? {

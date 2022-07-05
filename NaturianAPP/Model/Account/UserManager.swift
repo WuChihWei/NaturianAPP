@@ -229,6 +229,7 @@ class UserManager {
     func readAccountData(userID: String) {
         
         db.collection("users").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+            
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
                     print(document.data())

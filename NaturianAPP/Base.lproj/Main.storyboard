@@ -431,10 +431,10 @@
             </objects>
             <point key="canvasLocation" x="4432" y="-717"/>
         </scene>
-        <!--My Talent AppliersVC-->
+        <!--My Applier LobbyVC-->
         <scene sceneID="Mp2-dH-fAD">
             <objects>
-                <viewController storyboardIdentifier="MyTalentAppliersVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyTalentAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyApplierLobbyVC" modalPresentationStyle="fullScreen" id="njW-9C-sq3" customClass="MyApplierLobbyVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPo-wO-n51">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -507,6 +507,51 @@
             </objects>
             <point key="canvasLocation" x="7063.7681159420299" y="-2423.4375"/>
         </scene>
+        <!--All My AppliersVC-->
+        <scene sceneID="LO4-hc-CBB">
+            <objects>
+                <viewController storyboardIdentifier="AllMyAppliersVC" id="O1Q-YW-w6r" customClass="AllMyAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZoO-4l-QyN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="n8w-we-EGY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIl-tT-Efh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5562" y="-4407"/>
+        </scene>
+        <!--My AppliersVC-->
+        <scene sceneID="MlQ-47-yP3">
+            <objects>
+                <viewController storyboardIdentifier="MyAppliersVC" id="OzE-NR-AeT" customClass="MyAppliersVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iL7-66-V6m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Y2N-Rb-gi7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBV-lq-2uM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6467" y="-4414"/>
+        </scene>
+        <!--My AcceptedVC-->
+        <scene sceneID="4Rj-Tz-ch7">
+            <objects>
+                <viewController storyboardIdentifier="MyAcceptedVC" id="fCM-RX-iO7" customClass="MyAcceptedVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="19g-9e-Gog">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="1rs-0m-XcU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJA-PE-UMH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7312" y="-4414"/>
+        </scene>
         <!--Category Pop UpVC-->
         <scene sceneID="ZHk-z6-xTj">
             <objects>
@@ -541,6 +586,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165" y="-2125"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wcc-Ps-BLM">
+            <objects>
+                <viewController id="hiQ-ld-VQh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zi9-ee-PuL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ciM-tx-AsQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAQ-sJ-Anh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3228" y="-2216"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

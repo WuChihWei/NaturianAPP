@@ -33,7 +33,6 @@ class ForumDetailViewController: UIViewController {
     var replyAuthor: UserModel!
     var replyAuthors: [UserModel] = []
     
-    
     //    var replyArray: [Any] = []
     
     override func viewDidLoad() {
@@ -167,9 +166,7 @@ class ForumDetailViewController: UIViewController {
         
             for replyID in forumArticles.replyIDs {
     
-                forumManager.findRepliesData(replyID: replyID) {
-    
-                    [weak self] result in
+                forumManager.findRepliesData(replyID: replyID) { [weak self] result in
     
                     switch result {
     
@@ -364,7 +361,6 @@ extension ForumDetailViewController: UITableViewDataSource {
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
                                                             for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
             cell2.selectionStyle = .none
-            
 //            cell2.
             return cell2
             

@@ -120,7 +120,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID ?? "" ) { [weak self] result in
+        userManager.fetchUserData(userID: userID ) { [weak self] result in
             
             switch result {
                 

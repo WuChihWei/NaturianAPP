@@ -81,9 +81,6 @@ class OtherTalentTableViewCell: UITableViewCell {
         talentDescription.text = "I will teach you how reproduce plants in better ways."
         talentDescription.textAlignment = .justified
         talentDescription.textColor = .NaturianColor.darkGray
-
-        appliedStateBtn.setTitle("", for: .normal)
-        appliedStateBtn.layer.cornerRadius = 17
         
         contactButton.setTitle("Contact", for: .normal)
         contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
@@ -114,8 +111,7 @@ class OtherTalentTableViewCell: UITableViewCell {
         subview.addSubview(contactButton)
         subview.addSubview(seedStack)
         subview.addSubview(appliedStateBtn)
-
-
+        
         talentStackView.addArrangedSubview(providerName)
         talentStackView.addArrangedSubview(seedStack)
         
@@ -162,13 +158,13 @@ class OtherTalentTableViewCell: UITableViewCell {
             
             contactButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
             contactButton.heightAnchor.constraint(equalToConstant: 26),
-            contactButton.trailingAnchor.constraint(equalTo: appliedStateBtn.leadingAnchor,constant: -20),
+            contactButton.trailingAnchor.constraint(equalTo: appliedStateBtn.leadingAnchor, constant: -20),
             contactButton.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             
             appliedStateBtn.centerYAnchor.constraint(equalTo: contactButton.centerYAnchor),
             appliedStateBtn.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             appliedStateBtn.widthAnchor.constraint(equalToConstant: 26),
-            appliedStateBtn.heightAnchor.constraint(equalToConstant: 26),
+            appliedStateBtn.heightAnchor.constraint(equalToConstant: 26)
 
         ])
         

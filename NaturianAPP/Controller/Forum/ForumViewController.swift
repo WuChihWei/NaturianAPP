@@ -173,7 +173,6 @@ extension ForumViewController: UICollectionViewDelegateFlowLayout {
         }
         vc.forumTitle = categories[indexPath.row].name
         
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

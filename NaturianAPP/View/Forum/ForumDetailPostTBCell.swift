@@ -104,7 +104,6 @@ class ForumDetailPostTBCell: UITableViewCell {
     
     func layout() {
         
-        
         contentView.addSubview(postImage)
         postImage.addSubview(avatarImage)
         contentView.addSubview(subview)

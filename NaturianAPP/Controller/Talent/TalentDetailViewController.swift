@@ -77,8 +77,7 @@ class TalentDetailViewController: UIViewController {
 
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: userID ?? "") {
-            [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
             
             switch result {
                 
@@ -98,11 +97,11 @@ class TalentDetailViewController: UIViewController {
     
     @objc func didApply() {
         
-        selectedArticle.didApplyID.append(userID ?? "")
+        selectedArticle.didApplyID.append(userID )
         
         userModels.appliedTalent.append(selectedArticle.talentPostID)
         
-        userManager.updateAppliedTalent(userModel: userModels, userID: userID ?? "")
+        userManager.updateAppliedTalent(userModel: userModels, userID: userID )
         
         talentManager.updateData(applyTalent: selectedArticle)
         navigationController?.popViewController(animated: true)

@@ -26,7 +26,7 @@ class TalentFilterVC: UIViewController {
     
     var addTransparentManager = AddDropDownField()
     
-    var filterModel = TalentFilterModel(categories: [], seedValue: 0, genders: "", location: "")  {
+    var filterModel = TalentFilterModel(categories: [], seedValue: 0, genders: "", location: "") {
         didSet {
         if filterModel.categories != [] && filterModel.seedValue != 0 && filterModel.genders != "" && filterModel.location != "" {
             searchBtn.isEnabled = true
@@ -94,8 +94,6 @@ class TalentFilterVC: UIViewController {
     
     @objc func filterSearch() {
       
-     
-        
         telentManager.fetchFilterTalent(category: filterModel.categories,
                                         seedValue: filterModel.seedValue,
                                         gender: filterModel.genders,

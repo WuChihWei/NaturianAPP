@@ -51,7 +51,7 @@ class MyTalentTableViewCell: UITableViewCell {
         subview.lkCornerRadius = 15
         
         //        contentView.backgroundColor = .darkGray
-        title.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        title.font = UIFont(name: Roboto.bold.rawValue, size: 15)
         title.textAlignment = .left
         title.text = "Title"
         title.textColor = .NaturianColor.darkGray
@@ -68,12 +68,12 @@ class MyTalentTableViewCell: UITableViewCell {
         categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
         categoryBTN.lkCornerRadius = 4
         
-        talentDescription.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         talentDescription.numberOfLines = 2
         talentDescription.text = "I will teach you how reproduce plants in better ways."
         talentDescription.textAlignment = .justified
         
-        messageAmountButton.setTitle("+\(messageAmmont)", for: .normal)
+        messageAmountButton.setTitle("\(messageAmmont)", for: .normal)
         messageAmountButton.backgroundColor = .lightGray
         messageAmountButton.lkCornerRadius = 13
         messageAmountButton.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
@@ -143,7 +143,7 @@ class MyTalentTableViewCell: UITableViewCell {
             categoryBTN.heightAnchor.constraint(equalToConstant: 20),
             
             // talentDescription
-            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 3),
+            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 2),
             talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
             talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             

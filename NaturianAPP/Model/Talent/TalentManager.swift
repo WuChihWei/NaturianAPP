@@ -67,7 +67,7 @@ class TalentManager {
         }
     }
     
-    func fetchMyIDData(userID:String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+    func fetchMyIDData(userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
         db.collection("talent").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
@@ -124,7 +124,7 @@ class TalentManager {
             
             fileReference.putData(data, metadata: nil) { result in
                 switch result {
-                case .success(_):
+                case .success:
                     fileReference.downloadURL(completion: completion)
                 case .failure(let error):
                     completion(.failure(error))

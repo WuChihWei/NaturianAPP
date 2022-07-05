@@ -18,13 +18,13 @@ class OtherTalentViewController: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
     let subview = UIView()
-
-//    var userID = Auth.auth().currentUser?.uid
+    
+    //    var userID = Auth.auth().currentUser?.uid
     let userID = "2"
-
-    var appliedTalents: [TalentArticle] = []
-    var acceptTalents: [TalentArticle] = []
-
+    
+    private var appliedTalents: [TalentArticle] = []
+    private var acceptTalents: [TalentArticle] = []
+    
     //    var didSeletectApplierIDs: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +34,24 @@ class OtherTalentViewController: UIViewController {
         layout()
         fetchAppliedTalent()
         tableView.showsVerticalScrollIndicator = false
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      fetchAcceptTalent()
+        fetchAcceptTalent()
         fetchAppliedTalent()
         tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
         tableView.layoutIfNeeded()
-
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         appliedTalents.removeAll()
         acceptTalents.removeAll()
     }
-    
     
     func setUp() {
         
@@ -65,7 +64,7 @@ class OtherTalentViewController: UIViewController {
     func style() {
         
         subview.backgroundColor = .NaturianColor.lightGray
-       
+        
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         
@@ -91,14 +90,14 @@ class OtherTalentViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
             
         ])
     }
     
     func fetchAcceptTalent() {
         
-        talentManager.fetchAcceptedTalent(userID: userID ?? "") { [weak self] result in
+        talentManager.fetchAcceptedTalent(userID: userID ) { [weak self] result in
             
             switch result {
                 
@@ -119,7 +118,7 @@ class OtherTalentViewController: UIViewController {
     
     func fetchAppliedTalent() {
         
-        talentManager.fetchAppliedTalent(userID: userID ?? "") { [weak self] result in
+        talentManager.fetchAppliedTalent(userID: userID ) { [weak self] result in
             
             switch result {
                 
@@ -137,7 +136,6 @@ class OtherTalentViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension OtherTalentViewController: UITableViewDelegate {
@@ -157,10 +155,10 @@ extension OtherTalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        acceptTalents.merge(appliedTalents, uniquingKeysWith: +)
-    
+        //        acceptTalents.merge(appliedTalents, uniquingKeysWith: +)
+        
         print(appliedTalents)
-
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherTalentTableViewCell.identifer,
                                                        for: indexPath) as? OtherTalentTableViewCell else {
             

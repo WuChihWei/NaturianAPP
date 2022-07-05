@@ -29,6 +29,9 @@ class MyTalentViewController: UIViewController {
 
     var talentArticles: [TalentArticle] = []
     var didSeletectApplierIDs: [String] = []
+    
+    private var appliedTalents: [TalentArticle] = []
+    private var acceptTalents: [TalentArticle] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +59,7 @@ class MyTalentViewController: UIViewController {
     
         func fetchMyTalentArticle() {
     
-            talentManager.fetchMyIDData(userID: userID ?? "") { [weak self] result in
+            talentManager.fetchMyIDData(userID: userID ) { [weak self] result in
     
                 switch result {
     
@@ -95,7 +98,7 @@ class MyTalentViewController: UIViewController {
         // addButton
         addTalentButton.setTitle("", for: .normal)
         addTalentButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addTalentButton.backgroundColor = .systemGreen
+        addTalentButton.backgroundColor = .NaturianColor.darkGray
         addTalentButton.tintColor = .white
     }
 
@@ -174,18 +177,44 @@ extension MyTalentViewController: UITableViewDataSource {
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
+        
+        switch talentArticles[indexPath.row].category {
+            
+        case "Food":
+            cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+            cell.messageAmountButton.backgroundColor = .NaturianColor.foodYellow
+        case "Plant":
+            cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+            cell.messageAmountButton.backgroundColor = .NaturianColor.plantGreen
+        case "Adventure":
+            cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+            cell.messageAmountButton.backgroundColor = .NaturianColor.adventurePink
+        case "Grocery":
+            cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+            cell.messageAmountButton.backgroundColor = .NaturianColor.groceryBlue
+        case "Exercise":
+            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+            cell.messageAmountButton.backgroundColor = .NaturianColor.exerciseBlue
+        case "Treatment":
+            cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+            cell.messageAmountButton.backgroundColor = .NaturianColor.treatmentGreen
+        default:
+            break
+            
+        }
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "MyTalentAppliersVC") as? MyTalentAppliersVC else {
+            withIdentifier: "MyApplierLobbyVC") as? MyApplierLobbyVC else {
 
-            fatalError("can't find MyTalentDetailVC")
+            fatalError("can't find MyApplierLobbyVC")
         }
         
         vc.talentArticleID = talentArticles[indexPath.row].talentPostID
+        vc.talentArticle = talentArticles[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
 //

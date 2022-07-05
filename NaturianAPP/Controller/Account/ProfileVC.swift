@@ -110,7 +110,7 @@ class ProfileVC: UIViewController {
                 
                 switch result {
                     
-                case .success(_):
+                case .success:
                     
                     fileReference.downloadURL { result in
                         switch result {
@@ -136,14 +136,18 @@ class ProfileVC: UIViewController {
 //                                                         email: email
 //                            )
 //
-                            self.profileManager.replaceData(name: name, uid: self.userID ?? "", email: email, gender: gender, userAvatar: userAvatar)
+                            self.profileManager.replaceData(name: name,
+                                                            uid: self.userID ?? "",
+                                                            email: email,
+                                                            gender: gender,
+                                                            userAvatar: userAvatar)
 
-                        case .failure(_):
+                        case .failure:
                             break
                         }
                     }
                     
-                case .failure(_):
+                case .failure:
                     break
                 }
             }

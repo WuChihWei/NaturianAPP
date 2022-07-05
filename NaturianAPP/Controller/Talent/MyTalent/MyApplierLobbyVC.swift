@@ -1,22 +1,29 @@
 //
-//  TalentManageViewController.swift
+//  TalentAppliersViewController.swift
 //  NaturianAPP
 //
-//  Created by Jordan Wu on 2022/6/17.
+//  Created by Jordan Wu on 2022/6/20.
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseFirestore
+import Kingfisher
+import FirebaseAuth
 import LZViewPager
 
-class MyTalentManageVC: UIViewController {
-
+class MyApplierLobbyVC: UIViewController {
+    
     var userModel: UserModel!
     let viewPagers =  LZViewPager()
     let closeButton = UIButton()
     let mailButton = UIButton()
+    var talentArticleID: String?
+    var didSeletectApplierIDs: [String] = []
+    var talentArticle: TalentArticle!
 
 //    private let grayView = UIView()
-    private var subControllers:[UIViewController] = []
+    private var subControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,19 +47,31 @@ class MyTalentManageVC: UIViewController {
         viewPagers.hostController = self
         
         guard let vc1 = UIStoryboard(name: "Main",
-                                     bundle: nil).instantiateViewController(withIdentifier: "MyTalentViewController") as? MyTalentViewController else {return}
+                                     bundle: nil).instantiateViewController(withIdentifier: "AllMyAppliersVC") as? AllMyAppliersVC else {return}
+        
+        vc1.talentArticleID = self.talentArticleID
+        vc1.didSeletectApplierIDs = self.didSeletectApplierIDs
+        vc1.didSeletectDetails = self.talentArticle
         
         guard let vc2 = UIStoryboard(name: "Main",
-                                     bundle: nil).instantiateViewController(withIdentifier: "OtherTalentViewController") as? OtherTalentViewController else {return}
+                                     bundle: nil).instantiateViewController(withIdentifier: "MyAppliersVC") as? MyAppliersVC else {return}
         
-//        guard let vc3 = UIStoryboard(name: "Main",
-//                                     bundle: nil).instantiateViewController(withIdentifier: "MyChatRoomVC") as? MyChatRoomVC else {return}
-//        
-        subControllers = [vc1, vc2]
+        vc2.talentArticleID = self.talentArticleID
+        vc2.didSeletectApplierIDs = self.didSeletectApplierIDs
+        vc2.didSeletectDetails = self.talentArticle
         
-        vc1.title = "My Talents"
-        vc2.title = "My Wizards"
-//        vc3.title = "Chat Room"
+        guard let vc3 = UIStoryboard(name: "Main",
+                                     bundle: nil).instantiateViewController(withIdentifier: "MyAcceptedVC") as? MyAcceptedVC else {return}
+        
+        vc3.talentArticleID = self.talentArticleID
+        vc3.didSeletectApplierIDs = self.didSeletectApplierIDs
+        vc3.didSeletectDetails = self.talentArticle
+        
+        subControllers = [vc1, vc2, vc3]
+        
+        vc1.title = "All"
+        vc2.title = "Applied"
+        vc3.title = "Accepted"
 
         viewPagers.reload()
     }
@@ -106,11 +125,11 @@ class MyTalentManageVC: UIViewController {
     
 }
 
-extension MyTalentManageVC: LZViewPagerDelegate {
+extension MyApplierLobbyVC: LZViewPagerDelegate {
     
 }
 
-extension MyTalentManageVC: LZViewPagerDataSource {
+extension MyApplierLobbyVC: LZViewPagerDataSource {
     
     func numberOfItems() -> Int {
         return self.subControllers.count

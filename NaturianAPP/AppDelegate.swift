@@ -69,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return GIDSignIn.sharedInstance.handle(url)
     }
     
-
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.

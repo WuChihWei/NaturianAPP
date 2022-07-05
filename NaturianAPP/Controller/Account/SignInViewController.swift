@@ -176,7 +176,7 @@ extension SignInViewController: ASAuthorizationControllerPresentationContextProv
 extension SignInViewController {
     // MARK: - 透過 Credential 與 Firebase Auth 串接
     func firebaseSignInWithApple(credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) {authResult, error in
+        Auth.auth().signIn(with: credential) { authResult, error in
             guard error == nil else {
                 CustomFunc.customAlert(title: "", message: "\(String(describing: error!.localizedDescription))", vc: self, actionHandler: nil)
                 return

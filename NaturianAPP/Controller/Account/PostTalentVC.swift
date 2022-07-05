@@ -261,7 +261,7 @@ class PostTalentVC: UIViewController {
                 
                 switch result {
                     
-                case .success(_):
+                case .success:
                     
                     fileReference.downloadURL { result in
                         switch result {

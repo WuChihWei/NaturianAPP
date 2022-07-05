@@ -57,7 +57,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     func fetchUserData() {
         
-        userManager.fetchUserData(userID: currentUserID ?? "" ) { [weak self] result in
+        userManager.fetchUserData(userID: currentUserID ) { [weak self] result in
             
             switch result {
                 
@@ -90,8 +90,6 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                   createdTime: self.userModels?.createdTime,
                                   email: self.userModels?.email
         )
-        
-        
         
         let replyModel = ReplyModel(replyID: replyID,
                                     replyContent: self.replyCotent.text,
