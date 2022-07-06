@@ -152,4 +152,21 @@ extension MyAppliersVC: UITableViewDataSource {
             
             return cell1
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+            
+            fatalError("can't find ChatViewController")
+        }
+        
+        vc.chatToID = appliedIDs[indexPath.row].userID
+        //        vc.chatTalentID = self.talentArticleID ?? ""
+        //        vc.user2UID = self.userModels[indexPath.row].userID
+//        vc.chatToTalentModel = didSeletectDetails
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }

@@ -272,6 +272,7 @@ extension TalentLobbyVC: UITableViewDataSource {
             fatalError("can't find TalentDetailViewController")
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    
         vc.selectedArticle = talentArticles[indexPath.row]
     }
 }

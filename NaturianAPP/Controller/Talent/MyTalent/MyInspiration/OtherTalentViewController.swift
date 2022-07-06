@@ -55,7 +55,7 @@ class OtherTalentViewController: UIViewController {
     
     func setUp() {
         
-        tableView.register(OtherTalentTableViewCell.self, forCellReuseIdentifier: OtherTalentTableViewCell.identifer)
+        tableView.register(InsApplingTVCell.self, forCellReuseIdentifier: InsApplingTVCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -146,11 +146,11 @@ extension OtherTalentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        for acceptTalent in acceptTalents {
-            appliedTalents.append(acceptTalent)
+        for appliedTalent in appliedTalents {
+            acceptTalents.append(appliedTalent)
         }
         
-        return appliedTalents.count
+        return acceptTalents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,34 +159,46 @@ extension OtherTalentViewController: UITableViewDataSource {
         
         print(appliedTalents)
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherTalentTableViewCell.identifer,
-                                                       for: indexPath) as? OtherTalentTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: InsApplingTVCell.identifer,
+                                                       for: indexPath) as? InsApplingTVCell else {
             
             fatalError("can't find MyTalentAppliersTableViewCell")
             
         }
         
-        let postImageURL = appliedTalents[indexPath.row].images[0]
-        cell.title.text = appliedTalents[indexPath.row].title
+        let postImageURL = acceptTalents[indexPath.row].images[0]
+        cell.title.text = acceptTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
-        cell.providerName.text = appliedTalents[indexPath.row].userInfo?.name
-        cell.seedValue.text = "\(appliedTalents[indexPath.row].seedValue ?? 0)"
-        cell.talentDescription.text = appliedTalents[indexPath.row].content
+        cell.providerName.text = acceptTalents[indexPath.row].userInfo?.name
+        cell.seedValue.text = "\(acceptTalents[indexPath.row].seedValue ?? 0)"
+//        cell.talentDescription.text = appliedTalents[indexPath.row].content
         
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
         
-        if appliedTalents[indexPath.row].didAcceptID[0] ==
+        if acceptTalents[indexPath.row].didAcceptID[0] ==
             
             userID {
             
             cell.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
+            cell.finishedBtn.setTitle("Finished", for: .normal)
+            cell.finishedBtn.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
+            cell.finishedBtn.setTitleColor(.white, for: .normal)
+            cell.finishedBtn.backgroundColor = .NaturianColor.treatmentGreen
+
         } else {
             
-            cell.appliedStateBtn.setImage(UIImage(named: "waiting"), for: .normal)
+            cell.appliedStateBtn.setImage(UIImage(named: "waiting_darkgray"), for: .normal)
+            cell.finishedBtn.setTitle("Cancel", for: .normal)
+            cell.finishedBtn.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
+            cell.finishedBtn.lkBorderWidth = 1.3
+            cell.finishedBtn.lkBorderColor = .NaturianColor.treatmentGreen
+            cell.finishedBtn.setTitleColor(.NaturianColor.treatmentGreen, for: .normal)
+            cell.finishedBtn.backgroundColor = .white
         }
         
         return cell
     }
+    
 }

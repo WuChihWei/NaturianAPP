@@ -96,6 +96,36 @@ class UserManager {
         }
     }
     
+    func fetchAppliersData(userID: String, talentPostID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
+        
+        db.collection("users").whereField("userID", isEqualTo: userID).whereField("talentPostID", isEqualTo: talentPostID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                if let doc = querySnapshot?.documents.first {
+                    do {
+                        print(doc)
+                        if let userModel = try doc.data(as: UserModel?.self,
+                                                        decoder: Firestore.Decoder()) {
+                            
+                            completion(.success(userModel))
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+            }
+        }
+    }
+    
     func fetchAllAppliedUsers(userID: String, appliedUsers: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
         
         db.collection("users").whereField("userID", isEqualTo: userID).whereField("userID", isEqualTo: appliedUsers).getDocuments { (querySnapshot, error) in

@@ -96,7 +96,6 @@ class MyTalentViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         // addButton
-        addTalentButton.setTitle("", for: .normal)
         addTalentButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addTalentButton.backgroundColor = .NaturianColor.darkGray
         addTalentButton.tintColor = .white

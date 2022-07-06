@@ -10,17 +10,13 @@ import Foundation
 struct Chat {
     
     var users: [String]
-    
-    var chatTalentID: String
-    
+        
     var dictionary: [String: Any] {
         
         return [
             
             "users": users,
-            
-            "chatTalentID": chatTalentID
-            
+                        
         ]
     }
 }
@@ -32,11 +28,7 @@ extension Chat {
         guard let chatUsers = dictionary["users"] as? [String] else {
             return nil
         }
-        
-        guard let chatTalentID = dictionary["chatTalentID"] as? String else {
-            return nil
-        }
 
-        self.init(users: chatUsers, chatTalentID: chatTalentID)
+        self.init(users: chatUsers)
     }
 }

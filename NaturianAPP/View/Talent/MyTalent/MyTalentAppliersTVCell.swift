@@ -7,7 +7,18 @@
 
 import UIKit
 
+// MARK: - Delegate/ Protocol
+
+protocol SelectCellDelegate: AnyObject {
+    
+    func didDeleteTap(indexPathRow: IndexPath)
+    
+}
+
 class MyTalentAppliersTVCell: UITableViewCell {
+    
+    weak var delegate: SelectCellDelegate?
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -21,11 +32,13 @@ class MyTalentAppliersTVCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     let subview = UIView()
-
+    
+    var talentManager = TalentManager()
     var userAvatar = UIImageView()
 //    let messageAmountButton = UIButton()
     let appliedStateBtn = UIButton()
     let chatButton = UIButton()
+
     let userName = UILabel()
     let userGender = UILabel()
     
@@ -45,10 +58,15 @@ class MyTalentAppliersTVCell: UITableViewCell {
         styleObject()
         layout()
     }
-  
-    func setup() {
+    
+    @objc func cancelAccept() {
         
     }
+  
+    func setup() {
+       
+    }
+    
     
     func styleObject() {
         
@@ -76,9 +94,9 @@ class MyTalentAppliersTVCell: UITableViewCell {
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         cancelButton.setTitleColor(.NaturianColor.treatmentGreen, for: .normal)
-//        cancelButton.backgroundColor = .NaturianColor.treatmentGreen
         
-        chatButton.setImage(UIImage(named: "chat"), for: .normal)
+        
+        chatButton.setImage(UIImage(named: "chat_green"), for: .normal)
         
         userAvatar.backgroundColor = .gray
         //        userAvatar.layer.cornerRadius = 20
@@ -134,18 +152,18 @@ class MyTalentAppliersTVCell: UITableViewCell {
             // appliedStateBtn
             appliedStateBtn.topAnchor.constraint(equalTo: userAvatar.topAnchor),
             appliedStateBtn.leadingAnchor.constraint(equalTo: userAvatar.trailingAnchor, constant: 18),
-            appliedStateBtn.widthAnchor.constraint(equalToConstant: 14),
-            appliedStateBtn.heightAnchor.constraint(equalToConstant: 14),
+            appliedStateBtn.widthAnchor.constraint(equalToConstant: 16),
+            appliedStateBtn.heightAnchor.constraint(equalToConstant: 16),
             // talentStack
             userName.centerYAnchor.constraint(equalTo: appliedStateBtn.centerYAnchor),
             userName.trailingAnchor.constraint(equalTo: chatButton.leadingAnchor, constant: 2),
             talentStackView.leadingAnchor.constraint(equalTo: appliedStateBtn.trailingAnchor, constant: 6),
             talentStackView.heightAnchor.constraint(equalToConstant: 50),
             // chatButton
-            chatButton.centerYAnchor.constraint(equalTo: appliedStateBtn.centerYAnchor),
+            chatButton.topAnchor.constraint(equalTo: appliedStateBtn.topAnchor),
             chatButton.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -18),
-            chatButton.widthAnchor.constraint(equalToConstant: 20),
-            chatButton.heightAnchor.constraint(equalToConstant: 20),
+            chatButton.widthAnchor.constraint(equalToConstant: 26),
+            chatButton.heightAnchor.constraint(equalToConstant: 26),
             
             buttonStack.leadingAnchor.constraint(equalTo: appliedStateBtn.leadingAnchor),
             buttonStack.heightAnchor.constraint(equalToConstant: 28),

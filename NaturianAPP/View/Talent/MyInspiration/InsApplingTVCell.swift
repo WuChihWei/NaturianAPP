@@ -7,9 +7,9 @@
 
 import UIKit
 
-class OtherTalentTableViewCell: UITableViewCell {
+class InsApplingTVCell: UITableViewCell {
     
-    static let identifer = "\(OtherTalentTableViewCell.self)"
+    static let identifer = "\(InsApplingTVCell.self)"
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -19,11 +19,12 @@ class OtherTalentTableViewCell: UITableViewCell {
 //    let categoryBTN = UIButton()
     let title = UILabel()
     let appliedStateBtn = UIButton()
-    let talentDescription = UILabel()
-    var contactButton = UIButton()
+//    let talentDescription = UILabel()
+    var finishedBtn = UIButton()
     let seedValue = UILabel()
     let seedIcon = UIImageView()
     let providerName = UILabel()
+    let chatButton = UIButton()
     
     let subview = UIView()
     private let seedStack = UIStackView()
@@ -75,19 +76,20 @@ class OtherTalentTableViewCell: UITableViewCell {
         seedStack.axis = .horizontal
         seedStack.alignment = .center
         seedStack.spacing = 3
+//
+//        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+//        talentDescription.numberOfLines = 2
+//        talentDescription.text = "I will teach you how reproduce plants in better ways."
+//        talentDescription.textAlignment = .justified
+//        talentDescription.textColor = .NaturianColor.darkGray
+//
+        chatButton.setImage(UIImage(named: "chat_green"), for: .normal)
         
-        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 14)
-        talentDescription.numberOfLines = 2
-        talentDescription.text = "I will teach you how reproduce plants in better ways."
-        talentDescription.textAlignment = .justified
-        talentDescription.textColor = .NaturianColor.darkGray
-        
-        contactButton.setTitle("Contact", for: .normal)
-        contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
-   
-        contactButton.setTitleColor(.white, for: .normal)
-        contactButton.backgroundColor = .NaturianColor.treatmentGreen
-        contactButton.lkCornerRadius = 13
+        finishedBtn.setTitle("Finished", for: .normal)
+        finishedBtn.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
+        finishedBtn.setTitleColor(.white, for: .normal)
+        finishedBtn.backgroundColor = .NaturianColor.treatmentGreen
+        finishedBtn.lkCornerRadius = 13
         
         postImage.backgroundColor = .gray
         postImage.contentMode = .scaleAspectFill
@@ -104,11 +106,12 @@ class OtherTalentTableViewCell: UITableViewCell {
         contentView.addSubview(subview)
 
         subview.addSubview(postImage)
+        subview.addSubview(chatButton)
         subview.addSubview(appliedStateBtn)
         subview.addSubview(talentStackView)
-        subview.addSubview(talentDescription)
+//        subview.addSubview(talentDescription)
         subview.addSubview(title)
-        subview.addSubview(contactButton)
+        subview.addSubview(finishedBtn)
         subview.addSubview(seedStack)
         subview.addSubview(appliedStateBtn)
         
@@ -122,10 +125,11 @@ class OtherTalentTableViewCell: UITableViewCell {
         title.translatesAutoresizingMaskIntoConstraints = false
         talentStackView.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
-        talentDescription.translatesAutoresizingMaskIntoConstraints = false
+//        talentDescription.translatesAutoresizingMaskIntoConstraints = false
         appliedStateBtn.translatesAutoresizingMaskIntoConstraints = false
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        finishedBtn.translatesAutoresizingMaskIntoConstraints = false
+        chatButton.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             
             subview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
@@ -134,8 +138,8 @@ class OtherTalentTableViewCell: UITableViewCell {
             subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             subview.heightAnchor.constraint(equalToConstant: 175),
             
-            title.topAnchor.constraint(equalTo: postImage.topAnchor),
-            title.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
+            title.topAnchor.constraint(equalTo: appliedStateBtn.topAnchor, constant: -1),
+            title.leadingAnchor.constraint(equalTo: appliedStateBtn.trailingAnchor, constant: 6),
             title.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -18),
             
             // postImage
@@ -145,26 +149,33 @@ class OtherTalentTableViewCell: UITableViewCell {
             postImage.widthAnchor.constraint(equalToConstant: 135),
             postImage.heightAnchor.constraint(equalToConstant: 135),
             
+            // appliedStateBtn
+            appliedStateBtn.topAnchor.constraint(equalTo: postImage.topAnchor),
+            appliedStateBtn.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 14),
+            appliedStateBtn.widthAnchor.constraint(equalToConstant: 16),
+            appliedStateBtn.heightAnchor.constraint(equalToConstant: 16),
+            
             // talentStack
             talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
-            talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 14),
+            talentStackView.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             seedIcon.widthAnchor.constraint(equalToConstant: 12),
             seedIcon.heightAnchor.constraint(equalToConstant: 12),
 
             // talentDescription
-            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 3),
-            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
-            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+//            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 3),
+//            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
+//            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             
-            contactButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
-            contactButton.heightAnchor.constraint(equalToConstant: 26),
-            contactButton.trailingAnchor.constraint(equalTo: appliedStateBtn.leadingAnchor, constant: -20),
-            contactButton.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-            
-            appliedStateBtn.centerYAnchor.constraint(equalTo: contactButton.centerYAnchor),
-            appliedStateBtn.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            appliedStateBtn.widthAnchor.constraint(equalToConstant: 26),
-            appliedStateBtn.heightAnchor.constraint(equalToConstant: 26)
+            finishedBtn.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
+            finishedBtn.heightAnchor.constraint(equalToConstant: 28),
+            finishedBtn.trailingAnchor.constraint(equalTo: chatButton.leadingAnchor, constant: -18),
+            finishedBtn.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+    
+            // chatButton
+            chatButton.centerYAnchor.constraint(equalTo: finishedBtn.centerYAnchor),
+            chatButton.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -18),
+            chatButton.widthAnchor.constraint(equalToConstant: 26),
+            chatButton.heightAnchor.constraint(equalToConstant: 26)
 
         ])
         

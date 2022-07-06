@@ -64,7 +64,7 @@
 		32550477285FF1730019A190 /* MyTalentAcceptedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32550476285FF1730019A190 /* MyTalentAcceptedTVCell.swift */; };
 		325504792860130D0019A190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504782860130D0019A190 /* UserManager.swift */; };
 		3255047B286094570019A190 /* OtherTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047A286094570019A190 /* OtherTalentViewController.swift */; };
-		3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047D286095770019A190 /* OtherTalentTableViewCell.swift */; };
+		3255047E286095770019A190 /* InsApplingTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047D286095770019A190 /* InsApplingTVCell.swift */; };
 		325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255047F2862B22E0019A190 /* TransparentViewManager.swift */; };
 		325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504812862BB3F0019A190 /* TalentFilterModel.swift */; };
 		325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325504AA286372600019A190 /* CategoryPopUpVC.swift */; };
@@ -158,7 +158,7 @@
 		32550476285FF1730019A190 /* MyTalentAcceptedTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentAcceptedTVCell.swift; sourceTree = "<group>"; };
 		325504782860130D0019A190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3255047A286094570019A190 /* OtherTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentViewController.swift; sourceTree = "<group>"; };
-		3255047D286095770019A190 /* OtherTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTalentTableViewCell.swift; sourceTree = "<group>"; };
+		3255047D286095770019A190 /* InsApplingTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsApplingTVCell.swift; sourceTree = "<group>"; };
 		3255047F2862B22E0019A190 /* TransparentViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentViewManager.swift; sourceTree = "<group>"; };
 		325504812862BB3F0019A190 /* TalentFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterModel.swift; sourceTree = "<group>"; };
 		325504AA286372600019A190 /* CategoryPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPopUpVC.swift; sourceTree = "<group>"; };
@@ -411,6 +411,14 @@
 			path = Roboto;
 			sourceTree = "<group>";
 		};
+		32481EDB28745C23007E1443 /* MyInspiration */ = {
+			isa = PBXGroup;
+			children = (
+				3255047A286094570019A190 /* OtherTalentViewController.swift */,
+			);
+			path = MyInspiration;
+			sourceTree = "<group>";
+		};
 		32550468285F87A90019A190 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +437,7 @@
 				32EFA307287348C000DFA8A2 /* MyChatRoomVC.swift */,
 				32550466285F516D0019A190 /* MyTalentDidAcceptVC.swift */,
 				320D6C572873D69B00E615AF /* MyAppliers */,
+				32481EDB28745C23007E1443 /* MyInspiration */,
 			);
 			path = MyTalent;
 			sourceTree = "<group>";
@@ -436,7 +445,6 @@
 		32550470285FE8960019A190 /* OtherTalent */ = {
 			isa = PBXGroup;
 			children = (
-				3255047A286094570019A190 /* OtherTalentViewController.swift */,
 			);
 			path = OtherTalent;
 			sourceTree = "<group>";
@@ -451,12 +459,12 @@
 			path = MyTalent;
 			sourceTree = "<group>";
 		};
-		3255047C286094FB0019A190 /* OtherTalent */ = {
+		3255047C286094FB0019A190 /* MyInspiration */ = {
 			isa = PBXGroup;
 			children = (
-				3255047D286095770019A190 /* OtherTalentTableViewCell.swift */,
+				3255047D286095770019A190 /* InsApplingTVCell.swift */,
 			);
-			path = OtherTalent;
+			path = MyInspiration;
 			sourceTree = "<group>";
 		};
 		325504A9286372370019A190 /* PopOutView */ = {
@@ -520,7 +528,7 @@
 				32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */,
 				325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */,
 				325504B2286373F60019A190 /* LocationPopTableViewCell.swift */,
-				3255047C286094FB0019A190 /* OtherTalent */,
+				3255047C286094FB0019A190 /* MyInspiration */,
 				32550473285FF10B0019A190 /* MyTalent */,
 			);
 			path = Talent;
@@ -740,7 +748,7 @@
 				32C86601285A12920090A49D /* MandarinString+Extension.swift in Sources */,
 				32078A75285A085E00FF2980 /* ForumLobbyTableViewCell.swift in Sources */,
 				325504822862BB3F0019A190 /* TalentFilterModel.swift in Sources */,
-				3255047E286095770019A190 /* OtherTalentTableViewCell.swift in Sources */,
+				3255047E286095770019A190 /* InsApplingTVCell.swift in Sources */,
 				32138B272858860200916700 /* SceneDelegate.swift in Sources */,
 				32078A732859E82900FF2980 /* ForumLobbyViewController.swift in Sources */,
 				32C8660F285AD56D0090A49D /* ForumModel.swift in Sources */,
@@ -930,6 +938,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -967,6 +976,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

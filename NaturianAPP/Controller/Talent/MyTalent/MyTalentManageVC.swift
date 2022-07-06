@@ -16,7 +16,7 @@ class MyTalentManageVC: UIViewController {
     let mailButton = UIButton()
 
 //    private let grayView = UIView()
-    private var subControllers:[UIViewController] = []
+    private var subControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -520,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIl-tT-Efh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5562" y="-4407"/>
+            <point key="canvasLocation" x="7732" y="-4823"/>
         </scene>
         <!--My AppliersVC-->
         <scene sceneID="MlQ-47-yP3">
@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBV-lq-2uM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6467" y="-4414"/>
+            <point key="canvasLocation" x="8861" y="-4823"/>
         </scene>
         <!--My AcceptedVC-->
         <scene sceneID="4Rj-Tz-ch7">
@@ -550,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJA-PE-UMH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7312" y="-4414"/>
+            <point key="canvasLocation" x="9993" y="-4823"/>
         </scene>
         <!--Category Pop UpVC-->
         <scene sceneID="ZHk-z6-xTj">

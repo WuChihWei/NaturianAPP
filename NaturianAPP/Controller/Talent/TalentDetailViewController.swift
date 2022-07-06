@@ -17,7 +17,7 @@ class TalentDetailViewController: UIViewController {
     var talentManager = TalentManager()
     var userManager = UserManager()
 //    let userID = Auth.auth().currentUser?.uid
-        let userID = "2"
+    let userID = "2"
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()
@@ -54,7 +54,7 @@ class TalentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
-        
+        navigationController?.navigationBar.isHidden = true
         setUp()
         style()
         layout()
@@ -62,8 +62,8 @@ class TalentDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
-        
         view.layoutIfNeeded()
         
         fetchUserData()
@@ -115,11 +115,9 @@ class TalentDetailViewController: UIViewController {
             fatalError("can't find ChatViewController")
         }
         
-//        vc.chatTalentID = selectedArticle.talentPostID ?? "can't find chatTalentPostID"
-//        vc.chatToID = selectedArticle.userID ?? "can't find userID"
+        vc.chatToID = selectedArticle.userID
         
-        vc.chatToTalentModel = selectedArticle
-        
+        print(selectedArticle.userID)
         self.navigationController?.pushViewController(vc, animated: true)
                 
     }
