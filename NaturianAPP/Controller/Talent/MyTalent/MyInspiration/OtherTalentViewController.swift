@@ -53,48 +53,6 @@ class OtherTalentViewController: UIViewController {
         acceptTalents.removeAll()
     }
     
-    func setUp() {
-        
-        tableView.register(InsApplingTVCell.self, forCellReuseIdentifier: InsApplingTVCell.identifer)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = UITableView.automaticDimension
-    }
-    
-    func style() {
-        
-        subview.backgroundColor = .NaturianColor.lightGray
-        
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        
-    }
-    
-    func layout() {
-        
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(subview)
-        subview.addSubview(tableView)
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            // tableView
-            subview.topAnchor.constraint(equalTo: view.topAnchor),
-            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
-            
-            // tableView
-            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
-            tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
-            
-        ])
-    }
-    
     func fetchAcceptTalent() {
         
         talentManager.fetchAcceptedTalent(userID: userID ) { [weak self] result in
@@ -200,5 +158,49 @@ extension OtherTalentViewController: UITableViewDataSource {
         
         return cell
     }
+}
+
+
+extension OtherTalentViewController {
     
+    func setUp() {
+        
+        tableView.register(InsApplingTVCell.self, forCellReuseIdentifier: InsApplingTVCell.identifer)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    func style() {
+        
+        subview.backgroundColor = .NaturianColor.lightGray
+        
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        
+    }
+    
+    func layout() {
+        
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(subview)
+        subview.addSubview(tableView)
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            // tableView
+            subview.topAnchor.constraint(equalTo: view.topAnchor),
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
+            
+            // tableView
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
+            tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
+            
+        ])
+    }
 }

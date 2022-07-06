@@ -65,9 +65,6 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.tintColor = .darkGray
-        
-        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
         setup()
         setStyle()
         layout()

@@ -58,6 +58,7 @@ class TalentDetailViewController: UIViewController {
         setUp()
         style()
         layout()
+        switchButtonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +118,6 @@ class TalentDetailViewController: UIViewController {
         
         vc.chatToID = selectedArticle.userID
         
-        print(selectedArticle.userID)
         self.navigationController?.pushViewController(vc, animated: true)
                 
     }
@@ -125,6 +125,69 @@ class TalentDetailViewController: UIViewController {
     @objc func closePage() {
         navigationController?.popViewController(animated: false)
     }
+    
+    func switchButtonState() {
+        
+        if selectedArticle.userID == userID {
+            
+            applyButton.backgroundColor = .NaturianColor.navigationGray
+            applyButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+            applyButton.setTitleColor(.white, for: .normal)
+            applyButton.lkCornerRadius = 24
+            applyButton.isEnabled = false
+            applyButton.lkBorderWidth = 0
+            applyButton.alpha = 0.5
+            
+            contactButton.setTitle("Contact", for: .normal)
+            contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+            contactButton.setTitleColor(.NaturianColor.navigationGray, for: .normal)
+            contactButton.isEnabled = false
+
+        } else {
+            return
+        }
+    }
+    
+    func switchColor() {
+        
+        switch selectedArticle.userInfo?.gender {
+            
+        case "Male":
+            genderIcon.image = UIImage(named: "male")
+        case "Female":
+            genderIcon.image = UIImage(named: "female")
+        case "Undefined":
+            genderIcon.image = UIImage(named: "undefined")
+        default:
+            break
+        }
+        switch selectedArticle.category {
+            
+        case "Food":
+            categoryBTN.backgroundColor = .NaturianColor.foodYellow
+            avatarImage.lkBorderColor = .NaturianColor.foodYellow
+        case "Plant":
+            categoryBTN.backgroundColor = .NaturianColor.plantGreen
+            avatarImage.lkBorderColor = .NaturianColor.plantGreen
+        case "Adventure":
+            categoryBTN.backgroundColor = .NaturianColor.adventurePink
+            avatarImage.lkBorderColor = .NaturianColor.adventurePink
+        case "Grocery":
+            categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+            avatarImage.lkBorderColor = .NaturianColor.groceryBlue
+        case "Exercise":
+            categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+            avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
+        case "Treatment":
+            categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+            avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
+        default:
+            break
+        }
+    }
+}
+
+extension TalentDetailViewController {
     
     func setUp() {
         
@@ -326,44 +389,5 @@ class TalentDetailViewController: UIViewController {
             contactButton.widthAnchor.constraint(equalToConstant: 130),
             contactButton.heightAnchor.constraint(equalToConstant: 48)
         ])
-    }
-    
-    func switchColor() {
-        
-        switch selectedArticle.userInfo?.gender {
-            
-        case "Male":
-            genderIcon.image = UIImage(named: "male")
-        case "Female":
-            genderIcon.image = UIImage(named: "female")
-        case "Undefined":
-            genderIcon.image = UIImage(named: "undefined")
-        default:
-            break
-        }
-        
-        switch selectedArticle.category {
-            
-        case "Food":
-            categoryBTN.backgroundColor = .NaturianColor.foodYellow
-            avatarImage.lkBorderColor = .NaturianColor.foodYellow
-        case "Plant":
-            categoryBTN.backgroundColor = .NaturianColor.plantGreen
-            avatarImage.lkBorderColor = .NaturianColor.plantGreen
-        case "Adventure":
-            categoryBTN.backgroundColor = .NaturianColor.adventurePink
-            avatarImage.lkBorderColor = .NaturianColor.adventurePink
-        case "Grocery":
-            categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-            avatarImage.lkBorderColor = .NaturianColor.groceryBlue
-        case "Exercise":
-            categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-            avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
-        case "Treatment":
-            categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-            avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
-        default:
-            break
-        }
     }
 }

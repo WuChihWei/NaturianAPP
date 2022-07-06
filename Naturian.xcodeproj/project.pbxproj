@@ -81,6 +81,7 @@
 		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
 		327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */; };
 		327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C6285E231A001D6FB7 /* TalentFilterVC.swift */; };
+		32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB45CC2875DA31008A885D /* HomeVC.swift */; };
 		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
 		32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */; };
@@ -175,6 +176,7 @@
 		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
 		327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailViewController.swift; sourceTree = "<group>"; };
 		327614C6285E231A001D6FB7 /* TalentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterVC.swift; sourceTree = "<group>"; };
+		32AB45CC2875DA31008A885D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
 		32B3ECCE285B98ED00B5C16B /* MyTalentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,12 +210,13 @@
 		32078A52285957F600FF2980 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				32078A632859835400FF2980 /* Account */,
+				32AB45CB2875D816008A885D /* Home */,
 				325504A9286372370019A190 /* PopOutView */,
 				325504BC28646C040019A190 /* Chat */,
 				32078A612859832B00FF2980 /* Talent */,
 				32078A622859834600FF2980 /* Explore */,
 				32078A5E2859817000FF2980 /* Forum */,
+				32078A632859835400FF2980 /* Account */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 		32078A5928597B1A00FF2980 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32AB45CE2875E2B7008A885D /* Home */,
 				32078A6D2859C44800FF2980 /* Explore */,
 				32B3ECCD285B98D400B5C16B /* Talent */,
 				32078A6A2859952900FF2980 /* Forum */,
@@ -522,6 +526,21 @@
 			path = Explore;
 			sourceTree = "<group>";
 		};
+		32AB45CB2875D816008A885D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				32AB45CC2875DA31008A885D /* HomeVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		32AB45CE2875E2B7008A885D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		32B3ECCD285B98D400B5C16B /* Talent */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +761,7 @@
 				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentAcceptedTVCell.swift in Sources */,
+				32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */,
 				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
 				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,

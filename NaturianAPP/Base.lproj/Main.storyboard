@@ -44,15 +44,32 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="kYB-B8-8na" kind="relationship" relationship="viewControllers" id="nWe-dq-1d3"/>
+                        <segue destination="6rK-PR-cdJ" kind="relationship" relationship="viewControllers" id="nfb-S1-STb"/>
                         <segue destination="BIF-t4-3h4" kind="relationship" relationship="viewControllers" id="b51-54-YpH"/>
                         <segue destination="ccm-at-EaO" kind="relationship" relationship="viewControllers" id="p4N-Lh-WlZ"/>
                         <segue destination="5Dg-84-963" kind="relationship" relationship="viewControllers" id="jgk-PE-KMd"/>
+                        <segue destination="kYB-B8-8na" kind="relationship" relationship="viewControllers" id="nWe-dq-1d3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VaL-VB-AKp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32" y="-624"/>
+        </scene>
+        <!--HomeVC-->
+        <scene sceneID="5fS-Fv-nLo">
+            <objects>
+                <viewController restorationIdentifier="HomeVC" storyboardIdentifier="HomeVC" id="ddg-eE-nbj" customClass="HomeVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SHr-xG-Ppx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Xhk-pI-lrH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OcR-3m-cHw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDT-pt-55Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32" y="1048"/>
         </scene>
         <!--Explore View Controller-->
         <scene sceneID="xBt-Gw-6gF">
@@ -68,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cy7-vb-ftK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2314" y="806"/>
+            <point key="canvasLocation" x="3050.7246376811595" y="900.66964285714278"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="7W5-Og-s0l">
@@ -345,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFD-ux-uZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3312" y="160"/>
+            <point key="canvasLocation" x="4221.739130434783" y="159.375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bN5-kc-rlp">
@@ -490,7 +507,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cus-JP-zhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307" y="806"/>
+            <point key="canvasLocation" x="2215.9420289855075" y="805.58035714285711"/>
         </scene>
         <!--Location Pop UpVC-->
         <scene sceneID="OvU-0N-WBw">
@@ -572,7 +589,7 @@
         <scene sceneID="qAr-n3-ceO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kYB-B8-8na" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Camping Tent" id="cxi-nB-ZmW"/>
+                    <tabBarItem key="tabBarItem" title="" image="passport" id="cxi-nB-ZmW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIb-Mz-vIv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -602,6 +619,25 @@
             </objects>
             <point key="canvasLocation" x="3228" y="-2216"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ezy-pf-0Z5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6rK-PR-cdJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Camping Tent" selectedImage="Camping Tent" id="m3P-oD-OTn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zaZ-K7-guU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ddg-eE-nbj" kind="relationship" relationship="rootViewController" id="qcV-wd-0b9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wdj-bx-7Dp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="31.884057971014496" y="301.33928571428572"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="fW2-K7-lEU"/>
@@ -611,6 +647,7 @@
         <image name="Baby Footprint" width="32" height="32"/>
         <image name="Camping Tent" width="32" height="32"/>
         <image name="Lake" width="32" height="32"/>
+        <image name="passport" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
