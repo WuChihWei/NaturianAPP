@@ -28,6 +28,7 @@
 		32138B2C2858860200916700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B2A2858860200916700 /* Main.storyboard */; };
 		32138B2F2858860200916700 /* NaturianAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32138B2D2858860200916700 /* NaturianAPP.xcdatamodeld */; };
 		32138B342858860400916700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32138B322858860400916700 /* LaunchScreen.storyboard */; };
+		321AE4E12875E34E008041B4 /* HomeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321AE4E02875E34E008041B4 /* HomeCVCell.swift */; };
 		3221451728658B9B00D46503 /* TransferSeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221451628658B9B00D46503 /* TransferSeedVC.swift */; };
 		3221453D2866153F00D46503 /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453C2866153F00D46503 /* PopViewController.swift */; };
 		3221453F2866A2D700D46503 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221453E2866A2D600D46503 /* CustomSlider.swift */; };
@@ -81,6 +82,9 @@
 		327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C0285D99CF001D6FB7 /* TalentArticle.swift */; };
 		327614C5285E08D2001D6FB7 /* TalentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */; };
 		327614C7285E231B001D6FB7 /* TalentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327614C6285E231A001D6FB7 /* TalentFilterVC.swift */; };
+		32A1A3362876A52900BB001B /* HomeCVFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3352876A52900BB001B /* HomeCVFlowLayout.swift */; };
+		32A1A3382876C1BA00BB001B /* HomeTopTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */; };
+		32A1A33B2876C1D600BB001B /* HomeBottomTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */; };
 		32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB45CC2875DA31008A885D /* HomeVC.swift */; };
 		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
@@ -123,6 +127,7 @@
 		32138B2E2858860200916700 /* NaturianAPP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NaturianAPP.xcdatamodel; sourceTree = "<group>"; };
 		32138B332858860400916700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32138B352858860400916700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		321AE4E02875E34E008041B4 /* HomeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVCell.swift; sourceTree = "<group>"; };
 		3221451628658B9B00D46503 /* TransferSeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSeedVC.swift; sourceTree = "<group>"; };
 		3221453C2866153F00D46503 /* PopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
 		3221453E2866A2D600D46503 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
@@ -176,6 +181,9 @@
 		327614C0285D99CF001D6FB7 /* TalentArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentArticle.swift; sourceTree = "<group>"; };
 		327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailViewController.swift; sourceTree = "<group>"; };
 		327614C6285E231A001D6FB7 /* TalentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentFilterVC.swift; sourceTree = "<group>"; };
+		32A1A3352876A52900BB001B /* HomeCVFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVFlowLayout.swift; sourceTree = "<group>"; };
+		32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopTVCell.swift; sourceTree = "<group>"; };
+		32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomTVCell.swift; sourceTree = "<group>"; };
 		32AB45CC2875DA31008A885D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
@@ -537,6 +545,10 @@
 		32AB45CE2875E2B7008A885D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				32A1A3352876A52900BB001B /* HomeCVFlowLayout.swift */,
+				321AE4E02875E34E008041B4 /* HomeCVCell.swift */,
+				32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */,
+				32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -731,6 +743,8 @@
 				3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */,
 				3241C43A286E9CF500A2E75A /* ForumDetailReplyTBCell.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
+				321AE4E12875E34E008041B4 /* HomeCVCell.swift in Sources */,
+				32A1A3382876C1BA00BB001B /* HomeTopTVCell.swift in Sources */,
 				325504B72864524B0019A190 /* Chat.swift in Sources */,
 				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,
@@ -749,6 +763,7 @@
 				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
 				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
 				3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */,
+				32A1A3362876A52900BB001B /* HomeCVFlowLayout.swift in Sources */,
 				3241C461286FD6B100A2E75A /* ForumReplyVC.swift in Sources */,
 				325504802862B22F0019A190 /* TransparentViewManager.swift in Sources */,
 				32550467285F516D0019A190 /* MyTalentDidAcceptVC.swift in Sources */,
@@ -761,6 +776,7 @@
 				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentAcceptedTVCell.swift in Sources */,
+				32A1A33B2876C1D600BB001B /* HomeBottomTVCell.swift in Sources */,
 				32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */,
 				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,

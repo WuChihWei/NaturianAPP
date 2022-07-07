@@ -9,7 +9,6 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import SwiftUI
 
 class ForumDetailViewController: UIViewController {
     

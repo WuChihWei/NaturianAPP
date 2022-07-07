@@ -103,7 +103,6 @@ class MyTalentManageVC: UIViewController {
             viewPagers.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
 }
 
 extension MyTalentManageVC: LZViewPagerDelegate {
