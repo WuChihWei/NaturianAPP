@@ -117,7 +117,6 @@ class MyAppliersVC: UIViewController {
             }
         }
     }
-    
 }
 
 extension MyAppliersVC: UITableViewDelegate {

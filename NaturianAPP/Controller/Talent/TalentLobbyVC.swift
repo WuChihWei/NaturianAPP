@@ -9,10 +9,14 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import FirebaseAuth
 
 class TalentLobbyVC: UIViewController {
-   
+    
     var talentManager = TalentManager()
+    var userManager = UserManager()
+    var userInfo: UserModel!
+
     var db: Firestore?
     
     private let tableView = UITableView()
@@ -20,11 +24,12 @@ class TalentLobbyVC: UIViewController {
     let filterButton = UIButton()
     let searchBtn = UIButton()
     let cleanBtn = UIButton()
+//    let userID = Auth.auth().currentUser?.uid
+    let userID = "2"
 
     let addPosteBTN = UIButton()
-
+    
     var talentArticles: [TalentArticle] = []
-    var userManager = UserManager()
     var userModels: [UserModel] = []
     let subview = UIView()
     
@@ -35,9 +40,9 @@ class TalentLobbyVC: UIViewController {
         setUp()
         style()
         layout()
-        fetchTalentArticle()
+//        fetchTalentArticle()
         tableView.showsVerticalScrollIndicator = false
-
+        
         tabBarController?.tabBar.isHidden = false
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -48,7 +53,8 @@ class TalentLobbyVC: UIViewController {
         
         tabBarController?.tabBar.isHidden = false
         tableView.layoutIfNeeded()
-        fetchTalentArticle()
+//        fetchTalentArticle()
+        userState()
         tableView.reloadData()
     }
     
@@ -56,26 +62,108 @@ class TalentLobbyVC: UIViewController {
         self.view.endEditing(true)
     }
     
-    func fetchTalentArticle() {
+    func fetchUserBlockList() {
         
-        print(talentArticles)
+    }
+    
+    func userState() {
         
-        talentManager.fetchData { [weak self] result in
+        userManager.fetchUserData(userID: userID ) { [weak self] result in
             
             switch result {
                 
-            case .success(let talentArticles):
+            case .success(let userModel):
                 
-                self?.talentArticles = talentArticles
+                self?.userInfo = userModel
                 
-                self?.tableView.reloadData()
+                if self?.userInfo.blockList.count == 0 {
+                    
+                    self?.talentManager.fetchData { [weak self] result in
+                        
+                        switch result {
+                            
+                        case .success(let talentArticles):
+                            
+                            self?.talentArticles = talentArticles
+                            
+                            self?.tableView.reloadData()
+                            
+                        case .failure:
+                            
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                } else if self?.userInfo.blockList.count == 1 {
+                    
+                    self?.talentManager.fetch1BlockListData(blockList: self?.userInfo.blockList ?? [] ) { [weak self] result in
+                        
+                        switch result {
+            
+                        case .success(let talentArticles):
+            
+                            self?.talentArticles = talentArticles
+            
+                            self?.tableView.reloadData()
+            
+                        case .failure:
+            
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                } else if self?.userInfo.blockList.count ?? 0 >= 2 {
+                    
+                    print(self?.userInfo.blockList)
+                
+                    self?.talentManager.fetchBlockListData(blockList: self?.userInfo.blockList ?? []) { [weak self] result in
+                        
+                        switch result {
+            
+                        case .success(let talentArticles):
+            
+                            self?.talentArticles = talentArticles
+            
+                            self?.tableView.reloadData()
+            
+                        case .failure:
+            
+                            print("can't fetch data")
+                        }
+                    }
+            
+                    print(LocalizedError.self)
+                }
+//                print(self?.userInfo ?? "")
+                DispatchQueue.main.async {
+                    
+                    self?.viewDidLoad()
+                }
                 
             case .failure:
-                
                 print("can't fetch data")
             }
         }
     }
+    
+//    func fetchTalentArticle() {
+//                
+//        talentManager.fetchData { [weak self] result in
+//            
+//            switch result {
+//                
+//            case .success(let talentArticles):
+//                
+//                self?.talentArticles = talentArticles
+//                
+//                self?.tableView.reloadData()
+//                
+//            case .failure:
+//                
+//                print("can't fetch data")
+//            }
+//        }
+//    }
     
     func setUp() {
         
@@ -96,8 +184,8 @@ class TalentLobbyVC: UIViewController {
             
             fatalError("can't find PostTalentVC")
         }
-                self.navigationController?.pushViewController(vc, animated: true)
-//        present(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
+        //        present(vc, animated: true)
     }
     
     private func showPostTalentVC() {
@@ -105,12 +193,12 @@ class TalentLobbyVC: UIViewController {
     }
     
     @objc func filterTalent() {
-//        performSegue(withIdentifier: "filterTalentSegue", sender: nil)
+        //        performSegue(withIdentifier: "filterTalentSegue", sender: nil)
         guard let talentFilterVC = storyboard?.instantiateViewController(withIdentifier: "TalentFilterVC") as? TalentFilterVC else {
             print("Can't find TalentFilterVC")
             return
         }
-        talentFilterVC.modalPresentationStyle = .overFullScreen
+        //        talentFilterVC.modalPresentationStyle = .overFullScreen
         present(talentFilterVC, animated: true, completion: nil)
         
         talentFilterVC.filterDelegate = self
@@ -129,11 +217,11 @@ class TalentLobbyVC: UIViewController {
         
         view.backgroundColor = .NaturianColor.navigationGray
         view.lkBorderColor = .white
-       
+        
         // subview
         subview.lkCornerRadius = 30
         subview.backgroundColor = .NaturianColor.lightGray
-
+        
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         // searchTextField
@@ -167,7 +255,7 @@ class TalentLobbyVC: UIViewController {
             searchBtn.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
             searchBtn.heightAnchor.constraint(equalToConstant: 18),
             searchBtn.widthAnchor.constraint(equalToConstant: 18),
-
+            
             // searchTextField
             searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -196,7 +284,7 @@ class TalentLobbyVC: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
             
             // addTalentButton
-          
+            
         ])
     }
 }
@@ -272,7 +360,7 @@ extension TalentLobbyVC: UITableViewDataSource {
             fatalError("can't find TalentDetailViewController")
         }
         self.navigationController?.pushViewController(vc, animated: true)
-    
+        
         vc.selectedArticle = talentArticles[indexPath.row]
     }
 }

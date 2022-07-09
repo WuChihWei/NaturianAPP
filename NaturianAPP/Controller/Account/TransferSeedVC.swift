@@ -10,7 +10,7 @@ import UIKit
 class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var scannerVC = ScannerVC()
-    var profileManager = UserFirebaseManager()
+    var profileManager = UserManager()
     var otherUserModels: UserModel!
     var currentUserModels: UserModel!
     

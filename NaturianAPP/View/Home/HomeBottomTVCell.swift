@@ -46,19 +46,19 @@ class HomeBottomTVCell: UITableViewCell {
         postImage.backgroundColor = .NaturianColor.lightGray
         postImage.lkBorderColor = .NaturianColor.darkGray
         postImage.lkBorderWidth = 1
-        postImage.lkCornerRadius = 23
+        postImage.lkCornerRadius = 10
         
         articleTitle.text = "Make Organic Food"
         articleTitle.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         articleTitle.textColor = .NaturianColor.darkGray
         articleContent.numberOfLines = 1
 
-        articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 16)
+        articleContent.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         articleContent.textColor = .NaturianColor.darkGray
         articleContent.numberOfLines = 0
         articleContent.text = "Describe your talent herePlease describe your talent herePlease describe your talent herePlease describe."
         articleContent.textAlignment = .justified
-        articleContent.numberOfLines = 2
+        articleContent.numberOfLines = 3
         
         
         likeBtn.setImage(UIImage(named: "liked"), for: .normal)
@@ -104,7 +104,7 @@ class HomeBottomTVCell: UITableViewCell {
         NSLayoutConstraint.activate([
   
             postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            postImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             postImage.widthAnchor.constraint(equalToConstant: 94),
             postImage.heightAnchor.constraint(equalToConstant: 94),
             postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

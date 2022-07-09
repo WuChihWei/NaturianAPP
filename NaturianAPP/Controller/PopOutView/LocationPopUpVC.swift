@@ -116,7 +116,7 @@ extension LocationPopUpVC: UITableViewDataSource {
         label.frame = CGRect.init(x: 24, y: 0, width: headerView.frame.width-10, height: headerView.frame.height)
         
         label.text = "Location"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         label.textColor = .black
         label.backgroundColor = .white
         label.textAlignment = .left

@@ -21,7 +21,7 @@ class ProfileVC: UIViewController {
     let userID = "2"
 
     var photoManager = PhotoManager()
-    var profileManager = UserFirebaseManager()
+    var profileManager = UserManager()
     let closeBtn = UIButton()
     var userImage = UIImageView()
     let logoImage = UIImageView()

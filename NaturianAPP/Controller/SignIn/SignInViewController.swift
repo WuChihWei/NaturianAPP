@@ -13,15 +13,24 @@ import CryptoKit // 用來產生隨機字串 (Nonce) 的
 class SignInViewController: UIViewController {
     
     static let shared = SignInViewController()
-    var userFirebaseManager = UserFirebaseManager()
+    var userManager = UserManager()
     var userInfo: UserModel!
+
+    let termsOfUseLB = UILabel()
+    let termsOfUseBtn = UIButton()
+    let firstStack = UIStackView()
+    let secondStack = UIStackView()
+    
+    let andLB = UILabel()
+    let privacyPolicyBtn = UIButton()
     
     var uuid = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
+        policy()
+        setup()
         
         setSignInWithAppleBtn()
         // Do any additional setup after loading the view.
@@ -43,6 +52,69 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
     }
+
+    @objc func presentEula() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "EULAVC") as? EULAVC else {
+            fatalError("can't find EULAVC")
+        }
+        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func presentPolicy() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "PrivacyPolicyVC") as? PrivacyPolicyVC else {
+            fatalError("can't find PrivacyPolicyVC")
+        }
+        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setup() {
+        termsOfUseBtn.addTarget(self, action: #selector(presentEula), for: .touchUpInside)
+        privacyPolicyBtn.addTarget(self, action: #selector(presentPolicy), for: .touchUpInside)
+    }
+    
+    func policy() {
+        
+        termsOfUseLB.text = "By signing up you accept the"
+        termsOfUseLB.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        termsOfUseLB.textColor = .darkGray
+        
+        termsOfUseBtn.setTitle("Terms of Use", for: .normal)
+        termsOfUseBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        termsOfUseBtn.setTitleColor(.NaturianColor.exerciseBlue, for: .normal)
+
+        andLB.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        andLB.text = "and"
+        andLB.textColor = .darkGray
+
+        privacyPolicyBtn.setTitle("Privacy Policy", for: .normal)
+        privacyPolicyBtn.setTitleColor(.NaturianColor.exerciseBlue, for: .normal)
+        privacyPolicyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
+        firstStack.translatesAutoresizingMaskIntoConstraints = false
+        secondStack.translatesAutoresizingMaskIntoConstraints = false
+
+        firstStack.axis = .horizontal
+        firstStack.alignment = .center
+        firstStack.spacing = 4
+
+        secondStack.axis = .horizontal
+        secondStack.alignment = .center
+        secondStack.spacing = 4
+
+        firstStack.addArrangedSubview(termsOfUseLB)
+        firstStack.addArrangedSubview(termsOfUseBtn)
+
+        secondStack.addArrangedSubview(andLB)
+        secondStack.addArrangedSubview(privacyPolicyBtn)
+        
+        view.addSubview(firstStack)
+        view.addSubview(secondStack)
+      
+    }
     
     // MARK: - 在畫面上產生 Sign in with Apple 按鈕
     func setSignInWithAppleBtn() {
@@ -53,13 +125,26 @@ class SignInViewController: UIViewController {
         signInWithAppleBtn.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
         signInWithAppleBtn.translatesAutoresizingMaskIntoConstraints = false
         signInWithAppleBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        signInWithAppleBtn.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        signInWithAppleBtn.widthAnchor.constraint(equalToConstant: 300).isActive = true
         signInWithAppleBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signInWithAppleBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70).isActive = true
+        signInWithAppleBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
+        signInWithAppleBtn.lkBorderWidth = 1
+        signInWithAppleBtn.lkCornerRadius = 25
+        
+        NSLayoutConstraint.activate([
+            
+            firstStack.centerXAnchor.constraint(equalTo: signInWithAppleBtn.centerXAnchor),
+            firstStack.topAnchor.constraint(equalTo: signInWithAppleBtn.bottomAnchor, constant: 15),
+            firstStack.heightAnchor.constraint(equalToConstant: 14),
+            
+            secondStack.topAnchor.constraint(equalTo: firstStack.bottomAnchor, constant: 4),
+            secondStack.heightAnchor.constraint(equalToConstant: 14),
+            secondStack.centerXAnchor.constraint(equalTo: signInWithAppleBtn.centerXAnchor)
+        ])
     }
     
     func chooseAppleButtonStyle() -> ASAuthorizationAppleIDButton.Style {
-        return (UITraitCollection.current.userInterfaceStyle == .light) ? .black : .white // 淺色模式就顯示黑色的按鈕，深色模式就顯示白色的按鈕
+        return (UITraitCollection.current.userInterfaceStyle == .light) ? .white : .white // 淺色模式就顯示黑色的按鈕，深色模式就顯示白色的按鈕
     }
     
     // MARK: - Sign in with Apple 登入
@@ -253,7 +338,7 @@ extension SignInViewController {
     
     func userState() {
         
-        userFirebaseManager.fetchUserData(userID: uuid ?? "") { [weak self] result in
+        userManager.fetchUserData(userID: uuid ?? "") { [weak self] result in
             
             switch result {
                 

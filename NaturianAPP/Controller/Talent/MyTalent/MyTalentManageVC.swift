@@ -44,15 +44,11 @@ class MyTalentManageVC: UIViewController {
         
         guard let vc2 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "OtherTalentViewController") as? OtherTalentViewController else {return}
-        
-//        guard let vc3 = UIStoryboard(name: "Main",
-//                                     bundle: nil).instantiateViewController(withIdentifier: "MyChatRoomVC") as? MyChatRoomVC else {return}
-//        
+
         subControllers = [vc1, vc2]
         
         vc1.title = "My Talents"
         vc2.title = "My Wizards"
-//        vc3.title = "Chat Room"
 
         viewPagers.reload()
     }
@@ -73,7 +69,6 @@ class MyTalentManageVC: UIViewController {
         
         closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
         mailButton.setImage(UIImage(named: "mail_gray"), for: .normal)
-
     }
     
     func layout() {

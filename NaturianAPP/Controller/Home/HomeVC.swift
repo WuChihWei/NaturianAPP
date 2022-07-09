@@ -26,6 +26,9 @@ class HomeVC: UIViewController {
         style()
         layout()
         
+        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
+        tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
+
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -87,7 +90,7 @@ class HomeVC: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             blackView.heightAnchor.constraint(equalToConstant: 1),
             blackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -119,7 +122,7 @@ extension HomeVC: UITableViewDataSource {
             
             return 1 } else {
                 
-                return 3
+                return 5
             }
     }
     
@@ -130,7 +133,6 @@ extension HomeVC: UITableViewDataSource {
         case 0 :
         guard let cell1 = tableView.dequeueReusableCell(withIdentifier: HomeTopTVCell.identifer,
                                                         for: indexPath) as? HomeTopTVCell else { fatalError("can't find Cell") }
-        
         return cell1
         
         case 1 :

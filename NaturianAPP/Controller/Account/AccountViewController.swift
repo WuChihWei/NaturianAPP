@@ -20,7 +20,7 @@ class AccountViewController: UIViewController {
     
     var signinVC = SignInViewController()
     var userManager = UserManager()
-    var userFirebaseManager = UserFirebaseManager()
+    var userFirebaseManager = UserManager()
     
 //    let userID = Auth.auth().currentUser?.uid
     let userID = "2"
@@ -157,7 +157,7 @@ class AccountViewController: UIViewController {
             alert.addAction(yesAction)
 
             present(alert, animated: true, completion: nil)
-        }
+    }
 
         func deleteAccount() {
             userFirebaseManager.deleteAccount()

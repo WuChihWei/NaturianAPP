@@ -10,7 +10,6 @@
 		3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F59A286A0BC80053777B /* SignInViewController.swift */; };
 		3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A0286AFF540053777B /* CustomFunc.swift */; };
 		3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A4286B5FAA0053777B /* ProfileVC.swift */; };
-		3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A7286BE7740053777B /* ProfileManager.swift */; };
 		32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5C2859816B00FF2980 /* ForumViewController.swift */; };
 		32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A5F2859832500FF2980 /* TalentLobbyVC.swift */; };
 		32078A652859837500FF2980 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32078A642859837500FF2980 /* AccountViewController.swift */; };
@@ -85,6 +84,9 @@
 		32A1A3362876A52900BB001B /* HomeCVFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3352876A52900BB001B /* HomeCVFlowLayout.swift */; };
 		32A1A3382876C1BA00BB001B /* HomeTopTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */; };
 		32A1A33B2876C1D600BB001B /* HomeBottomTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */; };
+		32A1A33E2877ACC300BB001B /* InfinityCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A33D2877ACC300BB001B /* InfinityCollectionView.swift */; };
+		32A1A34228782DB300BB001B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */; };
+		32A1A34428782F3700BB001B /* EULAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34328782F3700BB001B /* EULAVC.swift */; };
 		32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB45CC2875DA31008A885D /* HomeVC.swift */; };
 		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
@@ -107,7 +109,6 @@
 		3202F59D286A0D420053777B /* NaturianAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NaturianAPP.entitlements; sourceTree = "<group>"; };
 		3202F5A0286AFF540053777B /* CustomFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunc.swift; sourceTree = "<group>"; };
 		3202F5A4286B5FAA0053777B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		3202F5A7286BE7740053777B /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		32078A5C2859816B00FF2980 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		32078A5F2859832500FF2980 /* TalentLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyVC.swift; sourceTree = "<group>"; };
 		32078A642859837500FF2980 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +185,9 @@
 		32A1A3352876A52900BB001B /* HomeCVFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVFlowLayout.swift; sourceTree = "<group>"; };
 		32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopTVCell.swift; sourceTree = "<group>"; };
 		32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomTVCell.swift; sourceTree = "<group>"; };
+		32A1A33D2877ACC300BB001B /* InfinityCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityCollectionView.swift; sourceTree = "<group>"; };
+		32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		32A1A34328782F3700BB001B /* EULAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAVC.swift; sourceTree = "<group>"; };
 		32AB45CC2875DA31008A885D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		32078A52285957F600FF2980 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				32A1A34028782D4700BB001B /* SignIn */,
 				32AB45CB2875D816008A885D /* Home */,
 				325504A9286372370019A190 /* PopOutView */,
 				325504BC28646C040019A190 /* Chat */,
@@ -319,7 +324,6 @@
 		32078A632859835400FF2980 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				3202F59A286A0BC80053777B /* SignInViewController.swift */,
 				32078A642859837500FF2980 /* AccountViewController.swift */,
 				3202F5A4286B5FAA0053777B /* ProfileVC.swift */,
 				32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */,
@@ -386,6 +390,7 @@
 				327614B9285D7EF5001D6FB7 /* GoogleService-Info.plist */,
 				32138B242858860200916700 /* AppDelegate.swift */,
 				32138B262858860200916700 /* SceneDelegate.swift */,
+				32A1A33C2877AC7D00BB001B /* Customize */,
 				32550468285F87A90019A190 /* Third Party Wrapper */,
 				32078A5828597AF800FF2980 /* Extension */,
 				32078A5B28597DCB00FF2980 /* Manager */,
@@ -522,7 +527,6 @@
 			children = (
 				32550460285F3F350019A190 /* UserAccount.swift */,
 				325504782860130D0019A190 /* UserManager.swift */,
-				3202F5A7286BE7740053777B /* ProfileManager.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -532,6 +536,24 @@
 			children = (
 			);
 			path = Explore;
+			sourceTree = "<group>";
+		};
+		32A1A33C2877AC7D00BB001B /* Customize */ = {
+			isa = PBXGroup;
+			children = (
+				32A1A33D2877ACC300BB001B /* InfinityCollectionView.swift */,
+			);
+			path = Customize;
+			sourceTree = "<group>";
+		};
+		32A1A34028782D4700BB001B /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				3202F59A286A0BC80053777B /* SignInViewController.swift */,
+				32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */,
+				32A1A34328782F3700BB001B /* EULAVC.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		32AB45CB2875D816008A885D /* Home */ = {
@@ -602,8 +624,9 @@
 				32138B1D2858860200916700 /* Sources */,
 				32138B1E2858860200916700 /* Frameworks */,
 				32138B1F2858860200916700 /* Resources */,
-				32078A512858C56300FF2980 /* ShellScript */,
 				BAF5EAE99017428B49E5BC3D /* [CP] Embed Pods Frameworks */,
+				32A1A34628785EBE00BB001B /* ShellScript */,
+				32A1A34728785EEB00BB001B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -675,9 +698,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32078A512858C56300FF2980 /* ShellScript */ = {
+		32A1A34628785EBE00BB001B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -691,6 +714,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		32A1A34728785EEB00BB001B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\n",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\n",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		A1C35ECFA2946D9924871AAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -755,6 +797,7 @@
 				3241C463286FEECE00A2E75A /* ForumLobbyCVCell.swift in Sources */,
 				32550475285FF15C0019A190 /* MyTalentAppliersTVCell.swift in Sources */,
 				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
+				32A1A33E2877ACC300BB001B /* InfinityCollectionView.swift in Sources */,
 				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
 				325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */,
 				325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */,
@@ -776,6 +819,7 @@
 				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentAcceptedTVCell.swift in Sources */,
+				32A1A34428782F3700BB001B /* EULAVC.swift in Sources */,
 				32A1A33B2876C1D600BB001B /* HomeBottomTVCell.swift in Sources */,
 				32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */,
 				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
@@ -807,8 +851,8 @@
 				32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */,
 				32550472285FF0500019A190 /* MyApplierLobbyVC.swift in Sources */,
 				32EFA308287348C000DFA8A2 /* MyChatRoomVC.swift in Sources */,
+				32A1A34228782DB300BB001B /* PrivacyPolicyVC.swift in Sources */,
 				325504792860130D0019A190 /* UserManager.swift in Sources */,
-				3202F5A8286BE7740053777B /* ProfileManager.swift in Sources */,
 				32078A602859832600FF2980 /* TalentLobbyVC.swift in Sources */,
 				32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */,
 				32550461285F3F350019A190 /* UserAccount.swift in Sources */,
@@ -962,6 +1006,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LLW367JD7R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NaturianAPP/Info.plist;

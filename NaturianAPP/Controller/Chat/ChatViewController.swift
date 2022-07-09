@@ -15,7 +15,7 @@ import IQKeyboardManagerSwift
 
 class ChatViewController: MessagesViewController {
     
-    var userFirebaseManager = UserFirebaseManager()
+    var userFirebaseManager = UserManager()
     
     //    var chatTalentID: String = ""
     

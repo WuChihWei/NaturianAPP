@@ -15,12 +15,19 @@ class HomeTopTVCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var categories = [ (name: "Food", imageName: "food_icon"),
-                       (name: "Grocery", imageName: "grocery_icon"),
-                       (name: "Plant", imageName:"plant_icon"),
-                       (name: "Adventure", imageName: "adventure_icon"),
-                       (name: "Exercise", imageName: "exercise_icon"),
-                       (name: "Treatment", imageName: "treatment_icon") ]
+    var categories = [ (name: "Food", imageName: "scroller_1"),
+                       (name: "Grocery", imageName: "scroller_2"),
+                       (name: "Plant", imageName:"scroller_3"),
+                       (name: "Adventure", imageName: "scroller_4"),
+                       (name: "Exercise", imageName: "scroller_5"),
+                       (name: "Treatment", imageName: "scroller_6") ]
+    
+    
+//    var images = [  "food_icon","grocery_icon"),
+//                       (name: "Plant", imageName:"plant_icon"),
+//                       (name: "Adventure", imageName: "adventure_icon"),
+//                       (name: "Exercise", imageName: "exercise_icon"),
+//                       (name: "Treatment", imageName: "treatment_icon") ]
     
     let firstLB = UILabel()
     let secondLB = UILabel()
@@ -109,29 +116,29 @@ class HomeTopTVCell: UITableViewCell {
         massageLB.textColor = .white
         massageLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
-        titleLB.text = "Hot Articles"
+        titleLB.text = "Top 5 Articles"
         titleLB.textColor = .NaturianColor.darkGray
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         
-        seedButton.setImage(UIImage(named: ""), for: .normal)
+        seedButton.setImage(UIImage(named: "whitetransfer"), for: .normal)
         seedButton.backgroundColor = .NaturianColor.navigationGray
         seedButton.lkCornerRadius = 32
         seedButton.lkBorderColor = .white
         seedButton.lkBorderWidth = 2
         
-        myTalentButton.setImage(UIImage(named: ""), for: .normal)
+        myTalentButton.setImage(UIImage(named: "whitetalent"), for: .normal)
         myTalentButton.backgroundColor = .NaturianColor.navigationGray
         myTalentButton.lkCornerRadius = 32
         myTalentButton.lkBorderColor = .white
         myTalentButton.lkBorderWidth = 2
         
-        collectionButton.setImage(UIImage(named: ""), for: .normal)
+        collectionButton.setImage(UIImage(named: "whitecollection"), for: .normal)
         collectionButton.backgroundColor = .NaturianColor.navigationGray
         collectionButton.lkCornerRadius = 32
         collectionButton.lkBorderColor = .white
         collectionButton.lkBorderWidth = 2
         
-        massageButton.setImage(UIImage(named: ""), for: .normal)
+        massageButton.setImage(UIImage(named: "whitemassage"), for: .normal)
         massageButton.backgroundColor = .NaturianColor.navigationGray
         massageButton.lkCornerRadius = 32
         massageButton.lkBorderColor = .white
@@ -163,8 +170,6 @@ class HomeTopTVCell: UITableViewCell {
        
         bottomTitleView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         bottomTitleView.lkCornerRadius = 30
-        
-
     }
     
     func layout() {
@@ -267,7 +272,6 @@ extension HomeTopTVCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCVCell.identifer, for: indexPath) as?
                 HomeCVCell else { fatalError("can't find Cell") }
         
-        
         cell.lkCornerRadius = 15
         //        cell.tilteLB.text = categories[indexPath.row].name
         cell.cardview.image = UIImage(named: "\(categories[indexPath.row].imageName)")
@@ -280,10 +284,13 @@ extension HomeTopTVCell: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 extension HomeTopTVCell: UICollectionViewDelegate {
     
 
+}
+
+extension HomeTopTVCell: UIScrollViewDelegate {
+    
 }

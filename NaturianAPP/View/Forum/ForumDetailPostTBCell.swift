@@ -71,12 +71,12 @@ class ForumDetailPostTBCell: UITableViewCell {
         title.text = "This is title"
         title.textColor = .NaturianColor.darkGray
         
-        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
-        categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal) 
+        categoryBTN.setTitleColor(.white, for: .normal)
         categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-        categoryBTN.lkCornerRadius = 5
+        categoryBTN.lkCornerRadius = 14
         
         title.numberOfLines = 0
         
@@ -156,7 +156,7 @@ class ForumDetailPostTBCell: UITableViewCell {
             categoryBTN.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             categoryBTN.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             categoryBTN.widthAnchor.constraint(equalToConstant: 90),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 24),
+            categoryBTN.heightAnchor.constraint(equalToConstant: 28),
             
             articleContent.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             articleContent.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
@@ -171,7 +171,7 @@ class ForumDetailPostTBCell: UITableViewCell {
             dottedLine.heightAnchor.constraint(equalToConstant: 2),
             dottedLine.topAnchor.constraint(equalTo: authorLB.bottomAnchor, constant: 8),
             
-            buttonStack.trailingAnchor.constraint(equalTo: dottedLine.trailingAnchor),
+            buttonStack.leadingAnchor.constraint(equalTo: dottedLine.leadingAnchor),
             buttonStack.topAnchor.constraint(equalTo: dottedLine.bottomAnchor, constant: 9),
             buttonStack.heightAnchor.constraint(equalToConstant: 28),
             likeBtn.widthAnchor.constraint(equalToConstant: 28),

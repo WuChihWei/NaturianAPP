@@ -138,7 +138,7 @@ class AllMyAppliersVC: UIViewController {
                         self?.acceptIDs.removeAll()
                         //                        var myTalentInfo =
                         self?.fetchMyAppliedTalent()
-                        print(self?.acceptIDs)
+                        print(self?.acceptIDs ?? [])
                         
                         self?.tableView.reloadData()
                         

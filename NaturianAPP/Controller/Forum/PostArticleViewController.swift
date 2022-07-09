@@ -307,6 +307,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
                                                       isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                                       createdTime: self.userModels?.createdTime,
+                                                      blockList: self.userModels?.blockList ?? [],
                                                       email: self.userModels?.email
                             )
                             

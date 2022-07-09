@@ -16,7 +16,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-//    let userID = Auth.auth().currentUser?.uid
+    //    let userID = Auth.auth().currentUser?.uid
     let userID = "2"
     var appliedState: Int = 0
     
@@ -24,30 +24,31 @@ class TalentDetailViewController: UIViewController {
     let avatarImage = UIImageView()
     let subview = UIView()
     let closeButton = UIButton()
-
+    
     let titleText = UILabel()
     let categoryBTN = UIButton()
+    let moreBtn = UIButton()
     
     let genderIcon = UIImageView()
     let providerName = UILabel()
     private let nameStack = UIStackView()
-
+    
     let descriptionText = UILabel()
-
+    
     let seedValueText = UILabel()
     let seedIcon = UIImageView()
     let seedStack = UIStackView()
-
+    
     let locationLabel = UILabel()
     let locationIcon = UIImageView()
     private let locationStack = UIStackView()
     
     let providerStack = UIStackView()
-
+    
     let applyButton = UIButton()
     let contactButton = UIButton()
     let buttonStack = UIStackView()
-
+    
     var selectedArticle: TalentArticle!
     var userModels: UserModel!
     
@@ -75,7 +76,7 @@ class TalentDetailViewController: UIViewController {
         avatarImage.clipsToBounds = true
         avatarImage.contentMode = .scaleAspectFill
     }
-
+    
     func fetchUserData() {
         
         userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
@@ -112,14 +113,14 @@ class TalentDetailViewController: UIViewController {
         
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ChatViewController") as? ChatViewController else {
-
+            
             fatalError("can't find ChatViewController")
         }
         
         vc.chatToID = selectedArticle.userID
         
         self.navigationController?.pushViewController(vc, animated: true)
-                
+        
     }
     
     @objc func closePage() {
@@ -142,7 +143,7 @@ class TalentDetailViewController: UIViewController {
             contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
             contactButton.setTitleColor(.NaturianColor.navigationGray, for: .normal)
             contactButton.isEnabled = false
-
+            
         } else {
             return
         }
@@ -202,7 +203,7 @@ extension TalentDetailViewController {
         switchColor()
         
         avatarImage.image = UIImage(named: "")
-//        avatarImage.lkBorderColor = .white
+        //        avatarImage.lkBorderColor = .white
         avatarImage.lkCornerRadius = 42
         avatarImage.lkBorderWidth = 4
         avatarImage.backgroundColor = .NaturianColor.lightGray
@@ -222,14 +223,38 @@ extension TalentDetailViewController {
         subview.backgroundColor = .white
         subview.lkCornerRadius = 30
         
-        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
         categoryBTN.setTitleColor(.white, for: .normal)
-//        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-        categoryBTN.lkCornerRadius = 5
+        //        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+        categoryBTN.lkCornerRadius = 14
         
-        titleText.font = UIFont(name: Roboto.bold.rawValue, size: 24)
+        moreBtn.setImage(UIImage(named: "more"), for: .normal)
+        moreBtn.showsMenuAsPrimaryAction = true
+        moreBtn.menu = UIMenu(children: [
+            UIAction(title: "Block User", image: UIImage(named: "block"), handler: { action in
+                
+                self.userManager.addBlockList(uid: self.userID,
+                                              blockID: self.selectedArticle.userID ?? "") { [weak self] result in
+                    switch result {
+                        
+                    case .success:
+                        self?.dismiss(animated: true)
+                        
+                    case .failure:
+                        print("can't fetch data")
+                        
+                    }
+                }
+            }),
+            
+            UIAction(title: "Report User", image: UIImage(named: "report"), handler: { action in
+                print("Report User")
+            })
+        ])
+        
+        titleText.font = UIFont(name: Roboto.bold.rawValue, size: 28)
         titleText.textAlignment = .left
         titleText.text = selectedArticle.title
         titleText.textColor = .NaturianColor.darkGray
@@ -245,7 +270,7 @@ extension TalentDetailViewController {
         seedValueText.text = "\(selectedArticle.seedValue ?? 0)"
         seedValueText.font = UIFont(name: Roboto.bold.rawValue, size: 26)
         seedValueText.textColor = .NaturianColor.darkGray
-
+        
         locationLabel.text = selectedArticle.location ?? ""
         locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         locationLabel.textColor = .NaturianColor.navigationGray
@@ -255,7 +280,7 @@ extension TalentDetailViewController {
         providerName.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         providerName.textColor = .NaturianColor.navigationGray
         providerName.text = selectedArticle.userInfo?.name
-
+        
         seedStack.axis = .horizontal
         seedStack.alignment = .trailing
         seedStack.spacing = 6
@@ -282,7 +307,7 @@ extension TalentDetailViewController {
         contactButton.setTitle("Contact", for: .normal)
         contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         contactButton.setTitleColor(.black, for: .normal)
-
+        
         buttonStack.axis = .horizontal
         buttonStack.alignment = .center
         buttonStack.spacing = 20
@@ -300,12 +325,14 @@ extension TalentDetailViewController {
         providerStack.translatesAutoresizingMaskIntoConstraints = false
         descriptionText.translatesAutoresizingMaskIntoConstraints = false
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
-
+        moreBtn.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(postPhotoImage)
         postPhotoImage.addSubview(avatarImage)
         
         view.addSubview(closeButton)
         view.addSubview(subview)
+        view.addSubview(moreBtn)
         
         subview.addSubview(titleText)
         subview.addSubview(categoryBTN)
@@ -313,7 +340,7 @@ extension TalentDetailViewController {
         subview.addSubview(providerStack)
         subview.addSubview(categoryBTN)
         subview.addSubview(descriptionText)
-
+        
         subview.addSubview(buttonStack)
         
         seedStack.addArrangedSubview(seedIcon)
@@ -327,10 +354,10 @@ extension TalentDetailViewController {
         
         locationStack.addArrangedSubview(locationIcon)
         locationStack.addArrangedSubview(locationLabel)
-
+        
         buttonStack.addArrangedSubview(applyButton)
         buttonStack.addArrangedSubview(contactButton)
-
+        
         NSLayoutConstraint.activate([
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -342,12 +369,12 @@ extension TalentDetailViewController {
             postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
-       
+            
             avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             avatarImage.heightAnchor.constraint(equalToConstant: 84),
             avatarImage.widthAnchor.constraint(equalToConstant: 84),
-    
+            
             subview.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: -40),
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -358,14 +385,19 @@ extension TalentDetailViewController {
             seedIcon.heightAnchor.constraint(equalToConstant: 26),
             seedIcon.widthAnchor.constraint(equalToConstant: 26),
             
-            titleText.topAnchor.constraint(equalTo: seedStack.bottomAnchor, constant: 6),
+            titleText.topAnchor.constraint(equalTo: seedStack.bottomAnchor, constant: 10),
             titleText.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             titleText.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             
-            categoryBTN.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: 6),
+            categoryBTN.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: 10),
             categoryBTN.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 24),
+            categoryBTN.heightAnchor.constraint(equalToConstant: 28),
             categoryBTN.widthAnchor.constraint(equalToConstant: 90),
+            
+            moreBtn.centerYAnchor.constraint(equalTo: categoryBTN.centerYAnchor),
+            moreBtn.trailingAnchor.constraint(equalTo: seedStack.trailingAnchor),
+            moreBtn.heightAnchor.constraint(equalToConstant: 20),
+            moreBtn.widthAnchor.constraint(equalToConstant: 20),
             
             providerStack.topAnchor.constraint(equalTo: seedStack.topAnchor),
             providerStack.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
@@ -378,14 +410,14 @@ extension TalentDetailViewController {
             locationIcon.widthAnchor.constraint(equalToConstant: 14),
             
             descriptionText.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
-            descriptionText.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 8),
+            descriptionText.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 12),
             descriptionText.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             
             buttonStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             applyButton.widthAnchor.constraint(equalToConstant: 130),
             applyButton.heightAnchor.constraint(equalToConstant: 48),
-
+            
             contactButton.widthAnchor.constraint(equalToConstant: 130),
             contactButton.heightAnchor.constraint(equalToConstant: 48)
         ])
