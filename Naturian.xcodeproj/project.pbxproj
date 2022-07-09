@@ -88,6 +88,8 @@
 		32A1A34228782DB300BB001B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */; };
 		32A1A34428782F3700BB001B /* EULAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34328782F3700BB001B /* EULAVC.swift */; };
 		32A1A3492879CE2E00BB001B /* ManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3482879CE2E00BB001B /* ManageVC.swift */; };
+		32A1A34B2879E33400BB001B /* UnblockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34A2879E33400BB001B /* UnblockVC.swift */; };
+		32A1A34E2879E38300BB001B /* UnblockTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34D2879E38300BB001B /* UnblockTVCell.swift */; };
 		32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB45CC2875DA31008A885D /* HomeVC.swift */; };
 		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
@@ -190,6 +192,8 @@
 		32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		32A1A34328782F3700BB001B /* EULAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAVC.swift; sourceTree = "<group>"; };
 		32A1A3482879CE2E00BB001B /* ManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVC.swift; sourceTree = "<group>"; };
+		32A1A34A2879E33400BB001B /* UnblockVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockVC.swift; sourceTree = "<group>"; };
+		32A1A34D2879E38300BB001B /* UnblockTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockTVCell.swift; sourceTree = "<group>"; };
 		32AB45CC2875DA31008A885D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		32078A5928597B1A00FF2980 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32A1A34C2879E36300BB001B /* Account */,
 				32AB45CE2875E2B7008A885D /* Home */,
 				32078A6D2859C44800FF2980 /* Explore */,
 				32B3ECCD285B98D400B5C16B /* Talent */,
@@ -333,6 +338,7 @@
 				325504E02864D2750019A190 /* ScannerVC.swift */,
 				3221453C2866153F00D46503 /* PopViewController.swift */,
 				32A1A3482879CE2E00BB001B /* ManageVC.swift */,
+				32A1A34A2879E33400BB001B /* UnblockVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -557,6 +563,14 @@
 				32A1A34328782F3700BB001B /* EULAVC.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		32A1A34C2879E36300BB001B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				32A1A34D2879E38300BB001B /* UnblockTVCell.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		32AB45CB2875D816008A885D /* Home */ = {
@@ -789,7 +803,9 @@
 				3241C43A286E9CF500A2E75A /* ForumDetailReplyTBCell.swift in Sources */,
 				32078A652859837500FF2980 /* AccountViewController.swift in Sources */,
 				321AE4E12875E34E008041B4 /* HomeCVCell.swift in Sources */,
+				32A1A34E2879E38300BB001B /* UnblockTVCell.swift in Sources */,
 				32A1A3382876C1BA00BB001B /* HomeTopTVCell.swift in Sources */,
+				32A1A34B2879E33400BB001B /* UnblockVC.swift in Sources */,
 				325504B72864524B0019A190 /* Chat.swift in Sources */,
 				325504B5286451C70019A190 /* ChatViewController.swift in Sources */,
 				32078A5D2859816B00FF2980 /* ForumViewController.swift in Sources */,

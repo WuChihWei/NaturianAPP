@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
+import FirebaseAuth
+import AuthenticationServices
 
 class ManageVC: UIViewController {
     
     let closeButton = UIButton()
     let titleLB = UILabel()
     let blackView = UIView()
-    
+    var userFirebaseManager = UserManager()
+    var userModels: UserModel!
+    //    let userID = Auth.auth().currentUser?.uid
+        let userID = "2"
+
     let logoutBtn = UIButton()
     let delelteAccountBtn = UIButton()
     let unBlockBtn = UIButton()
@@ -32,12 +39,103 @@ class ManageVC: UIViewController {
         layout()
     }
     
+    func userState() {
+            
+//        guard let userID = Auth.auth().currentUser?.uid else {return}
+        
+            userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
+                
+                switch result {
+                    
+                case .success(let userModel):
+                    
+                    self?.userModels = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
+    
     @objc func closePage() {
         navigationController?.popViewController(animated: false)
     }
     
+    @objc func logOut() {
+        navigationController?.popViewController(animated: false)
+    }
+    
+    @objc func deleteuser() {
+            let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
+                self.deleteAccount()
+            }
+            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+            alert.addAction(noAction)
+            alert.addAction(yesAction)
+
+            present(alert, animated: true, completion: nil)
+    }
+
+    func deleteAccount() {
+        userFirebaseManager.deleteAccount()
+    }
+    
+    @objc func tapToLogout() {
+                let controller = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: .alert)
+
+                let okAction = UIAlertAction(title: "Comfirm", style: .default) { _ in
+
+                    do {
+
+                        try Auth.auth().signOut()
+                        self.navigationController?.popToRootViewController(animated: true)
+                        print("sign outtttt")
+
+                    } catch let signOutError as NSError {
+
+                       print("Error signing out: (signOutError)")
+
+                    }
+                }
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+                controller.addAction(okAction)
+
+                controller.addAction(cancelAction)
+
+                present(controller, animated: true, completion: nil)
+            }
+    
+    @objc func unblockPage() {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "UnblockVC") as? UnblockVC else {
+            
+            fatalError("can't find UnblockVC")
+        }
+        
+//        vc.userModels = self.userModels
+
+        navigationController?.pushViewController(vc, animated: true)
+//        present(vc, animated: true)
+    }
+    
+    
     func setup() {
+        
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
+        unBlockBtn.addTarget(self, action: #selector(unblockPage), for: .touchUpInside)
+        logoutBtn.addTarget(self, action: #selector(tapToLogout), for: .touchUpInside)
+        delelteAccountBtn.addTarget(self, action: #selector(deleteuser), for: .touchUpInside)
     }
     
     func style() {
@@ -60,7 +158,7 @@ class ManageVC: UIViewController {
 
         logoutLB.textColor = .NaturianColor.darkGray
         logoutLB.text = "Log Out"
-        logoutLB.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        logoutLB.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         
         logoutBtn.setImage(UIImage(named: "accountGo"), for: .normal)
         logoutBtn.backgroundColor = .white
@@ -71,7 +169,7 @@ class ManageVC: UIViewController {
         
         delelteAccountLB.text = "Delete Account"
         delelteAccountLB.textColor = .NaturianColor.darkGray
-        delelteAccountLB.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        delelteAccountLB.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         delelteAccountBtn.setImage(UIImage(named: "accountGo"), for: .normal)
         delelteAccountBtn.backgroundColor = .white
         delelteAccountBtn.lkBorderWidth = 1
@@ -81,7 +179,7 @@ class ManageVC: UIViewController {
         
         unBlockLB.text = "Unblock Users"
         unBlockLB.textColor = .NaturianColor.darkGray
-        unBlockLB.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        unBlockLB.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         unBlockBtn.setImage(UIImage(named: "accountGo"), for: .normal)
         unBlockBtn.backgroundColor = .white
         unBlockBtn.lkBorderWidth = 1

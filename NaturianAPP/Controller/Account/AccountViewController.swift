@@ -27,16 +27,12 @@ class AccountViewController: UIViewController {
     var userModels: UserModel!
     let backgroundView = UIView()
     
-    let signOutLBBTN = UIButton()
-    let signOutButton = UIButton()
-    let signOutStack = UIStackView()
-    let deletetButton = UIButton()
-    
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
     let blackLine = UIView()
     let circleR = UIView()
     let circleL = UIView()
+    let manageBtn = UIButton()
 
     let naturianLB = UILabel()
     let utopiaLB = UILabel()
@@ -58,7 +54,7 @@ class AccountViewController: UIViewController {
     
     let transferBtn = UIButton()
     let talentBtn = UIButton()
-    let manageBtn = UIButton()
+//    let manageBtn = UIButton()
     
     let buttonStack = UIStackView()
     
@@ -68,8 +64,6 @@ class AccountViewController: UIViewController {
         setup()
         setStyle()
         layout()
-        print(userID)
-   
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,55 +138,8 @@ class AccountViewController: UIViewController {
                 }
             }
         }
-    
-    // delete accout
-    @objc func deleteuser() {
-            let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
-                self.deleteAccount()
-            }
-            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
 
-            alert.addAction(noAction)
-            alert.addAction(yesAction)
-
-            present(alert, animated: true, completion: nil)
-    }
-
-        func deleteAccount() {
-            userFirebaseManager.deleteAccount()
-//            let porfilVC = ProfileVC()
-//            porfilVC.modalPresentationStyle = .overFullScreen
-//            navigationController?.present(porfilVC, animated: true, completion: nil)
-        }
-    
     // logout accout
-    @objc func tapToLogout() {
-                let controller = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: .alert)
-
-                let okAction = UIAlertAction(title: "Comfirm", style: .default) { _ in
-
-                    do {
-
-                        try Auth.auth().signOut()
-                        self.navigationController?.popToRootViewController(animated: true)
-                        print("sign outtttt")
-
-                    } catch let signOutError as NSError {
-
-                       print("Error signing out: (signOutError)")
-
-                    }
-                }
-
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-                controller.addAction(okAction)
-
-                controller.addAction(cancelAction)
-
-                present(controller, animated: true, completion: nil)
-            }
     
     @objc func didTapTalent() {
         
@@ -220,11 +167,22 @@ class AccountViewController: UIViewController {
         //        tabBarController?.tabBar.isHidden = true
     }
     
+    @objc func managePage() {
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ManageVC") as? ManageVC else {
+            
+            fatalError("can't find ManageVC")
+        }
+        
+        vc.userModels = self.userModels
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     func setup() {
-     
-        deletetButton.addTarget(self, action: #selector(deleteuser), for: .touchUpInside)
-        signOutButton.addTarget(self, action: #selector(tapToLogout), for: .touchUpInside)
-        signOutLBBTN.addTarget(self, action: #selector(tapToLogout), for: .touchUpInside)
+        manageBtn.addTarget(self, action: #selector(managePage), for: .touchUpInside)
         transferBtn.addTarget(self, action: #selector(didTapTransfer), for: .touchUpInside)
         talentBtn.addTarget(self, action: #selector(didTapTalent), for: .touchUpInside)
     }
@@ -232,17 +190,9 @@ class AccountViewController: UIViewController {
     func setStyle() {
         
         view.backgroundColor = UIColor.NaturianColor.navigationGray
-        signOutLBBTN.setTitle("SIGN OUT", for: .normal)
-        signOutLBBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
-        signOutLBBTN.setTitleColor(.white, for: .normal)
-        signOutButton.setImage(UIImage(named: "leave_white"), for: .normal)
-//        signOutButton.backgroundColor = .blue
-        
-        deletetButton.titleLabel?.font =  UIFont(name: Roboto.bold.rawValue, size: 12)
-        deletetButton.setTitle("X DELETE ACCOUNT X", for: .normal)
-        deletetButton.setTitleColor(.white, for: .normal)
 //        deletetButton.backgroundColor = .blue
-        
+        manageBtn.setImage(UIImage(named: "manager"), for: .normal)
+
         backgroundView.lkCornerRadius = 20
         backgroundView.backgroundColor = .white
         blackLine.backgroundColor = .NaturianColor.navigationGray
@@ -303,10 +253,6 @@ class AccountViewController: UIViewController {
         buttonStack.axis = .horizontal
         buttonStack.distribution = .equalSpacing
         
-        signOutStack.axis = .horizontal
-        signOutStack.alignment = .center
-        signOutStack.spacing = 3
-        
         naturianInfoStack.axis = .vertical
         naturianInfoStack.alignment = .leading
         
@@ -315,19 +261,14 @@ class AccountViewController: UIViewController {
     func layout() {
         
         view.addSubview(backgroundView)
-        
-        view.addSubview(signOutStack)
-        view.addSubview(deletetButton)
-        
-        signOutStack.addArrangedSubview(signOutLBBTN)
-        signOutStack.addArrangedSubview(signOutButton)
 
         backgroundView.addSubview(naturianStack)
         backgroundView.addSubview(blackLine)
         backgroundView.addSubview(userAvatar)
         backgroundView.addSubview(circleL)
         backgroundView.addSubview(circleR)
-        
+        backgroundView.addSubview(manageBtn)
+
         backgroundView.addSubview(seedValueLabel)
         backgroundView.addSubview(seedIcon)
         
@@ -348,11 +289,10 @@ class AccountViewController: UIViewController {
         backgroundView.addSubview(naturianInfoLB)
         backgroundView.addSubview(naturianInfoStack)
       
+        manageBtn.translatesAutoresizingMaskIntoConstraints = false
         naturianInfoStack.translatesAutoresizingMaskIntoConstraints = false
         naturianInfoLB.translatesAutoresizingMaskIntoConstraints = false
         naturianStack.translatesAutoresizingMaskIntoConstraints = false
-        signOutStack.translatesAutoresizingMaskIntoConstraints = false
-        deletetButton.translatesAutoresizingMaskIntoConstraints = false
         
         circleL.translatesAutoresizingMaskIntoConstraints = false
         circleR.translatesAutoresizingMaskIntoConstraints = false
@@ -371,14 +311,11 @@ class AccountViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            signOutStack.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 0),
-            signOutStack.bottomAnchor.constraint(equalTo: backgroundView.topAnchor, constant: -5),
             
-            signOutButton.heightAnchor.constraint(equalToConstant: 18),
-            signOutButton.widthAnchor.constraint(equalToConstant: 18),
-            
-            deletetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deletetButton.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: 8),
+            manageBtn.leadingAnchor.constraint(equalTo: naturianStack.leadingAnchor),
+            manageBtn.topAnchor.constraint(equalTo: transferBtn.bottomAnchor),
+            manageBtn.widthAnchor.constraint(equalToConstant: 26),
+            manageBtn.heightAnchor.constraint(equalToConstant: 26),
             
             naturianStack.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
             naturianStack.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
