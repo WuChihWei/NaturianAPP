@@ -87,6 +87,7 @@
 		32A1A33E2877ACC300BB001B /* InfinityCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A33D2877ACC300BB001B /* InfinityCollectionView.swift */; };
 		32A1A34228782DB300BB001B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */; };
 		32A1A34428782F3700BB001B /* EULAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A34328782F3700BB001B /* EULAVC.swift */; };
+		32A1A3492879CE2E00BB001B /* ManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1A3482879CE2E00BB001B /* ManageVC.swift */; };
 		32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AB45CC2875DA31008A885D /* HomeVC.swift */; };
 		32B3ECC7285B94F600B5C16B /* MyTalentManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */; };
 		32B3ECCA285B953100B5C16B /* MyTalentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */; };
@@ -188,6 +189,7 @@
 		32A1A33D2877ACC300BB001B /* InfinityCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityCollectionView.swift; sourceTree = "<group>"; };
 		32A1A34128782DB300BB001B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		32A1A34328782F3700BB001B /* EULAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EULAVC.swift; sourceTree = "<group>"; };
+		32A1A3482879CE2E00BB001B /* ManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVC.swift; sourceTree = "<group>"; };
 		32AB45CC2875DA31008A885D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		32B3ECC6285B94F600B5C16B /* MyTalentManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentManageVC.swift; sourceTree = "<group>"; };
 		32B3ECC9285B953100B5C16B /* MyTalentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTalentViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				3221451628658B9B00D46503 /* TransferSeedVC.swift */,
 				325504E02864D2750019A190 /* ScannerVC.swift */,
 				3221453C2866153F00D46503 /* PopViewController.swift */,
+				32A1A3482879CE2E00BB001B /* ManageVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
 				32A1A33E2877ACC300BB001B /* InfinityCollectionView.swift in Sources */,
 				3255046C285F88250019A190 /* KingFisherWrapper.swift in Sources */,
+				32A1A3492879CE2E00BB001B /* ManageVC.swift in Sources */,
 				325504AD2863727C0019A190 /* LocationPopUpVC.swift in Sources */,
 				325504AF286373C70019A190 /* CategoryPopTableViewCell.swift in Sources */,
 				322145642868017B00D46503 /* ChatManager.swift in Sources */,

@@ -233,7 +233,9 @@ extension TalentDetailViewController {
         moreBtn.setImage(UIImage(named: "more"), for: .normal)
         moreBtn.showsMenuAsPrimaryAction = true
         moreBtn.menu = UIMenu(children: [
-            UIAction(title: "Block User", image: UIImage(named: "block"), handler: { action in
+            UIAction(title: "Block User",
+                     image: UIImage(named: "block"),
+                     handler: { action in
                 
                 self.userManager.addBlockList(uid: self.userID,
                                               blockID: self.selectedArticle.userID ?? "") { [weak self] result in
@@ -249,7 +251,9 @@ extension TalentDetailViewController {
                 }
             }),
             
-            UIAction(title: "Report User", image: UIImage(named: "report"), handler: { action in
+            UIAction(title: "Report User",
+                     image: UIImage(named: "report"),
+                     handler: { action in
                 print("Report User")
             })
         ])

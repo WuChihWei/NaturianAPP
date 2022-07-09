@@ -113,9 +113,7 @@ class TalentLobbyVC: UIViewController {
                     }
                     
                 } else if self?.userInfo.blockList.count ?? 0 >= 2 {
-                    
-                    print(self?.userInfo.blockList)
-                
+                                    
                     self?.talentManager.fetchBlockListData(blockList: self?.userInfo.blockList ?? []) { [weak self] result in
                         
                         switch result {
@@ -219,7 +217,7 @@ class TalentLobbyVC: UIViewController {
         view.lkBorderColor = .white
         
         // subview
-        subview.lkCornerRadius = 30
+//        subview.lkCornerRadius = 30
         subview.backgroundColor = .NaturianColor.lightGray
         
         tableView.separatorStyle = .none

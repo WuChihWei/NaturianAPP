@@ -168,9 +168,7 @@ class AllMyAppliersVC: UIViewController {
                 print(self?.myTalentInfo as Any)
                 
                 DispatchQueue.main.async {
-                    
-                    print(self?.appliedIDs)
-                    
+                                    
                     self?.tableView.reloadData()
                 }
                 

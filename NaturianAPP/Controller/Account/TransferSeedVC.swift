@@ -128,9 +128,6 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         remainValue = (currentUserModels?.seedValue ?? 0) - transferValue
         otherSeedValue = (otherUserModels?.seedValue ?? 0) + transferValue
         
-        print("+++++\(otherSeedValue)")
-        print("+++++\(remainValue)")
-        
         if remainValue < 0 {
             
             let alertController = UIAlertController(

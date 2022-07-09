@@ -58,7 +58,7 @@ class AccountViewController: UIViewController {
     
     let transferBtn = UIButton()
     let talentBtn = UIButton()
-    //    let boardBtn = UIButton()
+    let manageBtn = UIButton()
     
     let buttonStack = UIStackView()
     

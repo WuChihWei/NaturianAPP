@@ -86,7 +86,7 @@ class MyAppliersVC: UIViewController {
             tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
         ])
     }
     
