@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32014201287ABB4B003493E1 /* ChatRoomTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32014200287ABB4A003493E1 /* ChatRoomTVCell.swift */; };
+		32014203287AC487003493E1 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32014202287AC487003493E1 /* ChatModel.swift */; };
 		3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F59A286A0BC80053777B /* SignInViewController.swift */; };
 		3202F5A1286AFF540053777B /* CustomFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A0286AFF540053777B /* CustomFunc.swift */; };
 		3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202F5A4286B5FAA0053777B /* ProfileVC.swift */; };
@@ -108,6 +110,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32014200287ABB4A003493E1 /* ChatRoomTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTVCell.swift; sourceTree = "<group>"; };
+		32014202287AC487003493E1 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		3202F59A286A0BC80053777B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		3202F59D286A0D420053777B /* NaturianAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NaturianAPP.entitlements; sourceTree = "<group>"; };
 		3202F5A0286AFF540053777B /* CustomFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunc.swift; sourceTree = "<group>"; };
@@ -517,6 +521,7 @@
 				325504B8286452590019A190 /* ChatUser.swift */,
 				325504B62864524B0019A190 /* Chat.swift */,
 				325504BA286452680019A190 /* Message.swift */,
+				32014202287AC487003493E1 /* ChatModel.swift */,
 			);
 			path = ChatModel;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 				321AE4E02875E34E008041B4 /* HomeCVCell.swift */,
 				32A1A3372876C1BA00BB001B /* HomeTopTVCell.swift */,
 				32A1A33A2876C1D600BB001B /* HomeBottomTVCell.swift */,
+				32014200287ABB4A003493E1 /* ChatRoomTVCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -842,6 +848,7 @@
 				32A1A34428782F3700BB001B /* EULAVC.swift in Sources */,
 				32A1A33B2876C1D600BB001B /* HomeBottomTVCell.swift in Sources */,
 				32AB45CD2875DA31008A885D /* HomeVC.swift in Sources */,
+				32014203287AC487003493E1 /* ChatModel.swift in Sources */,
 				3202F59B286A0BC80053777B /* SignInViewController.swift in Sources */,
 				327614C1285D99CF001D6FB7 /* TalentArticle.swift in Sources */,
 				327614BF285D961F001D6FB7 /* TalentManager.swift in Sources */,
@@ -865,6 +872,7 @@
 				320D6C5D2873D6E100E615AF /* MyAcceptedVC.swift in Sources */,
 				3241C438286E9CE300A2E75A /* ForumDetailPostTBCell.swift in Sources */,
 				32078A67285989E200FF2980 /* UIView+Extension.swift in Sources */,
+				32014201287ABB4B003493E1 /* ChatRoomTVCell.swift in Sources */,
 				32EFA30228703CBE00DFA8A2 /* ForumManager.swift in Sources */,
 				325504E12864D2750019A190 /* ScannerVC.swift in Sources */,
 				32C86605285A48250090A49D /* PostArticleViewController.swift in Sources */,

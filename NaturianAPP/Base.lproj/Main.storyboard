@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="32" y="1048"/>
         </scene>
-        <!--Explore View Controller-->
+        <!--My Chat RoomVC-->
         <scene sceneID="xBt-Gw-6gF">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="5TK-dT-8hh" customClass="ExploreViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MyChatRoomVC" storyboardIdentifier="MyChatRoomVC" modalPresentationStyle="fullScreen" id="5TK-dT-8hh" customClass="MyChatRoomVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9qy-G7-WgK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -417,21 +417,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W7S-Gj-LaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1306" y="-560"/>
-        </scene>
-        <!--My Chat RoomVC-->
-        <scene sceneID="0QT-0f-tCC">
-            <objects>
-                <viewController restorationIdentifier="MyChatRoomVC" storyboardIdentifier="MyChatRoomVC" id="COP-IX-qGo" customClass="MyChatRoomVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wli-yj-PE6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="xW5-Fz-bM7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G9i-e1-va8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4174" y="-3069"/>
         </scene>
         <!--My Talent View Controller-->
         <scene sceneID="dka-Ht-vBa">

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol SelectedCollectionItemDelegate: AnyObject {
+    func selectedCollectionItem(index: Int)
+}
+
 class HomeTopTVCell: UITableViewCell {
+    
+    weak var delegate: SelectedCollectionItemDelegate?
     
     static let identifer = "\(HomeTopTVCell.self)"
     
@@ -288,7 +294,12 @@ extension HomeTopTVCell: UICollectionViewDataSource {
 
 extension HomeTopTVCell: UICollectionViewDelegate {
     
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(indexPath.row)
+        let itemNum = indexPath.row
+        self.delegate?.selectedCollectionItem(index: itemNum)
+    }
 }
 
 extension HomeTopTVCell: UIScrollViewDelegate {

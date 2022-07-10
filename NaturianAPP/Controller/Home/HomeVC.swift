@@ -16,6 +16,7 @@ class HomeVC: UIViewController {
     var forumManager = ForumManager()
     var db: Firestore?
     let blackView = UIView()
+    var didselectedCollection: Int = 0
     
     private let tableView = UITableView()
     
@@ -133,27 +134,61 @@ extension HomeVC: UITableViewDataSource {
         case 0 :
         guard let cell1 = tableView.dequeueReusableCell(withIdentifier: HomeTopTVCell.identifer,
                                                         for: indexPath) as? HomeTopTVCell else { fatalError("can't find Cell") }
+            cell1.delegate = self
+            
         return cell1
         
         case 1 :
             
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: HomeBottomTVCell.identifer,
                                                             for: indexPath) as? HomeBottomTVCell else { fatalError("can't find Cell") }
-            
-//            cell2.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            
-//            cell2.lkCornerRadius = 30
+
             cell2.backgroundColor = .white
             return cell2
             
         default:
-            
-            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: HomeBottomTVCell.identifer,
-                                                            for: indexPath) as? HomeBottomTVCell else { fatalError("can't find Cell") }
-            cell2.selectionStyle = .none
-//            cell2.
-            return cell2
-            
+            return UITableViewCell()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case 0 :
+            print("case0")
+
+        case 1:
+            print("case1")
+        default:
+            break
+        }
+    }
+}
+
+extension HomeVC: SelectedCollectionItemDelegate {
+    
+    func selectedCollectionItem(index: Int) {
+        
+        self.didselectedCollection = index
+
+        let categories = [ (name: "Food", imageName: "scroller_1"),
+                           (name: "Grocery", imageName: "scroller_2"),
+                           (name: "Plant", imageName:"scroller_3"),
+                           (name: "Adventure", imageName: "scroller_4"),
+                           (name: "Exercise", imageName: "scroller_5"),
+                           (name: "Treatment", imageName: "scroller_6") ]
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
+            
+            fatalError("can't find ForumLobbyViewController")
+        }
+        
+        vc.forumTitle = categories[self.didselectedCollection].name
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+        print(index)
     }
 }

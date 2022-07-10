@@ -180,7 +180,6 @@ class AccountViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
     func setup() {
         manageBtn.addTarget(self, action: #selector(managePage), for: .touchUpInside)
         transferBtn.addTarget(self, action: #selector(didTapTransfer), for: .touchUpInside)

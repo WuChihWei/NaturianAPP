@@ -182,8 +182,9 @@ class TalentLobbyVC: UIViewController {
             
             fatalError("can't find PostTalentVC")
         }
-        self.navigationController?.pushViewController(vc, animated: true)
-        //        present(vc, animated: true)
+        vc.modalPresentationStyle = .pageSheet
+        self.navigationController?.present(vc, animated: false)
+//        present(vc, animated: false)
     }
     
     private func showPostTalentVC() {

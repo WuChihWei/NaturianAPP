@@ -15,7 +15,6 @@ class ChatManager {
     
     static let shared = ChatManager()
     
-    lazy var db = Firestore.firestore()
     
     let database = Firestore.firestore().collection("chats")
     
@@ -31,4 +30,38 @@ class ChatManager {
         }
     }
     
+    func fetchChatData(userID: String, completion: @escaping (Result<[ChatModel], Error>) -> Void) {
+        
+        database.whereField("users", arrayContains: userID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var chatModels = [ChatModel]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let chatModel = try document.data(as: ChatModel?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            chatModels.append(chatModel)
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(chatModels))
+            }
+        }
+    }
 }

@@ -114,8 +114,7 @@ class UnblockVC: UIViewController {
             }
         }
     }
-    
-    
+
     func setUp() {
         
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
@@ -188,9 +187,7 @@ extension UnblockVC: UITableViewDataSource {
         return blockUserIDs.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UnblockTVCell.identifer,
                                                         for: indexPath) as? UnblockTVCell else { fatalError("can't find Cell") }
@@ -220,5 +217,4 @@ extension UnblockVC: UITableViewDataSource {
             }
         }
     }
-    
 }

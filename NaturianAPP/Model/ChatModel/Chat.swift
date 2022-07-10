@@ -15,7 +15,7 @@ struct Chat {
         
         return [
             
-            "users": users,
+            "users": users
                         
         ]
     }
