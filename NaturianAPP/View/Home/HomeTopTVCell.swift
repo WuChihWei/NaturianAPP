@@ -21,12 +21,12 @@ class HomeTopTVCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var categories = [ (name: "Food", imageName: "scroller_1"),
-                       (name: "Grocery", imageName: "scroller_2"),
-                       (name: "Plant", imageName:"scroller_3"),
-                       (name: "Adventure", imageName: "scroller_4"),
-                       (name: "Exercise", imageName: "scroller_5"),
-                       (name: "Treatment", imageName: "scroller_6") ]
+    var categories = [ (name: "Food", imageName: "home_food"),
+                       (name: "Grocery", imageName: "home_grocery"),
+                       (name: "Plant", imageName:"home_plant"),
+                       (name: "Adventure", imageName: "home_adventure"),
+                       (name: "Exercise", imageName: "home_exercise"),
+                       (name: "Treatment", imageName: "home_treatment") ]
     
     
 //    var images = [  "food_icon","grocery_icon"),
@@ -107,19 +107,19 @@ class HomeTopTVCell: UITableViewCell {
         secondLB.numberOfLines = 0
         
         seedLB.text = "Seed"
-        seedLB.textColor = .white
+        seedLB.textColor = .NaturianColor.darkGray
         seedLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
         myTalentLB.text = "My Talent"
-        myTalentLB.textColor = .white
+        myTalentLB.textColor = .NaturianColor.darkGray
         myTalentLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
         collectionLB.text = "Collection"
-        collectionLB.textColor = .white
+        collectionLB.textColor = .NaturianColor.darkGray
         collectionLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
         massageLB.text = "Massage"
-        massageLB.textColor = .white
+        massageLB.textColor = .NaturianColor.darkGray
         massageLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
         titleLB.text = "Top 5 Articles"
@@ -253,7 +253,7 @@ class HomeTopTVCell: UITableViewCell {
             buttonStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             buttonStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             
-            bottomTitleView.topAnchor.constraint(equalTo: buttonStack.bottomAnchor, constant: 10),
+            bottomTitleView.topAnchor.constraint(equalTo: buttonStack.bottomAnchor, constant: 15),
             bottomTitleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             bottomTitleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             bottomTitleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -278,13 +278,15 @@ extension HomeTopTVCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCVCell.identifer, for: indexPath) as?
                 HomeCVCell else { fatalError("can't find Cell") }
         
-        cell.lkCornerRadius = 15
+        cell.lkCornerRadius = 35
+        cell.backgroundColor = .clear
         //        cell.tilteLB.text = categories[indexPath.row].name
         cell.cardview.image = UIImage(named: "\(categories[indexPath.row].imageName)")
         cell.layoutIfNeeded()
         cell.cardview.layoutIfNeeded()
         cell.cardview.clipsToBounds = true
-        cell.cardview.contentMode = .scaleAspectFit
+        cell.cardview.backgroundColor = .clear
+        cell.cardview.contentMode = .scaleAspectFill
         
         cell.backgroundColor = .white
         return cell

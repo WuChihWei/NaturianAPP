@@ -40,7 +40,7 @@ class ForumDetailViewController: UIViewController {
         setUp()
         style()
         layout()
-        
+
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -64,10 +64,9 @@ class ForumDetailViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-
+        tableView.reloadData()
         findAuthorData()
         findReplies()
-        tableView.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -155,7 +154,7 @@ class ForumDetailViewController: UIViewController {
             
             fatalError("can't find ForumReplyVC")
         }
-        
+        vc.replyArticleDelegate = self
         vc.forumArticles = forumArticles
         //        self.navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
@@ -364,5 +363,12 @@ extension ForumDetailViewController: UITableViewDataSource {
             return cell2
             
         }
+    }
+}
+
+extension ForumDetailViewController: ReplyArticleDelegate{
+    func replyArticle(repliedArticles: [ReplyModel]) {
+        self.repliedArticles =  repliedArticles
+        tableView.reloadData()
     }
 }

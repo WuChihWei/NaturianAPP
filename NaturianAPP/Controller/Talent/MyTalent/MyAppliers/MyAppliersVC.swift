@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import AuthenticationServices
+import Firebase
 
 class MyAppliersVC: UIViewController {
     
@@ -15,35 +18,36 @@ class MyAppliersVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
+    //        var userID = Auth.auth().currentUser?.uid
+        let userID = "2"
     var talentArticleID: String?
     let subview = UIView()
-    
+    var appliedIDs: [UserModel] = []
+
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     private var subControllers: [UIViewController] = []
     
-    private var appliedIDs: [UserModel] = []
+//    var appliedIDs: [UserModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchAppliedInfo()
+//        fetchAppliedInfo()
         setUp()
         style()
         layout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //        fetchUserInfo()
-        //        tableView.reloadData()
+        appliedIDs.removeAll()
+        fetchAppliedInfo()
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
-        // fix the chat room's members, after back the room will += 1 issuee
-        //        userModels.removeAll()
-        //        appliedIDs.removeAll()
-        //        acceptIDs.removeAll()
+        appliedIDs.removeAll()
+
     }
     
     override func viewDidLayoutSubviews() {

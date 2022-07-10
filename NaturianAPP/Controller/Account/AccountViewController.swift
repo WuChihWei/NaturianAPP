@@ -67,6 +67,7 @@ class AccountViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+ 
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         userState()
@@ -119,7 +120,7 @@ class AccountViewController: UIViewController {
             
 //        guard let userID = Auth.auth().currentUser?.uid else {return}
         
-            userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
+        userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     
@@ -239,7 +240,7 @@ class AccountViewController: UIViewController {
         seedIcon.image = UIImage(named: "seed")
         
         qrUIImage.backgroundColor = .blue
-        qrUIImage.image = generateQRCode(from: userID )
+        qrUIImage.image = generateQRCode(from: userID ?? "" )
         
         transferBtn.setImage(UIImage(named: "transferButton"), for: .normal)
         

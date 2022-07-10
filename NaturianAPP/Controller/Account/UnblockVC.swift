@@ -20,7 +20,7 @@ class UnblockVC: UIViewController {
     let closeButton = UIButton()
     let titleLB = UILabel()
     
-    //    let userID = Auth.auth().currentUser?.uid
+//        let userID = Auth.auth().currentUser?.uid
     let userID = "2"
     var userModels: UserModel!
     private var blockUserIDs: [UserModel] = []
@@ -66,7 +66,7 @@ class UnblockVC: UIViewController {
     
     func userState() {
                     
-            userManager.fetchUserData(userID: userID) { [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     

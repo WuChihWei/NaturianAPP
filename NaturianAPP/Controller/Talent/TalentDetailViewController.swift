@@ -16,7 +16,7 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-    //    let userID = Auth.auth().currentUser?.uid
+//        let userID = Auth.auth().currentUser?.uid
     let userID = "2"
     var appliedState: Int = 0
     
@@ -99,11 +99,11 @@ class TalentDetailViewController: UIViewController {
     
     @objc func didApply() {
         
-        selectedArticle.didApplyID.append(userID )
+        selectedArticle.didApplyID.append(userID ?? "" )
         
         userModels.appliedTalent.append(selectedArticle.talentPostID)
         
-        userManager.updateAppliedTalent(userModel: userModels, userID: userID )
+        userManager.updateAppliedTalent(userModel: userModels, userID: userID ?? "" )
         
         talentManager.updateData(applyTalent: selectedArticle)
         navigationController?.popViewController(animated: true)
@@ -225,7 +225,7 @@ extension TalentDetailViewController {
         
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
-        categoryBTN.setTitle("Food", for: .normal)
+        categoryBTN.setTitle(String(describing: selectedArticle.category!), for: .normal)
         categoryBTN.setTitleColor(.white, for: .normal)
         //        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
         categoryBTN.lkCornerRadius = 14
@@ -237,7 +237,7 @@ extension TalentDetailViewController {
                      image: UIImage(named: "block"),
                      handler: { action in
                 
-                self.userManager.addBlockList(uid: self.userID,
+                         self.userManager.addBlockList(uid: self.userID ?? "",
                                               blockID: self.selectedArticle.userID ?? "") { [weak self] result in
                     switch result {
                         

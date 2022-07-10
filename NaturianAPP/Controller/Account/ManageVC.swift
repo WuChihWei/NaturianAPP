@@ -17,7 +17,7 @@ class ManageVC: UIViewController {
     let blackView = UIView()
     var userFirebaseManager = UserManager()
     var userModels: UserModel!
-    //    let userID = Auth.auth().currentUser?.uid
+//        let userID = Auth.auth().currentUser?.uid
         let userID = "2"
 
     let logoutBtn = UIButton()
@@ -43,7 +43,7 @@ class ManageVC: UIViewController {
             
 //        guard let userID = Auth.auth().currentUser?.uid else {return}
         
-            userFirebaseManager.fetchUserData(userID: userID) { [weak self] result in
+        userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     

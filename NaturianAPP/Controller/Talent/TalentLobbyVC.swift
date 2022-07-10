@@ -68,7 +68,7 @@ class TalentLobbyVC: UIViewController {
     
     func userState() {
         
-        userManager.fetchUserData(userID: userID ) { [weak self] result in
+        userManager.fetchUserData(userID: userID ?? "" ) { [weak self] result in
             
             switch result {
                 

@@ -10,6 +10,8 @@ import FirebaseFirestore
 import FirebaseCore
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseAuth // 用來與 Firebase Auth 進行串接用的
+
 
 class MyChatRoomVC: UIViewController {
 
@@ -23,7 +25,7 @@ class MyChatRoomVC: UIViewController {
     let closeButton = UIButton()
     let titleLB = UILabel()
     
-    //    let userID = Auth.auth().currentUser?.uid
+//        let userID = Auth.auth().currentUser?.uid
     let userID = "2"
 //    var userModels: UserModel!
     private var chatModels: [ChatModel] = []
@@ -53,11 +55,23 @@ class MyChatRoomVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 //        tabBarController?.tabBar.isHidden = true
-
+        navigationController?.navigationBar.isHidden = true
         fetchChatInfo()
 //        fetchBlockInfo()
 //        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        newChatModels.removeAll()
+        userModels.removeAll()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        newChatModels.removeAll()
+        userModels.removeAll()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,7 +85,7 @@ class MyChatRoomVC: UIViewController {
 
     func fetchChatInfo() {
         
-        chatManager.fetchChatData(userID: userID) { [weak self] result in
+        chatManager.fetchChatData(userID: userID ?? "") { [weak self] result in
             
             switch result {
                 
@@ -202,8 +216,8 @@ extension MyChatRoomVC: UITableViewDataSource {
         
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
 //        let blockID = blockUserIDs[indexPath.row].userID ?? ""
 //
 //        self.userManager.removeBlockList(uid: self.userID ?? "", blockID: blockID) { [weak self] result in
@@ -217,8 +231,17 @@ extension MyChatRoomVC: UITableViewDataSource {
 //
 //            case .failure:
 //                print("can't fetch data")
-//
+
 //            }
 //        }
-//    }
+        
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+
+            fatalError("can't find ChatViewController")
+        }
+      
+        vc.chatToID = userModels[indexPath.row].userID
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

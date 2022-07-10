@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import FirebaseAuth
+import AuthenticationServices
+import Firebase
+
+protocol SendUserStateDelegate: AnyObject {
+    func applier(appliedIDs: [UserModel])
+    func accept(acceptIDs: [UserModel])
+}
 
 class AllMyAppliersVC: UIViewController {
+    
+    weak var delegate: SendUserStateDelegate?
     
     private let tableView = UITableView()
     var talentManager = TalentManager()
@@ -16,7 +26,7 @@ class AllMyAppliersVC: UIViewController {
     var userManager = UserManager()
     
     var talentArticleID: String?
-    //    var userID = Auth.auth().currentUser?.uid
+//        var userID = Auth.auth().currentUser?.uid
     let userID = "2"
     let subview = UIView()
     
@@ -284,6 +294,8 @@ extension AllMyAppliersVC: UITableViewDataSource {
             cell1.acceptButton.addTarget(self, action: #selector(acceptApplier), for: .touchUpInside)
             cell1.cancelButton.addTarget(self, action: #selector(cancelApplier), for: .touchUpInside)
             cell1.chatButton.addTarget(self, action: #selector(applyToChat(_:)), for: .touchUpInside)
+            
+            delegate?.accept(acceptIDs: appliedIDs)
             return cell1
             
         } else {
@@ -307,24 +319,26 @@ extension AllMyAppliersVC: UITableViewDataSource {
             cell2.userAvatar.contentMode = .scaleAspectFill
             cell2.cancelButton.addTarget(self, action: #selector(cancelAccept), for: .touchUpInside)
             cell2.chatButton.addTarget(self, action: #selector(accpetToChat(_:)), for: .touchUpInside)
+            
+            delegate?.accept(acceptIDs: acceptIDs)
             return cell2
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "ChatViewController") as? ChatViewController else {
-            
-            fatalError("can't find ChatViewController")
-        }
-        
-        vc.chatToID = acceptIDs[indexPath.row].userID
-        vc.chatToID = appliedIDs[indexPath.row].userID
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        guard let vc = storyboard?.instantiateViewController(
+//            withIdentifier: "ChatViewController") as? ChatViewController else {
+//            
+//            fatalError("can't find ChatViewController")
+//        }
+//        
+//        vc.chatToID = acceptIDs[indexPath.row].userID
+//        vc.chatToID = appliedIDs[indexPath.row].userID
+//        
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        
+//    }
 }
 
 extension AllMyAppliersVC {

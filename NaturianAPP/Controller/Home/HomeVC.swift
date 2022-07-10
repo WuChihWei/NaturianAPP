@@ -17,7 +17,8 @@ class HomeVC: UIViewController {
     var db: Firestore?
     let blackView = UIView()
     var didselectedCollection: Int = 0
-    
+    var forumArticles: [ForumModel] = []
+
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -49,12 +50,36 @@ class HomeVC: UIViewController {
         
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = true
-        
+        fetchForumArticle()
         tableView.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func fetchForumArticle() {
+        
+        print(forumArticles)
+        
+        forumManager.fetchAllData { [weak self] result in
+            
+            switch result {
+                
+            case .success(let forumArticles):
+                
+                self?.forumArticles = forumArticles
+                
+                self?.tableView.reloadData()
+                
+                print(self?.forumArticles ?? [])
+                
+            case .failure:
+                
+                print("can't fetch data")
+            }
+        }
+        
     }
     
     func setUp() {
@@ -123,7 +148,8 @@ extension HomeVC: UITableViewDataSource {
             
             return 1 } else {
                 
-                return 5
+                return forumArticles.count
+                
             }
     }
     
@@ -144,6 +170,16 @@ extension HomeVC: UITableViewDataSource {
                                                             for: indexPath) as? HomeBottomTVCell else { fatalError("can't find Cell") }
 
             cell2.backgroundColor = .white
+            cell2.layoutIfNeeded()
+            cell2.postImage.clipsToBounds = true
+            cell2.postImage.contentMode = .scaleAspectFill
+            
+            cell2.articleTitle.text = forumArticles[indexPath.row].title
+            cell2.articleContent.text = forumArticles[indexPath.row].content
+            
+            let photoUrl = forumArticles[indexPath.row].images[0]
+            cell2.postImage.kf.setImage(with: photoUrl)
+            
             return cell2
             
         default:

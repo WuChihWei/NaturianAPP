@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth // 用來與 Firebase Auth 進行串接用的
 import AuthenticationServices // Sign in with Apple 的主體框架
 import CryptoKit // 用來產生隨機字串 (Nonce) 的
+import Firebase
 
 class SignInViewController: UIViewController {
     
@@ -29,28 +30,33 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil {
+//                guard let vc = self.storyboard?.instantiateViewController(
+//                    withIdentifier: "AccountViewController") as? AccountViewController else {
+//                    
+//                    fatalError("can't find AccountViewController")
+//                }
+//                
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            } else {
+//                return
+//            }
+//        }
+        
         policy()
         setup()
         
+//        getFirebaseUserInfo()
         setSignInWithAppleBtn()
         // Do any additional setup after loading the view.
         // After leaving app determine current user signed in before
-        Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil {
-                guard let vc = self.storyboard?.instantiateViewController(
-                    withIdentifier: "AccountViewController") as? AccountViewController else {
-                    
-                    fatalError("can't find AccountViewController")
-                }
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                return
-            }
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+   
+       
     }
 
     @objc func presentEula() {
@@ -231,6 +237,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
         }
     }
     
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 登入失敗，處理 Error
         switch error {
@@ -267,12 +274,18 @@ extension SignInViewController {
                 return
             }
             CustomFunc.customAlert(title: "登入成功！", message: "", vc: self, actionHandler: self.getFirebaseUserInfo)
-            
+
             let currentUser = Auth.auth().currentUser
+
             guard let user = currentUser else {
                 CustomFunc.customAlert(title: "無法取得使用者資料！", message: "", vc: self, actionHandler: nil)
                 return
             }
+            
+            let uid = user.uid
+            let email = user.email
+            self.userManager.addUser(name: "No Name", uid: uid, email: email ?? "")
+            
             self.uuid = user.uid
         }
     }
@@ -285,25 +298,71 @@ extension SignInViewController {
             CustomFunc.customAlert(title: "無法取得使用者資料！", message: "", vc: self, actionHandler: nil)
             return
         }
+        
         let uid = user.uid
         let email = user.email
+        
         SignInViewController.shared.uuid = user.uid
         
-        CustomFunc.customAlert(title: "使用者資訊",
-                               message: "UID：\(uid)\nEmail：\(email!)",
-                               vc: self,
-                               actionHandler: nil)
-        
-//        userFirebaseManager.addUser(name: "No Name", uid: uid, email: email ?? "")
-        
-        guard let vc = self.storyboard?.instantiateViewController(
-            withIdentifier: "AccountViewController") as? AccountViewController else {
+        userManager.fetchUserData(userID: self.uuid ?? "" ) { [weak self] result in
             
-            fatalError("can't find ScannerVC")
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userInfo = userModel
+                                
+                if userModel.userID == self?.uuid {
+                    
+                    guard let vc = self?.storyboard?.instantiateViewController(
+                        withIdentifier: "AccountViewController") as? AccountViewController else {
+                        
+                        fatalError("can't find ScannerVC")
+                    }
+                    
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                } else {
+                    
+                    self?.userManager.addUser(name: "No Name", uid: uid, email: email ?? "")
+                    
+                    guard let vc = self?.storyboard?.instantiateViewController(
+                        withIdentifier: "AccountViewController") as? AccountViewController else {
+                        
+                        fatalError("can't find ScannerVC")
+                    }
+                    
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    
+                    self?.viewDidLoad()
+                }
+                
+            case .failure:
+                
+                self?.userManager.addUser(name: "No Name", uid: uid, email: email ?? "")
+
+                print("can't fetch data")
+            }
         }
         
-        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func addUser() {
         
+        let currentUser = Auth.auth().currentUser
+        //        print(currentUser)
+        guard let user = currentUser else {
+            CustomFunc.customAlert(title: "無法取得使用者資料！", message: "", vc: self, actionHandler: nil)
+            return
+        }
+        
+        let uid = user.uid
+        let email = user.email
+        self.userManager.addUser(name: "No Name", uid: uid, email: email ?? "")
     }
     
     // MARK: - 監聽目前的 Apple ID 的登入狀況
@@ -316,7 +375,7 @@ extension SignInViewController {
             case .revoked:
                 CustomFunc.customAlert(title: "使用者憑證已被註銷！", message: "請到\n「設定 → Apple ID → 密碼與安全性 → 使用 Apple ID 的 App」\n將此 App 停止使用 Apple ID\n並再次使用 Apple ID 登入本 App！", vc: self, actionHandler: nil)
             case .notFound:
-                CustomFunc.customAlert(title: "", message: "使用者尚未使用過 Apple ID 登入！", vc: self, actionHandler: nil)
+                CustomFunc.customAlert(title: "", message: "使用者尚未使用過 Apple ID 登入！", vc: self, actionHandler: self.addUser)
             case .transferred:
                 CustomFunc.customAlert(title: "請與開發者團隊進行聯繫，以利進行使用者遷移！", message: "", vc: self, actionHandler: nil)
             default:

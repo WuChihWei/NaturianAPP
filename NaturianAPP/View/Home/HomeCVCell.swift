@@ -26,7 +26,6 @@ class HomeCVCell: UICollectionViewCell {
         layout()
     }
     
-    
     func setup() {
         
     }

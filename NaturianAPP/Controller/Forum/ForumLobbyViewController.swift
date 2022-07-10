@@ -107,7 +107,6 @@ class ForumLobbyViewController: UIViewController {
                 print("can't fetch data")
             }
         }
-        
     }
     
     func setUp() {

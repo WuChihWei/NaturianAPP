@@ -44,8 +44,8 @@ class HomeBottomTVCell: UITableViewCell {
         backgroundColor = .white
         
         postImage.backgroundColor = .NaturianColor.lightGray
-        postImage.lkBorderColor = .NaturianColor.darkGray
-        postImage.lkBorderWidth = 1
+//        postImage.lkBorderColor = .NaturianColor.darkGray
+//        postImage.lkBorderWidth = 1
         postImage.lkCornerRadius = 10
         
         articleTitle.text = "Make Organic Food"
@@ -61,11 +61,11 @@ class HomeBottomTVCell: UITableViewCell {
         articleContent.numberOfLines = 3
         
         
-        likeBtn.setImage(UIImage(named: "liked"), for: .normal)
+        likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
         likeLB.text = "321"
         likeLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         likeLB.textColor = .NaturianColor.navigationGray
-        seedBtn.setImage(UIImage(named: "seed_green"), for: .normal)
+        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
         seedLB.text = "123"
         seedLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedLB.textColor = .NaturianColor.navigationGray

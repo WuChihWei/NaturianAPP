@@ -23,9 +23,8 @@ class ChatViewController: MessagesViewController {
     
     private var docReference: DocumentReference?
     
-    //    private let currentUser = Auth.auth().currentUser?.uid
-    let currentUserID = "2"
-    //    let currentUserID = "uPZJySazfATU6Jn1hQIJtT9sznj2"
+//    private let currentUser = Auth.auth().currentUser?.uid
+    let currentUser = "2"
     var chatToID: String?
     
     var messages: [Message] = []
@@ -102,7 +101,7 @@ class ChatViewController: MessagesViewController {
     
     func currentUserInfo() {
         
-        userFirebaseManager.fetchUserData(userID: currentUserID ?? "") { [weak self] result in
+        userFirebaseManager.fetchUserData(userID: currentUser ?? "") { [weak self] result in
             
             switch result {
                 
@@ -144,8 +143,8 @@ class ChatViewController: MessagesViewController {
     func loadChat() {
         
         let db = Firestore.firestore().collection("chats").whereField("users",
-                                                                      arrayContains: self.currentUserID)
-        print(self.currentUserID)
+                                                                      arrayContains: self.currentUser)
+        print(self.currentUser)
         
         db.getDocuments { (chatQuerySnap, error) in
             
@@ -211,7 +210,7 @@ class ChatViewController: MessagesViewController {
         
         //        let users = [self.currentUser.uid, self.user2UID]
         
-        let users = [self.currentUserID, self.chatToID]
+        let users = [self.currentUser, self.chatToID]
         print(users)
         
         let data: [String: Any] = [ "users": users]
@@ -272,11 +271,11 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         let message = Message(
             //            id: UUID().uuidString,
             //                         id: UUID().uuidString,
-            id: currentUserID ,
+            id: currentUser ?? "" ,
             content: text,
             created: Timestamp(),
             //                         senderID: currentUser.uid,
-            senderID: currentUserID ,
+            senderID: currentUser ?? "" ,
             //                              senderName: currentUser.displayName!
             senderName: "currentUser.displayName!",
             isRead: false
@@ -299,7 +298,7 @@ extension ChatViewController: MessagesDataSource {
         
         return ChatUser(
             //            senderId: Auth.auth().currentUser!.uid,
-            senderId: currentUserID ?? "",
+            senderId: currentUser ?? "",
             //            displayName: (Auth.auth().currentUser?.displayName)!
             displayName: "currentUser.displayName!"
         )
@@ -353,7 +352,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         guard let currentUserImageUrl = currentUserModel.userAvatar else {return}
         
         //        if message.sender.senderId == currentUser.uid
-        if message.sender.senderId == currentUserID {
+        if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
                 //  with: currentUser.photoURL,
                 with: currentUserImageUrl,

@@ -80,6 +80,42 @@ class ForumManager {
         }
     }
     
+    func fetchAllData( completion: @escaping (Result<[ForumModel], Error>) -> Void) {
+        
+        forumDatabase.getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var forumModels = [ForumModel]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let forumModel = try document.data(as: ForumModel?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            forumModels.append(forumModel)
+                        }
+                        print(forumModels)
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(forumModels))
+            }
+        }
+    }
+    
     func updateAplyIDs(articleID: String, repliedArticle: ForumModel,
                        completion: @escaping (Result<Void, Error>) -> Void) {
         do {

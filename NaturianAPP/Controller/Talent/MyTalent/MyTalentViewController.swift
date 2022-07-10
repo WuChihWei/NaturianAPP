@@ -59,7 +59,7 @@ class MyTalentViewController: UIViewController {
     
         func fetchMyTalentArticle() {
     
-            talentManager.fetchMyIDData(userID: userID ) { [weak self] result in
+            talentManager.fetchMyIDData(userID: userID ?? "" ) { [weak self] result in
     
                 switch result {
     

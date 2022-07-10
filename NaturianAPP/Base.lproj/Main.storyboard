@@ -509,7 +509,7 @@
         <scene sceneID="4pa-KI-HyK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccm-at-EaO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Baby Footprint" selectedImage="Baby Footprint" id="UvH-Qt-Le8">
+                    <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail" id="UvH-Qt-Le8">
                         <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -637,7 +637,7 @@
         <scene sceneID="qAr-n3-ceO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kYB-B8-8na" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="passport" id="cxi-nB-ZmW"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_passport" id="cxi-nB-ZmW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIb-Mz-vIv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -645,7 +645,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="95g-Fu-Bzk"/>
+                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="POG-CY-uRT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -692,10 +692,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Angel" width="42" height="32"/>
-        <image name="Baby Footprint" width="32" height="32"/>
         <image name="Camping Tent" width="32" height="32"/>
         <image name="Lake" width="32" height="32"/>
-        <image name="passport" width="32" height="32"/>
+        <image name="tab_mail" width="33" height="33"/>
+        <image name="tab_passport" width="37" height="37"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

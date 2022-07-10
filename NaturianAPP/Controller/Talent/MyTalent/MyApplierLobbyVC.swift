@@ -21,7 +21,9 @@ class MyApplierLobbyVC: UIViewController {
     var talentArticleID: String?
     var didSeletectApplierIDs: [String] = []
     var talentArticle: TalentArticle!
-
+    var appliedIDs: [UserModel] = []
+    var acceptIDs: [UserModel] = []
+    
 //    private let grayView = UIView()
     private var subControllers: [UIViewController] = []
     
@@ -52,6 +54,7 @@ class MyApplierLobbyVC: UIViewController {
         vc1.talentArticleID = self.talentArticleID
         vc1.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc1.didSeletectDetails = self.talentArticle
+        vc1.delegate = self
         
         guard let vc2 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "MyAppliersVC") as? MyAppliersVC else {return}
@@ -59,6 +62,8 @@ class MyApplierLobbyVC: UIViewController {
         vc2.talentArticleID = self.talentArticleID
         vc2.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc2.didSeletectDetails = self.talentArticle
+        vc2.appliedIDs = self.appliedIDs
+        vc2.viewWillAppear(true)
         
         guard let vc3 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "MyAcceptedVC") as? MyAcceptedVC else {return}
@@ -66,7 +71,9 @@ class MyApplierLobbyVC: UIViewController {
         vc3.talentArticleID = self.talentArticleID
         vc3.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc3.didSeletectDetails = self.talentArticle
-        
+        vc3.acceptIDs = self.acceptIDs
+        vc3.viewWillAppear(true)
+
         subControllers = [vc1, vc2, vc3]
         
         vc1.title = "All"
@@ -167,5 +174,15 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
     
     func didSelectButton(at index: Int) {
         
+    }
+}
+
+extension MyApplierLobbyVC: SendUserStateDelegate {
+    func applier(appliedIDs: [UserModel]) {
+        self.appliedIDs = appliedIDs
+    }
+    
+    func accept(acceptIDs: [UserModel]) {
+        self.acceptIDs = acceptIDs
     }
 }
