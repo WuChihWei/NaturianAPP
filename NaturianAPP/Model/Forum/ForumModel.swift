@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct ForumModel: Codable {
     
     let postArticleID: String?

@@ -18,13 +18,14 @@ class MyAppliersVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
-    //        var userID = Auth.auth().currentUser?.uid
+            var userID = Auth.auth().currentUser?.uid
 //        let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     var talentArticleID: String?
     let subview = UIView()
     var appliedIDs: [UserModel] = []
+    var myTalentInfo: TalentArticle!
 
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
@@ -43,7 +44,8 @@ class MyAppliersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         appliedIDs.removeAll()
-        fetchAppliedInfo()
+//        fetchAppliedInfo()
+        fetchMyAppliedTalent()
         tableView.reloadData()
     }
     
@@ -96,9 +98,38 @@ class MyAppliersVC: UIViewController {
         ])
     }
     
+    
+    func fetchMyAppliedTalent() {
+        talentManager.fetchMyAppliedTalent(userID: didSeletectDetails.userID ?? "",
+                                           talentPostID: didSeletectDetails.talentPostID ?? "") { [weak self] result in
+            switch result {
+                
+            case .success(let articleModel):
+                
+                self?.myTalentInfo = articleModel
+                
+                if self?.myTalentInfo.didApplyID.count ?? 0 > 1 {
+                    self?.fetchAppliedInfo()
+                } else {
+                    return
+                }
+                                
+                DispatchQueue.main.async {
+                                    
+                    self?.tableView.reloadData()
+                }
+                
+            case .failure:
+                
+                print("can't fetch data")
+            }
+        }
+    }
+    
     func fetchAppliedInfo() {
+    
         
-        let didAppliedIDs = didSeletectDetails.didApplyID
+        let didAppliedIDs = myTalentInfo.didApplyID
         
         for didAppliedID in didAppliedIDs {
             
@@ -149,7 +180,8 @@ extension MyAppliersVC: UITableViewDataSource {
             cell1.appliedStateBtn.setImage(UIImage(named: "waiting_darkgray"), for: .normal)
             cell1.userName.text = appliedIDs[indexPath.row].name
             cell1.userGender.text = appliedIDs[indexPath.row].gender
-            cell1.userAvatar.kf.setImage(with: appliedIDs[indexPath.row].userAvatar)
+        let url = URL(string: appliedIDs[indexPath.row].userAvatar ?? "")
+            cell1.userAvatar.kf.setImage(with: url)
             cell1.userAvatar.lkCornerRadius = 10
             cell1.layoutIfNeeded()
             cell1.userAvatar.clipsToBounds = true

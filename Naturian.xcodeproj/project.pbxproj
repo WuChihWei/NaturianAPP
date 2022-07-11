@@ -104,6 +104,7 @@
 		32C8660F285AD56D0090A49D /* ForumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* ForumModel.swift */; };
 		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
 		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
+		32EABCCF287C68DC003C64DF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EABCCE287C68DC003C64DF /* Date.swift */; };
 		32EFA30228703CBE00DFA8A2 /* ForumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EFA30128703CBE00DFA8A2 /* ForumManager.swift */; };
 		32EFA308287348C000DFA8A2 /* MyChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EFA307287348C000DFA8A2 /* MyChatRoomVC.swift */; };
 		E9D03261FB483CAF14146DE3 /* Pods_NaturianAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */; };
@@ -210,6 +211,7 @@
 		32C8660E285AD56D0090A49D /* ForumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumModel.swift; sourceTree = "<group>"; };
 		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
 		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
+		32EABCCE287C68DC003C64DF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32EFA30128703CBE00DFA8A2 /* ForumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumManager.swift; sourceTree = "<group>"; };
 		32EFA307287348C000DFA8A2 /* MyChatRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatRoomVC.swift; sourceTree = "<group>"; };
 		54718C951611A8B9CE333FE3 /* Pods_NaturianAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaturianAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 				322145432867348E00D46503 /* UIColor+Extension.swift */,
 				3221454528673D2900D46503 /* UIFont+Extension.swift */,
 				3202F5A0286AFF540053777B /* CustomFunc.swift */,
+				32EABCCE287C68DC003C64DF /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,7 +322,6 @@
 				327614C4285E08D2001D6FB7 /* TalentDetailViewController.swift */,
 				327614C6285E231A001D6FB7 /* TalentFilterVC.swift */,
 				3255046F285FE8780019A190 /* MyTalent */,
-				32550470285FE8960019A190 /* OtherTalent */,
 			);
 			path = Talent;
 			sourceTree = "<group>";
@@ -470,13 +472,6 @@
 				32481EDB28745C23007E1443 /* MyInspiration */,
 			);
 			path = MyTalent;
-			sourceTree = "<group>";
-		};
-		32550470285FE8960019A190 /* OtherTalent */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OtherTalent;
 			sourceTree = "<group>";
 		};
 		32550473285FF10B0019A190 /* MyTalent */ = {
@@ -843,6 +838,7 @@
 				32C86603285A12E70090A49D /* UITextField+Extension.swift in Sources */,
 				325504B92864525A0019A190 /* ChatUser.swift in Sources */,
 				32078A6928598E9800FF2980 /* UIScreen+Extension.swift in Sources */,
+				32EABCCF287C68DC003C64DF /* Date.swift in Sources */,
 				325504B3286373F60019A190 /* LocationPopTableViewCell.swift in Sources */,
 				32550477285FF1730019A190 /* MyTalentAcceptedTVCell.swift in Sources */,
 				32A1A34428782F3700BB001B /* EULAVC.swift in Sources */,

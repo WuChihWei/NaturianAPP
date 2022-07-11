@@ -21,11 +21,11 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     var photoManager = PhotoManager()
     var backButton = UIButton()
     let cancelButton = UIButton()
-//    var userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
-    let userID = "1"
-
-
+        var userID = Auth.auth().currentUser?.uid
+    //    let userID = "2"
+//    let userID = "1"
+    
+    
     var userModels: UserModel?
     
     var categoryResult = ""
@@ -54,7 +54,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     var selectedImage: UIImage!
     
     let actStack = UIStackView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
@@ -139,11 +139,11 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         categoryButton.addTarget(self, action: #selector(clickCategory(_:)), for: .touchUpInside)
         postButton.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(didDismiss), for: .touchUpInside)
-
+        
     }
     
     @objc func didDismiss() {
-//        navigationController?.popViewController(animated: true)
+        //        navigationController?.popViewController(animated: true)
         dismiss(animated: false)
     }
     
@@ -217,16 +217,16 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         locationBtn.translatesAutoresizingMaskIntoConstraints = false
         actStack.translatesAutoresizingMaskIntoConstraints = false
-
+        
         view.addSubview(backButton)
         view.addSubview(postPhotoImage)
         view.addSubview(categoryButton)
         view.addSubview(seedStack)
         view.addSubview(contentStack)
-//        view.addSubview(postButton)
+        //        view.addSubview(postButton)
         view.addSubview(descriptionTextView)
         view.addSubview(actStack)
-
+        
         actStack.addArrangedSubview(postButton)
         actStack.addArrangedSubview(cancelButton)
         
@@ -315,8 +315,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
-                                                      isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
-                                                      createdTime: self.userModels?.createdTime,
+                                                      isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                                       blockList: self.userModels?.blockList ?? [],
                                                       email: self.userModels?.email
                             )
@@ -336,7 +335,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
                             )
                             
                             self.talentManager.addData(postTalent: talenArticle)
-
+                            
                         case .failure:
                             break
                         }
@@ -347,6 +346,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
                 }
             }
         }
+        dismiss(animated: false)
         navigationController?.popViewController(animated: true)
     }
 }
@@ -359,7 +359,7 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
+        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.postPhotoImage.image = image
             //            selectedImage = self.postPhotoImage.image
@@ -391,17 +391,17 @@ extension PostTalentVC {
     func blackViewShow() {
         
         let blackView = UIView(frame: UIScreen.main.bounds)
-              blackView.backgroundColor = .black
-              blackView.alpha = 0
-              presentingViewController?.view.addSubview(blackView)
-              
-      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
-                  blackView.alpha = 0.5
-              }
+        blackView.backgroundColor = .black
+        blackView.alpha = 0
+        presentingViewController?.view.addSubview(blackView)
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+            blackView.alpha = 0.5
+        }
     }
     
     @objc func clickCategory(_ sender: Any) {
-
+        
         guard let categoryCV = storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpVC") as? CategoryPopUpVC else {
             print("Can't find CategoryPopUpVC")
             return
@@ -411,13 +411,13 @@ extension PostTalentVC {
     }
     
     @objc func clickLocation(_ sender: Any) {
-
+        
         guard let locationCV = storyboard?.instantiateViewController(withIdentifier: "LocationPopUpVC") as? LocationPopUpVC else {
             print("Can't find LocationPopUpVC")
             return
         }
         present(locationCV, animated: true, completion: nil)
-
+        
         locationCV.locationDelegate = self
     }
 }

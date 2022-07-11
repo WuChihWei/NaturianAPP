@@ -24,9 +24,9 @@ class TalentLobbyVC: UIViewController {
     let filterButton = UIButton()
     let searchBtn = UIButton()
     let cleanBtn = UIButton()
-//    let userID = Auth.auth().currentUser?.uid
+    let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
 
     let addPosteBTN = UIButton()
@@ -283,9 +283,7 @@ class TalentLobbyVC: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
-            
             // addTalentButton
-            
         ])
     }
 }

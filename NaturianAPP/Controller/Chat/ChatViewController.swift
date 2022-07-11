@@ -23,9 +23,9 @@ class ChatViewController: MessagesViewController {
     
     private var docReference: DocumentReference?
     
-//    private let currentUser = Auth.auth().currentUser?.uid
+    private let currentUser = Auth.auth().currentUser?.uid
 //    let currentUser = "2"
-        let currentUser = "1"
+//        let currentUser = "1"
 
     var chatToID: String?
     
@@ -34,7 +34,7 @@ class ChatViewController: MessagesViewController {
     var chatToUserModel: UserModel!
     
     var currentUserModel: UserModel!
-    
+
     var currentUserImageUrl: URL?
     
     var user2ImageUrl: URL?
@@ -111,7 +111,8 @@ class ChatViewController: MessagesViewController {
                 
                 self?.currentUserModel = userModel
                 
-                self?.currentUserImageUrl  = self?.currentUserModel?.userAvatar ?? URL(string: "")!
+                let url = URL(string: self?.currentUserModel?.userAvatar ?? "")
+                self?.currentUserImageUrl = url
                 
                 print(self?.currentUserModel ?? "")
                 
@@ -131,7 +132,8 @@ class ChatViewController: MessagesViewController {
                 
                 self?.chatToUserModel = userModel
                 
-                self?.user2ImageUrl  = self?.chatToUserModel?.userAvatar ?? URL(string: "")!
+                let url = URL(string: self?.chatToUserModel?.userAvatar ?? "")
+                self?.user2ImageUrl  = url
                 
                 self?.title  = self?.chatToUserModel?.name ?? ""
                 
@@ -351,12 +353,12 @@ extension ChatViewController: MessagesDisplayDelegate {
                              at indexPath: IndexPath,
                              in messagesCollectionView: MessagesCollectionView) {
         // If it's current user show current user photo.
-        guard let currentUserImageUrl = currentUserModel.userAvatar else {return}
+        guard let currentUserImageUrl = URL(string: currentUserModel.userAvatar ?? "") else {return}
         
         //        if message.sender.senderId == currentUser.uid
         if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
-                //  with: currentUser.photoURL,
+//                  with: currentUser.photoURL,
                 with: currentUserImageUrl,
                 options: .highPriority,
                 progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in

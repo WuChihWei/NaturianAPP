@@ -17,7 +17,7 @@ class UserManager {
     static let shared = UserManager()
     
     lazy var db = Firestore.firestore().collection("users")
-        
+    
     func addData(accoutInfo: UserModel) {
         
         do {
@@ -77,6 +77,7 @@ class UserManager {
             } else {
                 
                 if let doc = querySnapshot?.documents.first {
+                    print("exist")
                     do {
                         print(doc)
                         if let userModel = try doc.data(as: UserModel?.self,
@@ -89,6 +90,38 @@ class UserManager {
                         
                         completion(.failure(error))
                         
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func listenUserData(userID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
+
+        db.whereField("userID", isEqualTo: userID).addSnapshotListener { (querySnapshot, error) in
+
+            if let error = error {
+
+                print(LocalizedError.self)
+                completion(.failure(error))
+
+            } else {
+
+                if let doc = querySnapshot?.documents.first {
+                    print("exist")
+                    do {
+                        print(doc)
+                        if let userModel = try doc.data(as: UserModel?.self,
+                                                        decoder: Firestore.Decoder()) {
+
+                            completion(.success(userModel))
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
                     }
                 }
             }
@@ -155,9 +188,12 @@ class UserManager {
         }
     }
     
-    func searchAppliedState(talentPostID: String, userID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
+    func searchAppliedState(talentPostID: String,
+                            userID: String,
+                            completion: @escaping (Result<[UserModel], Error>) -> Void) {
         
-        db.whereField("appliedTalent", isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+        db.whereField("appliedTalent",
+                      isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -173,7 +209,7 @@ class UserManager {
                     do {
                         print(document)
                         if let userModel = try document.data(as: UserModel?.self,
-                                                                 decoder: Firestore.Decoder()) {
+                                                             decoder: Firestore.Decoder()) {
                             
                             userModels.append(userModel)
                         }
@@ -210,7 +246,7 @@ class UserManager {
                     do {
                         print(document)
                         if let userModel = try document.data(as: UserModel?.self,
-                                                                 decoder: Firestore.Decoder()) {
+                                                             decoder: Firestore.Decoder()) {
                             
                             userModels.append(userModel)
                         }
@@ -227,7 +263,7 @@ class UserManager {
             }
         }
     }
-
+    
     func updateAppliedTalent(userModel: UserModel, userID: String) {
         
         do {
@@ -239,23 +275,22 @@ class UserManager {
         }
     }
     
-    func addUser(name: String, uid: String, email: String) {
+    func addUser(name: String, userID: String, email: String) {
         
-        let timeInterval = Date()
         let data: [String: Any] = [
             
             "name": name,
-            "userID": uid,
+            "userID": userID,
             "seedValue": 420,
             "gender": "",
-            "userAvatar": URL.self,
+            "blockList": [""],
+            "userAvatar": "",
             "appliedTalent": [""],
-            "isAccepetedTalent": [""],
-            "email": email,
-            "createdTime": timeInterval
+            "isAcceptedTalent": [""],
+            "email": email
         ]
         
-        db.document(uid).setData(data) { error in
+        db.document(userID).setData(data) { error in
             
             if let error = error {
                 print(error)
@@ -267,7 +302,6 @@ class UserManager {
     
     func replaceData(name: String, uid: String, email: String, gender: String, userAvatar: String) {
         
-        let timeInterval = Date()
         let data: [String: Any] = [
             
             "name": name,
@@ -276,9 +310,8 @@ class UserManager {
             "gender": gender,
             "userAvatar": userAvatar,
             "appliedTalent": [""],
-            "isAccepetedTalent": [""],
+            "isAcceptedTalent": [""],
             "email": email,
-            "createdTime": timeInterval
         ]
         
         db.document(uid).setData(data) { error in
@@ -371,40 +404,40 @@ class UserManager {
         }
     }
     
-//    func searchBlockListf(userID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
-//
-//        db.whereField("blockList",
-//                      isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
-//
-//            if let error = error {
-//
-//                print(LocalizedError.self)
-//                completion(.failure(error))
-//
-//            } else {
-//
-//                var userModels = [UserModel]()
-//
-//                for document in querySnapshot!.documents {
-//
-//                    do {
-//                        print(document)
-//                        if let userModel = try document.data(as: UserModel?.self,
-//                                                                 decoder: Firestore.Decoder()) {
-//
-//                            userModels.append(userModel)
-//                        }
-//                        print(userModels)
-//
-//                    } catch {
-//
-//                        completion(.failure(error))
-//
-//                    }
-//                }
-//
-//                completion(.success(userModels))
-//            }
-//        }
-//    }
+    //    func searchBlockListf(userID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
+    //
+    //        db.whereField("blockList",
+    //                      isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+    //
+    //            if let error = error {
+    //
+    //                print(LocalizedError.self)
+    //                completion(.failure(error))
+    //
+    //            } else {
+    //
+    //                var userModels = [UserModel]()
+    //
+    //                for document in querySnapshot!.documents {
+    //
+    //                    do {
+    //                        print(document)
+    //                        if let userModel = try document.data(as: UserModel?.self,
+    //                                                                 decoder: Firestore.Decoder()) {
+    //
+    //                            userModels.append(userModel)
+    //                        }
+    //                        print(userModels)
+    //
+    //                    } catch {
+    //
+    //                        completion(.failure(error))
+    //
+    //                    }
+    //                }
+    //
+    //                completion(.success(userModels))
+    //            }
+    //        }
+    //    }
 }

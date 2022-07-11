@@ -19,9 +19,9 @@ class OtherTalentViewController: UIViewController {
     var userInfo: [UserModel] = []
     let subview = UIView()
     
-//        var userID = Auth.auth().currentUser?.uid
+        var userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     
     private var appliedTalents: [TalentArticle] = []

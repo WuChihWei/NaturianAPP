@@ -18,13 +18,14 @@ class MyAcceptedVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
-    //        var userID = Auth.auth().currentUser?.uid
+            var userID = Auth.auth().currentUser?.uid
 //        let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     var talentArticleID: String?
     let subview = UIView()
-    
+    var myTalentInfo: TalentArticle!
+
     var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     var acceptIDs: [UserModel] = []
@@ -41,7 +42,8 @@ class MyAcceptedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         acceptIDs.removeAll()
-        fetchAcceptInfo()
+//        fetchAcceptInfo()
+        fetchMyAppliedTalent()
         tableView.reloadData()
     }
     
@@ -100,9 +102,32 @@ class MyAcceptedVC: UIViewController {
         ])
     }
     
+    func fetchMyAppliedTalent() {
+        talentManager.fetchMyAppliedTalent(userID: didSeletectDetails.userID ?? "",
+                                           talentPostID: didSeletectDetails.talentPostID ?? "") { [weak self] result in
+            switch result {
+                
+            case .success(let articleModel):
+                
+                self?.myTalentInfo = articleModel
+                
+                self?.fetchAcceptInfo()
+                                
+                DispatchQueue.main.async {
+                                    
+                    self?.tableView.reloadData()
+                }
+                
+            case .failure:
+                
+                print("can't fetch data")
+            }
+        }
+    }
+    
     func fetchAcceptInfo() {
         
-        let didAcceptIDs = didSeletectDetails.didAcceptID
+        let didAcceptIDs = myTalentInfo.didAcceptID
     
                 for didAcceptID in didAcceptIDs {
     
@@ -154,7 +179,8 @@ extension MyAcceptedVC: UITableViewDataSource {
             cell2.acceptButton.alpha = 0.3
             cell2.userName.text = acceptIDs[indexPath.row].name
             cell2.userGender.text = acceptIDs[indexPath.row].gender
-            cell2.userAvatar.kf.setImage(with: acceptIDs[indexPath.row].userAvatar)
+        let url = URL(string: acceptIDs[indexPath.row].userAvatar ?? "")
+            cell2.userAvatar.kf.setImage(with: url)
             cell2.userAvatar.lkCornerRadius = 10
             cell2.layoutIfNeeded()
             cell2.userAvatar.clipsToBounds = true

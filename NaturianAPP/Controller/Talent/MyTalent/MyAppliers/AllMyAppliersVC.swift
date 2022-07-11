@@ -26,9 +26,9 @@ class AllMyAppliersVC: UIViewController {
     var userManager = UserManager()
     
     var talentArticleID: String?
-//        var userID = Auth.auth().currentUser?.uid
+        var userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     let subview = UIView()
     
@@ -131,7 +131,9 @@ class AllMyAppliersVC: UIViewController {
         let point = sender.convert(CGPoint.zero, to: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
         self.didSelectedID = appliedIDs[indexPath?.row ?? 0].userID
-        talentManager.removeApplyState(applyTalentID: didSeletectDetails.talentPostID ?? "", applierID: didSelectedID ?? "") {[weak self] result in
+        
+        talentManager.removeApplyState(applyTalentID: didSeletectDetails.talentPostID ?? "",
+                                       applierID: didSelectedID ?? "") {[weak self] result in
             
             switch result {
                 
@@ -172,13 +174,14 @@ class AllMyAppliersVC: UIViewController {
                 
             case .success(let articleModel):
                 
+                self?.appliedIDs.removeAll()
+                self?.acceptIDs.removeAll()
+                
                 self?.myTalentInfo = articleModel
                 
                 self?.fetchAppliedInfo()
                 self?.fetchAcceptInfo()
-                
-                print(self?.myTalentInfo as Any)
-                
+                                
                 DispatchQueue.main.async {
                                     
                     self?.tableView.reloadData()
@@ -201,11 +204,16 @@ class AllMyAppliersVC: UIViewController {
                     
                 case .success(let userModel):
                     
+                    self?.appliedIDs.removeAll()
+                    self?.acceptIDs.removeAll()
+                    
                     self?.appliedIDs.append(userModel)
                     
                     print(self?.userModels as Any)
                     
                     DispatchQueue.main.async {
+                        
+                        
                         
                         print(self?.appliedIDs)
                         
@@ -288,7 +296,8 @@ extension AllMyAppliersVC: UITableViewDataSource {
             cell1.appliedStateBtn.setImage(UIImage(named: "waiting_darkgray"), for: .normal)
             cell1.userName.text = appliedIDs[indexPath.row].name
             cell1.userGender.text = appliedIDs[indexPath.row].gender
-            cell1.userAvatar.kf.setImage(with: appliedIDs[indexPath.row].userAvatar)
+            let url = URL(string: appliedIDs[indexPath.row].userAvatar ?? "")
+            cell1.userAvatar.kf.setImage(with: url)
             cell1.userAvatar.lkCornerRadius = 10
             cell1.layoutIfNeeded()
             cell1.userAvatar.clipsToBounds = true
@@ -314,7 +323,8 @@ extension AllMyAppliersVC: UITableViewDataSource {
             cell2.acceptButton.alpha = 0.3
             cell2.userName.text = acceptIDs[indexPath.row].name
             cell2.userGender.text = acceptIDs[indexPath.row].gender
-            cell2.userAvatar.kf.setImage(with: acceptIDs[indexPath.row].userAvatar)
+            let url = URL(string: acceptIDs[indexPath.row].userAvatar ?? "")
+            cell2.userAvatar.kf.setImage(with: url)
             cell2.userAvatar.lkCornerRadius = 10
             cell2.layoutIfNeeded()
             cell2.userAvatar.clipsToBounds = true

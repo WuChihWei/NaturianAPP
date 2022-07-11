@@ -16,9 +16,9 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-//        let userID = Auth.auth().currentUser?.uid
+        let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     var appliedState: Int = 0
     
@@ -209,7 +209,7 @@ extension TalentDetailViewController {
         avatarImage.lkCornerRadius = 42
         avatarImage.lkBorderWidth = 4
         avatarImage.backgroundColor = .NaturianColor.lightGray
-        let avatarUrl = selectedArticle.userInfo?.userAvatar
+        let avatarUrl = URL(string: selectedArticle.userInfo?.userAvatar ?? "")
         avatarImage.kf.setImage(with: avatarUrl)
         
         postPhotoImage.backgroundColor = .systemGreen

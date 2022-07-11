@@ -19,9 +19,9 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var photoManager = PhotoManager()
     var backButton = UIButton()
 
-//    var userID = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
 //    var userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     var userModels: UserModel?
     
@@ -300,8 +300,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
-                                                      isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
-                                                      createdTime: self.userModels?.createdTime,
+                                                      isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                                       blockList: self.userModels?.blockList ?? [],
                                                       email: self.userModels?.email
                             )

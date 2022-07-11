@@ -17,9 +17,9 @@ protocol ReplyArticleDelegate: AnyObject {
 class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     weak var replyArticleDelegate: ReplyArticleDelegate?
-//        let currentUserID = Auth.auth().currentUser?.uid
+        let currentUserID = Auth.auth().currentUser?.uid
 //    let currentUserID = "2"
-    let currentUserID = "1"
+//    let currentUserID = "1"
 
     var forumManager = ForumManager()
     var repliedArticles: [ReplyModel] = []
@@ -95,8 +95,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                   gender: self.userModels?.gender,
                                   userAvatar: self.userModels?.userAvatar,
                                   appliedTalent: self.userModels?.appliedTalent ?? [],
-                                  isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
-                                  createdTime: self.userModels?.createdTime,
+                                  isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                   blockList: self.userModels?.blockList ?? [],
                                   email: self.userModels?.email
         )

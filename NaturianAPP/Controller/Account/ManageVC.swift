@@ -17,9 +17,9 @@ class ManageVC: UIViewController {
     let blackView = UIView()
     var userFirebaseManager = UserManager()
     var userModels: UserModel!
-//        let userID = Auth.auth().currentUser?.uid
+        let userID = Auth.auth().currentUser?.uid
 //        let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     let logoutBtn = UIButton()
     let delelteAccountBtn = UIButton()

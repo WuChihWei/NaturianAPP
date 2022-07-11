@@ -33,7 +33,7 @@ class TalentManager {
     
     func fetchData(completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
-        db.collection("talent").getDocuments { (querySnapshot, error) in
+        db.collection("talent").addSnapshotListener{ (querySnapshot, error) in
             
             if let error = error {
                 
@@ -127,7 +127,6 @@ class TalentManager {
                             
                             talentArticles.append(talentArticle)
                         }
-                        print(talentArticles)
                         
                     } catch {
                         
@@ -148,6 +147,7 @@ class TalentManager {
             if let error = error {
                 
                 print(LocalizedError.self)
+                
                 completion(.failure(error))
                 
             } else {
@@ -249,7 +249,7 @@ class TalentManager {
         
         db.collection("talent").whereField("userID",
                                            isEqualTo: userID).whereField("talentPostID",
-                                                                         isEqualTo: talentPostID).getDocuments { (querySnapshot, error) in
+                                                                         isEqualTo: talentPostID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

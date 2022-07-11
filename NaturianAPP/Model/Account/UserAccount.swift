@@ -17,14 +17,12 @@ struct UserModel: Codable {
     
     var gender: String? 
     
-    var userAvatar: URL?
+    var userAvatar: String?
     
     var appliedTalent: [String?]
     
-    var isAccepetedTalent: [String?]
-    
-    var createdTime: Date?
-    
+    var isAcceptedTalent: [String?]
+        
     var blockList: [String]
     
     var email: String?

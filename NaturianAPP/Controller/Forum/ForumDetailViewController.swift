@@ -293,7 +293,7 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.postImage.contentMode = .scaleAspectFill
             cell1.postImage.clipsToBounds = true
             
-            let avatatUrl = authorInfo?.userAvatar
+            let avatatUrl = URL(string: authorInfo?.userAvatar ?? "")
             cell1.avatarImage.kf.setImage(with: avatatUrl)
             cell1.avatarImage.contentMode = .scaleAspectFill
             cell1.avatarImage.clipsToBounds = true
@@ -346,8 +346,13 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell2.selectionStyle = .none
             cell2.replierName.text = repliedArticles[indexPath.row].userInfo.name
             cell2.replyContent.text = repliedArticles[indexPath.row].replyContent
+            
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-            let replierUrl = repliedArticles[indexPath.row].userInfo.userAvatar
+            cell2.createdTimeLB.text = repliedArticles[indexPath.row].createdTime.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
+            
+            let replierUrl = URL(string: repliedArticles[indexPath.row].userInfo.userAvatar ?? "")
             cell2.replierAvatar.kf.setImage(with: replierUrl)
             cell2.replierAvatar.contentMode = .scaleAspectFill
             cell2.replierAvatar.clipsToBounds = true

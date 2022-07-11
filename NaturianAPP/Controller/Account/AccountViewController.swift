@@ -22,10 +22,9 @@ class AccountViewController: UIViewController {
     var userManager = UserManager()
     var userFirebaseManager = UserManager()
     
-//    let userID = Auth.auth().currentUser?.uid
+    let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-    let userID = "1"
-
+//    let userID = "1"
     var userModels: UserModel!
     let backgroundView = UIView()
     
@@ -122,7 +121,7 @@ class AccountViewController: UIViewController {
             
 //        guard let userID = Auth.auth().currentUser?.uid else {return}
         
-        userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+        userFirebaseManager.listenUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     
@@ -203,8 +202,8 @@ class AccountViewController: UIViewController {
 
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .NaturianColor.lightGray
-//        let url = URL(string: "\(userModels?.userAvatar ?? "")")
-        userAvatar.kf.setImage(with: userModels?.userAvatar)
+        let url = URL(string: userModels?.userAvatar ?? "")
+        userAvatar.kf.setImage(with: url)
         
         naturianLB.text = "NATURIAN"
         naturianLB.font = UIFont(name: Roboto.black.rawValue, size: 18)
