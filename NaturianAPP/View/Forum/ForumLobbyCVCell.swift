@@ -36,7 +36,6 @@ class ForumLobbyCVCell: UICollectionViewCell {
         tilteLB.font = UIFont(name: Roboto.black.rawValue, size: 24)
         tilteLB.textAlignment = .center
         
-        
     }
     
     func layout() {

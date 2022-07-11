@@ -107,7 +107,6 @@ class ForumLobbyViewController: UIViewController {
                 print("can't fetch data")
             }
         }
-        
     }
     
     func setUp() {
@@ -261,20 +260,6 @@ extension ForumLobbyViewController: UITableViewDataSource {
         return forumArticles.count
     }
     
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        10
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //            let headerView = UIView()
-    //            headerView.backgroundColor = UIColor.clear
-    //            return headerView
-    //        }
-    
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        175
-    //    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ForumLobbyTableViewCell.identifer,
@@ -298,12 +283,6 @@ extension ForumLobbyViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.lkCornerRadius = 15
-        //        cell.seedValue.text = "\(talentArticles[indexPath.section].seedValue!)"
-        //        cell.locationLabel.text = talentArticles[indexPath.section].location
-        //        cell.providerName.text = talentArticles[indexPath.section].userInfo?.name
-     
-        //        cell.lkBorderColor = .NaturianColor.navigationGray
-        //        cell.lkBorderWidth = 1
 
         switch forumArticles[indexPath.row].category {
             

@@ -25,5 +25,7 @@ struct UserModel: Codable {
     
     var createdTime: Date?
     
+    var blockList: [String]
+    
     var email: String?
 }

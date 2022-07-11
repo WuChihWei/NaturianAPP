@@ -23,10 +23,9 @@ class PopViewController: UIViewController {
         }
         scannerVC.sendBarcodeDelegate = self
     }
-    
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "sendSegue") {
+        if segue.identifier == "sendSegue" {
             
             let destViewController = segue.destination as? ScannerVC
             destViewController!.sendBarcodeDelegate = self

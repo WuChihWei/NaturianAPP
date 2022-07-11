@@ -9,7 +9,6 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import SwiftUI
 
 class ForumDetailViewController: UIViewController {
     
@@ -33,7 +32,6 @@ class ForumDetailViewController: UIViewController {
     var replyAuthor: UserModel!
     var replyAuthors: [UserModel] = []
     
-    
     //    var replyArray: [Any] = []
     
     override func viewDidLoad() {
@@ -42,7 +40,7 @@ class ForumDetailViewController: UIViewController {
         setUp()
         style()
         layout()
-        
+
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -66,10 +64,9 @@ class ForumDetailViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-
+        tableView.reloadData()
         findAuthorData()
         findReplies()
-        tableView.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,7 +154,7 @@ class ForumDetailViewController: UIViewController {
             
             fatalError("can't find ForumReplyVC")
         }
-        
+        vc.replyArticleDelegate = self
         vc.forumArticles = forumArticles
         //        self.navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
@@ -167,9 +164,7 @@ class ForumDetailViewController: UIViewController {
         
             for replyID in forumArticles.replyIDs {
     
-                forumManager.findRepliesData(replyID: replyID) {
-    
-                    [weak self] result in
+                forumManager.findRepliesData(replyID: replyID) { [weak self] result in
     
                     switch result {
     
@@ -364,10 +359,16 @@ extension ForumDetailViewController: UITableViewDataSource {
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
                                                             for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
             cell2.selectionStyle = .none
-            
 //            cell2.
             return cell2
             
         }
+    }
+}
+
+extension ForumDetailViewController: ReplyArticleDelegate{
+    func replyArticle(repliedArticles: [ReplyModel]) {
+        self.repliedArticles =  repliedArticles
+        tableView.reloadData()
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var scannerVC = ScannerVC()
-    var profileManager = UserFirebaseManager()
+    var profileManager = UserManager()
     var otherUserModels: UserModel!
     var currentUserModels: UserModel!
     
@@ -127,9 +127,6 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         
         remainValue = (currentUserModels?.seedValue ?? 0) - transferValue
         otherSeedValue = (otherUserModels?.seedValue ?? 0) + transferValue
-        
-        print("+++++\(otherSeedValue)")
-        print("+++++\(remainValue)")
         
         if remainValue < 0 {
             

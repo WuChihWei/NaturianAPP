@@ -26,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+
         
-        UITabBar.appearance().unselectedItemTintColor = .NaturianColor.lightGray
+        UITabBar.appearance().unselectedItemTintColor = .blue
         
         let barApprance = UINavigationBarAppearance()
                 barApprance.configureWithTransparentBackground()
@@ -69,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return GIDSignIn.sharedInstance.handle(url)
     }
     
-
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.

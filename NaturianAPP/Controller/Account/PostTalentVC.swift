@@ -14,14 +14,17 @@ import MBProgressHUD
 import SwiftUI
 import FirebaseAuth
 
-class PostTalentVC: UIViewController {
+class PostTalentVC: UIViewController, UITextViewDelegate {
     
     var userManager = UserManager()
     var talentManager = TalentManager()
     var photoManager = PhotoManager()
-
+    var backButton = UIButton()
+    let cancelButton = UIButton()
 //    var userID = Auth.auth().currentUser?.uid
-    let userID = "2"
+//    let userID = "2"
+    let userID = "1"
+
 
     var userModels: UserModel?
     
@@ -36,10 +39,11 @@ class PostTalentVC: UIViewController {
     var accountInfo: UserModel?
     
     var postPhotoImage = UIImageView()
+    var postPhotoImageX = UIImage(named: "takephoto")
     let titleText = UITextField()
     let seedValueText = UITextField()
     let seedIcon = UIImageView()
-    let descriptionText = UITextView()
+    let descriptionTextView = UITextView()
     let categoryButton = UIButton()
     
     let seedStack = UIStackView()
@@ -49,6 +53,8 @@ class PostTalentVC: UIViewController {
     let locationBtn = UIButton()
     var selectedImage: UIImage!
     
+    let actStack = UIStackView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
@@ -56,50 +62,45 @@ class PostTalentVC: UIViewController {
         setUp()
         style()
         layout()
-//        self.navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
+        
+        descriptionTextView.text = "Please describe your talent here"
+        descriptionTextView.textColor = UIColor.lightGray
+        descriptionTextView.delegate = self
+        textViewDidBeginEditing(descriptionTextView)
+        textViewDidEndEditing(descriptionTextView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchUserData()
     }
     
+    override func viewDidLayoutSubviews() {
+        
+        view.layoutIfNeeded()
+        postPhotoImage.layoutIfNeeded()
+        postPhotoImage.clipsToBounds = true
+        postPhotoImage.contentMode = .scaleAspectFill
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    @objc func clickCategory(_ sender: Any) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
-//        performSegue(withIdentifier: "categoryPopSegue", sender: nil)
-        guard let categoryCV = storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpVC") as? CategoryPopUpVC else {
-            print("Can't find CategoryPopUpVC")
-            return
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
         }
-        present(categoryCV, animated: true, completion: nil)
-
-        categoryCV.categoryDelegate = self
     }
     
-    @objc func clickLocation(_ sender: Any) {
-//        performSegue(withIdentifier: "locationPopSegue", sender: nil)
-        guard let locationCV = storyboard?.instantiateViewController(withIdentifier: "LocationPopUpVC") as? LocationPopUpVC else {
-            print("Can't find LocationPopUpVC")
-            return
-        }
-        present(locationCV, animated: true, completion: nil)
-
-        locationCV.locationDelegate = self
-    }
-    
-    func blackViewShow() {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
-        let blackView = UIView(frame: UIScreen.main.bounds)
-              blackView.backgroundColor = .black
-              blackView.alpha = 0
-              presentingViewController?.view.addSubview(blackView)
-              
-      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
-                  blackView.alpha = 0.5
-              }
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     func fetchUserData() {
@@ -137,40 +138,50 @@ class PostTalentVC: UIViewController {
         locationBtn.addTarget(self, action: #selector(clickLocation(_:)), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(clickCategory(_:)), for: .touchUpInside)
         postButton.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(didDismiss), for: .touchUpInside)
+
+    }
+    
+    @objc func didDismiss() {
+//        navigationController?.popViewController(animated: true)
+        dismiss(animated: false)
     }
     
     func style() {
         
-        postPhotoImage.backgroundColor = .systemGreen
-        //        postPhotoImage.contentMode = .scaleAspectFit
+        backButton.setImage(UIImage(named: "dismiss"), for: .normal)
+        postPhotoImage.lkCornerRadius = 15
         postPhotoImage.isUserInteractionEnabled = true
+        postPhotoImage.image = postPhotoImageX
+        postPhotoImage.contentMode = .scaleAspectFill
+        postPhotoImage.backgroundColor = .blue
         
-        categoryButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        categoryButton.setImage(UIImage(named: "down"), for: .normal)
+        categoryButton.imageView?.contentMode = .scaleAspectFit
+        categoryButton.setTitle("CATEGORY", for: .normal)
+        categoryButton.semanticContentAttribute = .forceRightToLeft
+        categoryButton.lkCornerRadius = 10
+        categoryButton.backgroundColor = .NaturianColor.navigationGray
+        categoryButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
+        categoryButton.setTitleColor(.white, for: .normal)
+        categoryButton.tintColor = .white
         
-        categoryButton.setTitle("Category", for: .normal)
-        categoryButton.lkBorderColor = .black
-        categoryButton.lkBorderWidth = 1
-        categoryButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        categoryButton.setTitleColor(.black, for: .normal)
-        categoryButton.tintColor = .black
-        
-        locationBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        locationBtn.setImage(UIImage(named: "down2"), for: .normal)
+        locationBtn.tintColor = .darkGray
         locationBtn.setTitle("Location", for: .normal)
         locationBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         locationBtn.setTitleColor(.black, for: .normal)
         locationBtn.tintColor = .black
+        locationBtn.semanticContentAttribute = .forceRightToLeft
         
-        titleText.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleText.font = UIFont(name: Roboto.bold.rawValue, size: 30)
         titleText.placeholder = "Title"
         
-        descriptionText.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        descriptionText.textAlignment = .justified
-        //        descriptionText.placeholder = "Conetent"
-        descriptionText.backgroundColor = .gray
-        descriptionText.lkBorderColor = .gray
+        descriptionTextView.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        descriptionTextView.textAlignment = .justified
         
-        seedIcon.image = UIImage(named: "Lychee")
-        seedValueText.placeholder = "60"
+        seedIcon.image = UIImage(named: "seed")
+        seedValueText.placeholder = "???"
         
         seedStack.axis = .horizontal
         seedStack.alignment = .leading
@@ -181,32 +192,46 @@ class PostTalentVC: UIViewController {
         contentStack.spacing = 0
         
         postButton.setTitle("Post", for: .normal)
-        postButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        postButton.lkBorderColor = .black
-        postButton.lkBorderWidth = 1
-        postButton.setTitleColor(.black, for: .normal)
+        postButton.setTitleColor(.white, for: .normal)
+        postButton.backgroundColor = UIColor.NaturianColor.treatmentGreen
+        postButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        postButton.lkCornerRadius = 24
         
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
+        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitleColor(UIColor.NaturianColor.treatmentGreen, for: .normal)
+        
+        actStack.axis = .horizontal
+        actStack.alignment = .center
+        actStack.spacing = 14
     }
     
     func layout() {
         
+        backButton.translatesAutoresizingMaskIntoConstraints = false
         postPhotoImage.translatesAutoresizingMaskIntoConstraints = false
         categoryButton.translatesAutoresizingMaskIntoConstraints = false
         seedStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.translatesAutoresizingMaskIntoConstraints = false
-        postButton.translatesAutoresizingMaskIntoConstraints = false
-        descriptionText.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         locationBtn.translatesAutoresizingMaskIntoConstraints = false
-        
+        actStack.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(backButton)
         view.addSubview(postPhotoImage)
         view.addSubview(categoryButton)
         view.addSubview(seedStack)
         view.addSubview(contentStack)
-        view.addSubview(postButton)
-        view.addSubview(descriptionText)
+//        view.addSubview(postButton)
+        view.addSubview(descriptionTextView)
+        view.addSubview(actStack)
+
+        actStack.addArrangedSubview(postButton)
+        actStack.addArrangedSubview(cancelButton)
         
-        seedStack.addArrangedSubview(seedValueText)
         seedStack.addArrangedSubview(seedIcon)
+        seedStack.addArrangedSubview(seedValueText)
         
         contentStack.addArrangedSubview(titleText)
         contentStack.addArrangedSubview(seedStack)
@@ -214,37 +239,44 @@ class PostTalentVC: UIViewController {
         
         NSLayoutConstraint.activate([
             
+            backButton.centerYAnchor.constraint(equalTo: categoryButton.centerYAnchor),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            backButton.widthAnchor.constraint(equalToConstant: 42),
+            backButton.heightAnchor.constraint(equalToConstant: 42),
+            
             postPhotoImage.topAnchor.constraint(equalTo: categoryButton.bottomAnchor, constant: 16),
             postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
+            postPhotoImage.heightAnchor.constraint(equalToConstant: 360),
             
-//            categoryButton.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 16),
             categoryButton.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
-            categoryButton.heightAnchor.constraint(equalToConstant: 27),
-            categoryButton.widthAnchor.constraint(equalToConstant: 120),
-            categoryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            categoryButton.heightAnchor.constraint(equalToConstant: 40),
+            categoryButton.widthAnchor.constraint(equalToConstant: 130),
+            categoryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             
-            contentStack.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 8),
+            contentStack.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor),
             contentStack.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
             contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             
-            descriptionText.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: 8),
-            descriptionText.bottomAnchor.constraint(equalTo: postButton.topAnchor, constant: 8),
-            descriptionText.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
-            descriptionText.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
+            descriptionTextView.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: 8),
+            descriptionTextView.bottomAnchor.constraint(equalTo: postButton.topAnchor, constant: 8),
+            descriptionTextView.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
+            descriptionTextView.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
             
             seedIcon.widthAnchor.constraint(equalToConstant: 20),
             seedIcon.heightAnchor.constraint(equalToConstant: 20),
             
-            postButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            postButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            postButton.widthAnchor.constraint(equalToConstant: 120)
+            actStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            actStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            actStack.heightAnchor.constraint(equalToConstant: 48),
+            postButton.widthAnchor.constraint(equalToConstant: 130),
+            postButton.heightAnchor.constraint(equalToConstant: 48),
+            cancelButton.widthAnchor.constraint(equalToConstant: 130),
+            cancelButton.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
     
     // MARK: Upload post
-    
     @objc func postTalent() {
         
         let imageData = self.postPhotoImage.image?.jpegData(compressionQuality: 0.8)
@@ -261,7 +293,7 @@ class PostTalentVC: UIViewController {
                 
                 switch result {
                     
-                case .success(_):
+                case .success:
                     
                     fileReference.downloadURL { result in
                         switch result {
@@ -272,7 +304,7 @@ class PostTalentVC: UIViewController {
                             let createdTime = TimeInterval(Int(Date().timeIntervalSince1970))
                             let title = self.titleText.text
                             let userID = self.userID
-                            let content = self.descriptionText.text
+                            let content = self.descriptionTextView.text
                             let category = self.categoryResult
                             let location = self.locationResult
                             let seedValue = (self.seedValueText.text! as NSString).intValue
@@ -285,6 +317,7 @@ class PostTalentVC: UIViewController {
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
                                                       isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                                       createdTime: self.userModels?.createdTime,
+                                                      blockList: self.userModels?.blockList ?? [],
                                                       email: self.userModels?.email
                             )
                             
@@ -326,7 +359,7 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
+
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.postPhotoImage.image = image
             //            selectedImage = self.postPhotoImage.image
@@ -351,4 +384,40 @@ extension PostTalentVC: LocationDelegate {
         locationResult = location
     }
     
+}
+
+extension PostTalentVC {
+    
+    func blackViewShow() {
+        
+        let blackView = UIView(frame: UIScreen.main.bounds)
+              blackView.backgroundColor = .black
+              blackView.alpha = 0
+              presentingViewController?.view.addSubview(blackView)
+              
+      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+                  blackView.alpha = 0.5
+              }
+    }
+    
+    @objc func clickCategory(_ sender: Any) {
+
+        guard let categoryCV = storyboard?.instantiateViewController(withIdentifier: "CategoryPopUpVC") as? CategoryPopUpVC else {
+            print("Can't find CategoryPopUpVC")
+            return
+        }
+        present(categoryCV, animated: true, completion: nil)
+        categoryCV.categoryDelegate = self
+    }
+    
+    @objc func clickLocation(_ sender: Any) {
+
+        guard let locationCV = storyboard?.instantiateViewController(withIdentifier: "LocationPopUpVC") as? LocationPopUpVC else {
+            print("Can't find LocationPopUpVC")
+            return
+        }
+        present(locationCV, animated: true, completion: nil)
+
+        locationCV.locationDelegate = self
+    }
 }

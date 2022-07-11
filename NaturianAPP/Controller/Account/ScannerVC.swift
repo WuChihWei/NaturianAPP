@@ -142,14 +142,12 @@ class ScannerVC: UIViewController {
     
     func layout() {
         
-        
         label.translatesAutoresizingMaskIntoConstraints = true
         
         NSLayoutConstraint.activate([
             
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }
