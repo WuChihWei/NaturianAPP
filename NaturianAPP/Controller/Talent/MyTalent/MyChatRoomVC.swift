@@ -26,8 +26,8 @@ class MyChatRoomVC: UIViewController {
     let titleLB = UILabel()
     
 //        let userID = Auth.auth().currentUser?.uid
-    let userID = "2"
-//    var userModels: UserModel!
+//    let userID = "2"
+    let userID = "1"
     private var chatModels: [ChatModel] = []
     var newChatModels: [String] = []
     

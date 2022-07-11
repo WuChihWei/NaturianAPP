@@ -25,7 +25,9 @@ class TalentLobbyVC: UIViewController {
     let searchBtn = UIButton()
     let cleanBtn = UIButton()
 //    let userID = Auth.auth().currentUser?.uid
-    let userID = "2"
+//    let userID = "2"
+    let userID = "1"
+
 
     let addPosteBTN = UIButton()
     

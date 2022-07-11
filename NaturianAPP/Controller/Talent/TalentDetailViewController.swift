@@ -17,7 +17,9 @@ class TalentDetailViewController: UIViewController {
     var talentManager = TalentManager()
     var userManager = UserManager()
 //        let userID = Auth.auth().currentUser?.uid
-    let userID = "2"
+//    let userID = "2"
+    let userID = "1"
+
     var appliedState: Int = 0
     
     let postPhotoImage = UIImageView()

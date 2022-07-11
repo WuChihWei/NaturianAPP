@@ -18,7 +18,9 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     weak var replyArticleDelegate: ReplyArticleDelegate?
 //        let currentUserID = Auth.auth().currentUser?.uid
-    let currentUserID = "2"
+//    let currentUserID = "2"
+    let currentUserID = "1"
+
     var forumManager = ForumManager()
     var repliedArticles: [ReplyModel] = []
     

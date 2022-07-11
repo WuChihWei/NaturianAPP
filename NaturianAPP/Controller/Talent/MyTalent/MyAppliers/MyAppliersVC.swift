@@ -19,7 +19,9 @@ class MyAppliersVC: UIViewController {
     var userManager = UserManager()
     
     //        var userID = Auth.auth().currentUser?.uid
-        let userID = "2"
+//        let userID = "2"
+    let userID = "1"
+
     var talentArticleID: String?
     let subview = UIView()
     var appliedIDs: [UserModel] = []
