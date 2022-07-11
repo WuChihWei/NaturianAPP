@@ -10,14 +10,23 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
 
+protocol ReplyArticleDelegate: AnyObject {
+    func replyArticle(repliedArticles: [ReplyModel])
+}
+
 class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
-//    let currentUserID = Auth.auth().currentUser?.uid
-    let currentUserID = "2"
+    weak var replyArticleDelegate: ReplyArticleDelegate?
+//        let currentUserID = Auth.auth().currentUser?.uid
+//    let currentUserID = "2"
+    let currentUserID = "1"
 
+    var forumManager = ForumManager()
+    var repliedArticles: [ReplyModel] = []
+    
     var userManager = UserManager()
     var userModels: UserModel?
-
+    
     let subview = UIView()
     var backButton = UIButton()
     let replyLB = UILabel()
@@ -88,10 +97,9 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                   appliedTalent: self.userModels?.appliedTalent ?? [],
                                   isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                   createdTime: self.userModels?.createdTime,
+                                  blockList: self.userModels?.blockList ?? [],
                                   email: self.userModels?.email
         )
-        
-        
         
         let replyModel = ReplyModel(replyID: replyID,
                                     replyContent: self.replyCotent.text,
@@ -105,16 +113,40 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         replyManager.updateAplyIDs(articleID: forumArticles.postArticleID ?? "",
                                    repliedArticle: forumArticles) { [weak self] result in
             switch result {
+                
             case .success:
-                self?.dismiss(animated: true)
-                print(replyID)
+                
+                for replyID in self!.forumArticles.replyIDs {
+                    
+                    self!.forumManager.findRepliesData(replyID: replyID) { [weak self] result in
+                        
+                        switch result {
+                            
+                        case .success(let replyModel):
+                            
+                            self?.repliedArticles.append(replyModel)
+                            
+                    
+                            
+                            DispatchQueue.main.async {
+                                print(self?.repliedArticles)
+                                self?.replyArticleDelegate?.replyArticle(repliedArticles: self?.repliedArticles ?? [])
+                                self?.dismiss(animated: false)
+                            }
+                            
+                        case .failure:
+                            
+                            print("can't fetch data")
+                        }
+                    }
+                }
                 
             case .failure:
                 print("can't fetch data")
             }
         }
     }
-
+    
     func setup() {
         replyButton.addTarget(self, action: #selector(replyArticle), for: .touchUpInside)
         textViewDidBeginEditing(replyCotent)
@@ -128,13 +160,13 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         subview.lkCornerRadius = 30
         subview.clipsToBounds = true
         subview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-     
+        
         backButton.setImage(UIImage(named: "dismiss"), for: .normal)
-
+        
         replyLB.font = UIFont(name: Roboto.bold.rawValue, size: 30)
         replyLB.textColor = .NaturianColor.darkGray
         replyLB.text = "REPLY"
-//        descriptionText.textColor = UIColor.lightGray
+        //        descriptionText.textColor = UIColor.lightGray
         
         replyCotent.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         replyCotent.textAlignment = .justified
@@ -144,7 +176,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         replyButton.setTitle("Reply", for: .normal)
         replyButton.setTitleColor(.white, for: .normal)
         replyButton.backgroundColor = UIColor.NaturianColor.treatmentGreen
-
+        
         replyButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         replyButton.lkCornerRadius = 24
         
@@ -152,13 +184,13 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         cancelButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.setTitleColor(UIColor.NaturianColor.treatmentGreen, for: .normal)
-     
+        
         actStack.axis = .horizontal
         actStack.alignment = .center
         actStack.spacing = 14
-
+        
     }
-
+    
     func layout() {
         
         view.addSubview(subview)
@@ -175,9 +207,9 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         replyCotent.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
         actStack.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
         
+        NSLayoutConstraint.activate([
+            
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -203,8 +235,8 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
             replyButton.heightAnchor.constraint(equalToConstant: 48),
             cancelButton.widthAnchor.constraint(equalToConstant: 130),
             cancelButton.heightAnchor.constraint(equalToConstant: 48)
-        
+            
         ])
-
+        
     }
 }

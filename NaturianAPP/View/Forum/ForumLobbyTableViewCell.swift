@@ -28,12 +28,6 @@ class ForumLobbyTableViewCell: UITableViewCell {
     let seedBtn = UIButton()
     let seedLB = UILabel()
     
-    //    let providerName = UILabel()
-    //    let locationImage = UIImageView()
-    //    let locationLabel = UILabel()
-    //    let seedValue = UILabel()
-    //    let genderIcon = UIImageView()
-    
     private let nameStackView = UIStackView()
     private let articleStack = UIStackView()
     private let locationStackView = UIStackView()
@@ -57,11 +51,6 @@ class ForumLobbyTableViewCell: UITableViewCell {
         //        contentView.backgroundColor = .clear
         subview.backgroundColor = .white
         subview.lkCornerRadius = 15
-        title.font = UIFont(name: Roboto.bold.rawValue, size: 18)
-        title.textAlignment = .left
-        title.text = "Title"
-        title.textColor = .NaturianColor.darkGray
-        title.numberOfLines = 2
         
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
@@ -82,11 +71,11 @@ class ForumLobbyTableViewCell: UITableViewCell {
         articleStack.alignment = .leading
         articleStack.spacing = 3
         
-        likeBtn.setImage(UIImage(named: "liked"), for: .normal)
+        likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
         likeLB.text = "321"
         likeLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         likeLB.textColor = .NaturianColor.navigationGray
-        seedBtn.setImage(UIImage(named: "seed_green"), for: .normal)
+        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
         seedLB.text = "123"
         seedLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedLB.textColor = .NaturianColor.navigationGray
@@ -101,7 +90,6 @@ class ForumLobbyTableViewCell: UITableViewCell {
     }
     
     func layout() {
-        
         
         contentView.addSubview(subview)
         
@@ -129,15 +117,9 @@ class ForumLobbyTableViewCell: UITableViewCell {
         locationStackView.translatesAutoresizingMaskIntoConstraints = false
         likestack.translatesAutoresizingMaskIntoConstraints = false
         seedstack.translatesAutoresizingMaskIntoConstraints = false
-        //        nameStackView.addArrangedSubview(genderIcon)
-        //        nameStackView.addArrangedSubview(providerName)
         
         articleStack.addArrangedSubview(title)
-        //        talentStackView.addArrangedSubview(seedValue)
         articleStack.addArrangedSubview(categoryBTN)
-        
-        //        locationStackView.addArrangedSubview(locationImage)
-        //        locationStackView.addArrangedSubview(locationLabel)
         
         NSLayoutConstraint.activate([
             
@@ -158,25 +140,15 @@ class ForumLobbyTableViewCell: UITableViewCell {
             categoryBTN.widthAnchor.constraint(equalToConstant: 70),
             categoryBTN.heightAnchor.constraint(equalToConstant: 20),
             
-            //            genderIcon.widthAnchor.constraint(equalToConstant: 18),
-            //            genderIcon.heightAnchor.constraint(equalToConstant: 18),
-            
             // talentStack
             articleStack.topAnchor.constraint(equalTo: subview.topAnchor, constant: 16),
             articleStack.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 16),
-            //            articleStack.heightAnchor.constraint(equalToConstant: 50),
             
             // talentDescription
             title.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),
             articleContent.topAnchor.constraint(equalTo: articleStack.bottomAnchor, constant: 4),
             articleContent.leadingAnchor.constraint(equalTo: articleStack.leadingAnchor),
             articleContent.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            
-            //            locationStackView.topAnchor.constraint(equalTo: articleContent.bottomAnchor, constant: 12),
-            //            locationStackView.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),
-            //            locationStackView.bottomAnchor.constraint(equalTo: nameStackView.bottomAnchor),
-            //            locationImage.widthAnchor.constraint(equalToConstant: 18),
-            //            locationImage.heightAnchor.constraint(equalToConstant: 18),
             
             // providerName
             nameStackView.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 8),

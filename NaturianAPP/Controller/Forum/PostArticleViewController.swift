@@ -20,7 +20,9 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var backButton = UIButton()
 
 //    var userID = Auth.auth().currentUser?.uid
-    var userID = "2"
+//    var userID = "2"
+    let userID = "1"
+
     var userModels: UserModel?
     
     var categoryResult = ""
@@ -34,10 +36,12 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var accountInfo: UserModel?
     
     var postPhotoImage = UIImageView()
+    var postPhotoImageX = UIImage(named: "takephoto")
+
     let titleTextField = UITextField()
     let descriptionTextView = UITextView()
     let categoryButton = UIButton()
-    
+
     let contentStack = UIStackView()
     let imagePickerController = UIImagePickerController()
     let postButton = UIButton()
@@ -56,9 +60,8 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         // for camera
         imagePickerController.delegate = self
         setUp()
-        style()
         layout()
-        //        self.navigationController?.isNavigationBarHidden = true
+        style()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +74,6 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         postPhotoImage.layoutIfNeeded()
         postPhotoImage.clipsToBounds = true
         postPhotoImage.contentMode = .scaleAspectFill
-    
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -165,7 +167,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
 //        postPhotoImage.backgroundColor = .NaturianColor.navigationGray
         postPhotoImage.lkCornerRadius = 15
         postPhotoImage.isUserInteractionEnabled = true
-        postPhotoImage.image = UIImage(named: "takephoto")
+        postPhotoImage.image = postPhotoImageX
         postPhotoImage.contentMode = .scaleAspectFit
         
         categoryButton.setImage(UIImage(named: "down"), for: .normal)
@@ -183,9 +185,6 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         
         descriptionTextView.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         descriptionTextView.textAlignment = .justified
-        //        descriptionText.placeholder = "Conetent"
-//        descriptionText.backgroundColor = .gray
-//        descriptionText.lkBorderColor = .gray
         
         contentStack.axis = .vertical
         contentStack.alignment = .leading
@@ -194,8 +193,6 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         postButton.setTitle("Post", for: .normal)
         postButton.setTitleColor(.white, for: .normal)
         postButton.backgroundColor = UIColor.NaturianColor.treatmentGreen
-//        postButton.alpha = 0.8
-        //        tranferButton.isEnabled = false
         postButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         postButton.lkCornerRadius = 24
         
@@ -203,9 +200,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         cancelButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.setTitleColor(UIColor.NaturianColor.treatmentGreen, for: .normal)
-        
-//        contentStack.backgroundColor = .blue
-//        descriptionText.backgroundColor = .blue
+
         actStack.axis = .horizontal
         actStack.alignment = .center
         actStack.spacing = 14
@@ -307,6 +302,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
                                                       isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
                                                       createdTime: self.userModels?.createdTime,
+                                                      blockList: self.userModels?.blockList ?? [],
                                                       email: self.userModels?.email
                             )
                             
@@ -349,9 +345,11 @@ extension PostArticleViewController: UIImagePickerControllerDelegate {
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.postPhotoImage.image = image
+            
+            self.postPhotoImageX = image
             //            selectedImage = self.postPhotoImage.image
         }
+        
         picker.dismiss(animated: true)
     }
 }

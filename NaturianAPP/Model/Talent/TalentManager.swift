@@ -67,7 +67,81 @@ class TalentManager {
         }
     }
     
-    func fetchMyIDData(userID:String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+    func fetchBlockListData(blockList: [String], completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+        
+        database.whereField("userID", notIn: blockList) .getDocuments { (querySnapshot, error) in
+            
+            print(blockList)
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var talentArticles = [TalentArticle]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let talentArticle = try document.data(as: TalentArticle?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            talentArticles.append(talentArticle)
+                        }
+                        print(talentArticles)
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(talentArticles))
+            }
+        }
+    }
+    
+    func fetch1BlockListData(blockList: [String], completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+        
+        database.whereField("userID", isNotEqualTo: blockList.first!) .getDocuments { (querySnapshot, error) in
+            
+            print(blockList.first!)
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var talentArticles = [TalentArticle]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let talentArticle = try document.data(as: TalentArticle?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            talentArticles.append(talentArticle)
+                        }
+                        print(talentArticles)
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(talentArticles))
+            }
+        }
+    }
+    
+    func fetchMyIDData(userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
         db.collection("talent").whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
@@ -124,7 +198,7 @@ class TalentManager {
             
             fileReference.putData(data, metadata: nil) { result in
                 switch result {
-                case .success(_):
+                case .success:
                     fileReference.downloadURL(completion: completion)
                 case .failure(let error):
                     completion(.failure(error))
@@ -134,72 +208,107 @@ class TalentManager {
     }
     
     func fetchAppliedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
-
+        
         db.collection("talent").whereField("didApplyID", arrayContains: userID).getDocuments { (querySnapshot, error) in
-
+            
             if let error = error {
-
+                
                 print(LocalizedError.self)
                 completion(.failure(error))
-
+                
             } else {
-
+                
                 var talentArticles = [TalentArticle]()
-
+                
                 for document in querySnapshot!.documents {
-
+                    
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
                                                                  decoder: Firestore.Decoder()) {
-
+                            
                             talentArticles.append(talentArticle)
                         }
                         print(talentArticles)
-
+                        
                     } catch {
-
+                        
                         completion(.failure(error))
-
+                        
                     }
                 }
-
+                
                 completion(.success(talentArticles))
             }
         }
     }
     
-    func fetchAcceptedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
-
-        db.collection("talent").whereField("didAcceptID", arrayContains: userID).getDocuments { (querySnapshot, error) in
-
+    func fetchMyAppliedTalent (userID: String,
+                               talentPostID: String,
+                               completion: @escaping (Result<TalentArticle, Error>) -> Void) {
+        
+        db.collection("talent").whereField("userID",
+                                           isEqualTo: userID).whereField("talentPostID",
+                                                                         isEqualTo: talentPostID).getDocuments { (querySnapshot, error) in
+            
             if let error = error {
-
+                
                 print(LocalizedError.self)
                 completion(.failure(error))
-
+                
             } else {
-
+                
+                if let doc = querySnapshot?.documents.first {
+                    do {
+                        print(doc)
+                        if let talentArticle = try doc.data(as: TalentArticle?.self,
+                                                        decoder: Firestore.Decoder()) {
+                            
+                            completion(.success(talentArticle))
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchAcceptedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
+        
+        db.collection("talent").whereField("didAcceptID",
+                                           arrayContains: userID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
                 var talentArticles = [TalentArticle]()
-
+                
                 for document in querySnapshot!.documents {
-
+                    
                     do {
                         print(document)
                         if let talentArticle = try document.data(as: TalentArticle?.self,
                                                                  decoder: Firestore.Decoder()) {
-
+                            
                             talentArticles.append(talentArticle)
                         }
                         print(talentArticles)
-
+                        
                     } catch {
-
+                        
                         completion(.failure(error))
-
+                        
                     }
                 }
-
+                
                 completion(.success(talentArticles))
             }
         }
@@ -246,6 +355,57 @@ class TalentManager {
                     completion(.success(talentArticles))
                 }
             }
+    }
+    
+    func removeApplyState(applyTalentID: String,
+                          applierID: String,
+                          completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        database.document(applyTalentID ).updateData([
+            "didApplyID": FieldValue.arrayRemove([applierID])
+        ]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func cancelAcceptState(applyTalentID: String,
+                           applierID: String,
+                           completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        database.document(applyTalentID ).updateData([
+            "didAcceptID": FieldValue.arrayRemove([applierID])
+        ]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func updateAcceptState(applyTalentID: String,
+                           applierID: String,
+                           completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        database.document(applyTalentID ).updateData([
+            "didAcceptID": FieldValue.arrayUnion([applierID])
+        ]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
     }
     
 }

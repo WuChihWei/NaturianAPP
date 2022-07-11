@@ -29,6 +29,8 @@ class ForumDetailReplyTBCell: UITableViewCell {
         layout()
     }
     
+    
+    
     func setup() {
         
     }

@@ -94,4 +94,3 @@ extension MyTalentDidAcceptVC: UITableViewDataSource {
         return cell
     }
 }
-

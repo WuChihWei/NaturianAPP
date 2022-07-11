@@ -11,12 +11,12 @@ import FirebaseFirestore
 
 class ForumViewController: UIViewController {
  
-    private var categories = [ (name: "Food", imageName: "food_icon"),
-                               (name: "Grocery", imageName: "grocery_icon"),
-                               (name: "Plant", imageName:"plant_icon"),
-                               (name: "Adventure", imageName: "adventure_icon"),
-                               (name: "Exercise", imageName: "exercise_icon"),
-                               (name: "Treatment", imageName: "treatment_icon") ]
+    var categories = [ (name: "Food", imageName: "scroller_1"),
+                       (name: "Grocery", imageName: "scroller_2"),
+                       (name: "Plant", imageName:"scroller_3"),
+                       (name: "Adventure", imageName: "scroller_4"),
+                       (name: "Exercise", imageName: "scroller_5"),
+                       (name: "Treatment", imageName: "scroller_6") ]
     
     //    private enum LayoutConstant {
     //        static let spacing: CGFloat = 16.0
@@ -172,7 +172,6 @@ extension ForumViewController: UICollectionViewDelegateFlowLayout {
             fatalError("can't find ForumLobbyViewController")
         }
         vc.forumTitle = categories[indexPath.row].name
-        
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

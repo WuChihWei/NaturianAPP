@@ -18,10 +18,12 @@ class ProfileVC: UIViewController {
     
     var addTransparentManager = AddDropDownField()
 //    let userID = Auth.auth().currentUser?.uid
-    let userID = "2"
+//    let userID = "2"
+    let userID = "1"
+
 
     var photoManager = PhotoManager()
-    var profileManager = UserFirebaseManager()
+    var profileManager = UserManager()
     let closeBtn = UIButton()
     var userImage = UIImageView()
     let logoImage = UIImageView()
@@ -110,7 +112,7 @@ class ProfileVC: UIViewController {
                 
                 switch result {
                     
-                case .success(_):
+                case .success:
                     
                     fileReference.downloadURL { result in
                         switch result {
@@ -136,14 +138,18 @@ class ProfileVC: UIViewController {
 //                                                         email: email
 //                            )
 //
-                            self.profileManager.replaceData(name: name, uid: self.userID ?? "", email: email, gender: gender, userAvatar: userAvatar)
+                            self.profileManager.replaceData(name: name,
+                                                            uid: self.userID ?? "",
+                                                            email: email,
+                                                            gender: gender,
+                                                            userAvatar: userAvatar)
 
-                        case .failure(_):
+                        case .failure:
                             break
                         }
                     }
                     
-                case .failure(_):
+                case .failure:
                     break
                 }
             }
