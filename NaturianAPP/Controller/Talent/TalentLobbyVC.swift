@@ -11,7 +11,7 @@ import FirebaseFirestore
 import Kingfisher
 import FirebaseAuth
 
-class TalentLobbyVC: UIViewController {
+class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     
     var talentManager = TalentManager()
     var userManager = UserManager()
@@ -27,7 +27,6 @@ class TalentLobbyVC: UIViewController {
     let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
 //    let userID = "1"
-
 
     let addPosteBTN = UIButton()
     
@@ -104,7 +103,7 @@ class TalentLobbyVC: UIViewController {
             
                         case .success(let talentArticles):
             
-                            self?.talentArticles = talentArticles
+                            self?.talentArticles = talentArticles                            
             
                             self?.tableView.reloadData()
             
@@ -146,25 +145,6 @@ class TalentLobbyVC: UIViewController {
         }
     }
     
-//    func fetchTalentArticle() {
-//                
-//        talentManager.fetchData { [weak self] result in
-//            
-//            switch result {
-//                
-//            case .success(let talentArticles):
-//                
-//                self?.talentArticles = talentArticles
-//                
-//                self?.tableView.reloadData()
-//                
-//            case .failure:
-//                
-//                print("can't fetch data")
-//            }
-//        }
-//    }
-    
     func setUp() {
         
         addPosteBTN.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
@@ -175,6 +155,9 @@ class TalentLobbyVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         filterButton.addTarget(self, action: #selector(filterTalent), for: .touchUpInside)
+        
+        searchTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
+        searchTextFieldSetup()
     }
     
     @objc func postTalent() {
@@ -189,6 +172,33 @@ class TalentLobbyVC: UIViewController {
 //        present(vc, animated: false)
     }
     
+    func searchTextFieldSetup() {
+        
+        searchTextField.delegate = self
+        searchTextField.clearButtonMode = .unlessEditing
+    }
+    
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if searchTextField.text != nil {
+            let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
+                let words = filterArray.title?.description
+                let isMach = words?.localizedCaseInsensitiveContains(self.searchTextField.text ?? "")
+                return isMach ?? true
+            }
+
+            self.talentArticles = filterArray
+            tableView.reloadData()
+        } else {
+            
+            userState()
+        }
+    }
+    
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        userState()
+//    }
+    
     private func showPostTalentVC() {
         
     }
@@ -199,7 +209,6 @@ class TalentLobbyVC: UIViewController {
             print("Can't find TalentFilterVC")
             return
         }
-        //        talentFilterVC.modalPresentationStyle = .overFullScreen
         present(talentFilterVC, animated: true, completion: nil)
         
         talentFilterVC.filterDelegate = self
@@ -229,7 +238,7 @@ class TalentLobbyVC: UIViewController {
         searchTextField.placeholder = "Search Result"
         searchTextField.font = UIFont.systemFont(ofSize: 14)
         searchTextField.backgroundColor = .white
-        searchTextField.addPadding(.left(30))
+        searchTextField.addPadding(.left(35))
         searchTextField.lkCornerRadius = 20
         // filterButton
         filterButton.setImage(UIImage(named: "sliders"), for: .normal)

@@ -9,10 +9,8 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import JGProgressHUD
-import MBProgressHUD
-import SwiftUI
 import FirebaseAuth
+import Lottie
 
 class PostTalentVC: UIViewController, UITextViewDelegate {
     
@@ -21,7 +19,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     var photoManager = PhotoManager()
     var backButton = UIButton()
     let cancelButton = UIButton()
-        var userID = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
     //    let userID = "2"
 //    let userID = "1"
     
@@ -85,6 +83,17 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -180,8 +189,9 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         descriptionTextView.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         descriptionTextView.textAlignment = .justified
         
-        seedIcon.image = UIImage(named: "seed")
+        seedIcon.image = UIImage(named: "seedgray")
         seedValueText.placeholder = "???"
+        seedValueText.keyboardType = .numberPad
         
         seedStack.axis = .horizontal
         seedStack.alignment = .leading
@@ -279,6 +289,8 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     // MARK: Upload post
     @objc func postTalent() {
         
+        setupLottie()
+        
         let imageData = self.postPhotoImage.image?.jpegData(compressionQuality: 0.8)
         
         guard imageData != nil else {
@@ -362,7 +374,7 @@ extension PostTalentVC: UIImagePickerControllerDelegate {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.postPhotoImage.image = image
-            //            selectedImage = self.postPhotoImage.image
+            self.postPhotoImageX = image
         }
         picker.dismiss(animated: true)
     }

@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import MessageKit
 
 protocol SelectedCollectionItemDelegate: AnyObject {
     func selectedCollectionItem(index: Int)
+}
+
+protocol SelectedBtnDelegate: AnyObject {
+    func selectedBtn(sender: Sender)
 }
 
 class HomeTopTVCell: UITableViewCell {
@@ -86,6 +91,7 @@ class HomeTopTVCell: UITableViewCell {
     
     func setup() {
         
+        
         collectionView.layoutIfNeeded()
 
     }
@@ -97,12 +103,12 @@ class HomeTopTVCell: UITableViewCell {
         bottomTitleView.backgroundColor = .white
         
         firstLB.text = "Hi, Naturian"
-        firstLB.textColor = .white
+        firstLB.textColor = .NaturianColor.navigationGray
         firstLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
         firstLB.numberOfLines = 0
         
         secondLB.text = "Stop Your Default Life"
-        secondLB.textColor = .white
+        secondLB.textColor = .NaturianColor.navigationGray
         secondLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
         secondLB.numberOfLines = 0
         

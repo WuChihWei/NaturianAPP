@@ -76,6 +76,15 @@ class ManageVC: UIViewController {
             let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
                 self.deleteAccount()
+                
+                guard let vc = self.storyboard?.instantiateViewController(
+                    withIdentifier: "SignInViewController") as? SignInViewController else {
+                    
+                    fatalError("can't find SignInViewController")
+                }
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }
             let noAction = UIAlertAction(title: "Cancel", style: .cancel)
 

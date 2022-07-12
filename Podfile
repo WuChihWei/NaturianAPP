@@ -23,6 +23,6 @@ pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
 pod 'LZViewPager', '~> 1.2.5'
 pod 'Firebase/Crashlytics'
-
+pod 'lottie-ios'
 
 end

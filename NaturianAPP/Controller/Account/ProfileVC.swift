@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
+import Lottie
 
 class GenderCell: UITableViewCell {
     
@@ -21,12 +22,11 @@ class ProfileVC: UIViewController {
 //    let userID = "2"
 //    let userID = "1"
 
-
     var photoManager = PhotoManager()
     var profileManager = UserManager()
     let closeBtn = UIButton()
     var userImage = UIImageView()
-    let logoImage = UIImageView()
+//    let logoImage = UIImageView()
     let photoButton = UIButton()
     let comfirmButton = UIButton()
     
@@ -35,7 +35,10 @@ class ProfileVC: UIViewController {
     
     let genderLabel = UILabel()
     var genderButton = UIButton()
-    var dataSource = [String]()
+    let dataSource = ["Male",
+                      "Female",
+                      "Undefined"]
+    
     let tableView = UITableView()
     var profileModels: UserModel!
     let imagePickerController = UIImagePickerController()
@@ -44,7 +47,7 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         imagePickerController.delegate = self
         setup()
         style()
@@ -60,7 +63,7 @@ class ProfileVC: UIViewController {
         
         view.layoutIfNeeded()
         userImage.clipsToBounds = true
-        logoImage.clipsToBounds = true
+//        logoImage.clipsToBounds = true
         photoButton.clipsToBounds = true
         
         photoButton.lkCornerRadius = photoButton.bounds.height / 2
@@ -77,12 +80,21 @@ class ProfileVC: UIViewController {
         
         genderButton.lkCornerRadius = 15
         
-        comfirmButton.lkCornerRadius = photoButton.bounds.height / 2
+    }
+    
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
     }
     
     @objc func clickGender(_ sender: Any) {
-        dataSource = ["Male", "Female",
-        "Undefined"]
+        
         
         addTransparentManager.addWithoutTransparent(radius: 15, tableView: tableView,
                                                     view: self.view,
@@ -98,7 +110,9 @@ class ProfileVC: UIViewController {
     
     @objc func upDate() {
         
-        let imageData = self.userImage.image?.jpegData(compressionQuality: 0.8)
+        setupLottie()
+
+        let imageData = self.userImage.image?.jpegData(compressionQuality: 0.6)
         
         guard imageData != nil else {
             return
@@ -121,26 +135,11 @@ class ProfileVC: UIViewController {
                             
 //                            let url = URL(string: "myphotoapp:Vacation?index=1")
                             guard let name = self.nameTextField.text else {return}
-//                            guard let userID = self.userID else {return}
                             let gender = self.genderResult
                             let userAvatar = "\(url)"
-//                            let createdTime = Date()
-                            guard let email = Auth.auth().currentUser?.email else {return}
-
-//                            let userInfo = UserModel(name: name,
-//                                                         userID: userID,
-//                                                         seedValue: 420,
-//                                                         gender: gender,
-//                                                         userAvatar: userAvatar,
-//                                                         appliedTalent: [],
-//                                                         isAccepetedTalent: [],
-//                                                         createdTime: createdTime,
-//                                                         email: email
-//                            )
-//
+                            print(gender)
                             self.profileManager.replaceData(name: name,
                                                             uid: self.userID ?? "",
-                                                            email: email,
                                                             gender: gender,
                                                             userAvatar: userAvatar)
 
@@ -152,14 +151,15 @@ class ProfileVC: UIViewController {
                 case .failure:
                     break
                 }
+                self.navigationController?.popViewController(animated: true)
             }
         }
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func closePage() {
-        
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: false)
+//        dismiss(animated: true)
     }
     
     func setup() {
@@ -174,15 +174,15 @@ class ProfileVC: UIViewController {
         
         view.backgroundColor = .NaturianColor.lightGray
         
-        userImage.image = UIImage(named: "userImage")
+        userImage.image = UIImage(named: "profile_icon")
 
         closeBtn.setImage(UIImage(named: "back"), for: .normal)
 
 //        userImage.backgroundColor = .NaturianColor.treatmentGreen
         
-        photoButton.setImage(UIImage(named: "camera"), for: .normal)
+        photoButton.setImage(UIImage(named: "camera_green"), for: .normal)
         
-        logoImage.image = UIImage(named: "naturianLogo")
+//        logoImage.image = UIImage(named: "naturianLogo")
         
         nameLabel.text = "YOUR NAME"
         nameLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
@@ -208,14 +208,14 @@ class ProfileVC: UIViewController {
         comfirmButton.setTitle("Comfirm", for: .normal)
         comfirmButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 18)
         comfirmButton.backgroundColor = .NaturianColor.treatmentGreen
-        
+        comfirmButton.lkCornerRadius = 24
     }
     
     func layout() {
         
         closeBtn.translatesAutoresizingMaskIntoConstraints = false
         userImage.translatesAutoresizingMaskIntoConstraints = false
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
+//        logoImage.translatesAutoresizingMaskIntoConstraints = false
         photoButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -225,7 +225,7 @@ class ProfileVC: UIViewController {
         
         view.addSubview(closeBtn)
         view.addSubview(userImage)
-        view.addSubview(logoImage)
+//        view.addSubview(logoImage)
         view.addSubview(photoButton)
 
 //        userImage.addSubview(photoButton)
@@ -258,12 +258,12 @@ class ProfileVC: UIViewController {
             photoButton.widthAnchor.constraint(equalToConstant: 38),
             photoButton.heightAnchor.constraint(equalToConstant: 38),
             
-            logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImage.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 14),
-            logoImage.widthAnchor.constraint(equalToConstant: 134),
-            logoImage.heightAnchor.constraint(equalToConstant: 24),
+//            logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            logoImage.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 14),
+//            logoImage.widthAnchor.constraint(equalToConstant: 134),
+//            logoImage.heightAnchor.constraint(equalToConstant: 24),
             
-            nameLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 64),
+            nameLabel.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 70),
             nameLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor, constant: 14),
             
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
@@ -308,10 +308,11 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = dataSource[indexPath.row]
+        self.genderResult = dataSource[indexPath.row]
+        print(self.genderResult)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         cell.textLabel?.textAlignment = .left
         cell.selectionStyle = .none
-        self.genderResult = dataSource[indexPath.row]
         return cell
     }
     
@@ -321,7 +322,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         genderButton.setTitle(dataSource[indexPath.row], for: .normal)
-//        profileModels.gender = dataSource[indexPath.row]
+        self.genderResult = dataSource[indexPath.row]
         removeTransparentView()
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import Foundation
 
 class ForumDetailViewController: UIViewController {
     
@@ -173,7 +174,7 @@ class ForumDetailViewController: UIViewController {
                         self?.repliedArticles.append(replyModel)
     
                         print(self?.repliedArticles as Any)
-    
+                                                
                         DispatchQueue.main.async {
                             self?.tableView.reloadData()
                         }
@@ -343,17 +344,21 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell2.contentView.layoutIfNeeded()
             cell2.clipsToBounds = true
 
+            let newArray = self.repliedArticles.sorted {
+                guard let d1 = $0.createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"),
+                      let d2 = $1.createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss") else { return false }
+                return d1 > d2
+            }
+            
             cell2.selectionStyle = .none
-            cell2.replierName.text = repliedArticles[indexPath.row].userInfo.name
-            cell2.replyContent.text = repliedArticles[indexPath.row].replyContent
+            cell2.replierName.text = newArray[indexPath.row].userInfo.name
+            cell2.replyContent.text = newArray[indexPath.row].replyContent
+        
+            cell2.createdTimeLB.text = newArray[indexPath.row].createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
             
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-            cell2.createdTimeLB.text = repliedArticles[indexPath.row].createdTime.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
-            
-            let replierUrl = URL(string: repliedArticles[indexPath.row].userInfo.userAvatar ?? "")
+            let replierUrl = URL(string: newArray[indexPath.row].userInfo.userAvatar ?? "")
             cell2.replierAvatar.kf.setImage(with: replierUrl)
+ 
             cell2.replierAvatar.contentMode = .scaleAspectFill
             cell2.replierAvatar.clipsToBounds = true
             
@@ -371,7 +376,7 @@ extension ForumDetailViewController: UITableViewDataSource {
     }
 }
 
-extension ForumDetailViewController: ReplyArticleDelegate{
+extension ForumDetailViewController: ReplyArticleDelegate {
     func replyArticle(repliedArticles: [ReplyModel]) {
         self.repliedArticles =  repliedArticles
         tableView.reloadData()

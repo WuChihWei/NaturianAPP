@@ -14,15 +14,15 @@ extension UIColor {
         
         static var darkGray: UIColor { return UIColor(red: 81/255, green: 81/255, blue: 81/255, alpha: 1) }
         
-        static var lightGray: UIColor { return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1) }
+        static var lightGray: UIColor { return UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1) }
         
-        static var treatmentGreen: UIColor { return UIColor(red: 46/255, green: 218/255, blue: 74/255, alpha: 1) }
+        static var treatmentGreen: UIColor { return UIColor(red: 6/255, green: 204/255, blue: 76/255, alpha: 1) }
         
-        static var foodYellow: UIColor { return UIColor(red: 242/255, green: 221/255, blue: 25/255, alpha: 1) }
+        static var foodYellow: UIColor { return UIColor(red: 231/255, green: 208/255, blue: 0/255, alpha: 1) }
         
         static var adventurePink: UIColor { return UIColor(red: 255/255, green: 156/255, blue: 204/255, alpha: 1) }
         
-        static var plantGreen: UIColor { return UIColor(red: 11/255, green: 191/255, blue: 105/255, alpha: 1) }
+        static var plantGreen: UIColor { return UIColor(red: 3/255, green: 201/255, blue: 34/255, alpha: 1) }
         
         static var exerciseBlue: UIColor { return UIColor(red: 64/255, green: 180/255, blue: 241/255, alpha: 1) }
         

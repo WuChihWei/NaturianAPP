@@ -57,7 +57,7 @@ class SignInViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        tabBarController?.tabBar.isHidden = false
     }
     
     @objc func presentEula() {
@@ -66,7 +66,7 @@ class SignInViewController: UIViewController {
             fatalError("can't find EULAVC")
         }
         present(vc, animated: true)
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func presentPolicy() {
@@ -75,7 +75,7 @@ class SignInViewController: UIViewController {
             fatalError("can't find PrivacyPolicyVC")
         }
         present(vc, animated: true)
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     func setup() {
@@ -134,7 +134,7 @@ class SignInViewController: UIViewController {
         signInWithAppleBtn.widthAnchor.constraint(equalToConstant: 300).isActive = true
         signInWithAppleBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        signInWithAppleBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -140).isActive = true
+        signInWithAppleBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
         
         signInWithAppleBtn.lkBorderWidth = 1
         signInWithAppleBtn.lkCornerRadius = 25
@@ -142,13 +142,13 @@ class SignInViewController: UIViewController {
         NSLayoutConstraint.activate([
             
             firstStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstStack.bottomAnchor.constraint(equalTo: secondStack.topAnchor, constant: -15),
+            firstStack.topAnchor.constraint(equalTo: signInWithAppleBtn.bottomAnchor, constant: 20),
             firstStack.heightAnchor.constraint(equalToConstant: 14),
             
             //            secondStack.topAnchor.constraint(equalTo: firstStack.bottomAnchor, constant: 4),
             secondStack.heightAnchor.constraint(equalToConstant: 14),
             secondStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            secondStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            secondStack.topAnchor.constraint(equalTo: firstStack.bottomAnchor, constant: 10)
         ])
     }
     

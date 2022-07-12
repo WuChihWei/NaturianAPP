@@ -41,7 +41,7 @@ struct ReplyModel: Codable {
     
     let userID: String?
         
-    let createdTime: Date
+    let createdTime: Date?
     
     let userInfo: UserModel
 }

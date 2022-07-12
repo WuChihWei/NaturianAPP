@@ -345,8 +345,8 @@ extension PostArticleViewController: UIImagePickerControllerDelegate {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
+            self.postPhotoImage.image = image
             self.postPhotoImageX = image
-            //            selectedImage = self.postPhotoImage.image
         }
         
         picker.dismiss(animated: true)

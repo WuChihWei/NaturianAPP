@@ -118,6 +118,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func didDismiss() {
+        navigationController?.popViewController(animated: false)
         dismiss(animated: true)
     }
     
@@ -193,6 +194,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         findOtherNameLB.textAlignment = .right
         findOtherNameLB.textColor = UIColor.NaturianColor.darkGray
         
+        seedTextField.keyboardType = .numberPad
         seedTextField.placeholder = "0"
         seedTextField.addPadding(.right(12))
         seedTextField.textAlignment = .right
@@ -205,7 +207,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         remainSeedLabel.textColor = UIColor.NaturianColor.darkGray
         remainSeedLabel.textAlignment = .left
         
-        seedIcon.image = UIImage(named: "seed")
+        seedIcon.image = UIImage(named: "seedgray")
         
         remainValue = currentUserModels?.seedValue ?? 0
         remainSeedValue.text = "\(remainValue)"

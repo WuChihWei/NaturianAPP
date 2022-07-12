@@ -21,6 +21,7 @@ class TalentDetailViewController: UIViewController {
 //    let userID = "1"
 
     var appliedState: Int = 0
+    var scrollView = UIScrollView()
     
     let postPhotoImage = UIImageView()
     let avatarImage = UIImageView()
@@ -201,6 +202,11 @@ extension TalentDetailViewController {
     }
     
     func style() {
+//        
+//        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
+//        scrollView.showsHorizontalScrollIndicator = false
+//        scrollView.isScrollEnabled = true
         
         switchColor()
         

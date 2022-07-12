@@ -22,7 +22,7 @@ class MyChatRoomVC: UIViewController {
 
     var forumManager = ForumManager()
     
-    let closeButton = UIButton()
+//    let closeButton = UIButton()
     let titleLB = UILabel()
     
         let userID = Auth.auth().currentUser?.uid
@@ -80,7 +80,7 @@ class MyChatRoomVC: UIViewController {
     
     @objc func closePage() {
         dismiss(animated: true)
-//        navigationController?.popViewController(animated: false)
+        navigationController?.popViewController(animated: false)
     }
 
     func fetchChatInfo() {
@@ -135,7 +135,7 @@ class MyChatRoomVC: UIViewController {
 
     func setUp() {
         
-        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
+//        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
         
         tableView.register(ChatRoomTVCell.self, forCellReuseIdentifier: ChatRoomTVCell.identifer)
         
@@ -146,8 +146,8 @@ class MyChatRoomVC: UIViewController {
     
     func style() {
         
-        closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
-        
+//        closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
+//
         titleLB.text = "Chat Room"
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         
@@ -163,22 +163,22 @@ class MyChatRoomVC: UIViewController {
     
     func layout() {
         
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
+//        closeButton.translatesAutoresizingMaskIntoConstraints = false
         titleLB.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(tableView)
-        view.addSubview(closeButton)
+//        view.addSubview(closeButton)
         view.addSubview(titleLB)
         
         NSLayoutConstraint.activate([
             
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            closeButton.heightAnchor.constraint(equalToConstant: 36),
-            closeButton.widthAnchor.constraint(equalToConstant: 36),
+//            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+//            closeButton.heightAnchor.constraint(equalToConstant: 36),
+//            closeButton.widthAnchor.constraint(equalToConstant: 36),
             
-            titleLB.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 9),
+            titleLB.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 33),
             titleLB.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             tableView.topAnchor.constraint(equalTo: titleLB.bottomAnchor, constant: 12),

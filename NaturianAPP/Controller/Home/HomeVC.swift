@@ -58,6 +58,43 @@ class HomeVC: UIViewController {
         self.view.endEditing(true)
     }
     
+    
+    @objc func seedPage() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "TransferSeedVC") as? TransferSeedVC else {
+            
+            fatalError("can't find TransferSeedVC")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func talentPage() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "MyTalentManageVC") as? MyTalentManageVC else {
+            
+            fatalError("can't find MyTalentManageVC")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func collectionPage() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
+            
+            fatalError("can't find ForumLobbyViewController")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func massagePage() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "MyChatRoomVC") as? MyChatRoomVC else {
+            
+            fatalError("can't find MyChatRoomVC")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func fetchForumArticle() {
         
         print(forumArticles)
@@ -162,13 +199,19 @@ extension HomeVC: UITableViewDataSource {
                                                         for: indexPath) as? HomeTopTVCell else { fatalError("can't find Cell") }
             cell1.delegate = self
             
+            cell1.seedButton.addTarget(self, action: #selector(seedPage), for: .touchUpInside)
+            cell1.myTalentButton.addTarget(self, action: #selector(talentPage), for: .touchUpInside)
+            cell1.collectionButton.addTarget(self, action: #selector(collectionPage), for: .touchUpInside)
+            cell1.massageButton.addTarget(self, action: #selector(massagePage), for: .touchUpInside)
+            
         return cell1
         
         case 1 :
             
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: HomeBottomTVCell.identifer,
                                                             for: indexPath) as? HomeBottomTVCell else { fatalError("can't find Cell") }
-
+            
+            cell2.selectionStyle = .none
             cell2.backgroundColor = .white
             cell2.layoutIfNeeded()
             cell2.postImage.clipsToBounds = true
@@ -223,7 +266,6 @@ extension HomeVC: SelectedCollectionItemDelegate {
         vc.forumTitle = categories[self.didselectedCollection].name
         
         self.navigationController?.pushViewController(vc, animated: true)
-        
         
         print(index)
     }

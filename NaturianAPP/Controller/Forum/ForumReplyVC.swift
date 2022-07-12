@@ -9,6 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
+import Lottie
 
 protocol ReplyArticleDelegate: AnyObject {
     func replyArticle(repliedArticles: [ReplyModel])
@@ -84,7 +85,20 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         }
     }
     
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_xaazxgdm")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
+    }
+    
     @objc func replyArticle() {
+        
+        setupLottie()
         
         let createdTime = Date()
         let replyID = replyManager.forumReplyDatabase.document().documentID
@@ -125,10 +139,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                             
                             self?.repliedArticles.append(replyModel)
                             
-                    
-                            
                             DispatchQueue.main.async {
-                                print(self?.repliedArticles)
                                 self?.replyArticleDelegate?.replyArticle(repliedArticles: self?.repliedArticles ?? [])
                                 self?.dismiss(animated: false)
                             }

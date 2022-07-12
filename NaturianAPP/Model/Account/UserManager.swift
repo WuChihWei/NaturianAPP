@@ -96,7 +96,6 @@ class UserManager {
         }
     }
     
-    
     func listenUserData(userID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
 
         db.whereField("userID", isEqualTo: userID).addSnapshotListener { (querySnapshot, error) in
@@ -300,21 +299,16 @@ class UserManager {
         }
     }
     
-    func replaceData(name: String, uid: String, email: String, gender: String, userAvatar: String) {
+    func replaceData(name: String, uid: String, gender: String, userAvatar: String) {
         
         let data: [String: Any] = [
             
             "name": name,
-            "userID": uid,
-            "seedValue": 420,
             "gender": gender,
-            "userAvatar": userAvatar,
-            "appliedTalent": [""],
-            "isAcceptedTalent": [""],
-            "email": email,
+            "userAvatar": userAvatar
         ]
         
-        db.document(uid).setData(data) { error in
+        db.document(uid).updateData(data){ error in
             
             if let error = error {
                 print(error)
@@ -360,9 +354,11 @@ class UserManager {
             if error != nil {
                 // An error happened.
             } else {
+                
                 // Account deleted.
             }
         }
+        
     }
     
     func updateSeedValue(uid: String, seedValue: Int, completion: @escaping (Result<Void, Error>) -> Void) {

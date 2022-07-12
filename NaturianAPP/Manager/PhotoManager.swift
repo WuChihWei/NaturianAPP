@@ -13,7 +13,7 @@ struct PhotoManager {
         
 //        let imagePickerController = UIImagePickerController()
 
-        let alertController = UIAlertController(title: alertText, message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: alertText, message: nil, preferredStyle: .actionSheet)
         alertController.view.tintColor = UIColor.gray
         
         // Camera
@@ -22,11 +22,11 @@ struct PhotoManager {
         }
         alertController.addAction(cameraAction)
         
-        // Photo
-        let photoLibraryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
-            openPhotoLibrary()
-        }
-        alertController.addAction(photoLibraryAction)
+//        // Photo
+//        let photoLibraryAction = UIAlertAction(title: "Gallery", style: .default) { _ in
+//            openPhotoLibrary()
+//        }
+//        alertController.addAction(photoLibraryAction)
         
         // Gallery
         let savedPhotoAlbumAction = UIAlertAction(title: "Album", style: .default) { _ in
@@ -44,11 +44,11 @@ struct PhotoManager {
             controller.present(imagePickerController, animated: true)
         }
         
-        // turn on libary
-        func openPhotoLibrary() {
-            imagePickerController.sourceType = .photoLibrary
-            controller.present(imagePickerController, animated: true)
-        }
+//        // turn on libary
+//        func openPhotoLibrary() {
+//            imagePickerController.sourceType = .photoLibrary
+//            controller.present(imagePickerController, animated: true)
+//        }
         
         // turn on album
         func openPhotosAlbum() {

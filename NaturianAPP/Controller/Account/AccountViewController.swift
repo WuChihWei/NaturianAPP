@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 import FirebaseAuth
 import AuthenticationServices
+import Lottie
 
 protocol AccountVCDelegate: AnyObject {
     func sendAccountInfo(userModel: UserModel?)
@@ -27,7 +28,8 @@ class AccountViewController: UIViewController {
 //    let userID = "1"
     var userModels: UserModel!
     let backgroundView = UIView()
-    
+    let editButton = UIButton()
+
     let userAvatar = UIImageView()
     let editImageBtn = UIButton()
     let blackLine = UIView()
@@ -98,8 +100,22 @@ class AccountViewController: UIViewController {
         circleL.lkCornerRadius = circleL.bounds.width / 2
         circleR.lkCornerRadius = circleR.bounds.width / 2
         
+        transferBtn.lkCornerRadius = transferBtn.bounds.width / 2
+        transferBtn.lkBorderWidth = 2
+        transferBtn.lkBorderColor = .NaturianColor.navigationGray
+        
         userAvatar.topAnchor.constraint(equalTo: backgroundView.topAnchor,
                                         constant: backgroundView.bounds.height / 4 - 73 ).isActive = true
+    }
+    
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_xaazxgdm")
+           animationView.frame = CGRect(x: 0, y: 0, width: 500, height: 500)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+
+           view.addSubview(animationView)
+           animationView.play()
     }
     
     func generateQRCode(from string: String) -> UIImage? {
@@ -118,15 +134,19 @@ class AccountViewController: UIViewController {
     }
     
     func userState() {
-            
+        
+        setupLottie()
+
 //        guard let userID = Auth.auth().currentUser?.uid else {return}
         
         userFirebaseManager.listenUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     
+
                 case .success(let userModel):
                     
+
                     self?.userModels = userModel
                     
                     print(self?.userModels ?? "")
@@ -146,9 +166,9 @@ class AccountViewController: UIViewController {
     @objc func didTapTalent() {
         
         guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "TalentManageViewController") as? MyTalentManageVC else {
+            withIdentifier: "MyTalentManageVC") as? MyTalentManageVC else {
             
-            fatalError("can't find TalentDetailViewController")
+            fatalError("can't find MyTalentManageVC")
         }
         
         vc.userModel = userModels
@@ -169,6 +189,16 @@ class AccountViewController: UIViewController {
         //        tabBarController?.tabBar.isHidden = true
     }
     
+    @objc func didEdit() {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ProfileVC") as? ProfileVC else {
+            
+            fatalError("can't find ProfileVC")
+        }
+        navigationController?.pushViewController(vc, animated: false)
+//        present(vc, animated: true, completion: nil)
+    }
+    
     @objc func managePage() {
         
         guard let vc = storyboard?.instantiateViewController(
@@ -186,6 +216,7 @@ class AccountViewController: UIViewController {
         manageBtn.addTarget(self, action: #selector(managePage), for: .touchUpInside)
         transferBtn.addTarget(self, action: #selector(didTapTransfer), for: .touchUpInside)
         talentBtn.addTarget(self, action: #selector(didTapTalent), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(didEdit), for: .touchUpInside)
     }
     
     func setStyle() {
@@ -193,6 +224,10 @@ class AccountViewController: UIViewController {
         view.backgroundColor = UIColor.NaturianColor.navigationGray
 //        deletetButton.backgroundColor = .blue
         manageBtn.setImage(UIImage(named: "manager"), for: .normal)
+        editButton.setImage(UIImage(named: "edit"), for: .normal)
+        editButton.lkCornerRadius = 13
+        editButton.lkBorderColor = .NaturianColor.treatmentGreen
+        editButton.lkBorderWidth = 2
 
         backgroundView.lkCornerRadius = 20
         backgroundView.backgroundColor = .white
@@ -206,7 +241,7 @@ class AccountViewController: UIViewController {
         userAvatar.kf.setImage(with: url)
         
         naturianLB.text = "NATURIAN"
-        naturianLB.font = UIFont(name: Roboto.black.rawValue, size: 18)
+        naturianLB.font = UIFont(name: Roboto.bold.rawValue, size: 18)
         naturianLB.textColor = .NaturianColor.darkGray
         utopiaLB.text = "UTOPIA"
         utopiaLB.font = UIFont(name: Roboto.bold.rawValue, size: 18)
@@ -238,7 +273,7 @@ class AccountViewController: UIViewController {
         userNation.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         userNation.textColor = .NaturianColor.darkGray
         
-        seedIcon.image = UIImage(named: "seed")
+        seedIcon.image = UIImage(named: "seedgray")
         
         qrUIImage.backgroundColor = .blue
         qrUIImage.image = generateQRCode(from: userID ?? "" )
@@ -256,7 +291,6 @@ class AccountViewController: UIViewController {
         
         naturianInfoStack.axis = .vertical
         naturianInfoStack.alignment = .leading
-        
     }
     
     func layout() {
@@ -270,6 +304,7 @@ class AccountViewController: UIViewController {
         backgroundView.addSubview(circleR)
         backgroundView.addSubview(manageBtn)
 
+        backgroundView.addSubview(editButton)
         backgroundView.addSubview(seedValueLabel)
         backgroundView.addSubview(seedIcon)
         
@@ -290,6 +325,7 @@ class AccountViewController: UIViewController {
         backgroundView.addSubview(naturianInfoLB)
         backgroundView.addSubview(naturianInfoStack)
       
+        editButton.translatesAutoresizingMaskIntoConstraints = false
         manageBtn.translatesAutoresizingMaskIntoConstraints = false
         naturianInfoStack.translatesAutoresizingMaskIntoConstraints = false
         naturianInfoLB.translatesAutoresizingMaskIntoConstraints = false
@@ -312,6 +348,10 @@ class AccountViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
+            editButton.trailingAnchor.constraint(equalTo: userAvatar.trailingAnchor, constant: -9),
+            editButton.bottomAnchor.constraint(equalTo: userAvatar.bottomAnchor, constant: -9),
+            editButton.widthAnchor.constraint(equalToConstant: 26),
+            editButton.heightAnchor.constraint(equalToConstant: 26),
             
             manageBtn.leadingAnchor.constraint(equalTo: naturianStack.leadingAnchor),
             manageBtn.topAnchor.constraint(equalTo: transferBtn.bottomAnchor),
@@ -368,8 +408,8 @@ class AccountViewController: UIViewController {
             
             transferBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transferBtn.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
-            transferBtn.widthAnchor.constraint(equalToConstant: 54),
-            transferBtn.heightAnchor.constraint(equalToConstant: 54),
+            transferBtn.widthAnchor.constraint(equalToConstant: 58),
+            transferBtn.heightAnchor.constraint(equalToConstant: 58),
             
             naturianInfoStack.bottomAnchor.constraint(equalTo: qrUIImage.bottomAnchor),
             naturianInfoStack.leadingAnchor.constraint(equalTo: naturianStack.leadingAnchor),
