@@ -158,6 +158,8 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         
         searchTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
         searchTextFieldSetup()
+        
+//        textFieldDidChangeSelection(searchTextField)
     }
     
     @objc func postTalent() {
@@ -179,7 +181,6 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
-        
         if searchTextField.text != nil {
             let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
                 let words = filterArray.title?.description
@@ -189,14 +190,35 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
 
             self.talentArticles = filterArray
             tableView.reloadData()
-        } else {
             
+        } else if searchTextField.placeholder == "Search Result" {
+        
             userState()
+            tableView.reloadData()
         }
     }
     
 //    func textFieldDidBeginEditing(_ textField: UITextField) {
+//
+//        let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
+//            let words = filterArray.title?.description
+//            let isMach = words?.localizedCaseInsensitiveContains(self.searchTextField.text ?? "")
+//            return isMach ?? true
+//        }
+//
+//        self.talentArticles = filterArray
+//        tableView.reloadData()
+//    }
+    
+//    func textFieldDidChangeSelection(_ textField: UITextField) {
+//
+//        let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
+//            let words = filterArray.title?.description
+//            let isMach = words?.localizedCaseInsensitiveContains(self.searchTextField.text ?? "")
+//            return isMach ?? true
+//        }
 //        userState()
+//        tableView.reloadData()
 //    }
     
     private func showPostTalentVC() {
