@@ -181,18 +181,15 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
-        if searchTextField.text != nil {
+        if searchTextField.text != "" {
             let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
                 let words = filterArray.title?.description
                 let isMach = words?.localizedCaseInsensitiveContains(self.searchTextField.text ?? "")
                 return isMach ?? true
             }
-
             self.talentArticles = filterArray
             tableView.reloadData()
-            
-        } else if searchTextField.placeholder == "Search Result" {
-        
+        } else {
             userState()
             tableView.reloadData()
         }
