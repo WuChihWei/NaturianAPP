@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "undefined.png",
+      "filename" : "foodDetail.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "undefined@2x.png",
+      "filename" : "foodDetail@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "undefined@3x.png",
+      "filename" : "foodDetail@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

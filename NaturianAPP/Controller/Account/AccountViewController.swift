@@ -208,7 +208,6 @@ class AccountViewController: UIViewController {
         }
         
         vc.userModels = self.userModels
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     

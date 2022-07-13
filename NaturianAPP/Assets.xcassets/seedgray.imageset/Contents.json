@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "seedgray@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "seedgray@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

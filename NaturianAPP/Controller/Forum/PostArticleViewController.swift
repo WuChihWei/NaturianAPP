@@ -73,6 +73,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         view.layoutIfNeeded()
         postPhotoImage.layoutIfNeeded()
         postPhotoImage.clipsToBounds = true
+        
         postPhotoImage.contentMode = .scaleAspectFill
     }
     

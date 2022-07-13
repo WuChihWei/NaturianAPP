@@ -286,7 +286,7 @@ extension TalentDetailViewController {
         locationLabel.text = selectedArticle.location ?? ""
         locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         locationLabel.textColor = .NaturianColor.navigationGray
-        locationIcon.image = UIImage(named: "location_gray")
+        locationIcon.image = UIImage(named: "location")
         
         genderIcon.image = UIImage(named: "male")
         providerName.font = UIFont(name: Roboto.medium.rawValue, size: 14)
@@ -414,13 +414,14 @@ extension TalentDetailViewController {
             providerStack.topAnchor.constraint(equalTo: seedStack.topAnchor),
             providerStack.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
             
-            genderIcon.widthAnchor.constraint(equalToConstant: 14),
-            genderIcon.heightAnchor.constraint(equalToConstant: 14),
+            genderIcon.widthAnchor.constraint(equalToConstant: 13),
+            genderIcon.heightAnchor.constraint(equalToConstant: 13),
             nameStack.heightAnchor.constraint(equalToConstant: 16),
             
             locationStack.heightAnchor.constraint(equalToConstant: 14),
             locationIcon.widthAnchor.constraint(equalToConstant: 14),
-            
+            locationIcon.heightAnchor.constraint(equalToConstant: 14),
+
             descriptionText.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
             descriptionText.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 12),
             descriptionText.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),

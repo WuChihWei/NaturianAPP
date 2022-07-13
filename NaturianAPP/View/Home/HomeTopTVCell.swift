@@ -91,14 +91,11 @@ class HomeTopTVCell: UITableViewCell {
     
     func setup() {
         
-        
         collectionView.layoutIfNeeded()
-
     }
     
     func styleObject() {
         
-        collectionView.backgroundColor = .clear
         contentView.backgroundColor = .NaturianColor.lightGray
         bottomTitleView.backgroundColor = .white
         

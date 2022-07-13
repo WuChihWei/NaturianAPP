@@ -30,6 +30,6 @@ extension UIColor {
         
         static var unableGray: UIColor { return UIColor(red: 79/255, green: 79/255, blue: 79/255, alpha: 1) }
         
-        static var navigationGray: UIColor { return UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1) }
+        static var navigationGray: UIColor { return UIColor(red: 125/255, green: 125/255, blue: 125/255, alpha: 1) }
     }
 }
