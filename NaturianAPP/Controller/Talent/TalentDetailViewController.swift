@@ -16,44 +16,23 @@ class TalentDetailViewController: UIViewController {
     var db: Firestore?
     var talentManager = TalentManager()
     var userManager = UserManager()
-        let userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
-//    let userID = "1"
-
-    var appliedState: Int = 0
-    var scrollView = UIScrollView()
-    
-    let postPhotoImage = UIImageView()
-    let avatarImage = UIImageView()
-    let subview = UIView()
+    let userID = Auth.auth().currentUser?.uid
+    //    let userID = "2"
+    //    let userID = "1"
     let closeButton = UIButton()
-    
-    let titleText = UILabel()
-    let categoryBTN = UIButton()
-    let moreBtn = UIButton()
-    
-    let genderIcon = UIImageView()
-    let providerName = UILabel()
-    private let nameStack = UIStackView()
-    
-    let descriptionText = UILabel()
-    
-    let seedValueText = UILabel()
-    let seedIcon = UIImageView()
-    let seedStack = UIStackView()
-    
-    let locationLabel = UILabel()
-    let locationIcon = UIImageView()
-    private let locationStack = UIStackView()
-    
-    let providerStack = UIStackView()
-    
-    let applyButton = UIButton()
-    let contactButton = UIButton()
-    let buttonStack = UIStackView()
+    var appliedState: Int = 0
+    private let tableView = UITableView()
     
     var selectedArticle: TalentArticle!
     var userModels: UserModel!
+    let applyButton = UIButton()
+//    let likedBtn = UIButton()
+    var isLiked = true
+    
+    let seedValue = UILabel()
+    let seedIcon = UIImageView()
+    private let seedStack = UIStackView()
+    let bottomView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +41,7 @@ class TalentDetailViewController: UIViewController {
         setUp()
         style()
         layout()
-        switchButtonState()
+        tableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,14 +49,13 @@ class TalentDetailViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
         view.layoutIfNeeded()
-        
+        tableView.layoutIfNeeded()
         fetchUserData()
     }
     
     override func viewDidLayoutSubviews() {
+        
         view.layoutIfNeeded()
-        avatarImage.clipsToBounds = true
-        avatarImage.contentMode = .scaleAspectFill
     }
     
     func fetchUserData() {
@@ -130,6 +108,32 @@ class TalentDetailViewController: UIViewController {
         navigationController?.popViewController(animated: false)
     }
     
+    @objc func addToCollection(_ sender: UIButton) {
+        
+        if sender.isSelected == false {
+            sender.setImage(UIImage(named: "isliked"), for: .normal)
+            sender.isSelected = true
+
+        } else {
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "unlike"), for: .normal)
+        }
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        //        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        print("tapImage")
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+            
+            fatalError("can't find ChatViewController")
+        }
+        
+        vc.chatToID = selectedArticle.userID
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func switchButtonState() {
         
         if selectedArticle.userID == userID {
@@ -142,53 +146,31 @@ class TalentDetailViewController: UIViewController {
             applyButton.lkBorderWidth = 0
             applyButton.alpha = 0.5
             
-            contactButton.setTitle("Contact", for: .normal)
-            contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
-            contactButton.setTitleColor(.NaturianColor.navigationGray, for: .normal)
-            contactButton.isEnabled = false
-            
         } else {
             return
         }
     }
     
-    func switchColor() {
-        
-        switch selectedArticle.userInfo?.gender {
-            
-        case "Male":
-            genderIcon.image = UIImage(named: "male")
-        case "Female":
-            genderIcon.image = UIImage(named: "female")
-        case "Undefined":
-            genderIcon.image = UIImage(named: "undefined")
-        default:
-            break
-        }
-        switch selectedArticle.category {
-            
-        case "Food":
-            categoryBTN.backgroundColor = .NaturianColor.foodYellow
-            avatarImage.lkBorderColor = .NaturianColor.foodYellow
-        case "Plant":
-            categoryBTN.backgroundColor = .NaturianColor.plantGreen
-            avatarImage.lkBorderColor = .NaturianColor.plantGreen
-        case "Adventure":
-            categoryBTN.backgroundColor = .NaturianColor.adventurePink
-            avatarImage.lkBorderColor = .NaturianColor.adventurePink
-        case "Grocery":
-            categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-            avatarImage.lkBorderColor = .NaturianColor.groceryBlue
-        case "Exercise":
-            categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-            avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
-        case "Treatment":
-            categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-            avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
-        default:
-            break
-        }
-    }
+//    func switchColor() {
+//
+//        switch selectedArticle.category {
+//
+//        case "Food":
+//            applyButton.backgroundColor = .NaturianColor.foodYellow
+//        case "Plant":
+//            applyButton.backgroundColor = .NaturianColor.plantGreen
+//        case "Adventure":
+//            applyButton.backgroundColor = .NaturianColor.adventurePink
+//        case "Grocery":
+//            applyButton.backgroundColor = .NaturianColor.groceryBlue
+//        case "Exercise":
+//            applyButton.backgroundColor = .NaturianColor.exerciseBlue
+//        case "Treatment":
+//            applyButton.backgroundColor = .NaturianColor.treatmentGreen
+//        default:
+//            break
+//        }
+//    }
 }
 
 extension TalentDetailViewController {
@@ -196,243 +178,187 @@ extension TalentDetailViewController {
     func setUp() {
         
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
-        postPhotoImage.isUserInteractionEnabled = true
+        tableView.register(TalentDetailTVCell.self, forCellReuseIdentifier: TalentDetailTVCell.identifer)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        
+        //        postPhotoImage.isUserInteractionEnabled = true
         applyButton.addTarget(self, action: #selector(didApply), for: .touchUpInside)
-        contactButton.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
+        //        contactButton.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
     }
     
     func style() {
-//        
-//        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
-//        scrollView.showsHorizontalScrollIndicator = false
-//        scrollView.isScrollEnabled = true
-        
-        switchColor()
-        
-        avatarImage.image = UIImage(named: "")
-        //        avatarImage.lkBorderColor = .white
-        avatarImage.lkCornerRadius = 42
-        avatarImage.lkBorderWidth = 4
-        avatarImage.backgroundColor = .NaturianColor.lightGray
-        let avatarUrl = URL(string: selectedArticle.userInfo?.userAvatar ?? "")
-        avatarImage.kf.setImage(with: avatarUrl)
-        
-        postPhotoImage.backgroundColor = .systemGreen
-        //        postPhotoImage.contentMode = .scaleAspectFit
-        postPhotoImage.isUserInteractionEnabled = true
-        let photoUrl = selectedArticle.images[0]
-        postPhotoImage.kf.setImage(with: photoUrl)
-        postPhotoImage.clipsToBounds = true
-        postPhotoImage.contentMode = .scaleAspectFill
         
         closeButton.setImage(UIImage(named: "back_white"), for: .normal)
         
-        subview.backgroundColor = .white
-        subview.lkCornerRadius = 30
-        
-        categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
-        categoryBTN.titleLabel?.textAlignment = .center
-        categoryBTN.setTitle(String(describing: selectedArticle.category!), for: .normal)
-        categoryBTN.setTitleColor(.white, for: .normal)
-        //        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-        categoryBTN.lkCornerRadius = 14
-        
-        moreBtn.setImage(UIImage(named: "more"), for: .normal)
-        moreBtn.showsMenuAsPrimaryAction = true
-        moreBtn.menu = UIMenu(children: [
-            UIAction(title: "Block User",
-                     image: UIImage(named: "block"),
-                     handler: { action in
-                
-                         self.userManager.addBlockList(uid: self.userID ?? "",
-                                              blockID: self.selectedArticle.userID ?? "") { [weak self] result in
-                    switch result {
-                        
-                    case .success:
-                        self?.dismiss(animated: true)
-                        
-                    case .failure:
-                        print("can't fetch data")
-                        
-                    }
-                }
-            }),
-            
-            UIAction(title: "Report User",
-                     image: UIImage(named: "report"),
-                     handler: { action in
-                print("Report User")
-            })
-        ])
-        
-        titleText.font = UIFont(name: Roboto.bold.rawValue, size: 28)
-        titleText.textAlignment = .left
-        titleText.text = selectedArticle.title
-        titleText.textColor = .NaturianColor.darkGray
-        titleText.numberOfLines = 0
-        
-        descriptionText.font = UIFont(name: Roboto.regular.rawValue, size: 16)
-        descriptionText.textAlignment = .justified
-        descriptionText.text = selectedArticle.content
-        descriptionText.numberOfLines = 0
-        
-        seedIcon.image = UIImage(named: "seed")
-        
-        seedValueText.text = "\(selectedArticle.seedValue ?? 0)"
-        seedValueText.font = UIFont(name: Roboto.bold.rawValue, size: 26)
-        seedValueText.textColor = .NaturianColor.darkGray
-        
-        locationLabel.text = selectedArticle.location ?? ""
-        locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
-        locationLabel.textColor = .NaturianColor.navigationGray
-        locationIcon.image = UIImage(named: "location")
-        
-        genderIcon.image = UIImage(named: "male")
-        providerName.font = UIFont(name: Roboto.medium.rawValue, size: 14)
-        providerName.textColor = .NaturianColor.navigationGray
-        providerName.text = selectedArticle.userInfo?.name
-        
-        seedStack.axis = .horizontal
-        seedStack.alignment = .trailing
-        seedStack.spacing = 6
-        
-        nameStack.axis = .horizontal
-        nameStack.alignment = .center
-        nameStack.spacing = 6
-        
-        locationStack.axis = .horizontal
-        locationStack.alignment = .center
-        locationStack.spacing = 6
-        
-        providerStack.axis = .vertical
-        providerStack.alignment = .leading
-        providerStack.spacing = 2
-        
         applyButton.setTitle("Apply", for: .normal)
         applyButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
-        applyButton.setTitleColor(.NaturianColor.darkGray, for: .normal)
-        applyButton.lkBorderColor = .NaturianColor.darkGray
-        applyButton.lkBorderWidth = 2
-        applyButton.lkCornerRadius = 24
+        applyButton.lkCornerRadius = 10
+        applyButton.backgroundColor = .NaturianColor.treatmentGreen
         
-        contactButton.setTitle("Contact", for: .normal)
-        contactButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
-        contactButton.setTitleColor(.black, for: .normal)
+        if selectedArticle.userID == self.userID {
+            applyButton.backgroundColor = .NaturianColor.navigationGray
+            applyButton.alpha = 0.6
+            applyButton.isEnabled = false
+        }
         
-        buttonStack.axis = .horizontal
-        buttonStack.alignment = .center
-        buttonStack.spacing = 20
+        seedValue.font =  UIFont(name: Roboto.bold.rawValue, size: 26)
+        seedValue.textAlignment = .left
+        seedValue.text = String(describing: selectedArticle.seedValue ?? 0)
+        seedValue.textColor = .NaturianColor.darkGray
+        
+        seedIcon.image = UIImage(named: "seedgray")
+        seedStack.axis = .horizontal
+        seedStack.alignment = .center
+        seedStack.spacing = 6
+        
+        bottomView.backgroundColor = .white
+        bottomView.lkBorderWidth = 1
+        bottomView.lkBorderColor = .NaturianColor.navigationGray
+        
+        tableView.automaticallyAdjustsScrollIndicatorInsets = true
+        tableView.separatorStyle = .none
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     func layout() {
         
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        postPhotoImage.translatesAutoresizingMaskIntoConstraints = false
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        titleText.translatesAutoresizingMaskIntoConstraints = false
-        categoryBTN.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         seedStack.translatesAutoresizingMaskIntoConstraints = false
-        providerStack.translatesAutoresizingMaskIntoConstraints = false
-        descriptionText.translatesAutoresizingMaskIntoConstraints = false
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
-        moreBtn.translatesAutoresizingMaskIntoConstraints = false
+        applyButton.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(postPhotoImage)
-        postPhotoImage.addSubview(avatarImage)
+        bottomView.addSubview(applyButton)
+        tableView.addSubview(closeButton)
+        view.addSubview(tableView)
+        view.addSubview(bottomView)
         
-        view.addSubview(closeButton)
-        view.addSubview(subview)
-        view.addSubview(moreBtn)
-        
-        subview.addSubview(titleText)
-        subview.addSubview(categoryBTN)
-        subview.addSubview(seedStack)
-        subview.addSubview(providerStack)
-        subview.addSubview(categoryBTN)
-        subview.addSubview(descriptionText)
-        
-        subview.addSubview(buttonStack)
-        
+        bottomView.addSubview(seedStack)
         seedStack.addArrangedSubview(seedIcon)
-        seedStack.addArrangedSubview(seedValueText)
-        
-        providerStack.addArrangedSubview(nameStack)
-        providerStack.addArrangedSubview(locationStack)
-        
-        nameStack.addArrangedSubview(genderIcon)
-        nameStack.addArrangedSubview(providerName)
-        
-        locationStack.addArrangedSubview(locationIcon)
-        locationStack.addArrangedSubview(locationLabel)
-        
-        buttonStack.addArrangedSubview(applyButton)
-        buttonStack.addArrangedSubview(contactButton)
+        seedStack.addArrangedSubview(seedValue)
         
         NSLayoutConstraint.activate([
+            
+            applyButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 15),
+            applyButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -24),
+            applyButton.widthAnchor.constraint(equalToConstant: 136),
+            applyButton.heightAnchor.constraint(equalToConstant: 42),
+            
+            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 1),
+            bottomView.heightAnchor.constraint(equalToConstant: 90),
+            
+            seedStack.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 24),
+            seedStack.topAnchor.constraint(equalTo: applyButton.topAnchor),
+            
+            seedIcon.widthAnchor.constraint(equalToConstant: 34),
+            seedIcon.heightAnchor.constraint(equalToConstant: 34),
+            
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             closeButton.heightAnchor.constraint(equalToConstant: 36),
-            closeButton.widthAnchor.constraint(equalToConstant: 36),
-            
-            postPhotoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
-            
-            avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            avatarImage.heightAnchor.constraint(equalToConstant: 84),
-            avatarImage.widthAnchor.constraint(equalToConstant: 84),
-            
-            subview.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: -40),
-            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            
-            seedStack.topAnchor.constraint(equalTo: subview.topAnchor, constant: 22),
-            seedStack.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            seedIcon.heightAnchor.constraint(equalToConstant: 26),
-            seedIcon.widthAnchor.constraint(equalToConstant: 26),
-            
-            titleText.topAnchor.constraint(equalTo: seedStack.bottomAnchor, constant: 10),
-            titleText.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
-            titleText.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            
-            categoryBTN.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: 10),
-            categoryBTN.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 28),
-            categoryBTN.widthAnchor.constraint(equalToConstant: 90),
-            
-            moreBtn.centerYAnchor.constraint(equalTo: categoryBTN.centerYAnchor),
-            moreBtn.trailingAnchor.constraint(equalTo: seedStack.trailingAnchor),
-            moreBtn.heightAnchor.constraint(equalToConstant: 20),
-            moreBtn.widthAnchor.constraint(equalToConstant: 20),
-            
-            providerStack.topAnchor.constraint(equalTo: seedStack.topAnchor),
-            providerStack.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
-            
-            genderIcon.widthAnchor.constraint(equalToConstant: 13),
-            genderIcon.heightAnchor.constraint(equalToConstant: 13),
-            nameStack.heightAnchor.constraint(equalToConstant: 16),
-            
-            locationStack.heightAnchor.constraint(equalToConstant: 14),
-            locationIcon.widthAnchor.constraint(equalToConstant: 14),
-            locationIcon.heightAnchor.constraint(equalToConstant: 14),
-
-            descriptionText.leadingAnchor.constraint(equalTo: titleText.leadingAnchor),
-            descriptionText.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 12),
-            descriptionText.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            
-            buttonStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            applyButton.widthAnchor.constraint(equalToConstant: 130),
-            applyButton.heightAnchor.constraint(equalToConstant: 48),
-            
-            contactButton.widthAnchor.constraint(equalToConstant: 130),
-            contactButton.heightAnchor.constraint(equalToConstant: 48)
+            closeButton.widthAnchor.constraint(equalToConstant: 36)
         ])
+    }
+}
+
+extension TalentDetailViewController: UITableViewDelegate {
+    
+}
+
+extension TalentDetailViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TalentDetailTVCell.identifer,
+                                                       for: indexPath) as? TalentDetailTVCell else { fatalError("can't find Cell") }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        
+        cell.avatarImage.isUserInteractionEnabled = true
+        cell.avatarImage.addGestureRecognizer(tapGestureRecognizer)
+        
+        cell.titleText.text = selectedArticle.title
+        cell.providerName.text = selectedArticle.userInfo?.name
+        cell.locationLabel.text = selectedArticle.location
+        cell.categoryBTN.setTitle(String(describing: selectedArticle.category ?? ""), for: .normal)
+        cell.descriptionText.text = selectedArticle.content
+        
+        let postUrl = URL(string: selectedArticle.images[0])
+        cell.postPhotoImage.kf.setImage(with: postUrl)
+        
+        let avatarUrl = URL(string: selectedArticle.userInfo?.userAvatar ?? "")
+        cell.avatarImage.kf.setImage(with: avatarUrl)
+        
+        cell.layoutIfNeeded()
+        cell.postPhotoImage.clipsToBounds = true
+        cell.avatarImage.clipsToBounds = true
+        cell.avatarImage.contentMode = .scaleAspectFill
+        cell.postPhotoImage.contentMode = .scaleAspectFill
+        cell.contactBtn.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
+        cell.likedBtn.addTarget(self, action: #selector(addToCollection(_:)), for: .touchUpInside)
+        
+        cell.moreBtn.menu = UIMenu(children: [
+            UIAction(title: "Block User",
+                     image: UIImage(named: "block"),
+                     handler: { action in
+                         
+                         self.userManager.addBlockList(uid: self.userID ?? "",
+                                                       blockID: self.selectedArticle.userID ?? "") { [weak self] result in
+                             switch result {
+                                 
+                             case .success:
+                                 self?.dismiss(animated: true)
+                                 
+                             case .failure:
+                                 print("can't fetch data")
+                                 
+                             }
+                         }
+                     }),
+            
+            UIAction(title: "Report User",
+                     image: UIImage(named: "report"),
+                     handler: { action in
+                         print("Report User")
+                     })
+        ])
+        
+        if selectedArticle.userID == self.userID {
+            
+            cell.contactBtn.isHidden = true
+        }
+        
+        switch selectedArticle.userInfo?.gender {
+            
+        case "Male":
+            cell.genderIcon.image = UIImage(named: "male")
+        case "Female":
+            cell.genderIcon.image = UIImage(named: "female")
+        case "Undefined":
+            cell.genderIcon.image = UIImage(named: "undefined")
+        default:
+            break
+        }
+
+        return cell
     }
 }

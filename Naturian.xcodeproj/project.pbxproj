@@ -103,6 +103,8 @@
 		32C8660D285ACDEC0090A49D /* ForumDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */; };
 		32C8660F285AD56D0090A49D /* ForumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8660E285AD56D0090A49D /* ForumModel.swift */; };
 		32C86612285B206E0090A49D /* TalentLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */; };
+		32C9C909287FBDDF00AE2854 /* CategoryFirstCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9C908287FBDDF00AE2854 /* CategoryFirstCVCell.swift */; };
+		32C9C90B287FD35100AE2854 /* TalentDetailTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9C90A287FD35100AE2854 /* TalentDetailTVCell.swift */; };
 		32E775A9285C4C9F003E82F3 /* PostTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */; };
 		32EABCCF287C68DC003C64DF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EABCCE287C68DC003C64DF /* Date.swift */; };
 		32EFA30228703CBE00DFA8A2 /* ForumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EFA30128703CBE00DFA8A2 /* ForumManager.swift */; };
@@ -214,6 +216,8 @@
 		32C8660C285ACDEC0090A49D /* ForumDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumDetailTableViewCell.swift; sourceTree = "<group>"; };
 		32C8660E285AD56D0090A49D /* ForumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumModel.swift; sourceTree = "<group>"; };
 		32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		32C9C908287FBDDF00AE2854 /* CategoryFirstCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFirstCVCell.swift; sourceTree = "<group>"; };
+		32C9C90A287FD35100AE2854 /* TalentDetailTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentDetailTVCell.swift; sourceTree = "<group>"; };
 		32E775A8285C4C9F003E82F3 /* PostTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTalentVC.swift; sourceTree = "<group>"; };
 		32EABCCE287C68DC003C64DF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		32EFA30128703CBE00DFA8A2 /* ForumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumManager.swift; sourceTree = "<group>"; };
@@ -607,10 +611,12 @@
 		32B3ECCD285B98D400B5C16B /* Talent */ = {
 			isa = PBXGroup;
 			children = (
+				32C9C908287FBDDF00AE2854 /* CategoryFirstCVCell.swift */,
 				32F72585287EA5570036C898 /* CategoryCVCell.swift */,
 				32C86611285B206E0090A49D /* TalentLobbyTableViewCell.swift */,
 				325504AE286373C70019A190 /* CategoryPopTableViewCell.swift */,
 				325504B2286373F60019A190 /* LocationPopTableViewCell.swift */,
+				32C9C90A287FD35100AE2854 /* TalentDetailTVCell.swift */,
 				3255047C286094FB0019A190 /* MyInspiration */,
 				32550473285FF10B0019A190 /* MyTalent */,
 			);
@@ -829,6 +835,7 @@
 				32B3ECCF285B98ED00B5C16B /* MyTalentTableViewCell.swift in Sources */,
 				325504BB286452680019A190 /* Message.swift in Sources */,
 				3241C463286FEECE00A2E75A /* ForumLobbyCVCell.swift in Sources */,
+				32C9C909287FBDDF00AE2854 /* CategoryFirstCVCell.swift in Sources */,
 				32550475285FF15C0019A190 /* MyTalentAppliersTVCell.swift in Sources */,
 				325504AB286372610019A190 /* CategoryPopUpVC.swift in Sources */,
 				32A1A33E2877ACC300BB001B /* InfinityCollectionView.swift in Sources */,
@@ -841,6 +848,7 @@
 				3221453D2866153F00D46503 /* PopViewController.swift in Sources */,
 				32F72586287EA5570036C898 /* CategoryCVCell.swift in Sources */,
 				3221454628673D2900D46503 /* UIFont+Extension.swift in Sources */,
+				32C9C90B287FD35100AE2854 /* TalentDetailTVCell.swift in Sources */,
 				3202F5A5286B5FAA0053777B /* ProfileVC.swift in Sources */,
 				32A1A3362876A52900BB001B /* HomeCVFlowLayout.swift in Sources */,
 				3241C461286FD6B100A2E75A /* ForumReplyVC.swift in Sources */,

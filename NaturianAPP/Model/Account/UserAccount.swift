@@ -25,5 +25,10 @@ struct UserModel: Codable {
         
     var blockList: [String]
     
+    var likedTalentList: [String]
+    
+    var likedForumList: [String]
+    
     var email: String?
+    
 }

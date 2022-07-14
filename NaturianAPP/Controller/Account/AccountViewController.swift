@@ -220,7 +220,7 @@ class AccountViewController: UIViewController {
     
     func setStyle() {
         
-        view.backgroundColor = UIColor.NaturianColor.navigationGray
+        view.backgroundColor = UIColor.NaturianColor.lightGray
 //        deletetButton.backgroundColor = .blue
         manageBtn.setImage(UIImage(named: "manager"), for: .normal)
         editButton.setImage(UIImage(named: "edit"), for: .normal)
@@ -230,9 +230,9 @@ class AccountViewController: UIViewController {
 
         backgroundView.lkCornerRadius = 20
         backgroundView.backgroundColor = .white
-        blackLine.backgroundColor = .NaturianColor.navigationGray
-        circleL.backgroundColor = .NaturianColor.navigationGray
-        circleR.backgroundColor = .NaturianColor.navigationGray
+        blackLine.backgroundColor = .NaturianColor.lightGray
+        circleL.backgroundColor = .NaturianColor.lightGray
+        circleR.backgroundColor = .NaturianColor.lightGray
 
         userAvatar.contentMode = .scaleAspectFill
         userAvatar.backgroundColor = .NaturianColor.lightGray

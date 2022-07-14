@@ -329,6 +329,8 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
                                                       isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                                       blockList: self.userModels?.blockList ?? [],
+                                                      likedTalentList: self.userModels?.likedTalentList ?? [],
+                                                      likedForumList: self.userModels?.likedForumList ?? [],
                                                       email: self.userModels?.email
                             )
                             
@@ -339,7 +341,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
                                                              location: location,
                                                              title: title,
                                                              content: content,
-                                                             images: [url],
+                                                             images: ["\(url)"],
                                                              seedValue: seedValue,
                                                              createdTime: Int(createdTime),
                                                              didApplyID: [""],

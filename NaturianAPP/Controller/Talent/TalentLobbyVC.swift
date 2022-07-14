@@ -23,13 +23,13 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     let searchTextField = UITextField()
     let filterButton = UIButton()
     let searchBtn = UIButton()
-    let cleanBtn = UIButton()
     let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
 //    let userID = "1"
 
     let addPosteBTN = UIButton()
-    
+    let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
+    let clearBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     var talentArticles: [TalentArticle] = []
     var userModels: [UserModel] = []
     let subview = UIView()
@@ -48,7 +48,7 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         return collectionView
     }()
     
-    var categories = [ (name: "Food", imageName: "foodDetail"),
+    var categories = [  (name: "Food", imageName: "foodDetail"),
                        (name: "Grocery", imageName: "groceryDetail"),
                        (name: "Plant", imageName:"plantDetail"),
                        (name: "Adventure", imageName: "adventureDetail"),
@@ -81,6 +81,7 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     
     private func setupViews() {
         
+        collectionView.register(CategoryFirstCVCell.self, forCellWithReuseIdentifier: CategoryFirstCVCell.identifer)
         collectionView.register(CategoryCVCell.self, forCellWithReuseIdentifier: CategoryCVCell.identifer)
     }
     
@@ -179,21 +180,23 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @objc func clearText() {
+        searchTextField.text = ""
+    }
+    
     func setUp() {
         
+        clearBtn.addTarget(self, action: #selector(clearText), for: .touchUpInside)
         addPosteBTN.addTarget(self, action: #selector(postTalent), for: .touchUpInside)
         
         tableView.register(TalentLobbyTableViewCell.self, forCellReuseIdentifier: TalentLobbyTableViewCell.identifer)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
-        
         filterButton.addTarget(self, action: #selector(filterTalent), for: .touchUpInside)
         
         searchTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
         searchTextFieldSetup()
-        
-//        textFieldDidChangeSelection(searchTextField)
     }
     
     @objc func postTalent() {
@@ -209,9 +212,14 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     }
     
     func searchTextFieldSetup() {
-        
         searchTextField.delegate = self
-        searchTextField.clearButtonMode = .unlessEditing
+        searchTextField.rightView = outerView
+//        outerView.backgroundColor = .blue
+        
+        outerView.addSubview(clearBtn)
+        
+        searchTextField.rightViewMode = .whileEditing
+        searchTextField.rightView?.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
@@ -229,12 +237,8 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func showPostTalentVC() {
-        
-    }
-    
     @objc func filterTalent() {
-        //        performSegue(withIdentifier: "filterTalentSegue", sender: nil)
+  
         guard let talentFilterVC = storyboard?.instantiateViewController(withIdentifier: "TalentFilterVC") as? TalentFilterVC else {
             print("Can't find TalentFilterVC")
             return
@@ -246,14 +250,13 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     
     func style() {
                 
+        clearBtn.setImage(UIImage(named: "xcircle"), for: .normal)
         searchBtn.setImage(UIImage(named: "search"), for: .normal)
         // addButton
-        addPosteBTN.setTitle("Post", for: .normal)
-        addPosteBTN.backgroundColor = .NaturianColor.darkGray
-        addPosteBTN.tintColor = .white
-        addPosteBTN.setTitleColor(.white, for: .normal)
-        addPosteBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
-        addPosteBTN.lkCornerRadius = 16
+        addPosteBTN.setImage(UIImage(named: "plus"), for: .normal)
+        addPosteBTN.clipsToBounds = false
+        addPosteBTN.layer.shadowOpacity = 0.3
+        addPosteBTN.layer.shadowOffset = CGSize(width: 0, height: 3)
         
         view.backgroundColor = .NaturianColor.lightGray
         view.lkBorderColor = .white
@@ -272,13 +275,17 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         searchTextField.lkCornerRadius = 20
         searchTextField.lkBorderWidth = 1
         searchTextField.lkBorderColor = .NaturianColor.darkGray
-        
+
+//        searchTextField.clipsToBounds = false
+//        searchTextField.layer.shadowOpacity = 0.3
+//        searchTextField.layer.shadowOffset = CGSize(width: 0, height: 3)
         // filterButton
         filterButton.setImage(UIImage(named: "sliders"), for: .normal)
     }
     
     func layout() {
         
+//        clearBtn.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         searchBtn.translatesAutoresizingMaskIntoConstraints = false
         addPosteBTN.translatesAutoresizingMaskIntoConstraints = false
@@ -286,13 +293,14 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         filterButton.translatesAutoresizingMaskIntoConstraints = false
+        subview.backgroundColor = .clear
         
         searchTextField.addSubview(searchBtn)
-        
         view.addSubview(collectionView)
+        view.addSubview(addPosteBTN)
         view.addSubview(subview)
         subview.addSubview(tableView)
-        view.addSubview(addPosteBTN)
+//        view.addSubview(addPosteBTN)
         view.addSubview(searchTextField)
         view.addSubview(filterButton)
         
@@ -300,24 +308,24 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
             
             searchBtn.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor, constant: 10),
             searchBtn.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
-            searchBtn.heightAnchor.constraint(equalToConstant: 18),
-            searchBtn.widthAnchor.constraint(equalToConstant: 18),
+            searchBtn.heightAnchor.constraint(equalToConstant: 20),
+            searchBtn.widthAnchor.constraint(equalToConstant: 20),
             
             // searchTextField
             searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            searchTextField.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -18),
+            searchTextField.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -8),
             searchTextField.heightAnchor.constraint(equalToConstant: 40),
             
             collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -72),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 40),
             
-            addPosteBTN.centerYAnchor.constraint(equalTo: filterButton.centerYAnchor),
-            addPosteBTN.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
-            addPosteBTN.widthAnchor.constraint(equalToConstant: 128),
-            addPosteBTN.heightAnchor.constraint(equalToConstant: 32),
+            addPosteBTN.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
+            addPosteBTN.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1),
+            addPosteBTN.widthAnchor.constraint(equalToConstant: 36),
+            addPosteBTN.heightAnchor.constraint(equalToConstant: 36),
             
             // filterButton
             filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -356,15 +364,16 @@ extension TalentLobbyVC: UITableViewDataSource {
             
             fatalError("can't find TalentLobbyTableViewCell")
         }
-        let photoUrl = talentArticles[indexPath.row].images[0]
+        let photoUrl = URL(string: talentArticles[indexPath.row].images[0])
         
         cell.title.text = talentArticles[indexPath.row].title
         cell.categoryBTN.setTitle(String(describing: talentArticles[indexPath.row].category ?? ""), for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue!)"
 //        cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.locationLabel.text = talentArticles[indexPath.row].location
+        
         cell.postImage.kf.setImage(with: photoUrl)
-        cell.providerName.text = "\(String(describing: talentArticles[indexPath.row].userInfo?.name ?? ""))  /"
+        cell.providerName.text = "\(String(describing: talentArticles[indexPath.row].userInfo?.name ?? ""))"
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
@@ -399,7 +408,7 @@ extension TalentLobbyVC: UITableViewDataSource {
         default:
             break
         }
-        
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -426,26 +435,51 @@ extension TalentLobbyVC: TalentFilterDelegate {
 
 extension TalentLobbyVC: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return categories.count
+        if section == 0 { return 1 } else {
+                
+                return categories.count
+            }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifer,
+        switch indexPath.section {
+       
+        case 0 :
+            guard let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryFirstCVCell.identifer,
+                                                                for: indexPath) as?
+                    CategoryFirstCVCell else { fatalError("can't find Cell") }
+            
+            cell1.lkBorderColor = .clear
+//            cell1.tilteLB.textColor = .clear
+            cell1.backgroundColor = .clear
+            return cell1
+            
+        case 1 :
+        guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifer,
                                                             for: indexPath) as?
                 CategoryCVCell else { fatalError("can't find Cell") }
         
-        cell.iconView.image = UIImage(named: "\(categories[indexPath.row].imageName)")
+        cell2.iconView.image = UIImage(named: "\(categories[indexPath.row].imageName)")
         
-        cell.tilteLB.text = categories[indexPath.row].name
-        cell.lkBorderWidth = 1
-        cell.lkCornerRadius = 18
-        cell.lkBorderColor = .NaturianColor.darkGray
-        cell.backgroundColor = .white
-        return cell
+        cell2.tilteLB.text = categories[indexPath.row].name
+        cell2.lkBorderWidth = 1
+        cell2.lkCornerRadius = 18
+        cell2.lkBorderColor = .NaturianColor.darkGray
+        cell2.backgroundColor = .white
+            
+        return cell2
+            
+        default:
+            break
+        }
+        return UICollectionViewCell()
     }
 }
 

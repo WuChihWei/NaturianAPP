@@ -126,7 +126,7 @@ extension OtherTalentViewController: UITableViewDataSource {
             
         }
         
-        let postImageURL = acceptTalents[indexPath.row].images[0]
+        let postImageURL = URL(string: acceptTalents[indexPath.row].images[0])
         cell.title.text = acceptTalents[indexPath.row].title
         cell.postImage.kf.setImage(with: postImageURL)
         cell.providerName.text = acceptTalents[indexPath.row].userInfo?.name

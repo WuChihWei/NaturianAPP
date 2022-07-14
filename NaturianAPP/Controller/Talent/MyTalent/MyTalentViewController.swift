@@ -169,7 +169,7 @@ extension MyTalentViewController: UITableViewDataSource {
         cell.categoryBTN.setTitle("\(talentArticles[indexPath.row].category ?? "")", for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue ?? 0)"
         cell.talentDescription.text = talentArticles[indexPath.row].content
-        cell.postImage.kf.setImage(with: talentArticles[indexPath.row].images[0])
+        cell.postImage.kf.setImage(with: URL(string: talentArticles[indexPath.row].images[0]))
         cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count - 1)", for: .normal)
         
 //        cell.postImage.image = talentArticles[indexPath.row]

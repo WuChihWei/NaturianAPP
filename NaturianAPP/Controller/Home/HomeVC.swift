@@ -210,7 +210,6 @@ extension HomeVC: UITableViewDataSource {
             
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: HomeBottomTVCell.identifer,
                                                             for: indexPath) as? HomeBottomTVCell else { fatalError("can't find Cell") }
-            
             cell2.selectionStyle = .none
             cell2.backgroundColor = .white
             cell2.layoutIfNeeded()
@@ -237,7 +236,16 @@ extension HomeVC: UITableViewDataSource {
             print("case0")
 
         case 1:
-            print("case1")
+            
+            guard let vc = storyboard?.instantiateViewController(
+                withIdentifier: "ForumDetailViewController") as? ForumDetailViewController else {
+                
+                fatalError("can't find ForumDetailViewController")
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            vc.forumArticles = self.forumArticles[indexPath.row]
+            
         default:
             break
         }

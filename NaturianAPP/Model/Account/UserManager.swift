@@ -274,6 +274,43 @@ class UserManager {
         }
     }
     
+    func updateLikedTelent(userModel: UserModel, userID: String, talentID: String) {
+        
+        do {
+            
+            try db.document(userID).setData(from: userModel, merge: true)
+            
+        } catch {
+            print("can't update talent data")
+        }
+    }
+    
+    func updateLikedTelent(uid: String, talentID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["likedTalentList": FieldValue.arrayUnion([talentID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func updateLikedForum(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["likedForumList": FieldValue.arrayUnion([forumID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
     func addUser(name: String, userID: String, email: String) {
         
         let data: [String: Any] = [
@@ -350,6 +387,7 @@ class UserManager {
     
     func deleteAccount() {
         let user = Auth.auth().currentUser
+
         user?.delete { error in
             if error != nil {
                 // An error happened.

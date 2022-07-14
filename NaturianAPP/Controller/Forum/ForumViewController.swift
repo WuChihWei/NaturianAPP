@@ -63,7 +63,7 @@ class ForumViewController: UIViewController {
     private func style() {
         
         collectionView.backgroundColor = .clear
-        view.backgroundColor = .NaturianColor.navigationGray
+        view.backgroundColor = .NaturianColor.lightGray2
 
         firstLB.text = "Discover"
         firstLB.textColor = .white

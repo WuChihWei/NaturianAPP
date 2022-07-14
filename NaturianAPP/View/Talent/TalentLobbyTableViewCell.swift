@@ -59,7 +59,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 1
         
-        seedValue.font =  UIFont(name: Roboto.medium.rawValue, size: 20)
+        seedValue.font =  UIFont(name: Roboto.bold.rawValue, size: 20)
         seedValue.textAlignment = .left
         seedValue.text = "70 Seeds"
         seedValue.textColor = .NaturianColor.darkGray
@@ -88,8 +88,8 @@ class TalentLobbyTableViewCell: UITableViewCell {
         seedStack.alignment = .center
         seedStack.spacing = 6
         
-        talentStack.axis = .horizontal
-        talentStack.alignment = .center
+        talentStack.axis = .vertical
+        talentStack.alignment = .leading
         talentStack.spacing = 5
         
         locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 12)
@@ -165,8 +165,8 @@ class TalentLobbyTableViewCell: UITableViewCell {
             seedStack.trailingAnchor.constraint(equalTo: postImage.trailingAnchor),
             seedStack.centerYAnchor.constraint(equalTo: categoryBTN.centerYAnchor),
 
-            seedIcon.widthAnchor.constraint(equalToConstant: 17),
-            seedIcon.heightAnchor.constraint(equalToConstant: 17),
+            seedIcon.widthAnchor.constraint(equalToConstant: 18),
+            seedIcon.heightAnchor.constraint(equalToConstant: 18),
             // categoryBTN
             categoryBTN.topAnchor.constraint(equalTo: talentStack.bottomAnchor, constant: 10),
             categoryBTN.widthAnchor.constraint(equalToConstant: 80),
