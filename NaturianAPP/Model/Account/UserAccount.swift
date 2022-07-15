@@ -29,6 +29,8 @@ struct UserModel: Codable {
     
     var likedForumList: [String]
     
+    var didGiveSeed: [String]
+    
     var email: String?
     
 }

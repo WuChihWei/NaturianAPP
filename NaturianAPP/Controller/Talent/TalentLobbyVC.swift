@@ -422,6 +422,7 @@ extension TalentLobbyVC: UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
         
         vc.selectedArticle = talentArticles[indexPath.row]
+        vc.userModels = userInfo
     }
 }
 

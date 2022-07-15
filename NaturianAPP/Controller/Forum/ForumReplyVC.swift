@@ -113,6 +113,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                   blockList: self.userModels?.blockList ?? [],
                                   likedTalentList: self.userModels?.likedTalentList ?? [],
                                   likedForumList: self.userModels?.likedForumList ?? [],
+                                  didGiveSeed: self.userModels?.didGiveSeed ?? [],
                                   email: self.userModels?.email
         )
         
@@ -121,7 +122,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                     userID: currentUserID,
                                     createdTime: createdTime,
                                     userInfo: userModel)
-        print(replyModel)
+
         replyManager.addReplyData(replyForum: replyModel)
         
         forumArticles.replyIDs.append(replyID)

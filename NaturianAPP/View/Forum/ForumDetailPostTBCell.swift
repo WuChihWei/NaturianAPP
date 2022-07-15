@@ -90,12 +90,12 @@ class ForumDetailPostTBCell: UITableViewCell {
         authorLB.textColor = .NaturianColor.darkGray
         authorLB.text = "Writen By : Linda"
         
-        likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
+        likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
         
         dottedLine.image = UIImage(named: "dottedLine")
         solidLine.backgroundColor = .black
         
-        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
+        seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
         
         buttonStack.axis = .horizontal
         buttonStack.alignment = .bottom

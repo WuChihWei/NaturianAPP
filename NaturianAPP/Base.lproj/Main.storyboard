@@ -186,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXf-c6-2fH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3265" y="-1542"/>
+            <point key="canvasLocation" x="3228" y="-1469"/>
         </scene>
         <!--Transfer SeedVC-->
         <scene sceneID="4X4-ue-T70">
@@ -651,6 +651,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165" y="-2125"/>
+        </scene>
+        <!--My CollectionVC-->
+        <scene sceneID="GTG-mH-F94">
+            <objects>
+                <viewController restorationIdentifier="MyCollectionVC" storyboardIdentifier="MyCollectionVC" id="mC7-cv-rX1" customClass="MyCollectionVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9G6-Gc-76q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lZq-Xa-4dS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q4v-or-PrO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6083" y="-1469"/>
+        </scene>
+        <!--Like ForumVC-->
+        <scene sceneID="c2G-xT-f3c">
+            <objects>
+                <viewController restorationIdentifier="LikeForumVC" storyboardIdentifier="LikeForumVC" id="Ogx-ED-9px" customClass="LikeForumVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E2B-ja-lmc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FrZ-jd-0qd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSL-tr-YDw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7064" y="-1469"/>
+        </scene>
+        <!--Like TalentVC-->
+        <scene sceneID="5yx-VP-nO3">
+            <objects>
+                <viewController restorationIdentifier="LikeTalentVC" storyboardIdentifier="LikeTalentVC" id="9tn-ln-xSh" customClass="LikeTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G8s-aI-98t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jNU-1V-Jpi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ldb-9x-Kb3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7990" y="-1469"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wcc-Ps-BLM">

@@ -10,22 +10,24 @@ import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
 import Foundation
+import FirebaseAuth
 
 class ForumDetailViewController: UIViewController {
     
-    var talentManager = TalentManager()
+//    var talentManager = TalentManager()
+    let userManager = UserManager()
     var forumManager = ForumManager()
     var db: Firestore?
-    
+    let userID = Auth.auth().currentUser?.uid
     private let tableView = UITableView()
     
     let addReplyBTN = UIButton()
     let closeButton = UIButton()
-    
+    var userInfo: UserModel!
+
     //    var talentArticles: [TalentArticle] = []
-    var userManager = UserManager()
     var userModels: [UserModel] = []
-    var talentArticle: String = ""
+//    var talentArticle: String = ""
     var searchController: UISearchController!
     var forumArticles: ForumModel!
     var authorInfo: UserModel!
@@ -159,6 +161,202 @@ class ForumDetailViewController: UIViewController {
         vc.forumArticles = forumArticles
         //        self.navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
+    }
+    
+    @objc func addToCollection(_ sender: UIButton) {
+        
+        if sender.isSelected == false {
+            
+            sender.setImage(UIImage(named: "greenLike"), for: .normal)
+            sender.isSelected = true
+//            setupLottie()
+
+            userManager.addLikedForum(uid: self.userID ?? "", forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+            
+            let newLikeValue = (self.forumArticles.getLikedValue ?? 0) + 1
+            
+            forumManager.updateLikeValue(forumID: self.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+            
+        } else {
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "grayLike"), for: .normal)
+            
+            userManager.removeLikedForum(uid: self.userID ?? "", forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+            
+            let newLikeValue = self.forumArticles.getLikedValue ?? 0
+            
+            forumManager.updateLikeValue(forumID: self.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        }
+    }
+    
+    @objc func addToSeed(_ sender: UIButton) {
+        
+        if sender.isSelected == false {
+            
+            sender.setImage(UIImage(named: "greenSeed"), for: .normal)
+            sender.isSelected = true
+//            setupLottie()
+
+            userManager.didGiveSeed(uid: self.userID ?? "",
+                                    forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    
+                    let newSeed = (self?.userInfo.seedValue ?? 0) - 1
+                    
+                    self?.userManager.updateSeedValue(uid: self?.userID ?? "",
+                                                         seedValue: newSeed) { [weak self] result in
+                        switch result {
+                        case .success:
+                            
+                            let authorNewSeed = (self?.authorInfo.seedValue ?? 0) + 1
+                            
+                            self?.userManager.updateSeedValue(uid: self?.forumArticles.userID ?? "",
+                                                                 seedValue: authorNewSeed) { [weak self] result in
+                                switch result {
+                                case .success:
+                                    self?.dismiss(animated: true)
+                                    
+                                case .failure:
+                                    print("can't fetch data")
+                                }
+                            }
+                            
+                            self?.dismiss(animated: true)
+                            
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                    let forumValue = (self?.forumArticles.getSeedValue ?? 0) + 1
+                    
+                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                         seedValue: forumValue) { [weak self] result in
+                        switch result {
+                        case .success:
+                            self?.dismiss(animated: true)
+                            
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                    }
+                
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        } else {
+            
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "graySeed"), for: .normal)
+            
+            userManager.removeGiveSeed(uid: self.userID ?? "",
+                                       forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    
+                    let previousSeed = self?.userInfo.seedValue ?? 0
+                    
+                    self?.userManager.updateSeedValue(uid: self?.userID ?? "",
+                                                         seedValue: previousSeed) { [weak self] result in
+                        switch result {
+                        case .success:
+                            
+                            let authorPreviosSeed = self?.authorInfo.seedValue ?? 0
+                            
+                            self?.userManager.updateSeedValue(uid: self?.forumArticles.userID ?? "",
+                                                                 seedValue: authorPreviosSeed) { [weak self] result in
+                                switch result {
+                                    
+                                case .success:
+                                    self?.dismiss(animated: true)
+                                    
+                                case .failure:
+                                    print("can't fetch data")
+                                }
+                            }
+                            self?.dismiss(animated: true)
+                            
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                        
+                    }
+                    
+                    let forumValue = (self?.forumArticles.getSeedValue ?? 0)
+                    
+                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                         seedValue: forumValue) { [weak self] result in
+                        switch result {
+                        case .success:
+                            self?.dismiss(animated: true)
+                            
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        }
     }
     
     func findReplies() {
@@ -298,6 +496,28 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.avatarImage.kf.setImage(with: avatatUrl)
             cell1.avatarImage.contentMode = .scaleAspectFill
             cell1.avatarImage.clipsToBounds = true
+            cell1.likeBtn.addTarget(self, action: #selector(addToCollection), for: .touchUpInside)
+            cell1.seedBtn.addTarget(self, action: #selector(addToSeed), for: .touchUpInside)
+            
+            guard let likedID = self.forumArticles.postArticleID else { return UITableViewCell() }
+
+            if self.userInfo.likedForumList.contains(likedID) {
+                cell1.likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
+                cell1.likeBtn.isSelected = true
+            } else {
+                cell1.likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
+                cell1.likeBtn.isSelected = false
+            }
+            
+            guard let seedID = self.forumArticles.postArticleID else { return UITableViewCell() }
+
+            if self.userInfo.didGiveSeed.contains(seedID) {
+                cell1.seedBtn.setImage(UIImage(named: "greenSeed"), for: .normal)
+                cell1.seedBtn.isSelected = true
+            } else {
+                cell1.seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
+                cell1.seedBtn.isSelected = false
+            }
             
             switch forumArticles.category {
                 
@@ -369,7 +589,6 @@ extension ForumDetailViewController: UITableViewDataSource {
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
                                                             for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
             cell2.selectionStyle = .none
-//            cell2.
             return cell2
             
         }

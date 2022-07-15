@@ -75,17 +75,17 @@ class ForumLobbyTableViewCell: UITableViewCell {
         likeLB.text = "321"
         likeLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         likeLB.textColor = .NaturianColor.navigationGray
-        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
+        seedBtn.setImage(UIImage(named: "greenSeed"), for: .normal)
         seedLB.text = "123"
         seedLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedLB.textColor = .NaturianColor.navigationGray
         
         likestack.axis = .horizontal
-        likestack.alignment = .leading
+        likestack.alignment = .center
         likestack.spacing = 4
         
         seedstack.axis = .horizontal
-        seedstack.alignment = .leading
+        seedstack.alignment = .center
         seedstack.spacing = 4
     }
     

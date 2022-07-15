@@ -305,6 +305,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
                                                       blockList: self.userModels?.blockList ?? [],
                                                       likedTalentList: self.userModels?.likedTalentList ?? [],
                                                       likedForumList: self.userModels?.likedForumList ?? [],
+                                                      didGiveSeed: self.userModels?.didGiveSeed ?? [],
                                                       email: self.userModels?.email
                             )
                             

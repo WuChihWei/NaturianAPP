@@ -177,6 +177,35 @@ class TalentManager {
         }
     }
     
+    func fetchMyLikeData(talentID: String, completion: @escaping (Result<TalentArticle, Error>) -> Void) {
+        
+        db.collection("talent").whereField("talentPostID", isEqualTo: talentID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                
+                completion(.failure(error))
+                
+            } else {
+                if let doc = querySnapshot?.documents.first {
+                    do {
+                        print(doc)
+                        if let talentModel = try doc.data(as: TalentArticle?.self,
+                                                        decoder: Firestore.Decoder()) {
+                            
+                            completion(.success(talentModel))
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                    }
+                }
+            }
+        }
+    }
+    
     func updateData(applyTalent: TalentArticle) {
         
         do {
@@ -407,5 +436,4 @@ class TalentManager {
             }
         }
     }
-    
 }

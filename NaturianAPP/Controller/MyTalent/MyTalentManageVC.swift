@@ -44,11 +44,15 @@ class MyTalentManageVC: UIViewController {
         
         guard let vc2 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "OtherTalentViewController") as? OtherTalentViewController else {return}
-
-        subControllers = [vc1, vc2]
         
-        vc1.title = "My Talents"
-        vc2.title = "My Wizards"
+        guard let vc3 = UIStoryboard(name: "Main",
+                                     bundle: nil).instantiateViewController(withIdentifier: "MyCollectionVC") as? MyCollectionVC else {return}
+
+        subControllers = [vc1, vc2, vc3]
+        
+        vc1.title = "My Talent"
+        vc2.title = "My Wizard"
+        vc3.title = "My Collection"
 
         viewPagers.reload()
     }
@@ -137,7 +141,7 @@ extension MyTalentManageVC: LZViewPagerDataSource {
         return 50
     }
     func backgroundColorForHeader() -> UIColor {
-        return .NaturianColor.navigationGray
+        return .NaturianColor.lightGray2
     }
     
     func didSelectButton(at index: Int) {

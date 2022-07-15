@@ -389,10 +389,10 @@ extension AllMyAppliersVC {
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
             // tableView
-            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor)
         ])
     }
 }

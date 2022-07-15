@@ -9,13 +9,17 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import FirebaseAuth
 
 class ForumLobbyViewController: UIViewController {
     
     var forumManager = ForumManager()
-    var talentManager = TalentManager()
+    let talentManager = TalentManager()
+    let userManager = UserManager()
     var db: Firestore?
-    
+    let userID = Auth.auth().currentUser?.uid
+    var userInfo: UserModel!
+
     private let tableView = UITableView()
     
     let addArticleBTN = UIButton()
@@ -27,8 +31,10 @@ class ForumLobbyViewController: UIViewController {
     
     var forumArticles: [ForumModel] = []
     //    var talentArticles: [TalentArticle] = []
-    var userManager = UserManager()
     var userModels: [UserModel] = []
+    var likeForums: [UserModel] = []
+    var likeSeeds: [UserModel] = []
+
     //    var talentArticle: String = ""
     var searchController: UISearchController!
     var forumTitle: String = ""
@@ -62,11 +68,34 @@ class ForumLobbyViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         fetchForumArticle()
         tableView.reloadData()
+        currentUserState()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    func currentUserState() {
+        
+        userManager.listenUserData(userID: userID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success(let userModel):
+
+                    self?.userInfo = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
     
     @objc func closePage() {
         navigationController?.popViewController(animated: true)
@@ -80,8 +109,6 @@ class ForumLobbyViewController: UIViewController {
             
             fatalError("can't find PostArticleViewController")
         }
-        
-        //        self.navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
     }
     
@@ -96,6 +123,42 @@ class ForumLobbyViewController: UIViewController {
             case .success(let forumArticles):
                 
                 self?.forumArticles = forumArticles
+                
+                for forumArticle in self?.forumArticles ?? [] {
+                    self?.userManager.fetchForumLikeCount(forumID: forumArticle.postArticleID ?? "") { [weak self] result in
+                        
+                        switch result {
+                            
+                        case .success(let userModels):
+                            
+                            self?.likeForums = userModels
+                                                    
+                            self?.tableView.reloadData()
+                            
+                        case .failure:
+                            
+                            print("can't fetch data")
+                        }
+                    }
+                }
+                
+                for forumArticle in self?.forumArticles ?? [] {
+                    self?.userManager.fetchForumSeedCount(forumID: forumArticle.postArticleID ?? "") { [weak self] result in
+                        
+                        switch result {
+                            
+                        case .success(let userModels):
+                            
+                            self?.likeSeeds = userModels
+                                                    
+                            self?.tableView.reloadData()
+                            
+                        case .failure:
+                            
+                            print("can't fetch data")
+                        }
+                    }
+                }
                 
                 self?.tableView.reloadData()
                 
@@ -126,33 +189,26 @@ class ForumLobbyViewController: UIViewController {
 
         case "Food":
             addArticleBTN.backgroundColor = .NaturianColor.foodYellow
-//            view.backgroundColor = .NaturianColor.foodOrange
 
         case "Plant":
             addArticleBTN.backgroundColor = .NaturianColor.plantGreen
-//            view.backgroundColor = .NaturianColor.plantGreen
 
         case "Adventure":
             addArticleBTN.backgroundColor = .NaturianColor.adventurePink
-//            view.backgroundColor = .NaturianColor.adventureBlue
 
         case "Grocery":
             addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
-//            view.backgroundColor = .NaturianColor.groceryYellow
 
         case "Exercise":
             addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
-//            view.backgroundColor = .NaturianColor.exerciseGreen
 
         case "Treatment":
             addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
-//            view.backgroundColor = .NaturianColor.treatmentGreen
 
         default:
             break
 
         }
-        
         // addButton
         addArticleBTN.setTitle("", for: .normal)
         addArticleBTN.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -275,10 +331,13 @@ extension ForumLobbyViewController: UITableViewDataSource {
         cell.articleContent.text = forumArticles[indexPath.row].content
         cell.likeLB.text = String(describing: forumArticles[indexPath.row].getLikedValue!)
         cell.seedLB.text = String(describing: forumArticles[indexPath.row].getSeedValue!)
-                
+//        cell.
         let photoUrl = forumArticles[indexPath.row].images[0]
         cell.postImage.kf.setImage(with: photoUrl)
         
+        cell.likeLB.text = String(describing: forumArticles[indexPath.row].getLikedValue ?? 0)
+        cell.seedLB.text = String(describing: forumArticles[indexPath.row].getSeedValue ?? 0)
+
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.lkCornerRadius = 15
@@ -325,6 +384,7 @@ extension ForumLobbyViewController: UITableViewDataSource {
             fatalError("can't find ForumDetailViewController")
         }
         vc.forumArticles = forumArticles[indexPath.row]
+        vc.userInfo = self.userInfo
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

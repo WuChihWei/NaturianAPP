@@ -102,15 +102,12 @@ class UserManager {
 
             if let error = error {
 
-                print(LocalizedError.self)
                 completion(.failure(error))
 
             } else {
 
                 if let doc = querySnapshot?.documents.first {
-                    print("exist")
                     do {
-                        print(doc)
                         if let userModel = try doc.data(as: UserModel?.self,
                                                         decoder: Firestore.Decoder()) {
 
@@ -274,18 +271,18 @@ class UserManager {
         }
     }
     
-    func updateLikedTelent(userModel: UserModel, userID: String, talentID: String) {
-        
-        do {
-            
-            try db.document(userID).setData(from: userModel, merge: true)
-            
-        } catch {
-            print("can't update talent data")
-        }
-    }
+//    func updateLikedTelent(userModel: UserModel, userID: String, talentID: String) {
+//
+//        do {
+//
+//            try db.document(userID).setData(from: userModel, merge: true)
+//
+//        } catch {
+//            print("can't update talent data")
+//        }
+//    }
     
-    func updateLikedTelent(uid: String, talentID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func addLikedTelent(uid: String, talentID: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
         db.document(uid).updateData(["likedTalentList": FieldValue.arrayUnion([talentID])]) { error in
             
@@ -298,9 +295,61 @@ class UserManager {
         }
     }
     
-    func updateLikedForum(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func removeLikedTelent(uid: String, talentID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["likedTalentList": FieldValue.arrayRemove([talentID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func addLikedForum(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
         db.document(uid).updateData(["likedForumList": FieldValue.arrayUnion([forumID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func removeLikedForum(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["likedForumList": FieldValue.arrayRemove([forumID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func didGiveSeed(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["didGiveSeed": FieldValue.arrayUnion([forumID])]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func removeGiveSeed(uid: String, forumID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        db.document(uid).updateData(["didGiveSeed": FieldValue.arrayRemove([forumID])]) { error in
             
             if let error = error {
                 print(error)
@@ -385,6 +434,78 @@ class UserManager {
         }
     }
     
+    func fetchForumSeedCount (forumID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
+        
+        db.whereField("didGiveSeed", arrayContains: forumID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var userModels = [UserModel]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let userModel = try document.data(as: UserModel?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            userModels.append(userModel)
+                        }
+                        print(userModels)
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(userModels))
+            }
+        }
+    }
+    
+    func fetchForumLikeCount (forumID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
+        
+        db.whereField("likedForumList", arrayContains: forumID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                completion(.failure(error))
+                
+            } else {
+                
+                var userModels = [UserModel]()
+                
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        print(document)
+                        if let userModel = try document.data(as: UserModel?.self,
+                                                                 decoder: Firestore.Decoder()) {
+                            
+                            userModels.append(userModel)
+                        }
+                        print(userModels)
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
+                
+                completion(.success(userModels))
+            }
+        }
+    }
+    
     func deleteAccount() {
         let user = Auth.auth().currentUser
 
@@ -437,6 +558,7 @@ class UserManager {
             }
         }
     }
+    
     
     //    func searchBlockListf(userID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
     //

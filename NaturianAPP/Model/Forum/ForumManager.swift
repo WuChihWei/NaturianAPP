@@ -32,6 +32,32 @@ class ForumManager {
         }
     }
     
+    func updateSeedValue(forumID: String, seedValue: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        forumDatabase.document(forumID).updateData(["getSeedValue": seedValue]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func updateLikeValue(forumID: String, likeValue: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        forumDatabase.document(forumID).updateData(["getLikedValue": likeValue]) { error in
+            
+            if let error = error {
+                print(error)
+            } else {
+                print("Document Update!")
+                completion(.success(()))
+            }
+        }
+    }
+    
     func addReplyData(replyForum: ReplyModel) {
         
         do {
@@ -112,6 +138,37 @@ class ForumManager {
                 }
                 
                 completion(.success(forumModels))
+            }
+        }
+    }
+    
+    func fetchMyLikeData(articleID: String, completion: @escaping (Result<ForumModel, Error>) -> Void) {
+        
+        db.collection("forum").whereField("postArticleID", isEqualTo: articleID).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                
+                completion(.failure(error))
+                
+            } else {
+                
+                if let doc = querySnapshot?.documents.first {
+                    do {
+                        print(doc)
+                        if let forumModel = try doc.data(as: ForumModel?.self,
+                                                        decoder: Firestore.Decoder()) {
+                            
+                            completion(.success(forumModel))
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                        
+                    }
+                }
             }
         }
     }
