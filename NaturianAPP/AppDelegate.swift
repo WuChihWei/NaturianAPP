@@ -26,10 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        
+        UITabBar.appearance().barTintColor = .NaturianColor.darkGray
 
-        
-        UITabBar.appearance().unselectedItemTintColor = .blue
-        
+        UITabBar.appearance().tintColor = .NaturianColor.darkGray
+                
         let barApprance = UINavigationBarAppearance()
                 barApprance.configureWithTransparentBackground()
                 UINavigationBar.appearance().standardAppearance = barApprance
@@ -38,17 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let tabApprance = UITabBarAppearance()
                 tabApprance.configureWithTransparentBackground()
                 UITabBar.appearance().standardAppearance = tabApprance
+        
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = tabApprance
         } else {
             // Fallback on earlier versions
         }
 
-        // Google sign in
-        
-//        let db = Firestore.firestore()
-        
-        // Override point for customization after application launch.
         return true
     }
 

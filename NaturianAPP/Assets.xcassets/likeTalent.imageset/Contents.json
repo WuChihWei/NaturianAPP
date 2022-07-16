@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "backNoCircle.png",
+      "filename" : "likeTalent.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "backNoCircle@2x.png",
+      "filename" : "likeTalent@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "backNoCircle@3x.png",
+      "filename" : "likeTalent@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

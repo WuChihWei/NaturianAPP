@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -65,10 +66,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" systemColor="systemGray6Color"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
                         <color key="barTintColor" systemColor="systemGray6Color"/>
+                        <color key="selectedImageTintColor" systemColor="systemGray2Color"/>
                         <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0">
+                            <color key="backgroundColor" name="outgoingMessageBackground"/>
                             <color key="shadowColor" red="0.044930772180000002" green="0.045375631309999997" blue="0.045375631309999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="selectionIndicatorTintColor" name="outgoingMessageBackground"/>
                         </tabBarAppearance>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
@@ -456,11 +460,7 @@
         <scene sceneID="BTG-u2-aQm">
             <objects>
                 <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="1sV-V1-9Pn" customClass="ChatViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3tX-sw-I9p">
-                        <barButtonItem key="rightBarButtonItem" title="Apply" id="BL0-hL-XYe">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3tX-sw-I9p"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbJ-5e-MDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,7 +637,9 @@
         <scene sceneID="qAr-n3-ceO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kYB-B8-8na" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="passport" selectedImage="passport" id="cxi-nB-ZmW"/>
+                    <tabBarItem key="tabBarItem" title="" image="passport" selectedImage="passport" id="cxi-nB-ZmW">
+                        <color key="badgeColor" name="outgoingMessageBackground"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIb-Mz-vIv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -741,11 +743,20 @@
         <image name="passport" width="28" height="28"/>
         <image name="talent" width="28" height="28.5"/>
         <image name="tent" width="28" height="26"/>
+        <namedColor name="outgoingMessageBackground">
+            <color red="0.20399998128414154" green="0.77999997138977051" blue="0.34899997711181641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

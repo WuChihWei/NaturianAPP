@@ -66,7 +66,7 @@ class InsApplingTVCell: UITableViewCell {
         seedValue.textAlignment = .left
         seedValue.text = "70"
         seedValue.textColor = .NaturianColor.navigationGray
-        seedIcon.image = UIImage(named: "seed_gray")
+        seedIcon.image = UIImage(named: "graySeed")
         
         providerName.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         providerName.textAlignment = .left
@@ -160,11 +160,6 @@ class InsApplingTVCell: UITableViewCell {
             talentStackView.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             seedIcon.widthAnchor.constraint(equalToConstant: 12),
             seedIcon.heightAnchor.constraint(equalToConstant: 12),
-
-            // talentDescription
-//            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 3),
-//            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
-//            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             
             finishedBtn.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
             finishedBtn.heightAnchor.constraint(equalToConstant: 28),

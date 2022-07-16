@@ -26,10 +26,10 @@ class AllMyAppliersVC: UIViewController {
     var userManager = UserManager()
     
     var talentArticleID: String?
-        var userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
-//    let userID = "1"
-
+    var userID = Auth.auth().currentUser?.uid
+    //    let userID = "2"
+    //    let userID = "1"
+    
     let subview = UIView()
     
     var userModels: [UserModel] = []
@@ -53,14 +53,13 @@ class AllMyAppliersVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        appliedIDs.removeAll()
-        acceptIDs.removeAll()
         fetchMyAppliedTalent()
         tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        appliedIDs.removeAll()
+        acceptIDs.removeAll()
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,7 +70,7 @@ class AllMyAppliersVC: UIViewController {
     @objc func applyToChat(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ChatViewController") as? ChatViewController else {
-
+            
             fatalError("can't find ChatViewController")
         }
         let point = sender.convert(CGPoint.zero, to: tableView)
@@ -83,7 +82,7 @@ class AllMyAppliersVC: UIViewController {
     @objc func accpetToChat(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ChatViewController") as? ChatViewController else {
-
+            
             fatalError("can't find ChatViewController")
         }
         let point = sender.convert(CGPoint.zero, to: tableView)
@@ -97,9 +96,10 @@ class AllMyAppliersVC: UIViewController {
         let indexPath = tableView.indexPathForRow(at: point)
         self.didSelectedID = acceptIDs[indexPath?.row ?? 0].userID
         talentManager.cancelAcceptState(applyTalentID: didSeletectDetails.talentPostID ?? "",
-                                       applierID: didSelectedID ?? "") {[weak self] result in
+                                        applierID: didSelectedID ?? "") {[weak self] result in
             switch result {
             case .success:
+                self?.fetchMyAppliedTalent()
                 self?.tableView.reloadData()
                 print("success")
             case .failure:
@@ -117,7 +117,7 @@ class AllMyAppliersVC: UIViewController {
             switch result {
                 
             case .success:
-                
+                self?.fetchMyAppliedTalent()
                 self?.tableView.reloadData()
                 print("success")
             case .failure:
@@ -131,6 +131,9 @@ class AllMyAppliersVC: UIViewController {
         let point = sender.convert(CGPoint.zero, to: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
         self.didSelectedID = appliedIDs[indexPath?.row ?? 0].userID
+        
+        self.appliedIDs.removeAll()
+        self.acceptIDs.removeAll()
         
         talentManager.removeApplyState(applyTalentID: didSeletectDetails.talentPostID ?? "",
                                        applierID: didSelectedID ?? "") {[weak self] result in
@@ -147,13 +150,8 @@ class AllMyAppliersVC: UIViewController {
                         
                     case .success:
                         print("success")
-                        //
-                        self?.appliedIDs.removeAll()
-                        self?.acceptIDs.removeAll()
                         //                        var myTalentInfo =
-                        self?.fetchMyAppliedTalent()
-                        print(self?.acceptIDs ?? [])
-                        
+//                        self?.fetchMyAppliedTalent()
                         self?.tableView.reloadData()
                         
                     case .failure:
@@ -168,6 +166,7 @@ class AllMyAppliersVC: UIViewController {
     }
     
     func fetchMyAppliedTalent() {
+        
         talentManager.fetchMyAppliedTalent(userID: didSeletectDetails.userID ?? "",
                                            talentPostID: didSeletectDetails.talentPostID ?? "") { [weak self] result in
             switch result {
@@ -181,9 +180,9 @@ class AllMyAppliersVC: UIViewController {
                 
                 self?.fetchAppliedInfo()
                 self?.fetchAcceptInfo()
-                                
+                
                 DispatchQueue.main.async {
-                                    
+                    
                     self?.tableView.reloadData()
                 }
                 
@@ -204,18 +203,9 @@ class AllMyAppliersVC: UIViewController {
                     
                 case .success(let userModel):
                     
-                    self?.appliedIDs.removeAll()
-                    self?.acceptIDs.removeAll()
-                    
                     self?.appliedIDs.append(userModel)
-                    
-                    print(self?.userModels as Any)
-                    
+                                        
                     DispatchQueue.main.async {
-                        
-                        
-                        
-                        print(self?.appliedIDs)
                         
                         self?.tableView.reloadData()
                     }
@@ -240,11 +230,9 @@ class AllMyAppliersVC: UIViewController {
                     
                     self?.acceptIDs.append(userModel)
                     
-                    print(self?.userModels as Any)
                     //
                     DispatchQueue.main.async {
                         
-                        print(self?.acceptIDs)
                         self?.tableView.reloadData()
                     }
                     
@@ -336,21 +324,6 @@ extension AllMyAppliersVC: UITableViewDataSource {
             return cell2
         }
     }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        guard let vc = storyboard?.instantiateViewController(
-//            withIdentifier: "ChatViewController") as? ChatViewController else {
-//            
-//            fatalError("can't find ChatViewController")
-//        }
-//        
-//        vc.chatToID = acceptIDs[indexPath.row].userID
-//        vc.chatToID = appliedIDs[indexPath.row].userID
-//        
-//        self.navigationController?.pushViewController(vc, animated: true)
-//        
-//    }
 }
 
 extension AllMyAppliersVC {

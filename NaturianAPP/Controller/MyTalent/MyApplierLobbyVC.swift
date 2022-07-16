@@ -17,12 +17,9 @@ class MyApplierLobbyVC: UIViewController {
     var userModel: UserModel!
     let viewPagers =  LZViewPager()
     let closeButton = UIButton()
-    let mailButton = UIButton()
     var talentArticleID: String?
     var didSeletectApplierIDs: [String] = []
     var talentArticle: TalentArticle!
-    var appliedIDs: [UserModel] = []
-    var acceptIDs: [UserModel] = []
     
 //    private let grayView = UIView()
     private var subControllers: [UIViewController] = []
@@ -54,7 +51,6 @@ class MyApplierLobbyVC: UIViewController {
         vc1.talentArticleID = self.talentArticleID
         vc1.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc1.didSeletectDetails = self.talentArticle
-        vc1.delegate = self
         
         guard let vc2 = UIStoryboard(name: "Main",
                                      bundle: nil).instantiateViewController(withIdentifier: "MyAppliersVC") as? MyAppliersVC else {return}
@@ -62,7 +58,6 @@ class MyApplierLobbyVC: UIViewController {
         vc2.talentArticleID = self.talentArticleID
         vc2.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc2.didSeletectDetails = self.talentArticle
-        vc2.appliedIDs = self.appliedIDs
         vc2.viewWillAppear(true)
         
         guard let vc3 = UIStoryboard(name: "Main",
@@ -71,7 +66,6 @@ class MyApplierLobbyVC: UIViewController {
         vc3.talentArticleID = self.talentArticleID
         vc3.didSeletectApplierIDs = self.didSeletectApplierIDs
         vc3.didSeletectDetails = self.talentArticle
-        vc3.acceptIDs = self.acceptIDs
         vc3.viewWillAppear(true)
 
         subControllers = [vc1, vc2, vc3]
@@ -98,25 +92,16 @@ class MyApplierLobbyVC: UIViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
         
         closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
-        mailButton.setImage(UIImage(named: "mail_gray"), for: .normal)
-
     }
     
     func layout() {
         
-        view.addSubview(mailButton)
         view.addSubview(closeButton)
         view.addSubview(viewPagers)
         viewPagers.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        mailButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            mailButton.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
-            mailButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            mailButton.heightAnchor.constraint(equalToConstant: 34),
-            mailButton.widthAnchor.constraint(equalToConstant: 34),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -148,7 +133,7 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
     
     func button(at index: Int) -> UIButton {
         let button = UIButton()
-        button.setTitleColor(.NaturianColor.lightGray, for: .normal)
+        button.setTitleColor(.NaturianColor.lightGray2, for: .normal)
         button.setTitleColor(.NaturianColor.darkGray, for: .selected)
         button.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         button.backgroundColor = .white
@@ -158,7 +143,7 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
     }
     
     func colorForIndicator(at index: Int) -> UIColor {
-        return .NaturianColor.darkGray
+        return .NaturianColor.lightGray2
     }
     
     func heightForIndicator() -> CGFloat {
@@ -174,15 +159,5 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
     
     func didSelectButton(at index: Int) {
         
-    }
-}
-
-extension MyApplierLobbyVC: SendUserStateDelegate {
-    func applier(appliedIDs: [UserModel]) {
-        self.appliedIDs = appliedIDs
-    }
-    
-    func accept(acceptIDs: [UserModel]) {
-        self.acceptIDs = acceptIDs
     }
 }

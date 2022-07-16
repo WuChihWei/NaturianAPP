@@ -38,9 +38,7 @@ class SignInViewController: UIViewController {
         observeAppleIDState()
         checkAppleIDCredentialState(userID: uuid ?? "")
         
-        Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil {
-            
-            guard let vc = self.storyboard?.instantiateViewController(
+        Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil { guard let vc = self.storyboard?.instantiateViewController(
                 withIdentifier: "AccountViewController") as? AccountViewController else {
                 
                 fatalError("can't find AccountViewController")
@@ -52,7 +50,7 @@ class SignInViewController: UIViewController {
             
             self.checkAppleIDCredentialState(userID: self.uuid ?? "")
             
-            }
+        }
         }
     }
     
@@ -66,7 +64,7 @@ class SignInViewController: UIViewController {
             fatalError("can't find EULAVC")
         }
         present(vc, animated: true)
-//        navigationController?.pushViewController(vc, animated: true)
+        //        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func presentPolicy() {
@@ -75,7 +73,7 @@ class SignInViewController: UIViewController {
             fatalError("can't find PrivacyPolicyVC")
         }
         present(vc, animated: true)
-//        navigationController?.pushViewController(vc, animated: true)
+        //        navigationController?.pushViewController(vc, animated: true)
     }
     
     func setup() {
@@ -280,9 +278,7 @@ extension SignInViewController {
             let userID = Auth.auth().currentUser?.uid
             let email = Auth.auth().currentUser?.email
             
-            
             guard let userid = userID else { return }
-            
             
             self.userManager.fetchUserData(userID: userid) { result in
                 
@@ -290,7 +286,9 @@ extension SignInViewController {
                     
                 case .success:
                     
-                    CustomFunc.customAlert(title: "登入成功！", message: "", vc: self, actionHandler: self.getFirebaseUserInfo)
+                    CustomFunc.customAlert(title: "登入成功！",
+                                           message: "", vc: self,
+                                           actionHandler: self.getFirebaseUserInfo)
                     
                     guard let vc = self.storyboard?.instantiateViewController(
                         withIdentifier: "AccountViewController") as? AccountViewController else {
@@ -304,7 +302,9 @@ extension SignInViewController {
                     
                     self.userManager.addUser(name: "", userID: userID ?? "", email: email ?? "")
                     
-                    CustomFunc.customAlert(title: "登入成功！", message: "", vc: self, actionHandler: self.getFirebaseUserInfo)
+                    CustomFunc.customAlert(title: "登入成功！",
+                                           message: "", vc: self,
+                                           actionHandler: self.getFirebaseUserInfo)
                     
                     guard let vc = self.storyboard?.instantiateViewController(
                         withIdentifier: "AccountViewController") as? AccountViewController else {
@@ -319,11 +319,8 @@ extension SignInViewController {
             
             let db = Firestore.firestore().collection("users")
             
-            db.whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
-                
-                if let doc = querySnapshot?.documents.first {
+            db.whereField("userID", isEqualTo: userID ?? "").getDocuments { (querySnapshot, error) in if let doc = querySnapshot?.documents.first {
                     
-                    print("exist")
                 } else {
                     self.userManager.addUser(name: "", userID: userID ?? "", email: email ?? "")
                 }
@@ -344,9 +341,7 @@ extension SignInViewController {
         let email = user.email
         let db = Firestore.firestore().collection("users")
         
-        db.whereField("userID", isEqualTo: uid).getDocuments { (querySnapshot, error) in
-            
-            if let doc = querySnapshot?.documents.first {
+        db.whereField("userID", isEqualTo: uid).getDocuments { (querySnapshot, error) in if let doc = querySnapshot?.documents.first {
                 print("exist")
             } else {
                 
@@ -361,19 +356,19 @@ extension SignInViewController {
     // MARK: - 監聽目前的 Apple ID 的登入狀況
     // 主動監聽
     func checkAppleIDCredentialState(userID: String) {
-        ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID) { credentialState, error in
-            switch credentialState {
-            case .authorized:
-                CustomFunc.customAlert(title: "使用者已授權！", message: "", vc: self, actionHandler: nil)
-            case .revoked:
-                CustomFunc.customAlert(title: "使用者憑證已被註銷！", message: "請到\n「設定 → Apple ID → 密碼與安全性 → 使用 Apple ID 的 App」\n將此 App 停止使用 Apple ID\n並再次使用 Apple ID 登入本 App！", vc: self, actionHandler: nil)
-                //            case .notFound:
-                //                CustomFunc.customAlert(title: "", message: "使用者尚未使用過 Apple ID 登入！", vc: self, actionHandler: nil)
-            case .transferred:
-                CustomFunc.customAlert(title: "請與開發者團隊進行聯繫，以利進行使用者遷移！", message: "", vc: self, actionHandler: nil)
-            default:
-                break
-            }
+        ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID) { credentialState, error in switch credentialState {
+        case .authorized:
+            CustomFunc.customAlert(title: "使用者已授權！", message: "", vc: self, actionHandler: nil)
+        case .revoked:
+            CustomFunc.customAlert(title: "使用者憑證已被註銷！", message: "請到\n「設定 → Apple ID → 密碼與安全性 → 使用 Apple ID 的 App」\n將此 App 停止使用 Apple ID\n並再次使用 Apple ID 登入本 App！", vc: self, actionHandler: nil)
+            //            case .notFound:
+            //                CustomFunc.customAlert(title: "",
+            //        message: "使用者尚未使用過 Apple ID 登入！", vc: self, actionHandler: nil)
+        case .transferred:
+            CustomFunc.customAlert(title: "請與開發者團隊進行聯繫，以利進行使用者遷移！", message: "", vc: self, actionHandler: nil)
+        default:
+            break
+        }
         }
     }
     
@@ -382,8 +377,7 @@ extension SignInViewController {
         
         NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification,
                                                object: nil,
-                                               queue: nil) { (notification: Notification) in
-            CustomFunc.customAlert(title: "使用者登入或登出",
+                                               queue: nil) { (notification: Notification) in CustomFunc.customAlert(title: "使用者登入或登出",
                                    message: "",
                                    vc: self,
                                    actionHandler: nil)

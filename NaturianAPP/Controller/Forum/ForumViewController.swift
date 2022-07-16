@@ -17,11 +17,6 @@ class ForumViewController: UIViewController {
                        (name: "Adventure", imageName: "scroller_4"),
                        (name: "Exercise", imageName: "scroller_5"),
                        (name: "Treatment", imageName: "scroller_6") ]
-    
-    //    private enum LayoutConstant {
-    //        static let spacing: CGFloat = 16.0
-    //        static let itemHeight: CGFloat = 200.0
-    //    }
         
     let firstLB = UILabel()
     let secondLB = UILabel()

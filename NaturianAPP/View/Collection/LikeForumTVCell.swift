@@ -19,15 +19,9 @@ class LikeForumTVCell: UITableViewCell {
     let title = UILabel()
     let talentDescription = UILabel()
     let categoryBTN = UIButton()
-    let messageAmountButton = UIButton()
+    var likedBtn = UIButton()
     let addTalentButton = UIButton()
     let subview = UIView()
-    let seedValue = UILabel()
-    let seedIcon = UIImageView()
-    private let seedStack = UIStackView()
-
-    // Accept MessageAmmount
-    var messageAmmont: Int = 6
 
     private let nameStackView = UIStackView()
     private let talentStackView = UIStackView()
@@ -57,11 +51,6 @@ class LikeForumTVCell: UITableViewCell {
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 2
         
-        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        seedValue.textAlignment = .left
-        seedValue.text = "70 Seeds"
-        seedIcon.image = UIImage(named: "seed_gray")
-
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
@@ -71,12 +60,9 @@ class LikeForumTVCell: UITableViewCell {
         talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         talentDescription.numberOfLines = 2
         talentDescription.text = "I will teach you how reproduce plants in better ways."
-        talentDescription.textAlignment = .justified
+        talentDescription.textAlignment = .left
         
-        messageAmountButton.setTitle("\(messageAmmont)", for: .normal)
-        messageAmountButton.backgroundColor = .lightGray
-        messageAmountButton.lkCornerRadius = 13
-        messageAmountButton.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        likedBtn.setImage(UIImage(named: "greenLike"), for: .normal)
 
         postImage.backgroundColor = .gray
         postImage.contentMode = .scaleAspectFill
@@ -86,10 +72,6 @@ class LikeForumTVCell: UITableViewCell {
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
         talentStackView.spacing = 2
-        
-        seedStack.axis = .horizontal
-        seedStack.alignment = .center
-        seedStack.spacing = 6
     }
     
     func layout() {
@@ -97,23 +79,18 @@ class LikeForumTVCell: UITableViewCell {
         contentView.addSubview(subview)
         subview.addSubview(postImage)
         subview.addSubview(talentDescription)
-        subview.addSubview(messageAmountButton)
+        subview.addSubview(likedBtn)
         subview.addSubview(talentStackView)
         
         subview.addSubview(title)
         talentStackView.addArrangedSubview(categoryBTN)
-        talentStackView.addArrangedSubview(seedStack)
-        
-        seedStack.addArrangedSubview(seedIcon)
-        seedStack.addArrangedSubview(seedValue)
 
         title.translatesAutoresizingMaskIntoConstraints = false
-        seedStack.translatesAutoresizingMaskIntoConstraints = false
         subview.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
         talentDescription.translatesAutoresizingMaskIntoConstraints = false
         talentStackView.translatesAutoresizingMaskIntoConstraints = false
-        messageAmountButton.translatesAutoresizingMaskIntoConstraints = false
+        likedBtn.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -136,8 +113,6 @@ class LikeForumTVCell: UITableViewCell {
             // talentStack
             talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
             talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 14),
-            seedIcon.widthAnchor.constraint(equalToConstant: 12),
-            seedIcon.heightAnchor.constraint(equalToConstant: 12),
             
             categoryBTN.widthAnchor.constraint(equalToConstant: 70),
             categoryBTN.heightAnchor.constraint(equalToConstant: 20),
@@ -148,10 +123,10 @@ class LikeForumTVCell: UITableViewCell {
             talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             
             // messageAmount
-            messageAmountButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
-            messageAmountButton.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            messageAmountButton.widthAnchor.constraint(equalToConstant: 26),
-            messageAmountButton.heightAnchor.constraint(equalToConstant: 26)
+            likedBtn.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
+            likedBtn.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+            likedBtn.widthAnchor.constraint(equalToConstant: 26),
+            likedBtn.heightAnchor.constraint(equalToConstant: 26)
         ])
         
     }

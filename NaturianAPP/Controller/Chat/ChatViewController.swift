@@ -17,24 +17,22 @@ class ChatViewController: MessagesViewController {
     
     var userFirebaseManager = UserManager()
     
-    //    var chatTalentID: String = ""
-    
     var db = Firestore.firestore()
     
     private var docReference: DocumentReference?
     
     private let currentUser = Auth.auth().currentUser?.uid
-//    let currentUser = "2"
-//        let currentUser = "1"
-
+    //    let currentUser = "2"
+    //        let currentUser = "1"
+    
     var chatToID: String?
     
     var messages: [Message] = []
-        
+    
     var chatToUserModel: UserModel!
     
     var currentUserModel: UserModel!
-
+    
     var currentUserImageUrl: URL?
     
     var user2ImageUrl: URL?
@@ -47,7 +45,6 @@ class ChatViewController: MessagesViewController {
         chatToUserInfo()
         
         navigationController?.navigationBar.isHidden = false
-        //        navigationItem.largeTitleDisplayMode = .never
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToLastItemOnKeyboardBeginsEditing = true
         
@@ -63,7 +60,7 @@ class ChatViewController: MessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         loadChat()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //        changeIsReadState()
@@ -88,13 +85,14 @@ class ChatViewController: MessagesViewController {
                                          style: .done,
                                          target: self,
                                          action: #selector(backTapped))
-//        let backButton = UIBarButtonItem(title: "<",
-//                                         style: .done,
-//                                         target: self,
-//                                         action: #selector(backTapped))
-
+        //        let backButton = UIBarButtonItem(title: "<",
+        //                                         style: .done,
+        //                                         target: self,
+        //                                         action: #selector(backTapped))
+        
         backButton.tintColor = .NaturianColor.navigationGray
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem?.title = ""
     }
     
     @objc func backTapped() {
@@ -143,13 +141,10 @@ class ChatViewController: MessagesViewController {
         }
     }
     
-    
     func loadChat() {
         
         let db = Firestore.firestore().collection("chats").whereField("users",
-                                                                      arrayContains: self.currentUser)
-        print(self.currentUser)
-        
+                                                                      arrayContains: self.currentUser as Any)
         db.getDocuments { (chatQuerySnap, error) in
             
             if let error = error {
@@ -172,31 +167,32 @@ class ChatViewController: MessagesViewController {
                         
                         let chat = Chat(dictionary: doc.data())
                         
-                        //Get the chat which has user2 id
+                        // Get the chat which has user2 id
                         if chat?.users.contains(self.chatToID ?? "ID Not Found") == true {
                             
                             self.docReference = doc.reference
                             
                             // fetch it's thread collection
                             doc.reference.collection("thread").order(by: "created",
-                                                                     descending: false).addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
-                                
-                                if let error = error {
-                                    print("Error: \(error)")
-                                    return
-                                    
-                                } else {
-                                    self.messages.removeAll()
-                                    for message in threadQuery!.documents {
-                                        let msg = Message(dictionary: message.data())
-                                        self.messages.append(msg!)
-                                        print("Data: \(msg?.content ?? "No message found")")
-                                    }
-                                    // We'll edit viewDidload below which will solve the error
-                                    self.messagesCollectionView.reloadData()
-                                    self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
-                                }
-                            })
+                                                                     descending: false).addSnapshotListener(includeMetadataChanges: true,
+                                                                                                            listener: { (threadQuery, error) in
+                                                                         
+                                                                         if let error = error {
+                                                                             print("Error: \(error)")
+                                                                             return
+                                                                             
+                                                                         } else {
+                                                                             self.messages.removeAll()
+                                                                             for message in threadQuery!.documents {
+                                                                                 let msg = Message(dictionary: message.data())
+                                                                                 self.messages.append(msg!)
+                                                                                 print("Data: \(msg?.content ?? "No message found")")
+                                                                             }
+                                                                             // We'll edit viewDidload below which will solve the error
+                                                                             self.messagesCollectionView.reloadData()
+                                                                             self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
+                                                                         }
+                                                                     })
                             return
                         } // end of if
                     } // end of for
@@ -306,7 +302,8 @@ extension ChatViewController: MessagesDataSource {
             //            displayName: (Auth.auth().currentUser?.displayName)!
             displayName: "currentUser.displayName!"
         )
-        // return Sender(id: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
+        // return Sender(id: Auth.auth().currentUser!.uid,
+        //    displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
     }
     // This return the MessageType which we have defined to be text in Messages.swift
     func messageForItem(at indexPath: IndexPath,
@@ -358,7 +355,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         //        if message.sender.senderId == currentUser.uid
         if message.sender.senderId == currentUser {
             SDWebImageManager.shared.loadImage(
-//                  with: currentUser.photoURL,
+                //                  with: currentUser.photoURL,
                 with: currentUserImageUrl,
                 options: .highPriority,
                 progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in

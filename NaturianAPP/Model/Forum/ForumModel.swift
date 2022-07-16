@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct ForumModel: Codable {
     
     let postArticleID: String?
@@ -44,4 +43,5 @@ struct ReplyModel: Codable {
     let createdTime: Date?
     
     let userInfo: UserModel
+
 }

@@ -144,7 +144,8 @@ class ForumManager {
     
     func fetchMyLikeData(articleID: String, completion: @escaping (Result<ForumModel, Error>) -> Void) {
         
-        db.collection("forum").whereField("postArticleID", isEqualTo: articleID).getDocuments { (querySnapshot, error) in
+        db.collection("forum").whereField("postArticleID",
+                                          isEqualTo: articleID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

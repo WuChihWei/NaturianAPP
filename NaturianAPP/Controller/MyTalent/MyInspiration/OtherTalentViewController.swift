@@ -19,11 +19,9 @@ class OtherTalentViewController: UIViewController {
     var userInfo: [UserModel] = []
     let subview = UIView()
     
-        var userID = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
 //    let userID = "1"
-
-    
     private var appliedTalents: [TalentArticle] = []
     private var acceptTalents: [TalentArticle] = []
     
@@ -34,9 +32,8 @@ class OtherTalentViewController: UIViewController {
         setUp()
         style()
         layout()
-        fetchAppliedTalent()
+//        fetchAppliedTalent()
         tableView.showsVerticalScrollIndicator = false
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +47,7 @@ class OtherTalentViewController: UIViewController {
         
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         appliedTalents.removeAll()
         acceptTalents.removeAll()
     }
@@ -161,7 +158,6 @@ extension OtherTalentViewController: UITableViewDataSource {
         return cell
     }
 }
-
 
 extension OtherTalentViewController {
     

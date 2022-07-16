@@ -11,7 +11,6 @@ import FirebaseFirestore
 import Kingfisher
 import FirebaseAuth
 import Lottie
-import SwiftUI
 import CoreMedia
 
 class TalentDetailViewController: UIViewController {
@@ -29,8 +28,6 @@ class TalentDetailViewController: UIViewController {
     var selectedArticle: TalentArticle!
     var userModels: UserModel!
     let applyButton = UIButton()
-//    let likedBtn = UIButton()
-    var isLiked = true
     
     let seedValue = UILabel()
     let seedIcon = UIImageView()
@@ -101,7 +98,6 @@ class TalentDetailViewController: UIViewController {
                     animationView.isHidden = true
                 })
     }
-    
     
     @objc func didApply() {
         
@@ -203,27 +199,6 @@ class TalentDetailViewController: UIViewController {
             return
         }
     }
-    
-//    func switchColor() {
-//
-//        switch selectedArticle.category {
-//
-//        case "Food":
-//            applyButton.backgroundColor = .NaturianColor.foodYellow
-//        case "Plant":
-//            applyButton.backgroundColor = .NaturianColor.plantGreen
-//        case "Adventure":
-//            applyButton.backgroundColor = .NaturianColor.adventurePink
-//        case "Grocery":
-//            applyButton.backgroundColor = .NaturianColor.groceryBlue
-//        case "Exercise":
-//            applyButton.backgroundColor = .NaturianColor.exerciseBlue
-//        case "Treatment":
-//            applyButton.backgroundColor = .NaturianColor.treatmentGreen
-//        default:
-//            break
-//        }
-//    }
 }
 
 extension TalentDetailViewController {

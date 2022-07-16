@@ -42,7 +42,6 @@ class MyCollectionVC: UIViewController {
             fatalError("can't find LikeForumVC")
         }
         
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -53,10 +52,8 @@ class MyCollectionVC: UIViewController {
             fatalError("can't find LikeTalentVC")
         }
         
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     func setUp() {
         
@@ -71,12 +68,13 @@ class MyCollectionVC: UIViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
         
         talentPageBtn.lkCornerRadius = 15
-        talentPageBtn.setTitle("Talent", for: .normal)
+        talentPageBtn.setImage(UIImage(named: "likeTalent"), for: .normal)
         talentPageBtn.backgroundColor = .NaturianColor.exerciseBlue
         talentPageBtn.titleLabel?.font = UIFont(name: Roboto.black.rawValue, size: 48)
         talentPageBtn.titleLabel?.textColor = .white
 
-        forumPageBtn.setTitle("Forum", for: .normal)
+//        forumPageBtn.setTitle("Forum", for: .normal)
+        forumPageBtn.setImage(UIImage(named: "likeForum"), for: .normal)
         forumPageBtn.titleLabel?.font = UIFont(name: Roboto.black.rawValue, size: 48)
         forumPageBtn.lkCornerRadius = 15
         forumPageBtn.titleLabel?.textColor = .white

@@ -67,7 +67,7 @@ class UserManager {
     
     func fetchUserData(userID: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
         
-        db.whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+        db.whereField("userID", isEqualTo: userID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

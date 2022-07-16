@@ -95,7 +95,6 @@ class ProfileVC: UIViewController {
     
     @objc func clickGender(_ sender: Any) {
         
-        
         addTransparentManager.addWithoutTransparent(radius: 15, tableView: tableView,
                                                     view: self.view,
                                                     frames: genderButton.frame)
@@ -177,13 +176,9 @@ class ProfileVC: UIViewController {
         userImage.image = UIImage(named: "profile_icon")
 
         closeBtn.setImage(UIImage(named: "back"), for: .normal)
-
-//        userImage.backgroundColor = .NaturianColor.treatmentGreen
         
         photoButton.setImage(UIImage(named: "camera_green"), for: .normal)
-        
-//        logoImage.image = UIImage(named: "naturianLogo")
-        
+                
         nameLabel.text = "YOUR NAME"
         nameLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         nameLabel.textColor = .NaturianColor.treatmentGreen

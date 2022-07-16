@@ -88,6 +88,8 @@ class LikeForumVC: UIViewController {
                 
                 for forumID in self?.userInfo.likedForumList ?? [] {
                     
+                    self?.forumAricles.removeAll()
+                    
                     self?.forumManager.fetchMyLikeData(articleID: forumID) { [weak self] result in
                         
                         switch result {
@@ -116,6 +118,34 @@ class LikeForumVC: UIViewController {
             case .failure:
                 print("can't fetch data")
             }
+        }
+    }
+    
+    @objc func removeCollection(_ sender: UIButton) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: point) else {
+            return
+        }
+//        self.tableView.deleteRows(at: [indexPath], with: .none)
+
+        if sender.isSelected == true {
+            
+            userManager.removeLikedForum(uid: self.userID ?? "", forumID: self.forumAricles[indexPath.row].postArticleID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    
+//                    self?.currentUserState()
+//                    self?.tableView.reloadData()
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
         }
     }
     
@@ -198,8 +228,11 @@ extension LikeForumVC: UITableViewDataSource {
         
         cell.title.text = forumAricles[indexPath.row].title
         cell.categoryBTN.setTitle(forumAricles[indexPath.row].category, for: .normal)
-//        cell.seedValue.text = String(describing: forumAricles[indexPath.row].seedValue ?? 0)
-        cell.talentDescription .text = forumAricles[indexPath.row].title
+        
+        cell.likedBtn.addTarget(self, action: #selector(removeCollection(_:)), for: .touchUpInside)
+        cell.likedBtn.isSelected = true
+        
+        cell.talentDescription .text = forumAricles[indexPath.row].content
         
         let postUrl = forumAricles[indexPath.row].images[0]
         cell.postImage.kf.setImage(with: postUrl)

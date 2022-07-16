@@ -98,7 +98,7 @@ class MyTalentViewController: UIViewController {
         tableView.backgroundColor = .clear
         // addButton
         addTalentButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addTalentButton.backgroundColor = .NaturianColor.darkGray
+        addTalentButton.backgroundColor = .NaturianColor.treatmentGreen
         addTalentButton.tintColor = .white
     }
 
@@ -168,9 +168,12 @@ extension MyTalentViewController: UITableViewDataSource {
         cell.title.text = talentArticles[indexPath.row].title
         cell.categoryBTN.setTitle("\(talentArticles[indexPath.row].category ?? "")", for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue ?? 0)"
-        cell.talentDescription.text = talentArticles[indexPath.row].content
+//        cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.postImage.kf.setImage(with: URL(string: talentArticles[indexPath.row].images[0]))
         cell.messageAmountButton.setTitle("+\(talentArticles[indexPath.row].didApplyID.count - 1)", for: .normal)
+        if talentArticles[indexPath.row].didApplyID.count == 1 {
+            cell.messageAmountButton.alpha = 0
+        }
         
 //        cell.postImage.image = talentArticles[indexPath.row]
         

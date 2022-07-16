@@ -102,7 +102,7 @@ class AccountViewController: UIViewController {
         
         transferBtn.lkCornerRadius = transferBtn.bounds.width / 2
         transferBtn.lkBorderWidth = 2
-        transferBtn.lkBorderColor = .NaturianColor.navigationGray
+        transferBtn.lkBorderColor = .NaturianColor.lightGray2
         
         userAvatar.topAnchor.constraint(equalTo: backgroundView.topAnchor,
                                         constant: backgroundView.bounds.height / 4 - 73 ).isActive = true
@@ -220,7 +220,7 @@ class AccountViewController: UIViewController {
     
     func setStyle() {
         
-        view.backgroundColor = UIColor.NaturianColor.lightGray
+        view.backgroundColor = UIColor.NaturianColor.lightGray2
 //        deletetButton.backgroundColor = .blue
         manageBtn.setImage(UIImage(named: "manager"), for: .normal)
         editButton.setImage(UIImage(named: "edit"), for: .normal)
@@ -230,12 +230,12 @@ class AccountViewController: UIViewController {
 
         backgroundView.lkCornerRadius = 20
         backgroundView.backgroundColor = .white
-        blackLine.backgroundColor = .NaturianColor.lightGray
-        circleL.backgroundColor = .NaturianColor.lightGray
-        circleR.backgroundColor = .NaturianColor.lightGray
+        blackLine.backgroundColor = .NaturianColor.lightGray2
+        circleL.backgroundColor = .NaturianColor.lightGray2
+        circleR.backgroundColor = .NaturianColor.lightGray2
 
         userAvatar.contentMode = .scaleAspectFill
-        userAvatar.backgroundColor = .NaturianColor.lightGray
+//        userAvatar.backgroundColor = .NaturianColor.lightGray
         let url = URL(string: userModels?.userAvatar ?? "")
         userAvatar.kf.setImage(with: url)
         

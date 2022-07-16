@@ -13,7 +13,7 @@ class MyTalentManageVC: UIViewController {
     var userModel: UserModel!
     let viewPagers =  LZViewPager()
     let closeButton = UIButton()
-    let mailButton = UIButton()
+//    let mailButton = UIButton()
 
 //    private let grayView = UIView()
     private var subControllers: [UIViewController] = []
@@ -51,7 +51,7 @@ class MyTalentManageVC: UIViewController {
         subControllers = [vc1, vc2, vc3]
         
         vc1.title = "My Talent"
-        vc2.title = "My Wizard"
+        vc2.title = "My Inspiration"
         vc3.title = "My Collection"
 
         viewPagers.reload()
@@ -72,24 +72,16 @@ class MyTalentManageVC: UIViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
         
         closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
-        mailButton.setImage(UIImage(named: "mail_gray"), for: .normal)
     }
     
     func layout() {
         
-        view.addSubview(mailButton)
         view.addSubview(closeButton)
         view.addSubview(viewPagers)
         viewPagers.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        mailButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            mailButton.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
-            mailButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            mailButton.heightAnchor.constraint(equalToConstant: 34),
-            mailButton.widthAnchor.constraint(equalToConstant: 34),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -120,7 +112,7 @@ extension MyTalentManageVC: LZViewPagerDataSource {
     
     func button(at index: Int) -> UIButton {
         let button = UIButton()
-        button.setTitleColor(.NaturianColor.lightGray, for: .normal)
+        button.setTitleColor(.NaturianColor.lightGray2, for: .normal)
         button.setTitleColor(.NaturianColor.darkGray, for: .selected)
         button.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         button.backgroundColor = .white

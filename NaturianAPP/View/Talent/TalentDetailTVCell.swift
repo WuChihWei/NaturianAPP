@@ -138,7 +138,6 @@ class TalentDetailTVCell: UITableViewCell {
         descriptionText.translatesAutoresizingMaskIntoConstraints = false
         moreBtn.translatesAutoresizingMaskIntoConstraints = false
         
-        
         postPhotoImage.addSubview(likedBtn)
         contentView.addSubview(postPhotoImage)
         postPhotoImage.addSubview(avatarImage)
@@ -155,9 +154,6 @@ class TalentDetailTVCell: UITableViewCell {
         subview.addSubview(descriptionText)
         subview.addSubview(buttonStack)
         
-//        seedStack.addArrangedSubview(seedIcon)
-//        seedStack.addArrangedSubview(seedValueText)
-        
         providerStack.addArrangedSubview(nameStack)
         providerStack.addArrangedSubview(locationStack)
         
@@ -166,9 +162,6 @@ class TalentDetailTVCell: UITableViewCell {
         
         locationStack.addArrangedSubview(locationIcon)
         locationStack.addArrangedSubview(locationLabel)
-        
-//        buttonStack.addArrangedSubview(applyButton)
-//        buttonStack.addArrangedSubview(contactButton)
         
         NSLayoutConstraint.activate([
             
@@ -233,7 +226,6 @@ class TalentDetailTVCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     
 }

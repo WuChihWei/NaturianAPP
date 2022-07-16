@@ -32,9 +32,14 @@ class HomeVC: UIViewController {
         setUp()
         style()
         layout()
+//
+//        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
+//
+//        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
         
-        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
-        tabBarController?.tabBar.unselectedItemTintColor = .NaturianColor.lightGray
+
+        
+//        tabBarController?.tabBar.tintColor = .NaturianColor.foodYellow
 
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
@@ -273,7 +278,6 @@ extension HomeVC: UITableViewDataSource {
             
             vc.forumArticles = self.orderForumArticles[indexPath.row]
             vc.userInfo = self.userInfo
-            print(self.userInfo)
         default:
             break
         }

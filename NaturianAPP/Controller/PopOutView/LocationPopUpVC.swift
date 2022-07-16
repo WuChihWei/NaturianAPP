@@ -24,7 +24,7 @@ class LocationPopUpVC: UIViewController {
     
     let locationData = ["Taipei City", "Xinbei City",
                         "Taoyuan City", "Xinzhu City",
-                        "Miaoli City", "Taizhong City",
+                        "Miaoli City", "Taichung City",
                         "Zhanghua City", "Nantou City",
                         "Jiayi City", "Tainan City",
                         "Gaoxiong City", "Pingtung City",

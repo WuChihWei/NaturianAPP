@@ -519,41 +519,40 @@ extension ForumDetailViewController: UITableViewDataSource {
                 cell1.seedBtn.isSelected = false
             }
             
-            switch forumArticles.category {
-                
-            case "Food":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.foodYellow
-                addReplyBTN.backgroundColor = .NaturianColor.foodYellow
-                cell1.avatarImage.lkBorderColor = .NaturianColor.foodYellow
-            case "Plant":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.plantGreen
-                addReplyBTN.backgroundColor = .NaturianColor.plantGreen
-                cell1.avatarImage.lkBorderColor = .NaturianColor.plantGreen
-                
-            case "Adventure":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.adventurePink
-                addReplyBTN.backgroundColor = .NaturianColor.adventurePink
-                cell1.avatarImage.lkBorderColor = .NaturianColor.adventurePink
-                
-            case "Grocery":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-                addReplyBTN.backgroundColor = .NaturianColor.groceryBlue
-                cell1.avatarImage.lkBorderColor = .NaturianColor.groceryBlue
-                
-            case "Exercise":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-                addReplyBTN.backgroundColor = .NaturianColor.exerciseBlue
-                cell1.avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
-                
-            case "Treatment":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-                addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
-                cell1.avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
-                
-            default:
-                break
-                
-            }
+//            switch forumArticles.category {
+//
+//            case "Food":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+//                addReplyBTN.backgroundColor = .NaturianColor.foodYellow
+//                cell1.avatarImage.lkBorderColor = .NaturianColor.foodYellow
+//            case "Plant":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+//                addReplyBTN.backgroundColor = .NaturianColor.plantGreen
+//
+//            case "Adventure":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+//                addReplyBTN.backgroundColor = .NaturianColor.adventurePink
+//                cell1.avatarImage.lkBorderColor = .NaturianColor.adventurePink
+//
+//            case "Grocery":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+//                addReplyBTN.backgroundColor = .NaturianColor.groceryBlue
+//                cell1.avatarImage.lkBorderColor = .NaturianColor.groceryBlue
+//
+//            case "Exercise":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+//                addReplyBTN.backgroundColor = .NaturianColor.exerciseBlue
+//                cell1.avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
+//
+//            case "Treatment":
+//                cell1.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+//                addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
+//                cell1.avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
+//
+//            default:
+//                break
+//
+//            }
             
             return cell1
             

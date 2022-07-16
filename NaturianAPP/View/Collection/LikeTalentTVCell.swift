@@ -19,15 +19,12 @@ class LikeTalentTVCell: UITableViewCell {
     var title = UILabel()
     var talentDescription = UILabel()
     var categoryBTN = UIButton()
-    var messageAmountButton = UIButton()
+    var likedBtn = UIButton()
     var addTalentButton = UIButton()
     var subview = UIView()
     var seedValue = UILabel()
     var seedIcon = UIImageView()
     private let seedStack = UIStackView()
-
-    // Accept MessageAmmount
-    var messageAmmont: Int = 6
 
     private let nameStackView = UIStackView()
     private let talentStackView = UIStackView()
@@ -71,17 +68,13 @@ class LikeTalentTVCell: UITableViewCell {
         talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         talentDescription.numberOfLines = 2
         talentDescription.text = "I will teach you how reproduce plants in better ways."
-        talentDescription.textAlignment = .justified
+        talentDescription.textAlignment = .left
         
-        messageAmountButton.setTitle("\(messageAmmont)", for: .normal)
-        messageAmountButton.backgroundColor = .lightGray
-        messageAmountButton.lkCornerRadius = 13
-        messageAmountButton.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        likedBtn.setImage(UIImage(named: "greenLike"), for: .normal)
 
         postImage.backgroundColor = .gray
         postImage.contentMode = .scaleAspectFill
         postImage.lkCornerRadius = 10
-//        postImage.lkBorderWidth = 1
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
@@ -97,7 +90,7 @@ class LikeTalentTVCell: UITableViewCell {
         contentView.addSubview(subview)
         subview.addSubview(postImage)
         subview.addSubview(talentDescription)
-        subview.addSubview(messageAmountButton)
+        subview.addSubview(likedBtn)
         subview.addSubview(talentStackView)
         
         subview.addSubview(title)
@@ -113,7 +106,7 @@ class LikeTalentTVCell: UITableViewCell {
         postImage.translatesAutoresizingMaskIntoConstraints = false
         talentDescription.translatesAutoresizingMaskIntoConstraints = false
         talentStackView.translatesAutoresizingMaskIntoConstraints = false
-        messageAmountButton.translatesAutoresizingMaskIntoConstraints = false
+        likedBtn.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -148,10 +141,10 @@ class LikeTalentTVCell: UITableViewCell {
             talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             
             // messageAmount
-            messageAmountButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
-            messageAmountButton.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            messageAmountButton.widthAnchor.constraint(equalToConstant: 26),
-            messageAmountButton.heightAnchor.constraint(equalToConstant: 26)
+            likedBtn.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
+            likedBtn.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+            likedBtn.widthAnchor.constraint(equalToConstant: 26),
+            likedBtn.heightAnchor.constraint(equalToConstant: 26)
         ])
         
     }

@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth // 用來與 Firebase Auth 進行串接用的
 
-
 class MyChatRoomVC: UIViewController {
 
 //    var talentManager = TalentManager()
@@ -56,7 +55,6 @@ class MyChatRoomVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
         fetchChatInfo()
 //        fetchBlockInfo()
@@ -158,7 +156,6 @@ class MyChatRoomVC: UIViewController {
         tableView.automaticallyAdjustsScrollIndicatorInsets = true
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
-        
     }
     
     func layout() {
@@ -184,7 +181,7 @@ class MyChatRoomVC: UIViewController {
             tableView.topAnchor.constraint(equalTo: titleLB.bottomAnchor, constant: 12),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -211,7 +208,14 @@ extension MyChatRoomVC: UITableViewDataSource {
                                                         for: indexPath) as? ChatRoomTVCell else { fatalError("can't find Cell") }
         
         cell.nameLabel.text = userModels[indexPath.row].name
-
+        
+        let avatarUrl = URL(string: userModels[indexPath.row].userAvatar ?? "")
+        cell.avatarImage.kf.setImage(with: avatarUrl)
+        
+        cell.layoutIfNeeded()
+        cell.avatarImage.clipsToBounds = true
+        cell.avatarImage.contentMode = .scaleAspectFill
+        
         return cell
         
     }

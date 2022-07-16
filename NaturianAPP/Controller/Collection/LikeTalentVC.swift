@@ -79,6 +79,8 @@ class LikeTalentVC: UIViewController {
                 
                 for talentID in self?.userInfo.likedTalentList ?? [] {
                     
+                    self?.talentArticles.removeAll()
+                    
                     self?.talentManager.fetchMyLikeData(talentID: talentID) { [weak self] result in
                         
                         switch result {
@@ -86,9 +88,7 @@ class LikeTalentVC: UIViewController {
                         case .success(let talentModel):
                             
                             self?.talentArticles.append(talentModel)
-                            
-                            print(self?.talentArticles as Any)
-                            
+                                                        
                             DispatchQueue.main.async {
                                 self?.tableView.reloadData()
                             }
@@ -100,7 +100,6 @@ class LikeTalentVC: UIViewController {
                     }
                 }
                 
-                print(self?.userModels ?? "")
                 DispatchQueue.main.async {
                     
                     self?.viewDidLoad()
@@ -112,31 +111,31 @@ class LikeTalentVC: UIViewController {
         }
     }
     
-//    func fetchLikedTalent() {
-//
-//        for talentID in userInfo.likedTalentList {
-//
-//            talentManager.fetchMyLikeData(talentID: talentID) { [weak self] result in
-//
-//                switch result {
-//
-//                case .success(let talentModel):
-//
-//                    self?.talentArticles.append(talentModel)
-//
-//                    print(self?.talentArticles as Any)
-//
-//                    DispatchQueue.main.async {
-//                        self?.tableView.reloadData()
-//                    }
-//
-//                case .failure:
-//
-//                    print("can't fetch data")
-//                }
-//            }
-//        }
-//    }
+    @objc func removeCollection(_ sender: UIButton) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: point) else {
+            return
+        }
+//        self.tableView.deleteRows(at: [indexPath], with: .none)
+
+        if sender.isSelected == true {
+
+            userManager.removeLikedTelent(uid: self.userID ?? "", talentID: self.talentArticles[indexPath.row].talentPostID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        }
+    }
     
     func setUp() {
         
@@ -154,8 +153,9 @@ class LikeTalentVC: UIViewController {
         
         closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
         
-        titleLB.text = "Favorite Article"
+        titleLB.text = "Favorite Talent"
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 14)
+        titleLB.textColor = .NaturianColor.navigationGray
         
         tableView.backgroundColor = .NaturianColor.lightGray
         subview.lkBorderWidth = 1
@@ -181,12 +181,10 @@ class LikeTalentVC: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            
             subview.topAnchor.constraint(equalTo: titleLB.bottomAnchor, constant: 12),
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -197,9 +195,9 @@ class LikeTalentVC: UIViewController {
             titleLB.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             tableView.topAnchor.constraint(equalTo: subview.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo:subview.leadingAnchor, constant: 24),
+            tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor)
         ])
     }
 }
@@ -230,8 +228,9 @@ extension LikeTalentVC: UITableViewDataSource {
         
         cell.title.text = talentArticles[indexPath.row].title
         cell.categoryBTN.setTitle(talentArticles[indexPath.row].category, for: .normal)
-        cell.seedValue.text = String(describing: talentArticles[indexPath.row].seedValue ?? 0)
         cell.talentDescription .text = talentArticles[indexPath.row].title
+        cell.likedBtn.addTarget(self, action: #selector(removeCollection(_:)), for: .touchUpInside)
+        cell.likedBtn.isSelected = true
         
         let postUrl = URL(string: talentArticles[indexPath.row].images[0])
         cell.postImage.kf.setImage(with: postUrl)
@@ -241,4 +240,3 @@ extension LikeTalentVC: UITableViewDataSource {
     }
     
 }
-

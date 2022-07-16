@@ -16,7 +16,7 @@ class InfinityCollectionView: UICollectionView {
         let distanceX = abs(self.contentOffset.x - centerOffsetX) // convert absolute value
         if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout {
             let oneSetWidth = (self.contentSize.width + flowLayout.minimumLineSpacing) / CGFloat(numberOfSets)
-            if (distanceX > oneSetWidth) {
+            if distanceX > oneSetWidth {
                 // When one set has been scrolled, it returns to original position
                 // fmodf = num1 - integerValue * num2
                 let offset = fmodf(Float(self.contentOffset.x - centerOffsetX), Float(oneSetWidth))

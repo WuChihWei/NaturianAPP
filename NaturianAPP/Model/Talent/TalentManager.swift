@@ -179,7 +179,8 @@ class TalentManager {
     
     func fetchMyLikeData(talentID: String, completion: @escaping (Result<TalentArticle, Error>) -> Void) {
         
-        db.collection("talent").whereField("talentPostID", isEqualTo: talentID).getDocuments { (querySnapshot, error) in
+        db.collection("talent").whereField("talentPostID",
+                                           isEqualTo: talentID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

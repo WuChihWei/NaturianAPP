@@ -26,10 +26,10 @@ class MyAcceptedVC: UIViewController {
     let subview = UIView()
     var myTalentInfo: TalentArticle!
 
-    var userModels: [UserModel] = []
     var didSeletectApplierIDs: [String] = []
     var acceptIDs: [UserModel] = []
-    
+    var didSelectedID: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,19 +41,15 @@ class MyAcceptedVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        acceptIDs.removeAll()
+//        acceptIDs.removeAll()
 //        fetchAcceptInfo()
         fetchMyAppliedTalent()
         tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
         acceptIDs.removeAll()
-
-        // fix the chat room's members, after back the room will += 1 issuee
-//        userModels.removeAll()
-//        appliedIDs.removeAll()
-//        acceptIDs.removeAll()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,8 +59,8 @@ class MyAcceptedVC: UIViewController {
     
     func setUp() {
         
-        tableView.register(MyTalentAppliersTVCell.self,
-                           forCellReuseIdentifier: MyTalentAppliersTVCell.identifer)
+//        tableView.register(MyTalentAppliersTVCell.self,
+//                           forCellReuseIdentifier: MyTalentAppliersTVCell.identifer)
         tableView.register(MyTalentAcceptedTVCell.self,
                            forCellReuseIdentifier: MyTalentAcceptedTVCell.identifer)
         tableView.dataSource = self
@@ -100,6 +96,35 @@ class MyAcceptedVC: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
         ])
+    }
+    
+    @objc func cancelAccept(_ sender: UIButton) {
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        self.didSelectedID = acceptIDs[indexPath?.row ?? 0].userID
+        talentManager.cancelAcceptState(applyTalentID: didSeletectDetails.talentPostID ?? "",
+                                        applierID: didSelectedID ?? "") {[weak self] result in
+            switch result {
+            case .success:
+                self?.fetchMyAppliedTalent()
+                self?.tableView.reloadData()
+                print("success")
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+    }
+    
+    @objc func accpetToChat(_ sender: UIButton) {
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "ChatViewController") as? ChatViewController else {
+            
+            fatalError("can't find ChatViewController")
+        }
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        vc.chatToID = acceptIDs[indexPath?.row ?? 0].userID
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetchMyAppliedTalent() {
@@ -138,9 +163,7 @@ class MyAcceptedVC: UIViewController {
                         case .success(let userModel):
     
                             self?.acceptIDs.append(userModel)
-    
-                            print(self?.userModels as Any)
-    
+        
                             DispatchQueue.main.async {
                                 self?.tableView.reloadData()
                             }
@@ -185,6 +208,8 @@ extension MyAcceptedVC: UITableViewDataSource {
             cell2.layoutIfNeeded()
             cell2.userAvatar.clipsToBounds = true
             cell2.userAvatar.contentMode = .scaleAspectFill
+        cell2.cancelButton.addTarget(self, action: #selector(cancelAccept), for: .touchUpInside)
+        cell2.chatButton.addTarget(self, action: #selector(accpetToChat(_:)), for: .touchUpInside)
             
             return cell2
     }
