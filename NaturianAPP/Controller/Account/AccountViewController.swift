@@ -137,16 +137,13 @@ class AccountViewController: UIViewController {
         
         setupLottie()
 
-//        guard let userID = Auth.auth().currentUser?.uid else {return}
         
         userFirebaseManager.listenUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
                     
-
                 case .success(let userModel):
                     
-
                     self?.userModels = userModel
                     
                     print(self?.userModels ?? "")
@@ -183,7 +180,7 @@ class AccountViewController: UIViewController {
             
             fatalError("can't find TransferSeedVC")
         }
-        vc.currentUserModels = self.userModels
+//        vc.currentUserModels = self.userModels
         
         present(vc, animated: true, completion: nil)
         //        tabBarController?.tabBar.isHidden = true

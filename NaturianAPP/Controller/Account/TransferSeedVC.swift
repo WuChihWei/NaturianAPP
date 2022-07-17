@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var scannerVC = ScannerVC()
-    var profileManager = UserManager()
+    var userFirebaseManager = UserManager()
     var otherUserModels: UserModel!
-    var currentUserModels: UserModel!
-    
+//    var currentUserModels: UserModel!
+    let userID = Auth.auth().currentUser?.uid
+    var userModels: UserModel!
+
     var backButton = UIButton()
     var scanBarButton = UIButton()
     let transferToLabel = UILabel()
@@ -41,16 +44,16 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     var otherSeedValue: Int = 0
     var transferValue: Int = 0
     
-    var remainValue: Int = 0 {
+    var remainValue: Int = 0
         
-        didSet {
-            
-            remainSeedValue.text = "\(String(describing: remainValue))"
-            print(remainValue)
-        }
-    }
+//        didSet {
+//            
+//            remainSeedValue.text = "\(String(describing: remainValue))"
+//            print(remainValue)
+//        }
+//    }
     
-    var userID: String = ""
+//    var userID: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,33 +80,57 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
+        userState()
         tabBarController?.tabBar.isHidden = true
     }
     
+    func userState() {
+        
+        userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+                
+                switch result {
+                    
+                case .success(let userModel):
+                    
+                    self?.userModels = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
+    
     @objc func updateSeedValue() {
         
-        profileManager.updateSeedValue(uid: otherUserModels?.userID ?? "",
+        userFirebaseManager.updateSeedValue(uid: otherUserModels?.userID ?? "",
                                        seedValue: otherSeedValue) { [weak self] result in
             switch result {
             case .success:
                 
-                self?.profileManager.updateSeedValue(uid: self?.currentUserModels?.userID ?? "",
-                                                     seedValue: self?.remainValue ?? 0) { [weak self] result in
-                    switch result {
-                    case .success:
-                        self?.dismiss(animated: true)
-                        
-                    case .failure:
-                        print("can't fetch data")
-                    }
-                }
-                
+               print("success")
             case .failure:
                 print("can't fetch data")
             }
         }
         
+        userFirebaseManager.updateSeedValue(uid: self.userID ?? "", seedValue: self.remainValue ?? 0) { [weak self] result in
+            switch result {
+            case .success:
+                
+                self?.dismiss(animated: true)
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+        
+
     }
     
     @objc func scanBarTapped() {
@@ -126,7 +153,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         
         transferValue = Int("\(seedTextField.text!)") ?? 0
         
-        remainValue = (currentUserModels?.seedValue ?? 0) - transferValue
+        remainValue = (userModels?.seedValue ?? 0) - transferValue
         otherSeedValue = (otherUserModels?.seedValue ?? 0) + transferValue
         
         if remainValue < 0 {
@@ -209,7 +236,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         
         seedIcon.image = UIImage(named: "seedgray")
         
-        remainValue = currentUserModels?.seedValue ?? 0
+        remainValue = userModels?.seedValue ?? 0
         remainSeedValue.text = "\(remainValue)"
         remainSeedValue.font = UIFont.init(name: Roboto.bold.rawValue, size: 40)
         remainSeedValue.textColor = UIColor.NaturianColor.darkGray
@@ -335,7 +362,7 @@ extension TransferSeedVC: SendBarcodeDelegate {
     func sendBarcodeValue(userID: String) {
         
         self.findOtherNameLB.text = userID
-        profileManager.fetchUserData(userID: userID) {[weak self] result in
+        userFirebaseManager.fetchUserData(userID: userID) {[weak self] result in
             
             switch result {
                 
