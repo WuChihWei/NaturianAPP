@@ -125,7 +125,7 @@ class OtherTalentViewController: UIViewController {
                 
             case .success(let talentArticles):
                 
-                self?.acceptTalents.removeAll()
+//                self?.acceptTalents.removeAll()
                 
                 self?.appliedTalents = talentArticles
                 
