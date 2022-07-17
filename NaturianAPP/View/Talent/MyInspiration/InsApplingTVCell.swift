@@ -62,13 +62,13 @@ class InsApplingTVCell: UITableViewCell {
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 2
         
-        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        seedValue.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         seedValue.textAlignment = .left
         seedValue.text = "70"
         seedValue.textColor = .NaturianColor.navigationGray
         seedIcon.image = UIImage(named: "graySeed")
         
-        providerName.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        providerName.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         providerName.textAlignment = .left
         providerName.text = "David"
         providerName.textColor = .NaturianColor.darkGray
@@ -76,13 +76,7 @@ class InsApplingTVCell: UITableViewCell {
         seedStack.axis = .horizontal
         seedStack.alignment = .center
         seedStack.spacing = 3
-//
-//        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 14)
-//        talentDescription.numberOfLines = 2
-//        talentDescription.text = "I will teach you how reproduce plants in better ways."
-//        talentDescription.textAlignment = .justified
-//        talentDescription.textColor = .NaturianColor.darkGray
-//
+
         chatButton.setImage(UIImage(named: "chat_green"), for: .normal)
         
         finishedBtn.setTitle("Finished", for: .normal)
@@ -97,7 +91,7 @@ class InsApplingTVCell: UITableViewCell {
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
-        talentStackView.spacing = 0
+        talentStackView.spacing = 3
      
     }
     
@@ -156,7 +150,7 @@ class InsApplingTVCell: UITableViewCell {
             appliedStateBtn.heightAnchor.constraint(equalToConstant: 16),
             
             // talentStack
-            talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
+            talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 6),
             talentStackView.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             seedIcon.widthAnchor.constraint(equalToConstant: 12),
             seedIcon.heightAnchor.constraint(equalToConstant: 12),

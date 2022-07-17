@@ -48,14 +48,15 @@ class LikeTalentTVCell: UITableViewCell {
         subview.lkCornerRadius = 15
         
         //        contentView.backgroundColor = .darkGray
-        title.font = UIFont(name: Roboto.bold.rawValue, size: 15)
+        title.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         title.textAlignment = .left
         title.text = "Title"
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 2
         
-        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        seedValue.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         seedValue.textAlignment = .left
+        seedValue.textColor = .NaturianColor.navigationGray
         seedValue.text = "70 Seeds"
         seedIcon.image = UIImage(named: "graySeed")
 

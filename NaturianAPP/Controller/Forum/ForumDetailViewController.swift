@@ -483,7 +483,11 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.layoutIfNeeded()
             cell1.selectionStyle = .none
             cell1.contentView.layoutIfNeeded()
-            cell1.articleContent.text = forumArticles.content
+//            cell1.articleContent.lineBreakMode = NSLineBreakMode.byWordWrapping
+//            cell1.articleContent.numberOfLines = 0
+            
+            cell1.articleContent.text = forumArticles.content?.replacingOccurrences(of: "\\n", with: "\n")
+            
             cell1.title.text = forumArticles.title
             cell1.categoryBTN.setTitle(forumArticles.category, for: .normal)
             
@@ -518,41 +522,6 @@ extension ForumDetailViewController: UITableViewDataSource {
                 cell1.seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
                 cell1.seedBtn.isSelected = false
             }
-            
-//            switch forumArticles.category {
-//
-//            case "Food":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.foodYellow
-//                addReplyBTN.backgroundColor = .NaturianColor.foodYellow
-//                cell1.avatarImage.lkBorderColor = .NaturianColor.foodYellow
-//            case "Plant":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.plantGreen
-//                addReplyBTN.backgroundColor = .NaturianColor.plantGreen
-//
-//            case "Adventure":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.adventurePink
-//                addReplyBTN.backgroundColor = .NaturianColor.adventurePink
-//                cell1.avatarImage.lkBorderColor = .NaturianColor.adventurePink
-//
-//            case "Grocery":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-//                addReplyBTN.backgroundColor = .NaturianColor.groceryBlue
-//                cell1.avatarImage.lkBorderColor = .NaturianColor.groceryBlue
-//
-//            case "Exercise":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-//                addReplyBTN.backgroundColor = .NaturianColor.exerciseBlue
-//                cell1.avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
-//
-//            case "Treatment":
-//                cell1.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-//                addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
-//                cell1.avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
-//
-//            default:
-//                break
-//
-//            }
             
             return cell1
             

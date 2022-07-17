@@ -66,7 +66,7 @@ class MyCollectionVC: UIViewController {
         let barButton = UIBarButtonItem()
         barButton.title = ""
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
-        
+        view.backgroundColor = .NaturianColor.lightGray
         talentPageBtn.lkCornerRadius = 15
         talentPageBtn.setImage(UIImage(named: "likeTalent"), for: .normal)
         talentPageBtn.backgroundColor = .NaturianColor.exerciseBlue

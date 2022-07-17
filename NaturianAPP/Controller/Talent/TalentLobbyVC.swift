@@ -57,7 +57,7 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
         setUp()
         style()
@@ -71,8 +71,6 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
-
-        tabBarController?.tabBar.isHidden = false
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -86,7 +84,7 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
         tabBarController?.tabBar.isHidden = false
         tableView.layoutIfNeeded()
 //        fetchTalentArticle()
@@ -182,6 +180,52 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     
     @objc func clearText() {
         searchTextField.text = ""
+    }
+    
+    @objc func addToCollection(_ sender: UIButton) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: point) else {
+            return
+        }
+        
+        if sender.isSelected == false {
+            
+            sender.setImage(UIImage(named: "isliked"), for: .normal)
+            sender.isSelected = true
+//            setupLottie()
+
+            userManager.addLikedTelent(uid: self.userID ?? "",
+                                       talentID: self.talentArticles[indexPath.row].talentPostID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        } else {
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "unlike"), for: .normal)
+            
+            userManager.removeLikedTelent(uid: self.userID ?? "",
+                                          talentID: self.talentArticles[indexPath.row].talentPostID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+        }
     }
     
     func setUp() {
@@ -315,10 +359,10 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
             searchTextField.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -8),
             searchTextField.heightAnchor.constraint(equalToConstant: 40),
             
-            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -72),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 40),
+            collectionView.heightAnchor.constraint(equalToConstant: 50),
             
             addPosteBTN.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
             addPosteBTN.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1),
@@ -336,7 +380,7 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
             
-            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: subview.topAnchor, constant: -10),
             tableView.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
@@ -365,17 +409,28 @@ extension TalentLobbyVC: UITableViewDataSource {
         let photoUrl = URL(string: talentArticles[indexPath.row].images[0])
         
         cell.title.text = talentArticles[indexPath.row].title
-        cell.categoryBTN.setTitle(String(describing: talentArticles[indexPath.row].category ?? ""), for: .normal)
+        cell.categoryBTN.setTitle(String(describing:   talentArticles[indexPath.row].category ?? ""), for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue!)"
 //        cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.locationLabel.text = talentArticles[indexPath.row].location
         
         cell.postImage.kf.setImage(with: photoUrl)
-        cell.providerName.text = "\(String(describing: talentArticles[indexPath.row].userInfo?.name ?? ""))"
+        cell.providerName.text = "\(talentArticles[indexPath.row].userInfo?.name ?? "" ) /"
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
         cell.postImage.lkCornerRadius = 20
+        cell.likedBtn.addTarget(self, action: #selector(addToCollection(_:)), for: .touchUpInside)
+        
+        guard let likedID = self.talentArticles[indexPath.row].talentPostID else { return UITableViewCell() }
+
+        if self.userInfo.likedTalentList.contains(likedID) {
+            cell.likedBtn.setImage(UIImage(named: "isliked"), for: .normal)
+            cell.likedBtn.isSelected = true
+        } else {
+            cell.likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
+            cell.likedBtn.isSelected = false
+        }
         
         switch talentArticles[indexPath.row].userInfo?.gender {
             
@@ -390,19 +445,25 @@ extension TalentLobbyVC: UITableViewDataSource {
         }
         
         switch talentArticles[indexPath.row].category {
-            
+
         case "Food":
-            cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+            cell.categoryBTN.setImage(UIImage(named: "_food"), for: .normal)
+
         case "Plant":
-            cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+            cell.categoryBTN.setImage(UIImage(named: "_plant"), for: .normal)
+
         case "Adventure":
-            cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+            cell.categoryBTN.setImage(UIImage(named: "_adventure"), for: .normal)
+
         case "Grocery":
-            cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+            cell.categoryBTN.setImage(UIImage(named: "_grocery"), for: .normal)
+
         case "Exercise":
-            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+            cell.categoryBTN.setImage(UIImage(named: "_exercise"), for: .normal)
+
         case "Treatment":
-            cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+            cell.categoryBTN.setImage(UIImage(named: "_treatment"), for: .normal)
+
         default:
             break
         }
@@ -417,6 +478,8 @@ extension TalentLobbyVC: UITableViewDataSource {
             
             fatalError("can't find TalentDetailViewController")
         }
+        
+//        self.present(vc, animated: false)
         self.navigationController?.pushViewController(vc, animated: true)
         
         vc.selectedArticle = talentArticles[indexPath.row]
@@ -485,8 +548,9 @@ extension TalentLobbyVC: UICollectionViewDataSource {
         self.collectionPrepareData()
 
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCVCell {
-            cell.backgroundColor = .NaturianColor.treatmentGreen
-            cell.tilteLB.textColor = .white
+            cell.clipsToBounds = false
+            cell.layer.shadowOpacity = 0.3
+            cell.layer.shadowOffset = CGSize(width: 0, height: 3)
         }
         
         let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
@@ -506,8 +570,7 @@ extension TalentLobbyVC: UICollectionViewDataSource {
 
             return
         }
-        cell1.backgroundColor = .white
-        cell1.tilteLB.textColor = .NaturianColor.darkGray
+        cell1.layer.shadowOpacity = 0
     }
 }
 

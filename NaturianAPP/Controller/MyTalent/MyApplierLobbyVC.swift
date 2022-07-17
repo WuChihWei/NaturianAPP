@@ -143,7 +143,7 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
     }
     
     func colorForIndicator(at index: Int) -> UIColor {
-        return .NaturianColor.lightGray2
+        return .NaturianColor.navigationGray
     }
     
     func heightForIndicator() -> CGFloat {
@@ -154,7 +154,7 @@ extension MyApplierLobbyVC: LZViewPagerDataSource {
         return 50
     }
     func backgroundColorForHeader() -> UIColor {
-        return .NaturianColor.navigationGray
+        return .NaturianColor.lightGray2
     }
     
     func didSelectButton(at index: Int) {

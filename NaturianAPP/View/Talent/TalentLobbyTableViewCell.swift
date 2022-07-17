@@ -70,12 +70,15 @@ class TalentLobbyTableViewCell: UITableViewCell {
         seedValue.text = "70 Seeds"
         seedValue.textColor = .NaturianColor.darkGray
 
-        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 11)
         categoryBTN.titleLabel?.textAlignment = .center
-        categoryBTN.setTitleColor(.white, for: .normal)
+        categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal)
         categoryBTN.setTitle("Food", for: .normal)
-        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+        categoryBTN.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+//        categoryBTN.backgroundColor = .NaturianColor.navigationGray
         categoryBTN.lkCornerRadius = 5
+        categoryBTN.lkBorderWidth = 1
+        categoryBTN.lkBorderColor = .NaturianColor.darkGray
 
         providerName.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         providerName.textAlignment = .left
@@ -94,7 +97,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
         seedStack.alignment = .center
         seedStack.spacing = 6
         
-        talentStack.axis = .vertical
+        talentStack.axis = .horizontal
         talentStack.alignment = .leading
         talentStack.spacing = 3
         
@@ -111,8 +114,9 @@ class TalentLobbyTableViewCell: UITableViewCell {
         
         contentView.addSubview(subview)
         
-        postImage.addSubview(likedBtn)
         subview.addSubview(postImage)
+        subview.addSubview(likedBtn)
+
         subview.addSubview(title)
         subview.addSubview(talentStack)
         subview.addSubview(categoryBTN)
@@ -141,8 +145,8 @@ class TalentLobbyTableViewCell: UITableViewCell {
 
             likedBtn.topAnchor.constraint(equalTo: postImage.topAnchor, constant: 16),
             likedBtn.trailingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: -16),
-            likedBtn.heightAnchor.constraint(equalToConstant: 34),
-            likedBtn.widthAnchor.constraint(equalToConstant: 34),
+            likedBtn.heightAnchor.constraint(equalToConstant: 32),
+            likedBtn.widthAnchor.constraint(equalToConstant: 32),
             
             subview.topAnchor.constraint(equalTo: contentView.topAnchor),
             subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -159,9 +163,9 @@ class TalentLobbyTableViewCell: UITableViewCell {
             title.leadingAnchor.constraint(equalTo: postImage.leadingAnchor),
             title.trailingAnchor.constraint(equalTo: postImage.trailingAnchor),
             // talentStack
-            talentStack.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 4),
+            talentStack.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 6),
             talentStack.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-            talentStack.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20),
+            talentStack.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -24),
             // providerName
             genderIcon.widthAnchor.constraint(equalToConstant: 12),
             genderIcon.heightAnchor.constraint(equalToConstant: 12),
@@ -177,8 +181,8 @@ class TalentLobbyTableViewCell: UITableViewCell {
             seedIcon.widthAnchor.constraint(equalToConstant: 18),
             seedIcon.heightAnchor.constraint(equalToConstant: 18),
             // categoryBTN
-            categoryBTN.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4),
-            categoryBTN.widthAnchor.constraint(equalToConstant: 80),
+            categoryBTN.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 6),
+            categoryBTN.widthAnchor.constraint(equalToConstant: 84),
             categoryBTN.heightAnchor.constraint(equalToConstant: 24)
         ])
     }

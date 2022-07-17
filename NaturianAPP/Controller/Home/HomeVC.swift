@@ -33,13 +33,7 @@ class HomeVC: UIViewController {
         style()
         layout()
 //
-//        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
-//
-//        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
-        
-
-        
-//        tabBarController?.tabBar.tintColor = .NaturianColor.foodYellow
+        tabBarController?.tabBar.tintColor = .NaturianColor.darkGray
 
         tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
@@ -56,6 +50,7 @@ class HomeVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
         currentUserState()
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = true
@@ -87,18 +82,18 @@ class HomeVC: UIViewController {
     
     @objc func collectionPage() {
         guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "ForumLobbyViewController") as? ForumLobbyViewController else {
+            withIdentifier: "LikeTalentVC") as? LikeTalentVC else {
             
-            fatalError("can't find ForumLobbyViewController")
+            fatalError("can't find LikeTalentVC")
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func massagePage() {
         guard let vc = storyboard?.instantiateViewController(
-            withIdentifier: "MyChatRoomVC") as? MyChatRoomVC else {
+            withIdentifier: "ManageVC") as? ManageVC else {
             
-            fatalError("can't find MyChatRoomVC")
+            fatalError("can't find ManageVC")
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -11,7 +11,6 @@ import FirebaseFirestore
 import Kingfisher
 import FirebaseAuth
 import Lottie
-import SwiftUI
 import CoreMedia
 
 class TalentDetailViewController: UIViewController {
@@ -29,7 +28,6 @@ class TalentDetailViewController: UIViewController {
     var selectedArticle: TalentArticle!
     var userModels: UserModel!
     let applyButton = UIButton()
-//    let likedBtn = UIButton()
     var isLiked = true
     
     let seedValue = UILabel()
@@ -40,6 +38,7 @@ class TalentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // for camera
+        tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
         setUp()
         style()
@@ -48,60 +47,41 @@ class TalentDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
+
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
-        view.layoutIfNeeded()
-        tableView.layoutIfNeeded()
-//        fetchUserData()
+        //        view.layoutIfNeeded()
+        //        tableView.layoutIfNeeded()
+        //        fetchUserData()
     }
     
     override func viewDidLayoutSubviews() {
         
         view.layoutIfNeeded()
+        bottomView.layoutIfNeeded()
+        bottomView.clipsToBounds = true
+        tableView.layoutIfNeeded()
     }
-    
-//    func fetchUserData() {
-//
-//        userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let userModel):
-//
-//                self?.userModels = userModel
-//                print( self?.userModels)
-//                DispatchQueue.main.async {
-//                    self?.viewDidLoad()
-//                }
-//
-//            case .failure:
-//                print("can't fetch data")
-//            }
-//        }
-//    }
     
     func setupLottie() {
         let animationView = AnimationView(name: "lf20_k3ant2j6")
-//           animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//           animationView.center = self.view.center
+        //           animationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        //           animationView.center = self.view.center
         view.addSubview(animationView)
-
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
-        animationView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -16).isActive = true
-        animationView.bottomAnchor.constraint(equalTo: self.view.topAnchor, constant: 386).isActive = true
-        animationView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        animationView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-
-           animationView.contentMode = .scaleAspectFill
-//        animationView.loopMode = .loop
-
-//           animationView.play()
+        animationView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -14).isActive = true
+        animationView.bottomAnchor.constraint(equalTo: self.view.topAnchor, constant: 380).isActive = true
+        animationView.widthAnchor.constraint(equalToConstant: 110).isActive = true
+        animationView.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        
+        animationView.contentMode = .scaleAspectFill
+  
         animationView.play(completion: { (finished) in
-                    animationView.isHidden = true
-                })
+            animationView.isHidden = true
+        })
     }
-    
     
     @objc func didApply() {
         
@@ -137,39 +117,39 @@ class TalentDetailViewController: UIViewController {
         
         if sender.isSelected == false {
             
-            sender.setImage(UIImage(named: "isliked"), for: .normal)
             sender.isSelected = true
             setupLottie()
-
-            userManager.addLikedTelent(uid: self.userID ?? "", talentID: self.selectedArticle.talentPostID ?? "") { [weak self] result in
+            
+            userManager.addLikedTelent(uid: self.userID ?? "",
+                                       talentID: self.selectedArticle.talentPostID ?? "") { [weak self] result in
                 
                 switch result {
-
-                case .success:
-                    self?.dismiss(animated: true)
                     
+                case .success:
+//                    self?.tabBarController?.tabBar.isHidden = true
+                    print("success")
+
                 case .failure:
                     print("can't fetch data")
-                    
                 }
             }
-
         } else {
+
             sender.isSelected = false
-            sender.setImage(UIImage(named: "unlike"), for: .normal)
-            
-            userManager.removeLikedTelent(uid: self.userID ?? "", talentID: self.selectedArticle.talentPostID ?? "") { [weak self] result in
+
+            userManager.removeLikedTelent(uid: self.userID ?? "",
+                                          talentID: self.selectedArticle.talentPostID ?? "") { [weak self] result in
                 switch result {
-                    
+
                 case .success:
-                    self?.dismiss(animated: true)
-                    
+//                    self?.tabBarController?.tabBar.isHidden = true
+                    print("success")
+
                 case .failure:
                     print("can't fetch data")
-                    
+
                 }
             }
-
         }
     }
     
@@ -203,27 +183,6 @@ class TalentDetailViewController: UIViewController {
             return
         }
     }
-    
-//    func switchColor() {
-//
-//        switch selectedArticle.category {
-//
-//        case "Food":
-//            applyButton.backgroundColor = .NaturianColor.foodYellow
-//        case "Plant":
-//            applyButton.backgroundColor = .NaturianColor.plantGreen
-//        case "Adventure":
-//            applyButton.backgroundColor = .NaturianColor.adventurePink
-//        case "Grocery":
-//            applyButton.backgroundColor = .NaturianColor.groceryBlue
-//        case "Exercise":
-//            applyButton.backgroundColor = .NaturianColor.exerciseBlue
-//        case "Treatment":
-//            applyButton.backgroundColor = .NaturianColor.treatmentGreen
-//        default:
-//            break
-//        }
-//    }
 }
 
 extension TalentDetailViewController {
@@ -369,18 +328,18 @@ extension TalentDetailViewController: UITableViewDataSource {
         cell.avatarImage.contentMode = .scaleAspectFill
         cell.postPhotoImage.contentMode = .scaleAspectFill
         cell.contactBtn.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
-        cell.likedBtn.addTarget(self, action: #selector(addToCollection(_:)), for: .touchUpInside)
         
         guard let likedID = self.selectedArticle.talentPostID else { return UITableViewCell() }
-
+        
         if self.userModels.likedTalentList.contains(likedID) {
-            cell.likedBtn.setImage(UIImage(named: "isliked"), for: .normal)
             cell.likedBtn.isSelected = true
         } else {
-            cell.likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
             cell.likedBtn.isSelected = false
         }
-            
+        cell.likedBtn.clipsToBounds = true
+        cell.likedBtn.contentMode = .scaleAspectFit
+        cell.likedBtn.addTarget(self, action: #selector(addToCollection(_:)), for: .touchUpInside)
+        
         cell.moreBtn.menu = UIMenu(children: [
             UIAction(title: "Block User",
                      image: UIImage(named: "block"), handler: { action in
@@ -421,7 +380,7 @@ extension TalentDetailViewController: UITableViewDataSource {
         default:
             break
         }
-
+        
         return cell
     }
 }

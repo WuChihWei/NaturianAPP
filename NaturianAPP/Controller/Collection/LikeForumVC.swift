@@ -237,6 +237,31 @@ extension LikeForumVC: UITableViewDataSource {
         let postUrl = forumAricles[indexPath.row].images[0]
         cell.postImage.kf.setImage(with: postUrl)
     
+        switch forumAricles[indexPath.row].category {
+            
+        case "Food":
+            cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
+        
+        case "Plant":
+            cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
+       
+        case "Adventure":
+            cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
+      
+        case "Grocery":
+            cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
+   
+        case "Exercise":
+            cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
+  
+        case "Treatment":
+            cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+   
+        default:
+            break
+            
+        }
+        
         return cell
         
     }

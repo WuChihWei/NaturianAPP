@@ -66,8 +66,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="systemGray2Color"/>
-                        <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0"/>
+                        <color key="tintColor" systemColor="systemGray6Color"/>
+                        <color key="barTintColor" systemColor="systemGray6Color"/>
+                        <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0">
+                            <color key="shadowColor" name="collectionViewBackground"/>
+                        </tabBarAppearance>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -503,7 +506,7 @@
         <scene sceneID="4pa-KI-HyK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccm-at-EaO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="mail" selectedImage="mail" id="UvH-Qt-Le8">
+                    <tabBarItem key="tabBarItem" title="" image="tab_chat" selectedImage="tab_chat" id="UvH-Qt-Le8">
                         <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -733,18 +736,21 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="forum" width="28" height="28"/>
-        <image name="mail" width="28" height="28"/>
         <image name="passport" width="28" height="28"/>
+        <image name="tab_chat" width="28" height="28"/>
         <image name="talent" width="28" height="28.5"/>
         <image name="tent" width="28" height="26"/>
+        <namedColor name="collectionViewBackground">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <namedColor name="outgoingMessageBackground">
             <color red="0.20399998128414154" green="0.77999997138977051" blue="0.34899997711181641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

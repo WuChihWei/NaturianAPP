@@ -58,8 +58,10 @@ class TalentDetailTVCell: UITableViewCell {
     func styleObject() {
 
         likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
-        likedBtn.isSelected = false
-//        likedBtn.clipsToBounds = false
+        likedBtn.setImage(UIImage(named: "isliked"), for: .selected)
+
+//        likedBtn.isSelected = false
+        likedBtn.clipsToBounds = false
         likedBtn.layer.shadowOpacity = 0.3
         likedBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
         
@@ -137,8 +139,8 @@ class TalentDetailTVCell: UITableViewCell {
         descriptionText.translatesAutoresizingMaskIntoConstraints = false
         moreBtn.translatesAutoresizingMaskIntoConstraints = false
         
-        postPhotoImage.addSubview(likedBtn)
         contentView.addSubview(postPhotoImage)
+        contentView.addSubview(likedBtn)
         postPhotoImage.addSubview(avatarImage)
         
         contentView.addSubview(subview)
@@ -166,15 +168,15 @@ class TalentDetailTVCell: UITableViewCell {
             
             likedBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 22),
             likedBtn.bottomAnchor.constraint(equalTo: subview.topAnchor, constant: -15),
-            likedBtn.heightAnchor.constraint(equalToConstant: 80),
-            likedBtn.widthAnchor.constraint(equalToConstant: 80),
+            likedBtn.heightAnchor.constraint(equalToConstant: 42),
+            likedBtn.widthAnchor.constraint(equalToConstant: 42),
 
             postPhotoImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             postPhotoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postPhotoImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             postPhotoImage.heightAnchor.constraint(equalToConstant: 400),
             
-            avatarImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            avatarImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             avatarImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             avatarImage.heightAnchor.constraint(equalToConstant: 76),
             avatarImage.widthAnchor.constraint(equalToConstant: 76),

@@ -78,10 +78,13 @@ class ForumDetailPostTBCell: UITableViewCell {
         
         articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 16)
         articleContent.textColor = .NaturianColor.darkGray
-        articleContent.numberOfLines = 0
-        articleContent.text = ""
         articleContent.textAlignment = .justified
-        
+        articleContent.lineBreakMode = NSLineBreakMode.byWordWrapping
+        articleContent.numberOfLines = 0
+//        articleContent.text = .replacingOccurrences(of: "/n", with: "\n")
+
+        articleContent.text = ""
+
         authorLB.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         authorLB.textColor = .NaturianColor.darkGray
         authorLB.text = "Writen By : Linda"

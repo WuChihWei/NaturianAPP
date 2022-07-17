@@ -134,9 +134,7 @@ extension OtherTalentViewController: UITableViewDataSource {
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
         
-        if acceptTalents[indexPath.row].didAcceptID[0] ==
-            
-            userID {
+        if acceptTalents[indexPath.row].didAcceptID.contains(self.userID ?? "") {
             
             cell.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
             cell.finishedBtn.setTitle("Finished", for: .normal)

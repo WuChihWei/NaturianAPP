@@ -125,7 +125,7 @@ class HomeTopTVCell: UITableViewCell {
         massageLB.textColor = .NaturianColor.darkGray
         massageLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
-        titleLB.text = "Top 5 Articles"
+        titleLB.text = "Hot Articles"
         titleLB.textColor = .NaturianColor.darkGray
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         
@@ -147,7 +147,7 @@ class HomeTopTVCell: UITableViewCell {
         collectionButton.lkBorderColor = .white
         collectionButton.lkBorderWidth = 2
         
-        massageButton.setImage(UIImage(named: "whitemassage"), for: .normal)
+        massageButton.setImage(UIImage(named: "whitemanager"), for: .normal)
         massageButton.backgroundColor = .NaturianColor.navigationGray
         massageButton.lkCornerRadius = 32
         massageButton.lkBorderColor = .white
