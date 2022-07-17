@@ -261,15 +261,15 @@ class AccountViewController: UIViewController {
         naturianInfoLB.textColor = .NaturianColor.darkGray
         
         userName.text = "Name: \(String(describing: userModels?.name ?? ""))"
-        userName.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        userName.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         userName.textColor = .NaturianColor.darkGray
         
         userGender.text = "Gender: \(String(describing: userModels?.gender ?? ""))"
-        userGender.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        userGender.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         userGender.textColor = .NaturianColor.darkGray
         
         userNation.text = "Nation: Nature"
-        userNation.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        userNation.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         userNation.textColor = .NaturianColor.darkGray
         
         seedIcon.image = UIImage(named: "seedgray")
@@ -283,13 +283,15 @@ class AccountViewController: UIViewController {
         talentBtn.setImage(UIImage(named: "talentButton"), for: .normal)
         
         naturianStack.axis = .vertical
-        naturianStack.spacing = 0
+//        naturianStack.spacing = 2
         
         buttonStack.axis = .horizontal
         buttonStack.distribution = .equalSpacing
         
         naturianInfoStack.axis = .vertical
         naturianInfoStack.alignment = .leading
+        naturianInfoStack.spacing = 2
+
     }
     
     func layout() {

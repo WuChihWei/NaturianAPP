@@ -170,11 +170,6 @@ class MyChatRoomVC: UIViewController {
         
         NSLayoutConstraint.activate([
             
-//            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-//            closeButton.heightAnchor.constraint(equalToConstant: 36),
-//            closeButton.widthAnchor.constraint(equalToConstant: 36),
-            
             titleLB.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 33),
             titleLB.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             

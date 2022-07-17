@@ -67,7 +67,7 @@ class ForumLobbyTableViewCell: UITableViewCell {
         articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         articleContent.numberOfLines = 3
         articleContent.text = "I will teach you how reproduce plants in better ways."
-        articleContent.textAlignment = .justified
+        articleContent.textAlignment = .left
         
         postImage.lkCornerRadius = 10
 //        postImage.lkBorderColor = .lightGray

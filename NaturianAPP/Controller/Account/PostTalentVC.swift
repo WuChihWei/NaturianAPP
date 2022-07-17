@@ -23,7 +23,6 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     //    let userID = "2"
 //    let userID = "1"
     
-    
     var userModels: UserModel?
     
     var categoryResult = ""

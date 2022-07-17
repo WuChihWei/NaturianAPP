@@ -150,8 +150,7 @@ class AllMyAppliersVC: UIViewController {
                         
                     case .success:
                         print("success")
-                        //                        var myTalentInfo =
-//                        self?.fetchMyAppliedTalent()
+
                         self?.tableView.reloadData()
                         
                     case .failure:

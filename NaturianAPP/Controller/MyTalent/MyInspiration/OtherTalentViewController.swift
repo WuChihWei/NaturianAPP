@@ -18,7 +18,8 @@ class OtherTalentViewController: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userInfo: [UserModel] = []
     let subview = UIView()
-    
+    var didSelectedID: String?
+
     var userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
 //    let userID = "1"
@@ -52,6 +53,45 @@ class OtherTalentViewController: UIViewController {
         acceptTalents.removeAll()
     }
     
+    @objc func cancelApplier(_ sender: UIButton) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        self.didSelectedID = acceptTalents[indexPath?.row ?? 0].talentPostID
+        talentManager.removeApplyState(applyTalentID: didSelectedID ?? "",
+                                       applierID: self.userID ?? "") {[weak self] result in
+            switch result {
+                
+            case .success:
+                self?.acceptTalents.removeAll()
+//                self?.fetchAppliedTalent()
+                self?.tableView.reloadData()
+                print("success")
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+    }
+    
+    @objc func finishAccept(_ sender: UIButton) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        self.didSelectedID = acceptTalents[indexPath?.row ?? 0].talentPostID
+        talentManager.cancelAcceptState(applyTalentID: didSelectedID ?? "",
+                                        applierID: self.userID ?? "") {[weak self] result in
+            switch result {
+            case .success:
+                self?.acceptTalents.removeAll()
+//                self?.fetchAcceptTalent()
+                self?.tableView.reloadData()
+                print("success")
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+    }
+    
     func fetchAcceptTalent() {
         
         talentManager.fetchAcceptedTalent(userID: userID ?? "" ) { [weak self] result in
@@ -60,7 +100,11 @@ class OtherTalentViewController: UIViewController {
                 
             case .success(let talentArticles):
                 
+                self?.acceptTalents.removeAll()
+                
                 self?.acceptTalents = talentArticles
+                
+//                self?.fetchAppliedTalent()
                 
                 print(self!.acceptTalents)
                 
@@ -80,6 +124,8 @@ class OtherTalentViewController: UIViewController {
             switch result {
                 
             case .success(let talentArticles):
+                
+                self?.acceptTalents.removeAll()
                 
                 self?.appliedTalents = talentArticles
                 
@@ -133,8 +179,10 @@ extension OtherTalentViewController: UITableViewDataSource {
         cell.layoutIfNeeded()
         cell.postImage.clipsToBounds = true
         cell.postImage.contentMode = .scaleAspectFill
-        
+       
         if acceptTalents[indexPath.row].didAcceptID.contains(self.userID ?? "") {
+            
+            cell.finishedBtn.addTarget(self, action: #selector(finishAccept(_:)), for: .touchUpInside)
             
             cell.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
             cell.finishedBtn.setTitle("Finished", for: .normal)
@@ -143,6 +191,8 @@ extension OtherTalentViewController: UITableViewDataSource {
             cell.finishedBtn.backgroundColor = .NaturianColor.treatmentGreen
 
         } else {
+            
+            cell.finishedBtn.addTarget(self, action: #selector(cancelApplier(_:)), for: .touchUpInside)
             
             cell.appliedStateBtn.setImage(UIImage(named: "waiting_darkgray"), for: .normal)
             cell.finishedBtn.setTitle("Cancel", for: .normal)

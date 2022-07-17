@@ -239,7 +239,7 @@ class TalentManager {
     
     func fetchAppliedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
-        db.collection("talent").whereField("didApplyID", arrayContains: userID).getDocuments { (querySnapshot, error) in
+        db.collection("talent").whereField("didApplyID", arrayContains: userID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -310,7 +310,7 @@ class TalentManager {
     func fetchAcceptedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
         db.collection("talent").whereField("didAcceptID",
-                                           arrayContains: userID).getDocuments { (querySnapshot, error) in
+                                           arrayContains: userID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

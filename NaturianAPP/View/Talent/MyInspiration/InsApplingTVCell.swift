@@ -62,13 +62,13 @@ class InsApplingTVCell: UITableViewCell {
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 2
         
-        seedValue.font = UIFont(name: Roboto.regular.rawValue, size: 12)
+        seedValue.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedValue.textAlignment = .left
         seedValue.text = "70"
         seedValue.textColor = .NaturianColor.navigationGray
         seedIcon.image = UIImage(named: "graySeed")
         
-        providerName.font = UIFont(name: Roboto.regular.rawValue, size: 12)
+        providerName.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         providerName.textAlignment = .left
         providerName.text = "David"
         providerName.textColor = .NaturianColor.darkGray

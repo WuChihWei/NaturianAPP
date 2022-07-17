@@ -83,7 +83,10 @@ class TalentDetailViewController: UIViewController {
         })
     }
     
-    @objc func didApply() {
+    @objc func didApply(_ sender: UIButton) {
+        
+        applyButton.setTitle("Submitted", for: .normal)
+        applyButton.backgroundColor = .NaturianColor.lightGray2
         
         selectedArticle.didApplyID.append(userID ?? "" )
         
@@ -92,7 +95,6 @@ class TalentDetailViewController: UIViewController {
         userManager.updateAppliedTalent(userModel: userModels, userID: userID ?? "" )
         
         talentManager.updateData(applyTalent: selectedArticle)
-        navigationController?.popViewController(animated: true)
     }
     
     @objc func didConatact() {
@@ -196,7 +198,7 @@ extension TalentDetailViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         //        postPhotoImage.isUserInteractionEnabled = true
-        applyButton.addTarget(self, action: #selector(didApply), for: .touchUpInside)
+        applyButton.addTarget(self, action: #selector(didApply(_:)), for: .touchUpInside)
         //        contactButton.addTarget(self, action: #selector(didConatact), for: .touchUpInside)
     }
     
@@ -204,7 +206,7 @@ extension TalentDetailViewController {
         
         closeButton.setImage(UIImage(named: "back_white"), for: .normal)
         
-        applyButton.setTitle("Apply", for: .normal)
+        applyButton.setTitle("Submit", for: .normal)
         applyButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         applyButton.lkCornerRadius = 10
         applyButton.backgroundColor = .NaturianColor.treatmentGreen
@@ -232,6 +234,19 @@ extension TalentDetailViewController {
         tableView.automaticallyAdjustsScrollIndicatorInsets = true
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
+        
+//        guard let appliedID = self.selectedArticle.didApplyID else { return }
+        
+        if self.selectedArticle.didApplyID.contains(self.userID ?? "") {
+            applyButton.isSelected = true
+            applyButton.setTitle("Submitted", for: .normal)
+            applyButton.backgroundColor = .NaturianColor.lightGray2
+            applyButton.isEnabled = false
+        } else {
+            applyButton.isSelected = false
+            applyButton.setTitle("Submit", for: .normal)
+            applyButton.isEnabled = true
+        }
     }
     
     func layout() {
@@ -272,7 +287,7 @@ extension TalentDetailViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -314,7 +329,9 @@ extension TalentDetailViewController: UITableViewDataSource {
         cell.providerName.text = selectedArticle.userInfo?.name
         cell.locationLabel.text = selectedArticle.location
         cell.categoryBTN.setTitle(String(describing: selectedArticle.category ?? ""), for: .normal)
-        cell.descriptionText.text = selectedArticle.content
+        
+        cell.descriptionText.text = selectedArticle.content?.replacingOccurrences(of: "\\n", with: "\n")
+//        cell.descriptionText.text = selectedArticle.content
         
         let postUrl = URL(string: selectedArticle.images[0])
         cell.postPhotoImage.kf.setImage(with: postUrl)
@@ -336,6 +353,7 @@ extension TalentDetailViewController: UITableViewDataSource {
         } else {
             cell.likedBtn.isSelected = false
         }
+        
         cell.likedBtn.clipsToBounds = true
         cell.likedBtn.contentMode = .scaleAspectFit
         cell.likedBtn.addTarget(self, action: #selector(addToCollection(_:)), for: .touchUpInside)

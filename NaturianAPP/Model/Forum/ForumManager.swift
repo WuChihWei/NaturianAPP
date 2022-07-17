@@ -72,7 +72,7 @@ class ForumManager {
     
     func fetchCategoryData(category: String, completion: @escaping (Result<[ForumModel], Error>) -> Void) {
         
-        forumDatabase.whereField("category", isEqualTo: category).getDocuments { (querySnapshot, error) in
+        forumDatabase.whereField("category", isEqualTo: category).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 

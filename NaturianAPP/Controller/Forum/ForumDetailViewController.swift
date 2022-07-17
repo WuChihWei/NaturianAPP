@@ -495,7 +495,7 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.postImage.kf.setImage(with: photoUrl)
             cell1.postImage.contentMode = .scaleAspectFill
             cell1.postImage.clipsToBounds = true
-            
+            cell1.authorLB.text = forumArticles.userInfo?.name
             let avatatUrl = URL(string: authorInfo?.userAvatar ?? "")
             cell1.avatarImage.kf.setImage(with: avatatUrl)
             cell1.avatarImage.contentMode = .scaleAspectFill

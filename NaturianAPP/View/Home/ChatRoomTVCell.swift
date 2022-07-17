@@ -36,9 +36,9 @@ class ChatRoomTVCell: UITableViewCell {
         nameLabel.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         nameLabel.textAlignment = .left
         nameLabel.text = "Title"
-        nameLabel.textColor = .NaturianColor.navigationGray
+        nameLabel.textColor = .NaturianColor.darkGray
         
-        avatarImage.lkCornerRadius = 34
+        avatarImage.lkCornerRadius = 27
         avatarImage.backgroundColor = .NaturianColor.lightGray
         
         chatIcon.image = UIImage(named: "chat_green")
@@ -64,16 +64,16 @@ class ChatRoomTVCell: UITableViewCell {
             
             avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             avatarImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            avatarImage.heightAnchor.constraint(equalToConstant: 68),
-            avatarImage.widthAnchor.constraint(equalToConstant: 68),
+            avatarImage.heightAnchor.constraint(equalToConstant: 54),
+            avatarImage.widthAnchor.constraint(equalToConstant: 54),
             
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 12),
             
             chatIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             chatIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            chatIcon.widthAnchor.constraint(equalToConstant: 32),
-            chatIcon.heightAnchor.constraint(equalToConstant: 32),
+            chatIcon.widthAnchor.constraint(equalToConstant: 28),
+            chatIcon.heightAnchor.constraint(equalToConstant: 28),
 
             contentView.heightAnchor.constraint(equalToConstant: 98),
             

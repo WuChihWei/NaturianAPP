@@ -10,6 +10,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
 import FirebaseAuth
+import Lottie
 
 class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
     
@@ -77,6 +78,17 @@ class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
+    }
+    
     func currentUserState() {
         
         userManager.listenUserData(userID: userID ?? "") { [weak self] result in
@@ -120,6 +132,7 @@ class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
     
     func fetchForumArticle() {
         
+
         print(forumArticles)
         
         forumManager.fetchCategoryData(category: forumTitle) { [weak self] result in
@@ -128,6 +141,7 @@ class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
                 
             case .success(let forumArticles):
                 
+
                 self?.forumArticles = forumArticles
                 
 //                for forumArticle in self?.forumArticles ?? [] {

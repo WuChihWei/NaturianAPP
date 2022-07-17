@@ -8,9 +8,8 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import JGProgressHUD
-import MBProgressHUD
 import FirebaseAuth
+import Lottie
 
 class PostArticleViewController: UIViewController, UITextViewDelegate {
     
@@ -65,6 +64,8 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+
         fetchUserData()
     }
     
@@ -99,6 +100,17 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+    }
+    
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
