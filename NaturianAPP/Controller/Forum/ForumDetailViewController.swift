@@ -19,6 +19,8 @@ class ForumDetailViewController: UIViewController {
     var forumManager = ForumManager()
     var db: Firestore?
     let userID = Auth.auth().currentUser?.uid
+//        let userID = "2"
+
     private let tableView = UITableView()
     
     let addReplyBTN = UIButton()

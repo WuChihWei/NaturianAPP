@@ -22,7 +22,7 @@ class ChatViewController: MessagesViewController {
     private var docReference: DocumentReference?
     
     private let currentUser = Auth.auth().currentUser?.uid
-    //    let currentUser = "2"
+//        let currentUser = "2"
     //        let currentUser = "1"
     
     var chatToID: String?

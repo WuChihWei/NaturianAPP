@@ -27,7 +27,7 @@ class AllMyAppliersVC: UIViewController {
     
     var talentArticleID: String?
     var userID = Auth.auth().currentUser?.uid
-    //    let userID = "2"
+//        let userID = "2"
     //    let userID = "1"
     
     let subview = UIView()

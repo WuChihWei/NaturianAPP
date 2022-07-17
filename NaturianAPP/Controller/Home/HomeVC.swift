@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
     var db: Firestore?
     let blackView = UIView()
     let userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
     var userInfo: UserModel!
     var didselectedCollection: Int = 0
     var forumArticles: [ForumModel] = []

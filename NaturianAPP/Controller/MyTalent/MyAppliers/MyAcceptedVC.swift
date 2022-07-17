@@ -18,22 +18,22 @@ class MyAcceptedVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
-            var userID = Auth.auth().currentUser?.uid
-//        let userID = "2"
-//    let userID = "1"
-
+                var userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
+    //    let userID = "1"
+    
     var talentArticleID: String?
     let subview = UIView()
     var myTalentInfo: TalentArticle!
-
+    
     var didSeletectApplierIDs: [String] = []
     var acceptIDs: [UserModel] = []
     var didSelectedID: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        fetchAcceptInfo()
+        //        fetchAcceptInfo()
         setUp()
         style()
         layout()
@@ -41,8 +41,8 @@ class MyAcceptedVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        acceptIDs.removeAll()
-//        fetchAcceptInfo()
+        //        acceptIDs.removeAll()
+        //        fetchAcceptInfo()
         fetchMyAppliedTalent()
         tableView.reloadData()
     }
@@ -59,8 +59,8 @@ class MyAcceptedVC: UIViewController {
     
     func setUp() {
         
-//        tableView.register(MyTalentAppliersTVCell.self,
-//                           forCellReuseIdentifier: MyTalentAppliersTVCell.identifer)
+        //        tableView.register(MyTalentAppliersTVCell.self,
+        //                           forCellReuseIdentifier: MyTalentAppliersTVCell.identifer)
         tableView.register(MyTalentAcceptedTVCell.self,
                            forCellReuseIdentifier: MyTalentAcceptedTVCell.identifer)
         tableView.dataSource = self
@@ -137,9 +137,9 @@ class MyAcceptedVC: UIViewController {
                 self?.myTalentInfo = articleModel
                 
                 self?.fetchAcceptInfo()
-                                
+                
                 DispatchQueue.main.async {
-                                    
+                    
                     self?.tableView.reloadData()
                 }
                 
@@ -153,28 +153,28 @@ class MyAcceptedVC: UIViewController {
     func fetchAcceptInfo() {
         
         let didAcceptIDs = myTalentInfo.didAcceptID
-    
-                for didAcceptID in didAcceptIDs {
-    
-                    userManager.fetchUserData(userID: didAcceptID) { [weak self] result in
-    
-                        switch result {
-    
-                        case .success(let userModel):
-    
-                            self?.acceptIDs.append(userModel)
         
-                            DispatchQueue.main.async {
-                                self?.tableView.reloadData()
-                            }
-    
-                        case .failure:
-    
-                            print("can't fetch data")
-                        }
+        for didAcceptID in didAcceptIDs {
+            
+            userManager.fetchUserData(userID: didAcceptID) { [weak self] result in
+                
+                switch result {
+                    
+                case .success(let userModel):
+                    
+                    self?.acceptIDs.append(userModel)
+                    
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
                     }
+                    
+                case .failure:
+                    
+                    print("can't fetch data")
                 }
             }
+        }
+    }
 }
 
 extension MyAcceptedVC: UITableViewDelegate {
@@ -184,34 +184,34 @@ extension MyAcceptedVC: UITableViewDelegate {
 extension MyAcceptedVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-            return acceptIDs.count
+        
+        return acceptIDs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: MyTalentAcceptedTVCell.identifer,
-                                                           for: indexPath) as? MyTalentAcceptedTVCell else {
-                
-                fatalError("can't find MyTalentAcceptedTVCell")
-                
-            }
-
-            cell2.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
-            cell2.acceptButton.isEnabled = false
-            cell2.acceptButton.alpha = 0.3
-            cell2.userName.text = acceptIDs[indexPath.row].name
-            cell2.userGender.text = acceptIDs[indexPath.row].gender
+        guard let cell2 = tableView.dequeueReusableCell(withIdentifier: MyTalentAcceptedTVCell.identifer,
+                                                        for: indexPath) as? MyTalentAcceptedTVCell else {
+            
+            fatalError("can't find MyTalentAcceptedTVCell")
+            
+        }
+        
+        cell2.appliedStateBtn.setImage(UIImage(named: "checked"), for: .normal)
+        cell2.acceptButton.isEnabled = false
+        cell2.acceptButton.alpha = 0.3
+        cell2.userName.text = acceptIDs[indexPath.row].name
+        cell2.userGender.text = acceptIDs[indexPath.row].gender
         let url = URL(string: acceptIDs[indexPath.row].userAvatar ?? "")
-            cell2.userAvatar.kf.setImage(with: url)
-            cell2.userAvatar.lkCornerRadius = 10
-            cell2.layoutIfNeeded()
-            cell2.userAvatar.clipsToBounds = true
-            cell2.userAvatar.contentMode = .scaleAspectFill
+        cell2.userAvatar.kf.setImage(with: url)
+        cell2.userAvatar.lkCornerRadius = 10
+        cell2.layoutIfNeeded()
+        cell2.userAvatar.clipsToBounds = true
+        cell2.userAvatar.contentMode = .scaleAspectFill
         cell2.cancelButton.addTarget(self, action: #selector(cancelAccept), for: .touchUpInside)
         cell2.chatButton.addTarget(self, action: #selector(accpetToChat(_:)), for: .touchUpInside)
-            
-            return cell2
+        
+        return cell2
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -225,7 +225,7 @@ extension MyAcceptedVC: UITableViewDataSource {
         vc.chatToID = acceptIDs[indexPath.row].userID
         //        vc.chatTalentID = self.talentArticleID ?? ""
         //        vc.user2UID = self.userModels[indexPath.row].userID
-//        vc.chatToTalentModel = didSeletectDetails
+        //        vc.chatToTalentModel = didSeletectDetails
         
         self.navigationController?.pushViewController(vc, animated: true)
         

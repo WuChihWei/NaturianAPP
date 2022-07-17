@@ -19,6 +19,7 @@ class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
     let userManager = UserManager()
     var db: Firestore?
     let userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
     var userInfo: UserModel!
     let searchBtn = UIButton()
     let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))

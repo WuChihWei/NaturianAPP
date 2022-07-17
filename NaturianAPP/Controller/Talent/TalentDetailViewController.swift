@@ -19,7 +19,7 @@ class TalentDetailViewController: UIViewController {
     var talentManager = TalentManager()
     var userManager = UserManager()
     let userID = Auth.auth().currentUser?.uid
-    //    let userID = "2"
+//        let userID = "2"
     //    let userID = "1"
     let closeButton = UIButton()
     var appliedState: Int = 0

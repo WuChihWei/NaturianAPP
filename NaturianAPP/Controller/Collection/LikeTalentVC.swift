@@ -23,7 +23,7 @@ class LikeTalentVC: UIViewController {
     var talentArticles: [TalentArticle] = []
     
     let userID = Auth.auth().currentUser?.uid
-    //    let userID = "2"
+//        let userID = "2"
     //    let userID = "1"
     
     var userModels: UserModel!
