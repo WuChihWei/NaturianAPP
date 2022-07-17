@@ -21,8 +21,8 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     let cancelButton = UIButton()
     var userID = Auth.auth().currentUser?.uid
     //    let userID = "2"
-//    let userID = "1"
-    
+    //    let userID = "1"
+    let locationIcon = UIImageView()
     var userModels: UserModel?
     
     var categoryResult = ""
@@ -42,6 +42,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     let seedIcon = UIImageView()
     let descriptionTextView = UITextView()
     let categoryButton = UIButton()
+    private let locationStack = UIStackView()
     
     let seedStack = UIStackView()
     let contentStack = UIStackView()
@@ -86,13 +87,13 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     
     func setupLottie() {
         let animationView = AnimationView(name: "lf20_s6zewgds")
-           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-           animationView.center = self.view.center
-           animationView.contentMode = .scaleAspectFill
+        animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
-
-           view.addSubview(animationView)
-           animationView.play()
+        
+        view.addSubview(animationView)
+        animationView.play()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -106,7 +107,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Text Your Talent Description"
             textView.textColor = UIColor.lightGray
         }
     }
@@ -169,36 +170,38 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         categoryButton.setTitle("CATEGORY", for: .normal)
         categoryButton.semanticContentAttribute = .forceRightToLeft
         categoryButton.lkCornerRadius = 10
-        categoryButton.backgroundColor = .NaturianColor.navigationGray
+        categoryButton.backgroundColor = .NaturianColor.lightGray2
         categoryButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         categoryButton.setTitleColor(.white, for: .normal)
         categoryButton.tintColor = .white
         
+        locationIcon.image = UIImage(named: "darklocation")
         locationBtn.setImage(UIImage(named: "down2"), for: .normal)
         locationBtn.tintColor = .darkGray
         locationBtn.setTitle("Location", for: .normal)
-        locationBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        locationBtn.setTitleColor(.black, for: .normal)
-        locationBtn.tintColor = .black
+        locationBtn.titleLabel?.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        locationBtn.setTitleColor(.NaturianColor.darkGray, for: .normal)
+        locationBtn.tintColor = .NaturianColor.darkGray
         locationBtn.semanticContentAttribute = .forceRightToLeft
         
         titleText.font = UIFont(name: Roboto.bold.rawValue, size: 30)
         titleText.placeholder = "Title"
         
-        descriptionTextView.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        descriptionTextView.font = UIFont(name: Roboto.medium.rawValue, size: 16)
         descriptionTextView.textAlignment = .justified
         
         seedIcon.image = UIImage(named: "seedgray")
-        seedValueText.placeholder = "???"
+        seedValueText.placeholder = "Your Talent Value"
+        seedValueText.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         seedValueText.keyboardType = .numberPad
         
         seedStack.axis = .horizontal
         seedStack.alignment = .leading
-        seedStack.spacing = 2
+        seedStack.spacing = 4
         
         contentStack.axis = .vertical
         contentStack.alignment = .leading
-        contentStack.spacing = 0
+        contentStack.spacing = 3
         
         postButton.setTitle("Post", for: .normal)
         postButton.setTitleColor(.white, for: .normal)
@@ -214,10 +217,15 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         actStack.axis = .horizontal
         actStack.alignment = .center
         actStack.spacing = 14
+        
+        locationStack.axis = .horizontal
+        locationStack.alignment = .center
+        locationStack.spacing = 6
     }
     
     func layout() {
         
+        titleText.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
         postPhotoImage.translatesAutoresizingMaskIntoConstraints = false
         categoryButton.translatesAutoresizingMaskIntoConstraints = false
@@ -228,6 +236,8 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         actStack.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(backButton)
+        view.addSubview(titleText)
+        
         view.addSubview(postPhotoImage)
         view.addSubview(categoryButton)
         view.addSubview(seedStack)
@@ -242,9 +252,11 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
         seedStack.addArrangedSubview(seedIcon)
         seedStack.addArrangedSubview(seedValueText)
         
-        contentStack.addArrangedSubview(titleText)
+        locationStack.addArrangedSubview(locationIcon)
+        locationStack.addArrangedSubview(locationBtn)
+        //        contentStack.addArrangedSubview(titleText)
         contentStack.addArrangedSubview(seedStack)
-        contentStack.addArrangedSubview(locationBtn)
+        contentStack.addArrangedSubview(locationStack)
         
         NSLayoutConstraint.activate([
             
@@ -256,24 +268,30 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
             postPhotoImage.topAnchor.constraint(equalTo: categoryButton.bottomAnchor, constant: 16),
             postPhotoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             postPhotoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            postPhotoImage.heightAnchor.constraint(equalToConstant: 360),
+            postPhotoImage.heightAnchor.constraint(equalToConstant: 320),
             
             categoryButton.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
             categoryButton.heightAnchor.constraint(equalToConstant: 40),
             categoryButton.widthAnchor.constraint(equalToConstant: 130),
             categoryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             
-            contentStack.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor),
+            titleText.topAnchor.constraint(equalTo: postPhotoImage.bottomAnchor, constant: 6),
+            titleText.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
+            
+            contentStack.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: 4),
             contentStack.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
             contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             
-            descriptionTextView.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: 8),
-            descriptionTextView.bottomAnchor.constraint(equalTo: postButton.topAnchor, constant: 8),
-            descriptionTextView.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor),
+            locationIcon.widthAnchor.constraint(equalToConstant: 11),
+            locationIcon.heightAnchor.constraint(equalToConstant: 13),
+            
+            descriptionTextView.topAnchor.constraint(equalTo: contentStack.bottomAnchor, constant: 4),
+            descriptionTextView.bottomAnchor.constraint(equalTo: postButton.topAnchor, constant: 6),
+            descriptionTextView.leadingAnchor.constraint(equalTo: postPhotoImage.leadingAnchor, constant: -6),
             descriptionTextView.trailingAnchor.constraint(equalTo: postPhotoImage.trailingAnchor),
             
-            seedIcon.widthAnchor.constraint(equalToConstant: 20),
-            seedIcon.heightAnchor.constraint(equalToConstant: 20),
+            seedIcon.widthAnchor.constraint(equalToConstant: 14),
+            seedIcon.heightAnchor.constraint(equalToConstant: 14),
             
             actStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             actStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),

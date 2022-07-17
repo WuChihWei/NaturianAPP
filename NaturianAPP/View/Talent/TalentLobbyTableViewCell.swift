@@ -169,9 +169,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
             // providerName
             genderIcon.widthAnchor.constraint(equalToConstant: 12),
             genderIcon.heightAnchor.constraint(equalToConstant: 12),
-            // locationStack
-//            locationStack.leadingAnchor.constraint(equalTo: nameStack.trailingAnchor),
-//            locationStack.heightAnchor.constraint(equalToConstant: 12),
+       
             locationIcon.widthAnchor.constraint(equalToConstant: 13),
             locationIcon.heightAnchor.constraint(equalToConstant: 13),
             // seedStack
