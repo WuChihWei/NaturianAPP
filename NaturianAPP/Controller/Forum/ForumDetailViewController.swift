@@ -66,10 +66,11 @@ class ForumDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
+        currentUserState()
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-        tableView.reloadData()
+//        tableView.reloadData()
         findAuthorData()
         findReplies()
     }
@@ -100,6 +101,27 @@ class ForumDetailViewController: UIViewController {
         }
     }
     
+    func currentUserState() {
+        
+        userManager.listenUserData(userID: userID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success(let userModel):
+
+                    self?.userInfo = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
     // fetch userinfo based on replyID.userID -> repliedArticles will equal to replyAuthors+1 when repliers > 1
 //    func findReplies() {
 //
@@ -178,21 +200,22 @@ class ForumDetailViewController: UIViewController {
                 switch result {
 
                 case .success:
-                    self?.dismiss(animated: true)
                     
-                case .failure:
-                    print("can't fetch data")
+                    let newLikeValue = (self?.forumArticles.getLikedValue ?? 0) + 1
                     
-                }
-            }
-            
-            let newLikeValue = (self.forumArticles.getLikedValue ?? 0) + 1
-            
-            forumManager.updateLikeValue(forumID: self.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
-                
-                switch result {
+                    self?.forumManager.updateLikeValue(forumID: self?.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                        
+                        switch result {
 
-                case .success:
+                        case .success:
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                            
+                        }
+                    }
                     self?.dismiss(animated: true)
                     
                 case .failure:
@@ -200,7 +223,7 @@ class ForumDetailViewController: UIViewController {
                     
                 }
             }
-            
+       
         } else {
             sender.isSelected = false
             sender.setImage(UIImage(named: "grayLike"), for: .normal)
@@ -209,6 +232,23 @@ class ForumDetailViewController: UIViewController {
                 switch result {
                     
                 case .success:
+                    
+                    let newLikeValue = self?.forumArticles.getLikedValue ?? 0
+                    
+                    self?.forumManager.updateLikeValue(forumID: self?.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                        
+                        switch result {
+
+                        case .success:
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                            
+                        }
+                    }
+                    
                     self?.dismiss(animated: true)
                     
                 case .failure:
@@ -216,22 +256,6 @@ class ForumDetailViewController: UIViewController {
                     
                 }
             }
-            
-            let newLikeValue = self.forumArticles.getLikedValue ?? 0
-            
-            forumManager.updateLikeValue(forumID: self.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
-                
-                switch result {
-
-                case .success:
-                    self?.dismiss(animated: true)
-                    
-                case .failure:
-                    print("can't fetch data")
-                    
-                }
-            }
-
         }
     }
     
@@ -263,28 +287,31 @@ class ForumDetailViewController: UIViewController {
                                                                  seedValue: authorNewSeed) { [weak self] result in
                                 switch result {
                                 case .success:
-                                    self?.dismiss(animated: true)
                                     
+                                    let forumValue = (self?.forumArticles.getSeedValue ?? 0) + 1
+                                    
+                                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                                         seedValue: forumValue) { [weak self] result in
+                                        switch result {
+                                        case .success:
+//                                            self?.dismiss(animated: true)
+                                            print("success")
+
+                                        case .failure:
+                                            print("can't fetch data")
+                                        }
+                                    }
+//                                    self?.dismiss(animated: true)
+                                    print("success")
+
                                 case .failure:
                                     print("can't fetch data")
                                 }
                             }
                             
-                            self?.dismiss(animated: true)
-                            
-                        case .failure:
-                            print("can't fetch data")
-                        }
-                    }
-                    
-                    let forumValue = (self?.forumArticles.getSeedValue ?? 0) + 1
-                    
-                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
-                                                         seedValue: forumValue) { [weak self] result in
-                        switch result {
-                        case .success:
-                            self?.dismiss(animated: true)
-                            
+//                            self?.dismiss(animated: true)
+                            print("success")
+
                         case .failure:
                             print("can't fetch data")
                         }
@@ -323,33 +350,37 @@ class ForumDetailViewController: UIViewController {
                                 switch result {
                                     
                                 case .success:
-                                    self?.dismiss(animated: true)
                                     
+                                    let forumValue = (self?.forumArticles.getSeedValue ?? 0)
+                                    
+                                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                                         seedValue: forumValue) { [weak self] result in
+                                        switch result {
+                                        case .success:
+//                                            self?.dismiss(animated: true)
+                                            print("success")
+
+                                        case .failure:
+                                            print("can't fetch data")
+                                        }
+                                    }
+                                    
+//                                    self?.dismiss(animated: true)
+                                    print("success")
+
                                 case .failure:
                                     print("can't fetch data")
                                 }
                             }
-                            self?.dismiss(animated: true)
-                            
+//                            self?.dismiss(animated: true)
+                            print("success")
+
                         case .failure:
                             print("can't fetch data")
                         }
                         
                     }
-                    
-                    let forumValue = (self?.forumArticles.getSeedValue ?? 0)
-                    
-                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
-                                                         seedValue: forumValue) { [weak self] result in
-                        switch result {
-                        case .success:
-                            self?.dismiss(animated: true)
-                            
-                        case .failure:
-                            print("can't fetch data")
-                        }
-                    }
-                    
+                 
                     self?.dismiss(animated: true)
                     
                 case .failure:
@@ -506,7 +537,7 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.seedBtn.addTarget(self, action: #selector(addToSeed), for: .touchUpInside)
             
             guard let likedID = self.forumArticles.postArticleID else { return UITableViewCell() }
-
+            
             if self.userInfo.likedForumList.contains(likedID) {
                 cell1.likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
                 cell1.likeBtn.isSelected = true

@@ -67,7 +67,7 @@ class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
         fetchForumArticle()
