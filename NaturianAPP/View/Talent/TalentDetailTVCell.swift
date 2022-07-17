@@ -59,8 +59,7 @@ class TalentDetailTVCell: UITableViewCell {
 
         likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
         likedBtn.isSelected = false
-        
-        likedBtn.clipsToBounds = false
+//        likedBtn.clipsToBounds = false
         likedBtn.layer.shadowOpacity = 0.3
         likedBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
         
@@ -165,10 +164,10 @@ class TalentDetailTVCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
-            likedBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            likedBtn.bottomAnchor.constraint(equalTo: subview.topAnchor, constant: -17),
-            likedBtn.heightAnchor.constraint(equalToConstant: 40),
-            likedBtn.widthAnchor.constraint(equalToConstant: 40),
+            likedBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 22),
+            likedBtn.bottomAnchor.constraint(equalTo: subview.topAnchor, constant: -15),
+            likedBtn.heightAnchor.constraint(equalToConstant: 80),
+            likedBtn.widthAnchor.constraint(equalToConstant: 80),
 
             postPhotoImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             postPhotoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         
-        UITabBar.appearance().barTintColor = .NaturianColor.darkGray
-
-        UITabBar.appearance().tintColor = .NaturianColor.darkGray
+//        UITabBar.appearance().barTintColor = .NaturianColor.darkGray
+//
+//        UITabBar.appearance().tintColor = .NaturianColor.darkGray
                 
         let barApprance = UINavigationBarAppearance()
                 barApprance.configureWithTransparentBackground()

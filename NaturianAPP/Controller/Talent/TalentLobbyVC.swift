@@ -273,12 +273,10 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
         searchTextField.backgroundColor = .white
         searchTextField.addPadding(.left(35))
         searchTextField.lkCornerRadius = 20
-        searchTextField.lkBorderWidth = 1
-        searchTextField.lkBorderColor = .NaturianColor.darkGray
-
-//        searchTextField.clipsToBounds = false
-//        searchTextField.layer.shadowOpacity = 0.3
-//        searchTextField.layer.shadowOffset = CGSize(width: 0, height: 3)
+        searchTextField.clipsToBounds = false
+        searchTextField.layer.shadowOpacity = 0.3
+        searchTextField.layer.shadowOffset = CGSize(width: 0, height: 3)
+        
         // filterButton
         filterButton.setImage(UIImage(named: "sliders"), for: .normal)
     }
@@ -470,11 +468,10 @@ extension TalentLobbyVC: UICollectionViewDataSource {
         cell2.iconView.image = UIImage(named: "\(categories[indexPath.row].imageName)")
         
         cell2.tilteLB.text = categories[indexPath.row].name
-        cell2.lkBorderWidth = 1
+//        cell2.lkBorderWidth = 1
         cell2.lkCornerRadius = 18
-        cell2.lkBorderColor = .NaturianColor.darkGray
+//        cell2.lkBorderColor = .NaturianColor.darkGray
         cell2.backgroundColor = .white
-            
         return cell2
             
         default:
@@ -482,8 +479,112 @@ extension TalentLobbyVC: UICollectionViewDataSource {
         }
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.collectionPrepareData()
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCVCell {
+            cell.backgroundColor = .NaturianColor.treatmentGreen
+            cell.tilteLB.textColor = .white
+        }
+        
+        let filterArray = self.talentArticles.filter { (filterArray) -> Bool in
+            let words = filterArray.category?.description
+            
+            let isMach = words?.localizedCaseInsensitiveContains(categories[indexPath.row].name)
+            return isMach ?? true
+        }
+        
+        self.talentArticles = filterArray
+        tableView.reloadData()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+
+        guard let cell1 = collectionView.cellForItem(at: indexPath) as? CategoryCVCell else {
+
+            return
+        }
+        cell1.backgroundColor = .white
+        cell1.tilteLB.textColor = .NaturianColor.darkGray
+    }
 }
 
 extension TalentLobbyVC: UICollectionViewDelegate {
+        
+}
+
+extension TalentLobbyVC {
     
+    func collectionPrepareData() {
+        
+        userManager.fetchUserData(userID: userID ?? "" ) { [weak self] result in
+            
+            switch result {
+                
+            case .success(let userModel):
+                
+                self?.userInfo = userModel
+                
+                if self?.userInfo.blockList.count == 0 {
+                    
+                    self?.talentManager.fetchData { [weak self] result in
+                        
+                        switch result {
+                            
+                        case .success(let talentArticles):
+                            
+                            self?.talentArticles = talentArticles
+                                                        
+                        case .failure:
+                            
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                } else if self?.userInfo.blockList.count == 1 {
+                    
+                    self?.talentManager.fetch1BlockListData(blockList: self?.userInfo.blockList ?? [] ) { [weak self] result in
+                        
+                        switch result {
+            
+                        case .success(let talentArticles):
+            
+                            self?.talentArticles = talentArticles
+                        
+                        case .failure:
+            
+                            print("can't fetch data")
+                        }
+                    }
+                    
+                } else if self?.userInfo.blockList.count ?? 0 >= 2 {
+                                    
+                    self?.talentManager.fetchBlockListData(blockList: self?.userInfo.blockList ?? []) { [weak self] result in
+                        
+                        switch result {
+            
+                        case .success(let talentArticles):
+            
+                            self?.talentArticles = talentArticles
+                        
+                        case .failure:
+            
+                            print("can't fetch data")
+                        }
+                    }
+            
+                    print(LocalizedError.self)
+                }
+//                DispatchQueue.main.async {
+//
+//                    self?.viewDidLoad()
+//                }
+                
+            case .failure:
+                print("can't fetch data")
+            }
+        }
+    }
 }

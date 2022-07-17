@@ -15,7 +15,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     let subview = UIView()
-    
+    let likedBtn = UIButton()
     let postImage = UIImageView()
     let providerName = UILabel()
     let genderIcon = UIImageView()
@@ -48,6 +48,12 @@ class TalentLobbyTableViewCell: UITableViewCell {
     }
     
     func styleObject() {
+        
+        likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
+        likedBtn.isSelected = false
+        likedBtn.clipsToBounds = false
+        likedBtn.layer.shadowOpacity = 0.3
+        likedBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
         
         backgroundColor = .clear
 //        subview.backgroundColor = .white
@@ -90,7 +96,7 @@ class TalentLobbyTableViewCell: UITableViewCell {
         
         talentStack.axis = .vertical
         talentStack.alignment = .leading
-        talentStack.spacing = 5
+        talentStack.spacing = 3
         
         locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         locationLabel.textColor = .NaturianColor.navigationGray
@@ -105,12 +111,14 @@ class TalentLobbyTableViewCell: UITableViewCell {
         
         contentView.addSubview(subview)
         
+        postImage.addSubview(likedBtn)
         subview.addSubview(postImage)
         subview.addSubview(title)
         subview.addSubview(talentStack)
         subview.addSubview(categoryBTN)
         subview.addSubview(seedStack)
         
+        likedBtn.translatesAutoresizingMaskIntoConstraints = false
         subview.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -130,13 +138,16 @@ class TalentLobbyTableViewCell: UITableViewCell {
         seedStack.addArrangedSubview(seedValue)
         
         NSLayoutConstraint.activate([
+
+            likedBtn.topAnchor.constraint(equalTo: postImage.topAnchor, constant: 16),
+            likedBtn.trailingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: -16),
+            likedBtn.heightAnchor.constraint(equalToConstant: 34),
+            likedBtn.widthAnchor.constraint(equalToConstant: 34),
             
             subview.topAnchor.constraint(equalTo: contentView.topAnchor),
             subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             subview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            subview.heightAnchor.constraint(equalToConstant: 175),
-            
             // postImage
             postImage.topAnchor.constraint(equalTo: subview.topAnchor),
             postImage.leadingAnchor.constraint(equalTo: subview.leadingAnchor),
@@ -147,13 +158,11 @@ class TalentLobbyTableViewCell: UITableViewCell {
             title.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 10),
             title.leadingAnchor.constraint(equalTo: postImage.leadingAnchor),
             title.trailingAnchor.constraint(equalTo: postImage.trailingAnchor),
-//            title.heightAnchor.constraint(equalToConstant: 20),
             // talentStack
-            talentStack.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4),
+            talentStack.topAnchor.constraint(equalTo: categoryBTN.bottomAnchor, constant: 4),
             talentStack.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-//            talentStack.heightAnchor.constraint(equalToConstant: 28),
+            talentStack.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20),
             // providerName
-//            nameStack.heightAnchor.constraint(equalToConstant: 14),
             genderIcon.widthAnchor.constraint(equalToConstant: 12),
             genderIcon.heightAnchor.constraint(equalToConstant: 12),
             // locationStack
@@ -168,10 +177,9 @@ class TalentLobbyTableViewCell: UITableViewCell {
             seedIcon.widthAnchor.constraint(equalToConstant: 18),
             seedIcon.heightAnchor.constraint(equalToConstant: 18),
             // categoryBTN
-            categoryBTN.topAnchor.constraint(equalTo: talentStack.bottomAnchor, constant: 10),
+            categoryBTN.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4),
             categoryBTN.widthAnchor.constraint(equalToConstant: 80),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 24),
-            categoryBTN.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: -20)
+            categoryBTN.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
 }
