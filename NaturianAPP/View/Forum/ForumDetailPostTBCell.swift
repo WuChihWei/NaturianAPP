@@ -31,12 +31,6 @@ class ForumDetailPostTBCell: UITableViewCell {
     let seedBtn = UIButton()
     let buttonStack = UIStackView()
     
-    //    private let nameStackView = UIStackView()
-    //    private let articleStack = UIStackView()
-    //    private let locationStackView = UIStackView()
-    //    let likestack = UIStackView()
-    //    let seedstack = UIStackView()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -74,28 +68,33 @@ class ForumDetailPostTBCell: UITableViewCell {
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
-        categoryBTN.setTitleColor(.white, for: .normal)
-        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-        categoryBTN.lkCornerRadius = 14
-        
+        categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal)
+//        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+        categoryBTN.lkCornerRadius = 5
+        categoryBTN.lkBorderWidth = 1
+        categoryBTN.lkBorderColor = .NaturianColor.darkGray
+
         title.numberOfLines = 0
         
         articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 16)
         articleContent.textColor = .NaturianColor.darkGray
-        articleContent.numberOfLines = 0
-        articleContent.text = "Describe your talent herePlease describe your talent herePlease describe your talent herePlease describe."
         articleContent.textAlignment = .justified
-        
+        articleContent.lineBreakMode = NSLineBreakMode.byWordWrapping
+        articleContent.numberOfLines = 0
+//        articleContent.text = .replacingOccurrences(of: "/n", with: "\n")
+
+        articleContent.text = ""
+
         authorLB.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         authorLB.textColor = .NaturianColor.darkGray
         authorLB.text = "Writen By : Linda"
         
-        likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
+//        likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
         
         dottedLine.image = UIImage(named: "dottedLine")
         solidLine.backgroundColor = .black
         
-        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
+//        seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
         
         buttonStack.axis = .horizontal
         buttonStack.alignment = .bottom
@@ -183,12 +182,5 @@ class ForumDetailPostTBCell: UITableViewCell {
             solidLine.heightAnchor.constraint(equalToConstant: 1),
             solidLine.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0)
         ])
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
+    }    
 }

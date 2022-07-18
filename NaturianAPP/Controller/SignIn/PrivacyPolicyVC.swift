@@ -34,6 +34,12 @@ class PrivacyPolicyVC: UIViewController, WKNavigationDelegate {
         self.start()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     @objc func start() {
         self.view.endEditing(true)
         

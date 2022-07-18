@@ -126,7 +126,7 @@ class TalentFilterVC: UIViewController {
         
         dataSource = ["Taipei City", "Xinbei City",
                       "Taoyuan City", "Xinzhu City",
-                      "Miaoli City", "Taizhong City",
+                      "Miaoli City", "Taichung City",
                       "Zhanghua City", "Nantou City",
                       "Jiayi City", "Tainan City",
                       "Gaoxiong City", "Pingtung City",
@@ -560,7 +560,7 @@ extension TalentFilterVC {
         treatmentButton.lkCornerRadius = 18
         treatmentButton.setTitleColor(.NaturianColor.darkGray, for: .normal)
 
-        seedIcon.image = UIImage(named: "seed")
+        seedIcon.image = UIImage(named: "seedgray")
         
         numberLabel.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         numberLabel.textColor = .gray

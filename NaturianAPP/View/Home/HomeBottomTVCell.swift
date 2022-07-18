@@ -65,7 +65,7 @@ class HomeBottomTVCell: UITableViewCell {
         likeLB.text = "321"
         likeLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         likeLB.textColor = .NaturianColor.navigationGray
-        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
+        seedBtn.setImage(UIImage(named: "greenSeed"), for: .normal)
         seedLB.text = "123"
         seedLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedLB.textColor = .NaturianColor.navigationGray

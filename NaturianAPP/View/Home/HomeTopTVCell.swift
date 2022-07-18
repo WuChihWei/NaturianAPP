@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import MessageKit
 
 protocol SelectedCollectionItemDelegate: AnyObject {
     func selectedCollectionItem(index: Int)
+}
+
+protocol SelectedBtnDelegate: AnyObject {
+    func selectedBtn(sender: Sender)
 }
 
 class HomeTopTVCell: UITableViewCell {
@@ -87,22 +92,20 @@ class HomeTopTVCell: UITableViewCell {
     func setup() {
         
         collectionView.layoutIfNeeded()
-
     }
     
     func styleObject() {
         
-        collectionView.backgroundColor = .clear
         contentView.backgroundColor = .NaturianColor.lightGray
         bottomTitleView.backgroundColor = .white
         
         firstLB.text = "Hi, Naturian"
-        firstLB.textColor = .white
+        firstLB.textColor = .NaturianColor.navigationGray
         firstLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
         firstLB.numberOfLines = 0
         
         secondLB.text = "Stop Your Default Life"
-        secondLB.textColor = .white
+        secondLB.textColor = .NaturianColor.navigationGray
         secondLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
         secondLB.numberOfLines = 0
         
@@ -122,7 +125,7 @@ class HomeTopTVCell: UITableViewCell {
         massageLB.textColor = .NaturianColor.darkGray
         massageLB.font = UIFont(name: Roboto.black.rawValue, size: 12)
         
-        titleLB.text = "Top 5 Articles"
+        titleLB.text = "Hot Articles"
         titleLB.textColor = .NaturianColor.darkGray
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         
@@ -144,7 +147,7 @@ class HomeTopTVCell: UITableViewCell {
         collectionButton.lkBorderColor = .white
         collectionButton.lkBorderWidth = 2
         
-        massageButton.setImage(UIImage(named: "whitemassage"), for: .normal)
+        massageButton.setImage(UIImage(named: "whitemanager"), for: .normal)
         massageButton.backgroundColor = .NaturianColor.navigationGray
         massageButton.lkCornerRadius = 32
         massageButton.lkBorderColor = .white

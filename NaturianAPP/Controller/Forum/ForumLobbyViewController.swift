@@ -9,27 +9,36 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import SwiftUI
+import FirebaseAuth
+import Lottie
 
-class ForumLobbyViewController: UIViewController {
+class ForumLobbyViewController: UIViewController, UITextFieldDelegate {
     
     var forumManager = ForumManager()
-    var talentManager = TalentManager()
+    let talentManager = TalentManager()
+    let userManager = UserManager()
     var db: Firestore?
-    
+    let userID = Auth.auth().currentUser?.uid
+//    let userID = "2"
+    var userInfo: UserModel!
+    let searchBtn = UIButton()
+    let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
+    let clearBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+
     private let tableView = UITableView()
     
     let addArticleBTN = UIButton()
     let titleLB = UILabel()
     let closeButton = UIButton()
     let searchTextField = UITextField()
-    let filterButton = UIButton()
     let subview = UIView()
     
     var forumArticles: [ForumModel] = []
     //    var talentArticles: [TalentArticle] = []
-    var userManager = UserManager()
     var userModels: [UserModel] = []
+    var likeForums: [UserModel] = []
+    var likeSeeds: [UserModel] = []
+
     //    var talentArticle: String = ""
     var searchController: UISearchController!
     var forumTitle: String = ""
@@ -58,20 +67,58 @@ class ForumLobbyViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
         fetchForumArticle()
         tableView.reloadData()
+        currentUserState()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
+    }
+    
+    func currentUserState() {
+        
+        userManager.listenUserData(userID: userID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success(let userModel):
+
+                    self?.userInfo = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
+    
     @objc func closePage() {
         navigationController?.popViewController(animated: true)
         
+    }
+    
+    @objc func clearText() {
+        searchTextField.text = ""
     }
     
     @objc func postArticle() {
@@ -81,13 +128,12 @@ class ForumLobbyViewController: UIViewController {
             
             fatalError("can't find PostArticleViewController")
         }
-        
-        //        self.navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
     }
     
     func fetchForumArticle() {
         
+
         print(forumArticles)
         
         forumManager.fetchCategoryData(category: forumTitle) { [weak self] result in
@@ -96,7 +142,44 @@ class ForumLobbyViewController: UIViewController {
                 
             case .success(let forumArticles):
                 
+
                 self?.forumArticles = forumArticles
+                
+//                for forumArticle in self?.forumArticles ?? [] {
+//                    self?.userManager.fetchForumLikeCount(forumID: forumArticle.postArticleID ?? "") { [weak self] result in
+//
+//                        switch result {
+//
+//                        case .success(let userModels):
+//
+//                            self?.likeForums = userModels
+//
+//                            self?.tableView.reloadData()
+//
+//                        case .failure:
+//
+//                            print("can't fetch data")
+//                        }
+//                    }
+//                }
+//
+//                for forumArticle in self?.forumArticles ?? [] {
+//                    self?.userManager.fetchForumSeedCount(forumID: forumArticle.postArticleID ?? "") { [weak self] result in
+//
+//                        switch result {
+//
+//                        case .success(let userModels):
+//
+//                            self?.likeSeeds = userModels
+//
+//                            self?.tableView.reloadData()
+//
+//                        case .failure:
+//
+//                            print("can't fetch data")
+//                        }
+//                    }
+//                }
                 
                 self?.tableView.reloadData()
                 
@@ -119,57 +202,86 @@ class ForumLobbyViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
         
         addArticleBTN.addTarget(self, action: #selector(postArticle), for: .touchUpInside)
+        searchTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
+        searchTextFieldSetup()
+    }
+    
+    func searchTextFieldSetup() {
+        searchTextField.delegate = self
+        searchTextField.rightView = outerView
+//        outerView.backgroundColor = .blue
+        
+        outerView.addSubview(clearBtn)
+        
+        searchTextField.rightViewMode = .whileEditing
+        searchTextField.rightView?.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        if searchTextField.text != "" {
+            let filterArray = self.forumArticles.filter { (filterArray) -> Bool in
+                let words = filterArray.title?.description
+                let isMach = words?.localizedCaseInsensitiveContains(self.searchTextField.text ?? "")
+                return isMach ?? true
+            }
+            self.forumArticles = filterArray
+            tableView.reloadData()
+        } else {
+            fetchForumArticle()
+            tableView.reloadData()
+        }
     }
     
     func style() {
         
-        switch forumTitle {
-
-        case "Food":
-            addArticleBTN.backgroundColor = .NaturianColor.foodYellow
-//            view.backgroundColor = .NaturianColor.foodOrange
-
-        case "Plant":
-            addArticleBTN.backgroundColor = .NaturianColor.plantGreen
+//        switch forumTitle {
+//
+//        case "Food":
+//            addArticleBTN.backgroundColor = .NaturianColor.foodYellow
+//            view.backgroundColor = .NaturianColor.foodYellow
+//
+//        case "Plant":
+//            addArticleBTN.backgroundColor = .NaturianColor.plantGreen
 //            view.backgroundColor = .NaturianColor.plantGreen
-
-        case "Adventure":
-            addArticleBTN.backgroundColor = .NaturianColor.adventurePink
-//            view.backgroundColor = .NaturianColor.adventureBlue
-
-        case "Grocery":
-            addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
-//            view.backgroundColor = .NaturianColor.groceryYellow
-
-        case "Exercise":
-            addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
-//            view.backgroundColor = .NaturianColor.exerciseGreen
-
-        case "Treatment":
-            addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
+//
+//        case "Adventure":
+//            addArticleBTN.backgroundColor = .NaturianColor.adventurePink
+//            view.backgroundColor = .NaturianColor.adventurePink
+//
+//        case "Grocery":
+//            addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
+//            view.backgroundColor = .NaturianColor.groceryBlue
+//
+//        case "Exercise":
+//            addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
+//            view.backgroundColor = .NaturianColor.exerciseBlue
+//
+//        case "Treatment":
+//            addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
 //            view.backgroundColor = .NaturianColor.treatmentGreen
-
-        default:
-            break
-
-        }
-        
+//
+//        default:
+//            break
+//
+//        }
+        view.backgroundColor =  .NaturianColor.lightGray
+        clearBtn.setImage(UIImage(named: "xcircle"), for: .normal)
+        searchBtn.setImage(UIImage(named: "search"), for: .normal)
         // addButton
-        addArticleBTN.setTitle("", for: .normal)
         addArticleBTN.setImage(UIImage(systemName: "plus"), for: .normal)
-//        addArticleBTN.backgroundColor = .NaturianColor.groceryYellow
+//        addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
         addArticleBTN.tintColor = .white
+        addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
+        addArticleBTN.lkCornerRadius = 20
         
-        view.backgroundColor = .NaturianColor.navigationGray
-        view.lkBorderColor = .white
+        view.lkBorderColor = .NaturianColor.lightGray
         // close button
         closeButton.setImage(UIImage(named: "backNoCircle"), for: .normal)
         
-        titleLB.font = UIFont(name: Roboto.black.rawValue, size: 32)
-        titleLB.textColor = .white
+        titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 24)
+        titleLB.textColor = .NaturianColor.darkGray
         titleLB.text = "/ \(forumTitle) /"
         // subview
-        subview.lkCornerRadius = 30
         subview.backgroundColor = .NaturianColor.lightGray
 
         tableView.separatorStyle = .none
@@ -178,34 +290,38 @@ class ForumLobbyViewController: UIViewController {
         searchTextField.placeholder = "Search Result"
         searchTextField.font = UIFont.systemFont(ofSize: 14)
         searchTextField.backgroundColor = .white
-        searchTextField.addPadding(.left(24))
-        searchTextField.lkCornerRadius = 12
-        // filterButton
-        filterButton.setImage(UIImage(named: "searchByTime"), for: .normal)
+        searchTextField.addPadding(.left(35))
+        searchTextField.lkCornerRadius = 20
+//        searchTextField.lkBorderWidth = 1
+//        searchTextField.lkBorderColor = .NaturianColor.darkGray
         
     }
     
     func layout() {
         addArticleBTN.translatesAutoresizingMaskIntoConstraints = false
-        
+        searchBtn.translatesAutoresizingMaskIntoConstraints = false
         titleLB.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        filterButton.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(titleLB)
         view.addSubview(closeButton)
         
+        searchTextField.addSubview(searchBtn)
         view.addSubview(subview)
         subview.addSubview(tableView)
-        tableView.addSubview(addArticleBTN)
+        view.addSubview(addArticleBTN)
         view.addSubview(searchTextField)
-        view.addSubview(filterButton)
         
         NSLayoutConstraint.activate([
+            
+            searchBtn.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor, constant: 10),
+            searchBtn.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
+            searchBtn.heightAnchor.constraint(equalToConstant: 20),
+            searchBtn.widthAnchor.constraint(equalToConstant: 20),
             
             closeButton.centerYAnchor.constraint(equalTo: titleLB.centerYAnchor),
             closeButton.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
@@ -219,15 +335,11 @@ class ForumLobbyViewController: UIViewController {
             // searchTextField
             searchTextField.topAnchor.constraint(equalTo: titleLB.bottomAnchor, constant: 12),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            searchTextField.trailingAnchor.constraint(equalTo: titleLB.trailingAnchor),
+            searchTextField.trailingAnchor.constraint(equalTo: addArticleBTN.leadingAnchor, constant: -18),
             searchTextField.heightAnchor.constraint(equalToConstant: 40),
-            // filterButton
-            filterButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 12),
-            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            filterButton.widthAnchor.constraint(equalToConstant: 28),
-            filterButton.heightAnchor.constraint(equalToConstant: 28),
+ 
             // tableView
-            subview.topAnchor.constraint(equalTo: filterButton.bottomAnchor, constant: 12),
+            subview.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 8),
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 2),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2),
@@ -238,10 +350,10 @@ class ForumLobbyViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: 0),
             
             // addTalentButton
-            addArticleBTN.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36),
-            addArticleBTN.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            addArticleBTN.widthAnchor.constraint(equalToConstant: 58),
-            addArticleBTN.heightAnchor.constraint(equalToConstant: 58)
+            addArticleBTN.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
+            addArticleBTN.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: -24),
+            addArticleBTN.widthAnchor.constraint(equalToConstant: 40),
+            addArticleBTN.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
@@ -276,10 +388,13 @@ extension ForumLobbyViewController: UITableViewDataSource {
         cell.articleContent.text = forumArticles[indexPath.row].content
         cell.likeLB.text = String(describing: forumArticles[indexPath.row].getLikedValue!)
         cell.seedLB.text = String(describing: forumArticles[indexPath.row].getSeedValue!)
-                
+//        cell.
         let photoUrl = forumArticles[indexPath.row].images[0]
         cell.postImage.kf.setImage(with: photoUrl)
         
+        cell.likeLB.text = String(describing: forumArticles[indexPath.row].getLikedValue ?? 0)
+        cell.seedLB.text = String(describing: forumArticles[indexPath.row].getSeedValue ?? 0)
+
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.lkCornerRadius = 15
@@ -288,27 +403,21 @@ extension ForumLobbyViewController: UITableViewDataSource {
             
         case "Food":
             cell.categoryBTN.backgroundColor = .NaturianColor.foodYellow
-            addArticleBTN.backgroundColor = .NaturianColor.foodYellow
-            
+
         case "Plant":
             cell.categoryBTN.backgroundColor = .NaturianColor.plantGreen
-            addArticleBTN.backgroundColor = .NaturianColor.plantGreen
 
         case "Adventure":
             cell.categoryBTN.backgroundColor = .NaturianColor.adventurePink
-            addArticleBTN.backgroundColor = .NaturianColor.adventurePink
 
         case "Grocery":
             cell.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-            addArticleBTN.backgroundColor = .NaturianColor.groceryBlue
 
         case "Exercise":
             cell.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-            addArticleBTN.backgroundColor = .NaturianColor.exerciseBlue
 
         case "Treatment":
             cell.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-            addArticleBTN.backgroundColor = .NaturianColor.treatmentGreen
 
         default:
             break
@@ -326,6 +435,7 @@ extension ForumLobbyViewController: UITableViewDataSource {
             fatalError("can't find ForumDetailViewController")
         }
         vc.forumArticles = forumArticles[indexPath.row]
+        vc.userInfo = self.userInfo
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

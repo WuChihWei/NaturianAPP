@@ -17,7 +17,7 @@ class MyTalentTableViewCell: UITableViewCell {
     
     let postImage = UIImageView()
     let title = UILabel()
-    let talentDescription = UILabel()
+//    let talentDescription = UILabel()
     let categoryBTN = UIButton()
     let messageAmountButton = UIButton()
     let addTalentButton = UIButton()
@@ -57,10 +57,11 @@ class MyTalentTableViewCell: UITableViewCell {
         title.textColor = .NaturianColor.darkGray
         title.numberOfLines = 2
         
-        seedValue.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        seedValue.font = UIFont(name: Roboto.medium.rawValue, size: 13)
         seedValue.textAlignment = .left
+        seedValue.textColor = .NaturianColor.navigationGray
         seedValue.text = "70 Seeds"
-        seedIcon.image = UIImage(named: "seed_gray")
+        seedIcon.image = UIImage(named: "graySeed")
 
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         categoryBTN.titleLabel?.textAlignment = .center
@@ -68,15 +69,16 @@ class MyTalentTableViewCell: UITableViewCell {
         categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
         categoryBTN.lkCornerRadius = 4
         
-        talentDescription.font = UIFont(name: Roboto.regular.rawValue, size: 12)
-        talentDescription.numberOfLines = 2
-        talentDescription.text = "I will teach you how reproduce plants in better ways."
-        talentDescription.textAlignment = .justified
+//        talentDescription.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+//        talentDescription.textColor = .NaturianColor.navigationGray
+//        talentDescription.numberOfLines = 2
+//        talentDescription.text = "I will teach you how reproduce plants in better ways."
+//        talentDescription.textAlignment = .left
         
         messageAmountButton.setTitle("\(messageAmmont)", for: .normal)
         messageAmountButton.backgroundColor = .lightGray
-        messageAmountButton.lkCornerRadius = 13
-        messageAmountButton.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
+        messageAmountButton.lkCornerRadius = 15
+        messageAmountButton.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 14)
 
         postImage.backgroundColor = .gray
         postImage.contentMode = .scaleAspectFill
@@ -85,18 +87,19 @@ class MyTalentTableViewCell: UITableViewCell {
         
         talentStackView.axis = .vertical
         talentStackView.alignment = .leading
-        talentStackView.spacing = 2
+        talentStackView.spacing = 4
         
         seedStack.axis = .horizontal
         seedStack.alignment = .center
-        seedStack.spacing = 6
+        seedStack.spacing = 4
+        
     }
     
     func layout() {
         
         contentView.addSubview(subview)
         subview.addSubview(postImage)
-        subview.addSubview(talentDescription)
+//        subview.addSubview(talentDescription)
         subview.addSubview(messageAmountButton)
         subview.addSubview(talentStackView)
         
@@ -111,7 +114,7 @@ class MyTalentTableViewCell: UITableViewCell {
         seedStack.translatesAutoresizingMaskIntoConstraints = false
         subview.translatesAutoresizingMaskIntoConstraints = false
         postImage.translatesAutoresizingMaskIntoConstraints = false
-        talentDescription.translatesAutoresizingMaskIntoConstraints = false
+//        talentDescription.translatesAutoresizingMaskIntoConstraints = false
         talentStackView.translatesAutoresizingMaskIntoConstraints = false
         messageAmountButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -134,24 +137,24 @@ class MyTalentTableViewCell: UITableViewCell {
             postImage.heightAnchor.constraint(equalToConstant: 135),
    
             // talentStack
-            talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
+            talentStackView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
             talentStackView.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 14),
             seedIcon.widthAnchor.constraint(equalToConstant: 12),
             seedIcon.heightAnchor.constraint(equalToConstant: 12),
             
             categoryBTN.widthAnchor.constraint(equalToConstant: 70),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 20),
+            categoryBTN.heightAnchor.constraint(equalToConstant: 18),
             
             // talentDescription
-            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 2),
-            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
-            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            
+//            talentDescription.topAnchor.constraint(equalTo: talentStackView.bottomAnchor, constant: 4),
+//            talentDescription.leadingAnchor.constraint(equalTo: talentStackView.leadingAnchor),
+//            talentDescription.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+//
             // messageAmount
             messageAmountButton.bottomAnchor.constraint(equalTo: postImage.bottomAnchor),
             messageAmountButton.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            messageAmountButton.widthAnchor.constraint(equalToConstant: 26),
-            messageAmountButton.heightAnchor.constraint(equalToConstant: 26)
+            messageAmountButton.widthAnchor.constraint(equalToConstant: 28),
+            messageAmountButton.heightAnchor.constraint(equalToConstant: 28)
         ])
         
     }

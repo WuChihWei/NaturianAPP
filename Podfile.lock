@@ -806,6 +806,7 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
+  - lottie-ios (3.3.0)
   - LZViewPager (1.2.5):
     - SnapKit (~> 5.0.0)
   - MBProgressHUD (1.2.0)
@@ -835,6 +836,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - Kingfisher
+  - lottie-ios
   - LZViewPager (~> 1.2.5)
   - MBProgressHUD
   - MessageKit
@@ -876,6 +878,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - Libuv-gRPC
+    - lottie-ios
     - LZViewPager
     - MBProgressHUD
     - MessageKit
@@ -919,6 +922,7 @@ SPEC CHECKSUMS:
   Kingfisher: 2457be2121734e69e54a2312ecc0150eb9ae70b3
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
@@ -929,6 +933,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
-PODFILE CHECKSUM: f27ea5ddf48bd82e45382827275bbe7bbe675e07
+PODFILE CHECKSUM: 4a98bd5b71981de2be68c3ffc4a5761865a1e474
 
 COCOAPODS: 1.11.3

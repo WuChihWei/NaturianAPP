@@ -27,9 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
 
-        
-        UITabBar.appearance().unselectedItemTintColor = .blue
-        
         let barApprance = UINavigationBarAppearance()
                 barApprance.configureWithTransparentBackground()
                 UINavigationBar.appearance().standardAppearance = barApprance

@@ -23,7 +23,7 @@ struct TalentArticle: Codable {
     
     let content: String?
     
-    let images: [URL]
+    let images: [String]
     
     let seedValue: Int32?
     
