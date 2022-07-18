@@ -33,7 +33,7 @@ class TalentManager {
     
     func fetchData(completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
-        db.collection("talent").getDocuments { (querySnapshot, error) in
+        db.collection("talent").addSnapshotListener{ (querySnapshot, error) in
             
             if let error = error {
                 
@@ -127,7 +127,6 @@ class TalentManager {
                             
                             talentArticles.append(talentArticle)
                         }
-                        print(talentArticles)
                         
                     } catch {
                         
@@ -148,6 +147,7 @@ class TalentManager {
             if let error = error {
                 
                 print(LocalizedError.self)
+                
                 completion(.failure(error))
                 
             } else {
@@ -173,6 +173,36 @@ class TalentManager {
                 }
                 
                 completion(.success(talentArticles))
+            }
+        }
+    }
+    
+    func fetchMyLikeData(talentID: String, completion: @escaping (Result<TalentArticle, Error>) -> Void) {
+        
+        db.collection("talent").whereField("talentPostID",
+                                           isEqualTo: talentID).addSnapshotListener { (querySnapshot, error) in
+            
+            if let error = error {
+                
+                print(LocalizedError.self)
+                
+                completion(.failure(error))
+                
+            } else {
+                if let doc = querySnapshot?.documents.first {
+                    do {
+                        print(doc)
+                        if let talentModel = try doc.data(as: TalentArticle?.self,
+                                                        decoder: Firestore.Decoder()) {
+                            
+                            completion(.success(talentModel))
+                        }
+                        
+                    } catch {
+                        
+                        completion(.failure(error))
+                    }
+                }
             }
         }
     }
@@ -209,7 +239,7 @@ class TalentManager {
     
     func fetchAppliedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
-        db.collection("talent").whereField("didApplyID", arrayContains: userID).getDocuments { (querySnapshot, error) in
+        db.collection("talent").whereField("didApplyID", arrayContains: userID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -249,7 +279,7 @@ class TalentManager {
         
         db.collection("talent").whereField("userID",
                                            isEqualTo: userID).whereField("talentPostID",
-                                                                         isEqualTo: talentPostID).getDocuments { (querySnapshot, error) in
+                                                                         isEqualTo: talentPostID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -280,7 +310,7 @@ class TalentManager {
     func fetchAcceptedTalent (userID: String, completion: @escaping (Result<[TalentArticle], Error>) -> Void) {
         
         db.collection("talent").whereField("didAcceptID",
-                                           arrayContains: userID).getDocuments { (querySnapshot, error) in
+                                           arrayContains: userID).addSnapshotListener { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -407,5 +437,4 @@ class TalentManager {
             }
         }
     }
-    
 }

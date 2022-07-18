@@ -9,6 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
+import Lottie
 
 protocol ReplyArticleDelegate: AnyObject {
     func replyArticle(repliedArticles: [ReplyModel])
@@ -17,9 +18,9 @@ protocol ReplyArticleDelegate: AnyObject {
 class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     weak var replyArticleDelegate: ReplyArticleDelegate?
-//        let currentUserID = Auth.auth().currentUser?.uid
+        let currentUserID = Auth.auth().currentUser?.uid
 //    let currentUserID = "2"
-    let currentUserID = "1"
+//    let currentUserID = "1"
 
     var forumManager = ForumManager()
     var repliedArticles: [ReplyModel] = []
@@ -84,7 +85,20 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
         }
     }
     
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_xaazxgdm")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
+    }
+    
     @objc func replyArticle() {
+        
+        setupLottie()
         
         let createdTime = Date()
         let replyID = replyManager.forumReplyDatabase.document().documentID
@@ -95,9 +109,11 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                   gender: self.userModels?.gender,
                                   userAvatar: self.userModels?.userAvatar,
                                   appliedTalent: self.userModels?.appliedTalent ?? [],
-                                  isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
-                                  createdTime: self.userModels?.createdTime,
+                                  isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                   blockList: self.userModels?.blockList ?? [],
+                                  likedTalentList: self.userModels?.likedTalentList ?? [],
+                                  likedForumList: self.userModels?.likedForumList ?? [],
+                                  didGiveSeed: self.userModels?.didGiveSeed ?? [],
                                   email: self.userModels?.email
         )
         
@@ -106,7 +122,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                     userID: currentUserID,
                                     createdTime: createdTime,
                                     userInfo: userModel)
-        print(replyModel)
+
         replyManager.addReplyData(replyForum: replyModel)
         
         forumArticles.replyIDs.append(replyID)
@@ -126,10 +142,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                             
                             self?.repliedArticles.append(replyModel)
                             
-                    
-                            
                             DispatchQueue.main.async {
-                                print(self?.repliedArticles)
                                 self?.replyArticleDelegate?.replyArticle(repliedArticles: self?.repliedArticles ?? [])
                                 self?.dismiss(animated: false)
                             }

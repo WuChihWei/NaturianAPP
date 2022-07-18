@@ -79,6 +79,7 @@ class ScannerVC: UIViewController {
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
             
 //            videoPreviewLayer?.frame = view.layer.bounds
+            print(baseImageView.bounds)
             videoPreviewLayer?.frame = baseImageView.bounds
 
 //            view.layer.masksToBounds = true

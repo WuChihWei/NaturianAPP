@@ -19,7 +19,6 @@ class MyTalentAppliersTVCell: UITableViewCell {
     
     weak var delegate: SelectCellDelegate?
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         

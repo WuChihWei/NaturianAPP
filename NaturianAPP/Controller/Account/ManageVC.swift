@@ -17,9 +17,9 @@ class ManageVC: UIViewController {
     let blackView = UIView()
     var userFirebaseManager = UserManager()
     var userModels: UserModel!
-//        let userID = Auth.auth().currentUser?.uid
+        let userID = Auth.auth().currentUser?.uid
 //        let userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     let logoutBtn = UIButton()
     let delelteAccountBtn = UIButton()
@@ -76,6 +76,15 @@ class ManageVC: UIViewController {
             let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
                 self.deleteAccount()
+                
+                guard let vc = self.storyboard?.instantiateViewController(
+                    withIdentifier: "SignInViewController") as? SignInViewController else {
+                    
+                    fatalError("can't find SignInViewController")
+                }
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }
             let noAction = UIAlertAction(title: "Cancel", style: .cancel)
 

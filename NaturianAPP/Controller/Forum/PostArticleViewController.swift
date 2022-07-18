@@ -8,9 +8,8 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
-import JGProgressHUD
-import MBProgressHUD
 import FirebaseAuth
+import Lottie
 
 class PostArticleViewController: UIViewController, UITextViewDelegate {
     
@@ -19,9 +18,9 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var photoManager = PhotoManager()
     var backButton = UIButton()
 
-//    var userID = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
 //    var userID = "2"
-    let userID = "1"
+//    let userID = "1"
 
     var userModels: UserModel?
     
@@ -65,6 +64,8 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+
         fetchUserData()
     }
     
@@ -73,6 +74,7 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
         view.layoutIfNeeded()
         postPhotoImage.layoutIfNeeded()
         postPhotoImage.clipsToBounds = true
+        
         postPhotoImage.contentMode = .scaleAspectFill
     }
     
@@ -98,6 +100,17 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+    }
+    
+    func setupLottie() {
+        let animationView = AnimationView(name: "lf20_s6zewgds")
+           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+           animationView.center = self.view.center
+           animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+
+           view.addSubview(animationView)
+           animationView.play()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -300,9 +313,11 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
                                                       gender: self.userModels?.gender,
                                                       userAvatar: self.userModels?.userAvatar,
                                                       appliedTalent: self.userModels?.appliedTalent ?? [],
-                                                      isAccepetedTalent: self.userModels?.isAccepetedTalent ?? [],
-                                                      createdTime: self.userModels?.createdTime,
+                                                      isAcceptedTalent: self.userModels?.isAcceptedTalent ?? [],
                                                       blockList: self.userModels?.blockList ?? [],
+                                                      likedTalentList: self.userModels?.likedTalentList ?? [],
+                                                      likedForumList: self.userModels?.likedForumList ?? [],
+                                                      didGiveSeed: self.userModels?.didGiveSeed ?? [],
                                                       email: self.userModels?.email
                             )
                             
@@ -346,8 +361,8 @@ extension PostArticleViewController: UIImagePickerControllerDelegate {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
+            self.postPhotoImage.image = image
             self.postPhotoImageX = image
-            //            selectedImage = self.postPhotoImage.image
         }
         
         picker.dismiss(animated: true)

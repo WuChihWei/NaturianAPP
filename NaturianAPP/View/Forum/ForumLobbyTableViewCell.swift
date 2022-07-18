@@ -52,20 +52,26 @@ class ForumLobbyTableViewCell: UITableViewCell {
         subview.backgroundColor = .white
         subview.lkCornerRadius = 15
         
-        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 14)
+        title.font = UIFont(name: Roboto.bold.rawValue, size: 16)
+        title.textAlignment = .left
+        title.text = ""
+        title.textColor = .NaturianColor.darkGray
+        title.numberOfLines = 2
+        
+        categoryBTN.titleLabel?.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
-        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+//        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
         categoryBTN.lkCornerRadius = 4
         
-        articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 14)
+        articleContent.font = UIFont(name: Roboto.regular.rawValue, size: 12)
         articleContent.numberOfLines = 3
         articleContent.text = "I will teach you how reproduce plants in better ways."
-        articleContent.textAlignment = .justified
+        articleContent.textAlignment = .left
         
         postImage.lkCornerRadius = 10
-        postImage.lkBorderColor = .lightGray
-        postImage.lkBorderWidth = 1
+//        postImage.lkBorderColor = .lightGray
+//        postImage.lkBorderWidth = 1
         
         articleStack.axis = .vertical
         articleStack.alignment = .leading
@@ -75,17 +81,17 @@ class ForumLobbyTableViewCell: UITableViewCell {
         likeLB.text = "321"
         likeLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         likeLB.textColor = .NaturianColor.navigationGray
-        seedBtn.setImage(UIImage(named: "greenseed"), for: .normal)
+        seedBtn.setImage(UIImage(named: "greenSeed"), for: .normal)
         seedLB.text = "123"
         seedLB.font = UIFont(name: Roboto.medium.rawValue, size: 12)
         seedLB.textColor = .NaturianColor.navigationGray
         
         likestack.axis = .horizontal
-        likestack.alignment = .leading
+        likestack.alignment = .center
         likestack.spacing = 4
         
         seedstack.axis = .horizontal
-        seedstack.alignment = .leading
+        seedstack.alignment = .center
         seedstack.spacing = 4
     }
     
@@ -138,11 +144,11 @@ class ForumLobbyTableViewCell: UITableViewCell {
             postImage.heightAnchor.constraint(equalToConstant: 135),
             
             categoryBTN.widthAnchor.constraint(equalToConstant: 70),
-            categoryBTN.heightAnchor.constraint(equalToConstant: 20),
+            categoryBTN.heightAnchor.constraint(equalToConstant: 18),
             
             // talentStack
             articleStack.topAnchor.constraint(equalTo: subview.topAnchor, constant: 16),
-            articleStack.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 16),
+            articleStack.leadingAnchor.constraint(equalTo: postImage.trailingAnchor, constant: 12),
             
             // talentDescription
             title.trailingAnchor.constraint(equalTo: articleContent.trailingAnchor),

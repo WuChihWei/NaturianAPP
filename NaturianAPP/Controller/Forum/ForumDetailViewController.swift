@@ -9,22 +9,27 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import Kingfisher
+import Foundation
+import FirebaseAuth
 
 class ForumDetailViewController: UIViewController {
     
-    var talentManager = TalentManager()
+//    var talentManager = TalentManager()
+    let userManager = UserManager()
     var forumManager = ForumManager()
     var db: Firestore?
-    
+    let userID = Auth.auth().currentUser?.uid
+//        let userID = "2"
+
     private let tableView = UITableView()
     
     let addReplyBTN = UIButton()
     let closeButton = UIButton()
-    
+    var userInfo: UserModel!
+
     //    var talentArticles: [TalentArticle] = []
-    var userManager = UserManager()
     var userModels: [UserModel] = []
-    var talentArticle: String = ""
+//    var talentArticle: String = ""
     var searchController: UISearchController!
     var forumArticles: ForumModel!
     var authorInfo: UserModel!
@@ -61,10 +66,11 @@ class ForumDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(false)
+        currentUserState()
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-        tableView.reloadData()
+//        tableView.reloadData()
         findAuthorData()
         findReplies()
     }
@@ -95,6 +101,27 @@ class ForumDetailViewController: UIViewController {
         }
     }
     
+    func currentUserState() {
+        
+        userManager.listenUserData(userID: userID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success(let userModel):
+
+                    self?.userInfo = userModel
+                    
+                    print(self?.userModels ?? "")
+                    DispatchQueue.main.async {
+                        
+                        self?.viewDidLoad()
+                    }
+                    
+                case .failure:
+                    print("can't fetch data")
+                }
+            }
+        }
     // fetch userinfo based on replyID.userID -> repliedArticles will equal to replyAuthors+1 when repliers > 1
 //    func findReplies() {
 //
@@ -160,6 +187,211 @@ class ForumDetailViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    @objc func addToCollection(_ sender: UIButton) {
+        
+        if sender.isSelected == false {
+            
+            sender.setImage(UIImage(named: "greenLike"), for: .normal)
+            sender.isSelected = true
+//            setupLottie()
+
+            userManager.addLikedForum(uid: self.userID ?? "", forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    
+                    let newLikeValue = (self?.forumArticles.getLikedValue ?? 0) + 1
+                    
+                    self?.forumManager.updateLikeValue(forumID: self?.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                        
+                        switch result {
+
+                        case .success:
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                            
+                        }
+                    }
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+       
+        } else {
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "grayLike"), for: .normal)
+            
+            userManager.removeLikedForum(uid: self.userID ?? "", forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    
+                    let newLikeValue = self?.forumArticles.getLikedValue ?? 0
+                    
+                    self?.forumManager.updateLikeValue(forumID: self?.forumArticles.postArticleID ?? "", likeValue: newLikeValue) { [weak self] result in
+                        
+                        switch result {
+
+                        case .success:
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                            
+                        }
+                    }
+                    
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+        }
+    }
+    
+    @objc func addToSeed(_ sender: UIButton) {
+        
+        if sender.isSelected == false {
+            
+            sender.setImage(UIImage(named: "greenSeed"), for: .normal)
+            sender.isSelected = true
+//            setupLottie()
+
+            userManager.didGiveSeed(uid: self.userID ?? "",
+                                    forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                
+                switch result {
+
+                case .success:
+                    
+                    let newSeed = (self?.userInfo.seedValue ?? 0) - 1
+                    
+                    self?.userManager.updateSeedValue(uid: self?.userID ?? "",
+                                                         seedValue: newSeed) { [weak self] result in
+                        switch result {
+                        case .success:
+                            
+                            let authorNewSeed = (self?.authorInfo.seedValue ?? 0) + 1
+                            
+                            self?.userManager.updateSeedValue(uid: self?.forumArticles.userID ?? "",
+                                                                 seedValue: authorNewSeed) { [weak self] result in
+                                switch result {
+                                case .success:
+                                    
+                                    let forumValue = (self?.forumArticles.getSeedValue ?? 0) + 1
+                                    
+                                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                                         seedValue: forumValue) { [weak self] result in
+                                        switch result {
+                                        case .success:
+//                                            self?.dismiss(animated: true)
+                                            print("success")
+
+                                        case .failure:
+                                            print("can't fetch data")
+                                        }
+                                    }
+//                                    self?.dismiss(animated: true)
+                                    print("success")
+
+                                case .failure:
+                                    print("can't fetch data")
+                                }
+                            }
+                            
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                    }
+                
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        } else {
+            
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "graySeed"), for: .normal)
+            
+            userManager.removeGiveSeed(uid: self.userID ?? "",
+                                       forumID: self.forumArticles.postArticleID ?? "") { [weak self] result in
+                switch result {
+                    
+                case .success:
+                    
+                    let previousSeed = self?.userInfo.seedValue ?? 0
+                    
+                    self?.userManager.updateSeedValue(uid: self?.userID ?? "",
+                                                         seedValue: previousSeed) { [weak self] result in
+                        switch result {
+                        case .success:
+                            
+                            let authorPreviosSeed = self?.authorInfo.seedValue ?? 0
+                            
+                            self?.userManager.updateSeedValue(uid: self?.forumArticles.userID ?? "",
+                                                                 seedValue: authorPreviosSeed) { [weak self] result in
+                                switch result {
+                                    
+                                case .success:
+                                    
+                                    let forumValue = (self?.forumArticles.getSeedValue ?? 0)
+                                    
+                                    self?.forumManager.updateSeedValue(forumID: self?.forumArticles.postArticleID ?? "",
+                                                                         seedValue: forumValue) { [weak self] result in
+                                        switch result {
+                                        case .success:
+//                                            self?.dismiss(animated: true)
+                                            print("success")
+
+                                        case .failure:
+                                            print("can't fetch data")
+                                        }
+                                    }
+                                    
+//                                    self?.dismiss(animated: true)
+                                    print("success")
+
+                                case .failure:
+                                    print("can't fetch data")
+                                }
+                            }
+//                            self?.dismiss(animated: true)
+                            print("success")
+
+                        case .failure:
+                            print("can't fetch data")
+                        }
+                        
+                    }
+                 
+                    self?.dismiss(animated: true)
+                    
+                case .failure:
+                    print("can't fetch data")
+                    
+                }
+            }
+
+        }
+    }
+    
     func findReplies() {
         
             for replyID in forumArticles.replyIDs {
@@ -173,7 +405,7 @@ class ForumDetailViewController: UIViewController {
                         self?.repliedArticles.append(replyModel)
     
                         print(self?.repliedArticles as Any)
-    
+                                                
                         DispatchQueue.main.async {
                             self?.tableView.reloadData()
                         }
@@ -284,7 +516,11 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.layoutIfNeeded()
             cell1.selectionStyle = .none
             cell1.contentView.layoutIfNeeded()
-            cell1.articleContent.text = forumArticles.content
+//            cell1.articleContent.lineBreakMode = NSLineBreakMode.byWordWrapping
+//            cell1.articleContent.numberOfLines = 0
+            
+            cell1.articleContent.text = forumArticles.content?.replacingOccurrences(of: "\\n", with: "\n")
+            
             cell1.title.text = forumArticles.title
             cell1.categoryBTN.setTitle(forumArticles.category, for: .normal)
             
@@ -292,46 +528,32 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell1.postImage.kf.setImage(with: photoUrl)
             cell1.postImage.contentMode = .scaleAspectFill
             cell1.postImage.clipsToBounds = true
-            
-            let avatatUrl = authorInfo?.userAvatar
+            cell1.authorLB.text = forumArticles.userInfo?.name
+            let avatatUrl = URL(string: authorInfo?.userAvatar ?? "")
             cell1.avatarImage.kf.setImage(with: avatatUrl)
             cell1.avatarImage.contentMode = .scaleAspectFill
             cell1.avatarImage.clipsToBounds = true
+            cell1.likeBtn.addTarget(self, action: #selector(addToCollection), for: .touchUpInside)
+            cell1.seedBtn.addTarget(self, action: #selector(addToSeed), for: .touchUpInside)
             
-            switch forumArticles.category {
-                
-            case "Food":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.foodYellow
-                addReplyBTN.backgroundColor = .NaturianColor.foodYellow
-                cell1.avatarImage.lkBorderColor = .NaturianColor.foodYellow
-            case "Plant":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.plantGreen
-                addReplyBTN.backgroundColor = .NaturianColor.plantGreen
-                cell1.avatarImage.lkBorderColor = .NaturianColor.plantGreen
-                
-            case "Adventure":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.adventurePink
-                addReplyBTN.backgroundColor = .NaturianColor.adventurePink
-                cell1.avatarImage.lkBorderColor = .NaturianColor.adventurePink
-                
-            case "Grocery":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.groceryBlue
-                addReplyBTN.backgroundColor = .NaturianColor.groceryBlue
-                cell1.avatarImage.lkBorderColor = .NaturianColor.groceryBlue
-                
-            case "Exercise":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.exerciseBlue
-                addReplyBTN.backgroundColor = .NaturianColor.exerciseBlue
-                cell1.avatarImage.lkBorderColor = .NaturianColor.exerciseBlue
-                
-            case "Treatment":
-                cell1.categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
-                addReplyBTN.backgroundColor = .NaturianColor.treatmentGreen
-                cell1.avatarImage.lkBorderColor = .NaturianColor.treatmentGreen
-                
-            default:
-                break
-                
+            guard let likedID = self.forumArticles.postArticleID else { return UITableViewCell() }
+            
+            if self.userInfo.likedForumList.contains(likedID) {
+                cell1.likeBtn.setImage(UIImage(named: "greenLike"), for: .normal)
+                cell1.likeBtn.isSelected = true
+            } else {
+                cell1.likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
+                cell1.likeBtn.isSelected = false
+            }
+            
+            guard let seedID = self.forumArticles.postArticleID else { return UITableViewCell() }
+
+            if self.userInfo.didGiveSeed.contains(seedID) {
+                cell1.seedBtn.setImage(UIImage(named: "greenSeed"), for: .normal)
+                cell1.seedBtn.isSelected = true
+            } else {
+                cell1.seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
+                cell1.seedBtn.isSelected = false
             }
             
             return cell1
@@ -343,12 +565,21 @@ extension ForumDetailViewController: UITableViewDataSource {
             cell2.contentView.layoutIfNeeded()
             cell2.clipsToBounds = true
 
+            let newArray = self.repliedArticles.sorted {
+                guard let d1 = $0.createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"),
+                      let d2 = $1.createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss") else { return false }
+                return d1 > d2
+            }
+            
             cell2.selectionStyle = .none
-            cell2.replierName.text = repliedArticles[indexPath.row].userInfo.name
-            cell2.replyContent.text = repliedArticles[indexPath.row].replyContent
-
-            let replierUrl = repliedArticles[indexPath.row].userInfo.userAvatar
+            cell2.replierName.text = newArray[indexPath.row].userInfo.name
+            cell2.replyContent.text = newArray[indexPath.row].replyContent
+        
+            cell2.createdTimeLB.text = newArray[indexPath.row].createdTime?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
+            
+            let replierUrl = URL(string: newArray[indexPath.row].userInfo.userAvatar ?? "")
             cell2.replierAvatar.kf.setImage(with: replierUrl)
+ 
             cell2.replierAvatar.contentMode = .scaleAspectFill
             cell2.replierAvatar.clipsToBounds = true
             
@@ -359,14 +590,13 @@ extension ForumDetailViewController: UITableViewDataSource {
             guard let cell2 = tableView.dequeueReusableCell(withIdentifier: ForumDetailReplyTBCell.identifer,
                                                             for: indexPath) as? ForumDetailReplyTBCell else { fatalError("can't find Cell") }
             cell2.selectionStyle = .none
-//            cell2.
             return cell2
             
         }
     }
 }
 
-extension ForumDetailViewController: ReplyArticleDelegate{
+extension ForumDetailViewController: ReplyArticleDelegate {
     func replyArticle(repliedArticles: [ReplyModel]) {
         self.repliedArticles =  repliedArticles
         tableView.reloadData()

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P53-28-Ia6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-999" y="-1533"/>
+            <point key="canvasLocation" x="-2023" y="-2217"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="SQY-uq-r1L">
@@ -68,7 +69,7 @@
                         <color key="tintColor" systemColor="systemGray6Color"/>
                         <color key="barTintColor" systemColor="systemGray6Color"/>
                         <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0">
-                            <color key="shadowColor" red="0.044930772180000002" green="0.045375631309999997" blue="0.045375631309999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="shadowColor" name="collectionViewBackground"/>
                         </tabBarAppearance>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
@@ -186,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXf-c6-2fH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3265" y="-1542"/>
+            <point key="canvasLocation" x="3228" y="-1469"/>
         </scene>
         <!--Transfer SeedVC-->
         <scene sceneID="4X4-ue-T70">
@@ -210,7 +211,7 @@
         <!--My Talent ManageVC-->
         <scene sceneID="gGa-T1-8wc">
             <objects>
-                <viewController storyboardIdentifier="TalentManageViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="slW-NA-3Ew" customClass="MyTalentManageVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MyTalentManageVC" storyboardIdentifier="MyTalentManageVC" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="slW-NA-3Ew" customClass="MyTalentManageVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="T3Z-M2-iW4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhU-IG-hzH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -310,7 +311,7 @@
         <scene sceneID="SIf-La-kdm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Dg-84-963" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Lake" selectedImage="Lake" id="IFP-T5-guW">
+                    <tabBarItem key="tabBarItem" title="" image="forum" selectedImage="forum" id="IFP-T5-guW">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -401,7 +402,7 @@
         <scene sceneID="bN5-kc-rlp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BIF-t4-3h4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Angel" selectedImage="Angel" id="aBB-qi-hNh">
+                    <tabBarItem key="tabBarItem" title="" image="talent" selectedImage="talent" id="aBB-qi-hNh">
                         <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -456,11 +457,7 @@
         <scene sceneID="BTG-u2-aQm">
             <objects>
                 <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="1sV-V1-9Pn" customClass="ChatViewController" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3tX-sw-I9p">
-                        <barButtonItem key="rightBarButtonItem" title="Apply" id="BL0-hL-XYe">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3tX-sw-I9p"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbJ-5e-MDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -509,7 +506,7 @@
         <scene sceneID="4pa-KI-HyK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ccm-at-EaO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail" id="UvH-Qt-Le8">
+                    <tabBarItem key="tabBarItem" title="" image="tab_chat" selectedImage="tab_chat" id="UvH-Qt-Le8">
                         <color key="badgeColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -637,7 +634,9 @@
         <scene sceneID="qAr-n3-ceO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kYB-B8-8na" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_passport" id="cxi-nB-ZmW"/>
+                    <tabBarItem key="tabBarItem" title="" image="passport" selectedImage="passport" id="cxi-nB-ZmW">
+                        <color key="badgeColor" name="outgoingMessageBackground"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIb-Mz-vIv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -645,12 +644,57 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" id="POG-CY-uRT"/>
+                        <segue destination="W9w-lt-GWv" kind="relationship" relationship="rootViewController" id="jJr-Ah-jIl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165" y="-2125"/>
+        </scene>
+        <!--My CollectionVC-->
+        <scene sceneID="GTG-mH-F94">
+            <objects>
+                <viewController restorationIdentifier="MyCollectionVC" storyboardIdentifier="MyCollectionVC" id="mC7-cv-rX1" customClass="MyCollectionVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9G6-Gc-76q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lZq-Xa-4dS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q4v-or-PrO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6083" y="-1469"/>
+        </scene>
+        <!--Like ForumVC-->
+        <scene sceneID="c2G-xT-f3c">
+            <objects>
+                <viewController restorationIdentifier="LikeForumVC" storyboardIdentifier="LikeForumVC" id="Ogx-ED-9px" customClass="LikeForumVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E2B-ja-lmc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FrZ-jd-0qd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSL-tr-YDw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7064" y="-1469"/>
+        </scene>
+        <!--Like TalentVC-->
+        <scene sceneID="5yx-VP-nO3">
+            <objects>
+                <viewController restorationIdentifier="LikeTalentVC" storyboardIdentifier="LikeTalentVC" id="9tn-ln-xSh" customClass="LikeTalentVC" customModule="NaturianAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G8s-aI-98t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jNU-1V-Jpi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ldb-9x-Kb3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7990" y="-1469"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wcc-Ps-BLM">
@@ -671,7 +715,7 @@
         <scene sceneID="ezy-pf-0Z5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6rK-PR-cdJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Camping Tent" selectedImage="Camping Tent" id="m3P-oD-OTn"/>
+                    <tabBarItem key="tabBarItem" title="" image="tent" selectedImage="tent" id="m3P-oD-OTn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zaZ-K7-guU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -691,11 +735,17 @@
         <segue reference="fW2-K7-lEU"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Angel" width="42" height="32"/>
-        <image name="Camping Tent" width="32" height="32"/>
-        <image name="Lake" width="32" height="32"/>
-        <image name="tab_mail" width="33" height="33"/>
-        <image name="tab_passport" width="37" height="37"/>
+        <image name="forum" width="28" height="28"/>
+        <image name="passport" width="28" height="28"/>
+        <image name="tab_chat" width="28" height="28"/>
+        <image name="talent" width="28" height="28.5"/>
+        <image name="tent" width="28" height="26"/>
+        <namedColor name="collectionViewBackground">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="outgoingMessageBackground">
+            <color red="0.20399998128414154" green="0.77999997138977051" blue="0.34899997711181641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
