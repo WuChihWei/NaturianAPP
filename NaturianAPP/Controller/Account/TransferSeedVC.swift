@@ -13,8 +13,8 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     var scannerVC = ScannerVC()
     var userFirebaseManager = UserManager()
     var otherUserModels: UserModel!
-//    var currentUserModels: UserModel!
     let userID = Auth.auth().currentUser?.uid
+//        let userID = "2"
     var userModels: UserModel!
 
     var backButton = UIButton()
@@ -109,7 +109,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     @objc func updateSeedValue() {
         
-        userFirebaseManager.updateSeedValue(uid: otherUserModels?.userID ?? "",
+        userFirebaseManager.updateUserSeeds(uid: otherUserModels?.userID ?? "",
                                        seedValue: otherSeedValue) { [weak self] result in
             switch result {
             case .success:
@@ -120,7 +120,7 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
             }
         }
         
-        userFirebaseManager.updateSeedValue(uid: self.userID ?? "", seedValue: self.remainValue ?? 0) { [weak self] result in
+        userFirebaseManager.updateUserSeeds(uid: self.userID ?? "", seedValue: self.remainValue ?? 0) { [weak self] result in
             switch result {
             case .success:
                 

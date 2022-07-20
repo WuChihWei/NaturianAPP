@@ -133,7 +133,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kUN-Me-PeE"/>
                     <connections>
-                        <segue destination="slW-NA-3Ew" kind="show" id="dpZ-YY-2yj"/>
+                        <segue destination="slW-NA-3Ew" kind="show" identifier="MyTalentManageVC" id="dpZ-YY-2yj"/>
                         <segue destination="iY3-Ic-tU2" kind="show" identifier="TransferSeedVC" id="59W-GS-X0n"/>
                     </connections>
                 </viewController>
@@ -201,7 +201,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wRw-RD-FbA"/>
                     <connections>
-                        <segue destination="sdd-h5-X9g" kind="showDetail" id="7iI-tA-LVP"/>
+                        <segue destination="sdd-h5-X9g" kind="showDetail" identifier="ScannerVC" id="7iI-tA-LVP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8o-A9-SEM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -230,7 +230,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IAx-Zb-hq1"/>
                     <connections>
-                        <segue destination="JFe-5R-Pl1" kind="show" id="xUi-wJ-sGy"/>
+                        <segue destination="JFe-5R-Pl1" kind="show" identifier="ForumLobbyViewController" id="xUi-wJ-sGy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJA-Lv-8w7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -250,7 +250,7 @@
                     <navigationItem key="navigationItem" id="QZr-Lp-4MY"/>
                     <connections>
                         <segue destination="aYH-Iq-ZXa" kind="show" identifier="forumDetailSegue" id="rbp-eH-4iE"/>
-                        <segue destination="TRa-W9-HfS" kind="show" id="wgW-zc-vSx"/>
+                        <segue destination="TRa-W9-HfS" kind="show" identifier="PostArticleViewController" id="wgW-zc-vSx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zt0-Zl-uqN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,7 +285,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iSm-yu-lZg"/>
                     <connections>
-                        <segue destination="gVd-OO-bNl" kind="presentation" id="FEF-gx-QmX"/>
+                        <segue destination="gVd-OO-bNl" kind="presentation" identifier="ForumReplyVC" id="FEF-gx-QmX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p2r-4X-8NZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,7 +321,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nPX-mB-aH0" kind="relationship" relationship="rootViewController" id="iYc-xW-b66"/>
+                        <segue destination="nPX-mB-aH0" kind="relationship" relationship="rootViewController" destinationCreationSelector="ForumViewController" id="iYc-xW-b66"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIa-8V-pvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -644,7 +644,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="W9w-lt-GWv" kind="relationship" relationship="rootViewController" id="jJr-Ah-jIl"/>
+                        <segue destination="v8J-4r-kSL" kind="relationship" relationship="rootViewController" destinationCreationSelector="AccountViewController" id="nPr-gE-L7Q"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNV-ee-gUt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

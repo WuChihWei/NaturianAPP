@@ -14,19 +14,17 @@ class UnblockVC: UIViewController {
     
     var talentManager = TalentManager()
     var userManager = UserManager()
-
+    
     var forumManager = ForumManager()
     
     let closeButton = UIButton()
     let titleLB = UILabel()
     
-        let userID = Auth.auth().currentUser?.uid
-//    let userID = "2"
-//    let userID = "1"
-
+    let userID = Auth.auth().currentUser?.uid
+    //    let userID = "2"    
     var userModels: UserModel!
     private var blockUserIDs: [UserModel] = []
-
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -36,7 +34,7 @@ class UnblockVC: UIViewController {
         setUp()
         style()
         layout()
-
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -52,10 +50,10 @@ class UnblockVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
-
+        
         userState()
-//        fetchBlockInfo()
-//        tableView.reloadData()
+        //        fetchBlockInfo()
+        //        tableView.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -67,26 +65,26 @@ class UnblockVC: UIViewController {
     }
     
     func userState() {
-                    
+        
         userManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+            
+            switch result {
                 
-                switch result {
+            case .success(let userModel):
+                
+                self?.userModels = userModel
+                self?.fetchBlockInfo()
+                
+                DispatchQueue.main.async {
                     
-                case .success(let userModel):
-                    
-                    self?.userModels = userModel
-                    self?.fetchBlockInfo()
-                    
-                    DispatchQueue.main.async {
-                        
-                        self?.viewDidLoad()
-                    }
-                    
-                case .failure:
-                    print("can't fetch data")
+                    self?.viewDidLoad()
                 }
+                
+            case .failure:
+                print("can't fetch data")
             }
         }
+    }
     
     func fetchBlockInfo() {
         
@@ -116,7 +114,7 @@ class UnblockVC: UIViewController {
             }
         }
     }
-
+    
     func setUp() {
         
         closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
@@ -138,7 +136,7 @@ class UnblockVC: UIViewController {
         tableView.backgroundColor = .NaturianColor.lightGray
         tableView.lkBorderWidth = 1
         tableView.lkBorderColor = .NaturianColor.darkGray
-
+        
         tableView.automaticallyAdjustsScrollIndicatorInsets = true
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
@@ -192,10 +190,10 @@ extension UnblockVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UnblockTVCell.identifer,
-                                                        for: indexPath) as? UnblockTVCell else { fatalError("can't find Cell") }
+                                                       for: indexPath) as? UnblockTVCell else { fatalError("can't find Cell") }
         
         cell.nameLabel.text = blockUserIDs[indexPath.row].name
-
+        
         return cell
         
     }

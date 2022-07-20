@@ -13,20 +13,20 @@ import FirebaseStorage
 import FirebaseAuth // 用來與 Firebase Auth 進行串接用的
 
 class MyChatRoomVC: UIViewController {
-
-//    var talentManager = TalentManager()
+    
+    //    var talentManager = TalentManager()
     var userManager = UserManager()
     var chatManager = ChatManager()
     var userModels: [UserModel] = []
-
+    
     var forumManager = ForumManager()
     
-//    let closeButton = UIButton()
+    //    let closeButton = UIButton()
     let titleLB = UILabel()
     
-        let userID = Auth.auth().currentUser?.uid
+    let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-//    let userID = "1"
+    //    let userID = "1"
     private var chatModels: [ChatModel] = []
     var newChatModels: [String] = []
     
@@ -35,11 +35,11 @@ class MyChatRoomVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tabBarController?.tabBar.isHidden = true
+        //        tabBarController?.tabBar.isHidden = true
         setUp()
         style()
         layout()
-
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -57,8 +57,8 @@ class MyChatRoomVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         fetchChatInfo()
-//        fetchBlockInfo()
-//        tableView.reloadData()
+        //        fetchBlockInfo()
+        //        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,7 +80,7 @@ class MyChatRoomVC: UIViewController {
         dismiss(animated: true)
         navigationController?.popViewController(animated: false)
     }
-
+    
     func fetchChatInfo() {
         
         chatManager.fetchChatData(userID: userID ?? "") { [weak self] result in
@@ -90,7 +90,7 @@ class MyChatRoomVC: UIViewController {
             case .success(let ChatModels):
                 
                 self?.chatModels = ChatModels
-           
+                
                 for chatModel in self!.chatModels {
                     
                     let new = chatModel.users.filter { $0 != self?.userID }
@@ -99,26 +99,26 @@ class MyChatRoomVC: UIViewController {
                     
                     self?.newChatModels.append(new[0])
                 }
-                                
+                
                 for user in self!.newChatModels {
-
+                    
                     self?.userManager.fetchUserData(userID: user) { [weak self] result in
-
+                        
                         switch result {
-
+                            
                         case .success(let userModel):
-
+                            
                             self?.userModels.append(userModel)
-
+                            
                             print(self?.userModels as Any)
-
+                            
                             DispatchQueue.main.async {
-
+                                
                                 self?.tableView.reloadData()
                             }
-
+                            
                         case .failure:
-
+                            
                             print("can't fetch data")
                         }
                     }
@@ -130,10 +130,10 @@ class MyChatRoomVC: UIViewController {
             }
         }
     }
-
+    
     func setUp() {
         
-//        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
+        //        closeButton.addTarget(self, action: #selector(closePage), for: .touchUpInside)
         
         tableView.register(ChatRoomTVCell.self, forCellReuseIdentifier: ChatRoomTVCell.identifer)
         
@@ -144,15 +144,15 @@ class MyChatRoomVC: UIViewController {
     
     func style() {
         
-//        closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
-//
+        //        closeButton.setImage(UIImage(named: "back_gray"), for: .normal)
+        //
         titleLB.text = "Chat Room"
         titleLB.font = UIFont(name: Roboto.bold.rawValue, size: 20)
         
         tableView.backgroundColor = .NaturianColor.lightGray
         tableView.lkBorderWidth = 1
         tableView.lkBorderColor = .NaturianColor.darkGray
-
+        
         tableView.automaticallyAdjustsScrollIndicatorInsets = true
         tableView.separatorStyle = .none
         tableView.contentInsetAdjustmentBehavior = .never
@@ -160,12 +160,12 @@ class MyChatRoomVC: UIViewController {
     
     func layout() {
         
-//        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        //        closeButton.translatesAutoresizingMaskIntoConstraints = false
         titleLB.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(tableView)
-//        view.addSubview(closeButton)
+        //        view.addSubview(closeButton)
         view.addSubview(titleLB)
         
         NSLayoutConstraint.activate([
@@ -200,7 +200,7 @@ extension MyChatRoomVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatRoomTVCell.identifer,
-                                                        for: indexPath) as? ChatRoomTVCell else { fatalError("can't find Cell") }
+                                                       for: indexPath) as? ChatRoomTVCell else { fatalError("can't find Cell") }
         
         cell.nameLabel.text = userModels[indexPath.row].name
         
@@ -216,30 +216,30 @@ extension MyChatRoomVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-//        let blockID = blockUserIDs[indexPath.row].userID ?? ""
-//
-//        self.userManager.removeBlockList(uid: self.userID ?? "", blockID: blockID) { [weak self] result in
-//            switch result {
-//
-//            case .success:
-//
-//                self?.blockUserIDs.removeAll()
-//                self?.userState()
-//                self?.tableView.reloadData()
-//
-//            case .failure:
-//                print("can't fetch data")
-
-//            }
-//        }
+        
+        //        let blockID = blockUserIDs[indexPath.row].userID ?? ""
+        //
+        //        self.userManager.removeBlockList(uid: self.userID ?? "", blockID: blockID) { [weak self] result in
+        //            switch result {
+        //
+        //            case .success:
+        //
+        //                self?.blockUserIDs.removeAll()
+        //                self?.userState()
+        //                self?.tableView.reloadData()
+        //
+        //            case .failure:
+        //                print("can't fetch data")
+        
+        //            }
+        //        }
         
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "ChatViewController") as? ChatViewController else {
-
+            
             fatalError("can't find ChatViewController")
         }
-      
+        
         vc.chatToID = userModels[indexPath.row].userID
         self.navigationController?.pushViewController(vc, animated: true)
     }

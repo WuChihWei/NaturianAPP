@@ -12,8 +12,6 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
-import UIKit
-
 class UserManager {
     
     static let shared = UserManager()
@@ -191,7 +189,8 @@ class UserManager {
                             completion: @escaping (Result<[UserModel], Error>) -> Void) {
         
         db.whereField("appliedTalent",
-                      isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+                      isEqualTo: talentPostID).whereField("userID",
+                                                          isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -228,7 +227,8 @@ class UserManager {
     func searchAcceptState(talentPostID: String, userID: String, completion: @escaping (Result<[UserModel], Error>) -> Void) {
         
         db.whereField("isAcceptedTalent",
-                      isEqualTo: talentPostID).whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+                      isEqualTo: talentPostID).whereField("userID",
+                                                          isEqualTo: userID).getDocuments { (querySnapshot, error) in
             
             if let error = error {
                 
@@ -522,7 +522,7 @@ class UserManager {
         
     }
     
-    func updateSeedValue(uid: String, seedValue: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+    func updateUserSeeds(uid: String, seedValue: Int, completion: @escaping (Result<Void, Error>) -> Void) {
         
         db.document(uid).updateData(["seedValue": seedValue]) { error in
             

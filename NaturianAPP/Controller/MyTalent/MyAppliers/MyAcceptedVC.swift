@@ -18,7 +18,7 @@ class MyAcceptedVC: UIViewController {
     var didSeletectDetails: TalentArticle!
     var userManager = UserManager()
     
-                var userID = Auth.auth().currentUser?.uid
+    var userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
     //    let userID = "1"
     

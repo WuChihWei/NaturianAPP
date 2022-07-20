@@ -21,7 +21,6 @@ class PostArticleViewController: UIViewController, UITextViewDelegate {
     var userID = Auth.auth().currentUser?.uid
 //    var userID = "2"
 //    let userID = "1"
-
     var userModels: UserModel?
     
     var categoryResult = ""
