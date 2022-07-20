@@ -34,17 +34,9 @@ class ForumDetailPostTBCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setup()
+//        setup()
         styleObject()
         layout()
-    }
-    
-    func setup() {
-        
-    }
-    
-    func ovveride() {
-        
     }
     
     func styleObject() {
@@ -69,7 +61,7 @@ class ForumDetailPostTBCell: UITableViewCell {
         categoryBTN.titleLabel?.textAlignment = .center
         categoryBTN.setTitle("Food", for: .normal)
         categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal)
-//        categoryBTN.backgroundColor = .NaturianColor.treatmentGreen
+
         categoryBTN.lkCornerRadius = 5
         categoryBTN.lkBorderWidth = 1
         categoryBTN.lkBorderColor = .NaturianColor.darkGray
@@ -81,21 +73,19 @@ class ForumDetailPostTBCell: UITableViewCell {
         articleContent.textAlignment = .justified
         articleContent.lineBreakMode = NSLineBreakMode.byWordWrapping
         articleContent.numberOfLines = 0
-//        articleContent.text = .replacingOccurrences(of: "/n", with: "\n")
-
-        articleContent.text = ""
 
         authorLB.font = UIFont(name: Roboto.regular.rawValue, size: 14)
         authorLB.textColor = .NaturianColor.darkGray
-        authorLB.text = "Writen By : Linda"
-        
-//        likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
-        
+
         dottedLine.image = UIImage(named: "dottedLine")
         solidLine.backgroundColor = .black
         
-//        seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
+        likeBtn.setImage(UIImage(named: "greenLike"), for: .selected)
+        likeBtn.setImage(UIImage(named: "grayLike"), for: .normal)
         
+        seedBtn.setImage(UIImage(named: "greenSeed"), for: .selected)
+        seedBtn.setImage(UIImage(named: "graySeed"), for: .normal)
+
         buttonStack.axis = .horizontal
         buttonStack.alignment = .bottom
         buttonStack.spacing = 20
@@ -123,13 +113,14 @@ class ForumDetailPostTBCell: UITableViewCell {
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         
         title.translatesAutoresizingMaskIntoConstraints = false
-        //        userAvatar.translatesAutoresizingMaskIntoConstraints = false
         categoryBTN.translatesAutoresizingMaskIntoConstraints = false
         articleContent.translatesAutoresizingMaskIntoConstraints = false
         authorLB.translatesAutoresizingMaskIntoConstraints = false
         dottedLine.translatesAutoresizingMaskIntoConstraints = false
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         solidLine.translatesAutoresizingMaskIntoConstraints = false
+        
+//        postImage.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 0, paddingLeading: 0, paddingTrailing: 0, height: 400)
         
         NSLayoutConstraint.activate([
             

@@ -20,8 +20,7 @@ class PostTalentVC: UIViewController, UITextViewDelegate {
     var backButton = UIButton()
     let cancelButton = UIButton()
     var userID = Auth.auth().currentUser?.uid
-    //    let userID = "2"
-    //    let userID = "1"
+//    let userID = "2"
     let locationIcon = UIImageView()
     var userModels: UserModel?
     

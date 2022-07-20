@@ -25,8 +25,6 @@ class TalentLobbyVC: UIViewController, UITextFieldDelegate {
     let searchBtn = UIButton()
     let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-//    let userID = "1"
-
     let addPosteBTN = UIButton()
     let outerView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
     let clearBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))

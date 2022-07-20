@@ -18,10 +18,8 @@ protocol ReplyArticleDelegate: AnyObject {
 class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     weak var replyArticleDelegate: ReplyArticleDelegate?
-        let currentUserID = Auth.auth().currentUser?.uid
-//    let currentUserID = "2"
-//    let currentUserID = "1"
-
+    let currentUserID = Auth.auth().currentUser?.uid
+    //    let currentUserID = "2"    
     var forumManager = ForumManager()
     var repliedArticles: [ReplyModel] = []
     
@@ -87,13 +85,13 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
     
     func setupLottie() {
         let animationView = AnimationView(name: "lf20_xaazxgdm")
-           animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-           animationView.center = self.view.center
-           animationView.contentMode = .scaleAspectFill
+        animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
-
-           view.addSubview(animationView)
-           animationView.play()
+        
+        view.addSubview(animationView)
+        animationView.play()
     }
     
     @objc func replyArticle() {
@@ -122,7 +120,7 @@ class ForumReplyVC: UITabBarController, UITextViewDelegate {
                                     userID: currentUserID,
                                     createdTime: createdTime,
                                     userInfo: userModel)
-
+        
         replyManager.addReplyData(replyForum: replyModel)
         
         forumArticles.replyIDs.append(replyID)
