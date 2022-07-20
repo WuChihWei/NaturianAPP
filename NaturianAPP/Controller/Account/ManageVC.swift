@@ -17,10 +17,9 @@ class ManageVC: UIViewController {
     let blackView = UIView()
     var userFirebaseManager = UserManager()
     var userModels: UserModel!
-        let userID = Auth.auth().currentUser?.uid
-//        let userID = "2"
-//    let userID = "1"
-
+    let userID = Auth.auth().currentUser?.uid
+    //    let userID = "2"
+    
     let logoutBtn = UIButton()
     let delelteAccountBtn = UIButton()
     let unBlockBtn = UIButton()
@@ -41,28 +40,28 @@ class ManageVC: UIViewController {
     }
     
     func userState() {
-            
-//        guard let userID = Auth.auth().currentUser?.uid else {return}
+        
+        //        guard let userID = Auth.auth().currentUser?.uid else {return}
         
         userFirebaseManager.fetchUserData(userID: userID ?? "") { [weak self] result in
+            
+            switch result {
                 
-                switch result {
+            case .success(let userModel):
+                
+                self?.userModels = userModel
+                
+                print(self?.userModels ?? "")
+                DispatchQueue.main.async {
                     
-                case .success(let userModel):
-                    
-                    self?.userModels = userModel
-                    
-                    print(self?.userModels ?? "")
-                    DispatchQueue.main.async {
-                        
-                        self?.viewDidLoad()
-                    }
-                    
-                case .failure:
-                    print("can't fetch data")
+                    self?.viewDidLoad()
                 }
+                
+            case .failure:
+                print("can't fetch data")
             }
         }
+    }
     
     @objc func closePage() {
         navigationController?.popViewController(animated: false)
@@ -73,57 +72,57 @@ class ManageVC: UIViewController {
     }
     
     @objc func deleteuser() {
-            let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
-                self.deleteAccount()
+        let alert  = UIAlertController(title: "Delete Account", message: "Are you sure?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "YES", style: .destructive) { (_) in
+            self.deleteAccount()
+            
+            guard let vc = self.storyboard?.instantiateViewController(
+                withIdentifier: "SignInViewController") as? SignInViewController else {
                 
-                guard let vc = self.storyboard?.instantiateViewController(
-                    withIdentifier: "SignInViewController") as? SignInViewController else {
-                    
-                    fatalError("can't find SignInViewController")
-                }
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                fatalError("can't find SignInViewController")
             }
-            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
-
-            alert.addAction(noAction)
-            alert.addAction(yesAction)
-
-            present(alert, animated: true, completion: nil)
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        let noAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(noAction)
+        alert.addAction(yesAction)
+        
+        present(alert, animated: true, completion: nil)
     }
-
+    
     func deleteAccount() {
         userFirebaseManager.deleteAccount()
     }
     
     @objc func tapToLogout() {
-                let controller = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: .alert)
-
-                let okAction = UIAlertAction(title: "Comfirm", style: .default) { _ in
-
-                    do {
-
-                        try Auth.auth().signOut()
-                        self.navigationController?.popToRootViewController(animated: true)
-                        print("sign outtttt")
-
-                    } catch let signOutError as NSError {
-
-                       print("Error signing out: (signOutError)")
-
-                    }
-                }
-
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-                controller.addAction(okAction)
-
-                controller.addAction(cancelAction)
-
-                present(controller, animated: true, completion: nil)
+        let controller = UIAlertController(title: "Sign Out", message: "Do you want to sign out?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Comfirm", style: .default) { _ in
+            
+            do {
+                
+                try Auth.auth().signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+                print("sign outtttt")
+                
+            } catch let signOutError as NSError {
+                
+                print("Error signing out: (signOutError)")
+                
             }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        controller.addAction(okAction)
+        
+        controller.addAction(cancelAction)
+        
+        present(controller, animated: true, completion: nil)
+    }
     
     @objc func unblockPage() {
         
@@ -133,10 +132,10 @@ class ManageVC: UIViewController {
             fatalError("can't find UnblockVC")
         }
         
-//        vc.userModels = self.userModels
-
+        //        vc.userModels = self.userModels
+        
         navigationController?.pushViewController(vc, animated: true)
-//        present(vc, animated: true)
+        //        present(vc, animated: true)
     }
     
     
@@ -165,7 +164,7 @@ class ManageVC: UIViewController {
         userInfoLB.textColor = .NaturianColor.navigationGray
         userInfoLB.font = UIFont(name: Roboto.bold.rawValue, size: 16)
         userInfoLB.text = "User Info"
-
+        
         logoutLB.textColor = .NaturianColor.darkGray
         logoutLB.text = "Log Out"
         logoutLB.font = UIFont(name: Roboto.medium.rawValue, size: 16)
@@ -213,7 +212,7 @@ class ManageVC: UIViewController {
         logoutBtn.addSubview(logoutLB)
         delelteAccountBtn.addSubview(delelteAccountLB)
         unBlockBtn.addSubview(unBlockLB)
-
+        
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         titleLB.translatesAutoresizingMaskIntoConstraints = false
         blackView.translatesAutoresizingMaskIntoConstraints = false
@@ -225,11 +224,11 @@ class ManageVC: UIViewController {
         
         delelteAccountLB.translatesAutoresizingMaskIntoConstraints = false
         delelteAccountBtn.translatesAutoresizingMaskIntoConstraints = false
-
+        
         userInfoLB.translatesAutoresizingMaskIntoConstraints = false
         unBlockLB.translatesAutoresizingMaskIntoConstraints = false
         unBlockBtn.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -276,7 +275,5 @@ class ManageVC: UIViewController {
             unBlockBtn.heightAnchor.constraint(equalToConstant: 58)
             
         ])
-        
     }
-    
 }

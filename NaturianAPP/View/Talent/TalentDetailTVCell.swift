@@ -59,8 +59,7 @@ class TalentDetailTVCell: UITableViewCell {
 
         likedBtn.setImage(UIImage(named: "unlike"), for: .normal)
         likedBtn.setImage(UIImage(named: "isliked"), for: .selected)
-
-//        likedBtn.isSelected = false
+        
         likedBtn.clipsToBounds = false
         likedBtn.layer.shadowOpacity = 0.3
         likedBtn.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -81,7 +80,6 @@ class TalentDetailTVCell: UITableViewCell {
         
         categoryBTN.titleLabel?.font = UIFont(name: Roboto.bold.rawValue, size: 12)
         categoryBTN.titleLabel?.textAlignment = .center
-        categoryBTN.setTitle( "", for: .normal)
         categoryBTN.setTitleColor(.NaturianColor.darkGray, for: .normal)
 
         categoryBTN.lkCornerRadius = 5
@@ -93,23 +91,20 @@ class TalentDetailTVCell: UITableViewCell {
         
         titleText.font = UIFont(name: Roboto.bold.rawValue, size: 28)
         titleText.textAlignment = .left
-        titleText.text = ""
         titleText.textColor = .NaturianColor.darkGray
         titleText.numberOfLines = 0
         
         descriptionText.font = UIFont(name: Roboto.regular.rawValue, size: 16)
         descriptionText.textAlignment = .justified
-        descriptionText.text = ""
         descriptionText.numberOfLines = 0
 
         locationLabel.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         locationLabel.textColor = .NaturianColor.navigationGray
         locationIcon.image = UIImage(named: "location")
-        
+
         genderIcon.image = UIImage(named: "male")
         providerName.font = UIFont(name: Roboto.medium.rawValue, size: 14)
         providerName.textColor = .NaturianColor.navigationGray
-        providerName.text = ""
         
         nameStack.axis = .horizontal
         nameStack.alignment = .center

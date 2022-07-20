@@ -25,7 +25,6 @@ class AccountViewController: UIViewController {
     
     let userID = Auth.auth().currentUser?.uid
 //    let userID = "2"
-//    let userID = "1"
     var userModels: UserModel!
     let backgroundView = UIView()
     let editButton = UIButton()
@@ -137,7 +136,6 @@ class AccountViewController: UIViewController {
         
         setupLottie()
 
-        
         userFirebaseManager.listenUserData(userID: userID ?? "") { [weak self] result in
                 
                 switch result {
