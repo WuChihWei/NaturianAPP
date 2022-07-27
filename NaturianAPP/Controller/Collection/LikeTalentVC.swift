@@ -235,7 +235,6 @@ extension LikeTalentVC: UITableViewDataSource {
         let postUrl = URL(string: talentArticles[indexPath.row].images[0])
         cell.postImage.kf.setImage(with: postUrl)
     
-        
         switch talentArticles[indexPath.row].category {
             
         case "Food":
@@ -263,6 +262,5 @@ extension LikeTalentVC: UITableViewDataSource {
         
         return cell
     }
-    
     
 }

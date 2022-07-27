@@ -407,7 +407,7 @@ extension TalentLobbyVC: UITableViewDataSource {
         let photoUrl = URL(string: talentArticles[indexPath.row].images[0])
         
         cell.title.text = talentArticles[indexPath.row].title
-        cell.categoryBTN.setTitle(String(describing:   talentArticles[indexPath.row].category ?? ""), for: .normal)
+        cell.categoryBTN.setTitle(String(describing: talentArticles[indexPath.row].category ?? ""), for: .normal)
         cell.seedValue.text = "\(talentArticles[indexPath.row].seedValue!)"
 //        cell.talentDescription.text = talentArticles[indexPath.row].content
         cell.locationLabel.text = talentArticles[indexPath.row].location
@@ -638,10 +638,6 @@ extension TalentLobbyVC {
             
                     print(LocalizedError.self)
                 }
-//                DispatchQueue.main.async {
-//
-//                    self?.viewDidLoad()
-//                }
                 
             case .failure:
                 print("can't fetch data")
