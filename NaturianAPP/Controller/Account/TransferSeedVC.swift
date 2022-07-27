@@ -43,7 +43,6 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
     
     var otherSeedValue: Int = 0
     var transferValue: Int = 0
-    
     var remainValue: Int = 0
         
 //        didSet {
@@ -129,8 +128,6 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
                 print("can't fetch data")
             }
         }
-        
-
     }
     
     @objc func scanBarTapped() {
@@ -149,11 +146,21 @@ class TransferSeedVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: true)
     }
     
+    func seedRemainValue(originSeed: Int,transferSeed: Int) -> Int {
+        
+//        self.transferValue = Int("\(seedTextField.text!)") ?? 0
+        
+        remainValue = originSeed - transferSeed
+
+        return remainValue
+    }
+    
     @objc func textFieldDidEndEditing(_ textField: UITextField) {
         
         transferValue = Int("\(seedTextField.text!)") ?? 0
         
         remainValue = (userModels?.seedValue ?? 0) - transferValue
+        
         otherSeedValue = (otherUserModels?.seedValue ?? 0) + transferValue
         
         if remainValue < 0 {

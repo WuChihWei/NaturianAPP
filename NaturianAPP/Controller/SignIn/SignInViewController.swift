@@ -39,10 +39,10 @@ class SignInViewController: UIViewController {
         checkAppleIDCredentialState(userID: uuid ?? "")
         
         Auth.auth().addStateDidChangeListener { (auth, user) in if user != nil { guard let vc = self.storyboard?.instantiateViewController(
-                withIdentifier: "AccountViewController") as? AccountViewController else {
-                
-                fatalError("can't find AccountViewController")
-            }
+            withIdentifier: "AccountViewController") as? AccountViewController else {
+            
+            fatalError("can't find AccountViewController")
+        }
             
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -320,10 +320,10 @@ extension SignInViewController {
             let db = Firestore.firestore().collection("users")
             
             db.whereField("userID", isEqualTo: userID ?? "").getDocuments { (querySnapshot, error) in if let doc = querySnapshot?.documents.first {
-                    
-                } else {
-                    self.userManager.addUser(name: "", userID: userID ?? "", email: email ?? "")
-                }
+                
+            } else {
+                self.userManager.addUser(name: "", userID: userID ?? "", email: email ?? "")
+            }
             }
         }
     }
@@ -342,11 +342,11 @@ extension SignInViewController {
         let db = Firestore.firestore().collection("users")
         
         db.whereField("userID", isEqualTo: uid).getDocuments { (querySnapshot, error) in if let doc = querySnapshot?.documents.first {
-                print("exist")
-            } else {
-                
-                self.userManager.addUser(name: "", userID: uid, email: email ?? "")
-            }
+            print("exist")
+        } else {
+            
+            self.userManager.addUser(name: "", userID: uid, email: email ?? "")
+        }
         }
         
         SignInViewController.shared.uuid = user.uid
@@ -378,9 +378,9 @@ extension SignInViewController {
         NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification,
                                                object: nil,
                                                queue: nil) { (notification: Notification) in CustomFunc.customAlert(title: "使用者登入或登出",
-                                   message: "",
-                                   vc: self,
-                                   actionHandler: nil)
+                                                                                                                    message: "",
+                                                                                                                    vc: self,
+                                                                                                                    actionHandler: nil)
         }
     }
 }
